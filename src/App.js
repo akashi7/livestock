@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
+// import Navbar from "./components/common/header/header";
+// import Sidebar from "./components/common/sidebar/sidebar";
+// import { Layout } from 'antd'
+// import ContentWrapper from "./components/common/contentWrapper/contentWrapper";
+import { Routes, Route } from 'react-router'
+import Login from "./components/auth/login";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/"  element={<Login />}></Route>
+      <Route path="/login"  element={<Login />}></Route>
+    </Routes>
   );
 }
-
 export default App;
