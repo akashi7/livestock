@@ -62,6 +62,7 @@ export const InputSelect = ({ label, options, ...props }) => {
                     {...field}
                     {...props}
                 >
+                    <option value=''>Select Option</option>
                     {options.map((item) => (
                         <option value={item.value}>{item.label}</option>
                     ))}
