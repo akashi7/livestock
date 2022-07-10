@@ -1,11 +1,12 @@
-import { Layout } from "antd";
+import { Layout, Table } from "antd";
 import { useNavigate } from "react-router-dom";
+import { columns, data } from "./helper";
 
 function ListFarmers() {
-    const navigate = useNavigate();
     return (
-        <Layout className="h-[100vh]  items-center flex">
-              list farmers
+        <Layout className="h-[100vh] w-full">
+            <h2>Farmers</h2>
+            <Table columns={columns} dataSource={data} />
         </Layout>
     );
 }
