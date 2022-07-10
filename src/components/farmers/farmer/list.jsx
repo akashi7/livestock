@@ -1,9 +1,19 @@
 import { Layout, Table } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getfarmers } from "../../../state/slices/farmer.slice";
 import DashCard from "../../common/card";
-import { columns, data } from "./helper";
+import { columns} from "./helper";
 
 function ListFarmers() {
+    const { get } = useSelector((state) => state.farmer);
+    const dispatch = useDispatch();
+    console.log(get)
+    useEffect(()=>{
+        console.log(get);
+        dispatch(getfarmers());
+        /* eslint-disable-next-line */
+    },[])
     return (
         <Layout className="h-[100vh] w-full ">
             <div className="flex items-center justify-around">
@@ -13,7 +23,7 @@ function ListFarmers() {
               <DashCard title="Schedules In This Week"   number="6"/>
             </div>
             <h2 className="mt-10">Farmers</h2>
-            <Table columns={columns} dataSource={data} />
+            <Table columns={columns} dataSource={get.data} loading={false} />
         </Layout>
     );
 }

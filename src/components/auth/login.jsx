@@ -26,7 +26,7 @@ const Login = () => {
                 <h2 className="ml-7 mt-1 text-white">Welcome Back</h2>
                 <h1 className="ml-6 text-white text-[2rem]">LiveStock bank</h1>
             </div>
-            <div className="p-4 w-[27%] h-[500px] bg-white  border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div className="p-4 w-[27%] h-[500px] bg-white  border border-gray-200 shadow-md sm:p-6 lg:p-8">
                 <Formik
                     initialValues={initialValues}
                     validationSchema={loginSchema}

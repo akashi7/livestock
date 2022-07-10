@@ -1,11 +1,19 @@
 import { Col, Layout, Row } from "antd";
 import { Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { farmer } from "../../../state/slices/farmer.slice";
 import { InputSelect, InputText } from "../../common/input";
 import { addFarmerSchema } from "../validations";
 
+
 function CreateFarmer() {
+    const { loading } = useSelector((state) => state.farmer);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const successFull = () => {
+        navigate("/vt/");
+    };
     const initialValues = {
         firstname: "",
         lastname: "",
@@ -20,8 +28,7 @@ function CreateFarmer() {
         village: "",
     };
     const handleSubmit = (values) => {
-        console.log(values);
-        navigate("/");
+        dispatch(farmer({ data: values, success: successFull }));
     };
     return (
         <Layout className="h-[100vh]  items-center flex">

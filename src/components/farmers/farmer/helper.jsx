@@ -1,5 +1,5 @@
-import {Space, Dropdown, Menu } from "antd"
-import {DownOutlined} from '@ant-design/icons';
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Space } from "antd";
 const menu = (
     <Menu
       items={[

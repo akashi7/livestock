@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createFarmer } from "../../utils/services/farmers.service";
+import { createFarmer, getFarmers } from "../../utils/services/farmers.service";
 
 export const farmer = createAsyncThunk(
     "farmer",
@@ -15,9 +15,28 @@ export const farmer = createAsyncThunk(
             });
     }
 );
+
+export const getfarmers = createAsyncThunk(
+    "getfarmers",
+    async (props,{ rejectWithValue }) => {
+        console.log("getfarmers");
+        return getFarmers()
+            .then((resp) => {
+                console.log(resp);
+                return resp.data
+            })
+            .catch((error) => {
+                console.log(error);
+                rejectWithValue(error);
+            });
+    }
+);
 const initialState = {
     loading: false,
-    authenticated: false,
+    get:{
+        loading:false,
+        data:[],
+    }
 };
 
 const farmerSlice = createSlice({
@@ -38,7 +57,16 @@ const farmerSlice = createSlice({
         }).addCase(farmer.rejected, (state) => {
             state.loading = false;
             console.log(state);
-        })
+        }).addCase(getfarmers.pending, (state) => {
+            state.get.loading = true;
+            console.log(state);
+        }).addCase(getfarmers.fulfilled, (state,{payload}) => {
+            state.get.loading = false;
+            state.get.data = payload.data;
+        }).addCase(getfarmers.rejected, (state) => {
+            state.get.loading = false;
+            console.log(state);
+        }   );
     }
 });
 

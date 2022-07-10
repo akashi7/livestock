@@ -8,6 +8,7 @@ export const authAdmin = createAsyncThunk(
             .then((resp) => {
                 console.log(resp);
                 success();
+                localStorage.setItem("token", resp.data.token);
             })
             .catch((error) => {
                 console.log(error);
