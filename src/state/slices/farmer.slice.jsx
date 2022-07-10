@@ -17,7 +17,7 @@ export const farmer = createAsyncThunk(
 );
 
 export const getfarmers = createAsyncThunk(
-    "getfarmers",
+    "getAllFarmers",
     async (props,{ rejectWithValue }) => {
         console.log("getfarmers");
         return getFarmers()
