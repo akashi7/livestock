@@ -1,59 +1,86 @@
-import { Tag, Space } from "antd"
-
+import {Space, Dropdown, Menu } from "antd"
+import {DownOutlined} from '@ant-design/icons';
+const menu = (
+    <Menu
+      items={[
+        {
+          key: '1',
+          label: 'Action 1',
+        },
+        {
+          key: '2',
+          label: 'Action 2',
+        },
+      ]}
+    />
+  );
 export const columns = [
   {
-    title: "Date",
-    dataIndex: "name",
-    key: "name",
+    title: "First Name",
+    dataIndex: "firstname",
+    key: "firstname",
     render: (text) => text,
   },
   {
-    title: "Reference_code",
-    dataIndex: "age",
-    key: "age",
+    title: "Last Name",
+    dataIndex: "lastname",
+    key: "lastname",
   },
   {
-    title: "Patient_ID",
-    dataIndex: "address",
-    key: "address",
+    title: "Gender",
+    dataIndex: "gender",
+    key: "gender",
   },
   {
-    title: "Patient_Name",
-    dataIndex: "address",
-    key: "address",
-  },
-
-  {
-    title: "Patient_status",
-    key: "tags",
-    dataIndex: "tags",
-    render: (tags) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length >= 10 ? "green" : "volcano"
-          if (tag === "outpatient") {
-            color = "green"
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          )
-        })}
-      </>
-    ),
+    title: "Phone",
+    dataIndex: "phone",
+    key: "phone",
   },
   {
-    title: "Total Payment",
-    dataIndex: "address",
-    key: "address",
+    title: "NID",
+    dataIndex: "nid",
+    key: "nid",
+  },
+  {
+    title: "Farmer_cat",
+    dataIndex: "farmer_cat",
+    key: "farmer_cat",
+  },
+  {
+    title: "Province",
+    dataIndex: "province",
+    key: "province",
+  },
+  {
+    title: "District",
+    dataIndex: "district",
+    key: "district",
+  },
+  {
+    title: "Sector",
+    dataIndex: "sector",
+    key: "sector",
+  },
+  {
+    title: "Cell",
+    dataIndex: "cell",
+    key: "cell",
+  },
+  {
+    title: "Village",
+    dataIndex: "village",
+    key: "village",
   },
   {
     title: "Action",
     key: "action",
     render: (text, record) => (
-      <Space size="middle">
-        edit
+        <Space size="middle">
+        <Dropdown overlay={menu}>
+          <a>
+            More <DownOutlined />
+          </a>
+        </Dropdown>
       </Space>
     ),
   },
@@ -61,24 +88,419 @@ export const columns = [
 
 export const data = [
   {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["inpatient"],
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
   },
   {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["inpatient"],
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
   },
   {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["outpatient"],
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
+  },
+  {
+    firstname: "firstname",
+    lastname: "John Brown",
+    gender: 32,
+    phone: "250787612847",
+    nid: "1234565",
+    farmer_cat:"1234565",
+    province:'North',
+    district:'Musanze',
+    sector:'Muhoza',
+    cell:'Musanze',
+    village:'Byimana'
   },
 ]

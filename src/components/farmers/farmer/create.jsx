@@ -25,13 +25,9 @@ function CreateFarmer() {
         console.log(values);
         navigate("/");
     };
-    const handleAddress = (values) => {
-        console.log(values);
-        return (initialValues.address = values);
-    };
     return (
         <Layout className="h-[100vh]  items-center flex">
-            <div class="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
                 <Formik
                     initialValues={initialValues}
                     validationSchema={addFarmerSchema}
@@ -80,11 +76,13 @@ function CreateFarmer() {
                                     ]}
                                 />
                             </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                            <InputText
+                            <Col className="gutter-row mt-[60px]" span={12}>
+
+                                <InputText
                                     name="farmer_cat"
                                     type="text"
                                     placeholder="Farmer Cat"
+                                    
                                 />
                             </Col>
                             <Col className="gutter-row mt-10" span={12}>
@@ -93,48 +91,45 @@ function CreateFarmer() {
                                     options={[
                                         { label: "North", value: "north" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select Province"
                                 />
                             </Col>
                             <Col className="gutter-row mt-10" span={12}>
-                            <InputSelect
+                                <InputSelect
                                     name="district"
                                     options={[
                                         { label: "Musanze", value: "musanze" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select District"
                                 />
                             </Col>
-                            
+
                             <Col className="gutter-row mt-10" span={12}>
-                            <InputSelect
+                                <InputSelect
                                     name="sector"
                                     options={[
                                         { label: "Muhoza", value: "muhoza" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select Sector"
                                 />
                             </Col>
                             <Col className="gutter-row mt-10" span={12}>
-                            <InputSelect
+                                <InputSelect
                                     name="cell"
                                     options={[
                                         { label: "Muhoza", value: "muhoza" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select Cell"
                                 />
                             </Col>
                             <Col className="gutter-row mt-10" span={12}>
-                            <InputSelect
+                                <InputSelect
                                     name="village"
                                     options={[
                                         { label: "Byimana", value: "byimana" },
+                                        { label: "Byimanaa", value: "byimanaa" },
+                                        { label: "Byimanaaa", value: "byimanaaa" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select Village"
                                 />
                             </Col>

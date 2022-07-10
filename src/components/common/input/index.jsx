@@ -1,5 +1,5 @@
 import { useField } from "formik";
-import { Cascader, Input, Select } from "antd";
+import { Cascader, Input } from "antd";
 export const InputFloatingLabel = ({ label, ...props }) => {
     const [field, meta] = useField(props);
     return (
@@ -56,13 +56,16 @@ export const InputSelect = ({ label, options, ...props }) => {
         <div className="">
             <div className="relative z-0">
                 <label className="font-small">{label}</label>
-                <Select
-                    className="w-full h-50"
+                <select
+                    className="h-[50px] p-2 appearance-none border border-white-500 rounded w-full  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder=" "
                     {...field}
                     {...props}
-                    options={options}
-                />
+                >
+                    {options.map((item) => (
+                        <option value={item.value}>{item.label}</option>
+                    ))}
+                </select>
             </div>
             {meta.touched && meta.error ? (
                 <span className="font-small text-red-700 mt-[4px]">

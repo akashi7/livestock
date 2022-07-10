@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router";
 import Login from "./components/auth/login";
-// import AuthRoutes from "./routes/authRoutes";
 import DashRoutes from "./routes/dashboardRoutes";
 function App() {
     return (
