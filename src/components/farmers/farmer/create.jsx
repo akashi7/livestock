@@ -1,10 +1,8 @@
-import { CascadeSelect, InputSelect, InputText } from "../../common/input";
-import { Layout, Row, Col } from "antd";
+import { Col, Layout, Row } from "antd";
+import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { InputSelect, InputText } from "../../common/input";
 import { addFarmerSchema } from "../validations";
-import { Spinner } from "../../common/spinner";
-import { addressOptions } from "../../../utils/address";
 
 function CreateFarmer() {
     const navigate = useNavigate();
@@ -31,7 +29,7 @@ function CreateFarmer() {
     };
     return (
         <Layout className="h-[100vh]  items-center flex">
-            <div class="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
                 <Formik
                     initialValues={initialValues}
                     validationSchema={addFarmerSchema}
@@ -93,7 +91,6 @@ function CreateFarmer() {
                                     options={[
                                         { label: "North", value: "north" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select Province"
                                 />
                             </Col>
@@ -103,7 +100,6 @@ function CreateFarmer() {
                                     options={[
                                         { label: "Musanze", value: "musanze" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select District"
                                 />
                             </Col>
@@ -114,7 +110,6 @@ function CreateFarmer() {
                                     options={[
                                         { label: "Muhoza", value: "muhoza" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select Sector"
                                 />
                             </Col>
@@ -124,7 +119,6 @@ function CreateFarmer() {
                                     options={[
                                         { label: "Muhoza", value: "muhoza" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select Cell"
                                 />
                             </Col>
@@ -134,7 +128,6 @@ function CreateFarmer() {
                                     options={[
                                         { label: "Byimana", value: "byimana" },
                                     ]}
-                                    onChange={handleAddress}
                                     label="Select Village"
                                 />
                             </Col>

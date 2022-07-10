@@ -1,9 +1,8 @@
-import { InputSelect, InputText } from "../../common/input";
-import { Layout, Row, Col } from "antd";
+import { Col, Layout, Row } from "antd";
+import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { InputSelect, InputText } from "../../common/input";
 import { addFarmerSchema } from "../validations";
-import { Spinner } from "../../common/spinner";
 
 function CreateAnimal() {
     const navigate = useNavigate();
@@ -28,7 +27,7 @@ function CreateAnimal() {
     };
     return (
         <Layout className="h-[100vh]  items-center flex">
-            <div class="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
                 <Formik
                     initialValues={initialValues}
                     validationSchema={addFarmerSchema}
