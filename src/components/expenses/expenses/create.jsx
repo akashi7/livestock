@@ -1,10 +1,9 @@
-import { CascadeSelect, InputText } from "../../common/input";
-import { Layout, Row, Col } from "antd";
+import { Col, Layout, Row } from "antd";
+import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { Formik, Form } from "formik";
-import { addFarmerSchema } from "../validations";
-import { Spinner } from "../../common/spinner";
 import { addressOptions } from "../../../utils/address";
+import { CascadeSelect, InputText } from "../../common/input";
+import { addFarmerSchema } from "../validations";
 
 function CreateExpense() {
     const navigate = useNavigate();
@@ -27,7 +26,7 @@ function CreateExpense() {
     };
     return (
         <Layout className="h-[100vh]  items-center flex">
-            <div class="p-4 w-[60%] min-h-[530px] bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-4 w-[60%] min-h-[530px] bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
                 <Formik
                     initialValues={initialValues}
                     validationSchema={addFarmerSchema}

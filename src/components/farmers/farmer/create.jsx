@@ -1,10 +1,8 @@
-import { CascadeSelect, InputSelect, InputText } from "../../common/input";
-import { Layout, Row, Col } from "antd";
+import { Col, Layout, Row } from "antd";
+import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { InputSelect, InputText } from "../../common/input";
 import { addFarmerSchema } from "../validations";
-import { Spinner } from "../../common/spinner";
-import { addressOptions } from "../../../utils/address";
 
 function CreateFarmer() {
     const navigate = useNavigate();

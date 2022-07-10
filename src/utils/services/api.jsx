@@ -1,5 +1,5 @@
 import axios from "axios";
-const mainAPI = "https://kuranga-api.herokuapp.com/api/";
+const mainAPI = "http://localhost:5000/api/v1/";
 const instance = axios.create({
     baseURL: mainAPI,
 });

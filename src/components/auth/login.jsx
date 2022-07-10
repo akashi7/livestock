@@ -11,7 +11,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const successFull = () => {
-        navigate("/sp/add-clinic");
+        navigate("/vt/");
     };
     const initialValues = {
         email: "",

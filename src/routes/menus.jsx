@@ -7,7 +7,7 @@ import {
 const menus = [
     {
         label: "Dashboard",
-        key: "/sp/dashboard",
+        key: "/vt/",
         icon: <StarOutlined />,
     },
     {
