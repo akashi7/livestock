@@ -1,60 +1,68 @@
-import { Layout } from "antd";
-import {Link} from 'react-router-dom'
+
+import { Link, useNavigate } from "react-router-dom";
+import { Formik, Form } from "formik";
+import { useSelector, useDispatch } from "react-redux";
+import { loginSchema } from "./validations";
+import { InputText } from "../common/input";
+import { Spinner } from "../common/spinner";
+import { authAdmin } from "../../state/slices/auth.slice";
 const Login = () => {
+    const { loading } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const successFull = () => {
+        navigate("/sp/add-clinic");
+    };
+    const initialValues = {
+        email: "",
+        password: "",
+    };
+    const handleSubmit = (values) => {
+        dispatch(authAdmin({ data: values, success: successFull }));
+    };
     return (
-        <Layout className="h-[100vh] justify-center items-center flex">
-            <div class="p-4 w-[27%] h-[500px] bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <form class="space-y-12" action="#">
-                    <h5 class="text-xl font-medium text-center text-blue dark:text-white ">
-                        Login
-                    </h5>
-                    <div class="relative z-0">
-                        <input
-                            type="text"
-                            id="floating_standard"
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" "
-                        />
-                        <label
-                            for="floating_standard"
-                            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                            Work E-Mail
-                        </label>
-                    </div>
-                    <div class="relative z-0">
-                        <input
-                            type="text"
-                            id="floating_standard"
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" "
-                        />
-                        <label
-                            for="floating_standard"
-                            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                            Password
-                        </label>
-                    </div>
-                    <div class="flex items-start">
-                        <Link
-                            to="#"
-                            class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
-                        >
-                            Lost Password?
-                        </Link>
-                    </div>
-                    <div className="flex items-center justify-center">
-                        <button
-                            type="submit"
-                            class="w-2/6 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                            Login
-                        </button>
-                    </div>
-                </form>
+        <div className="h-[100vh] w-[100%] items-center justify-center flex flex-row">
+            <div className="w-[27%] h-[500px] flex justify-center items-start flex-col bg-white shadow-md border border-gray-200 lg:p-8 bg-login">
+                <h2 className="ml-7 mt-1 text-white">Welcome Back</h2>
+                <h1 className="ml-6 text-white text-[2rem]">LiveStock bank</h1>
             </div>
-        </Layout>
+            <div className="p-4 w-[27%] h-[500px] bg-white  border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={loginSchema}
+                    onSubmit={handleSubmit}
+                >
+                    <Form className="space-y-12" action="#">
+                        <h5 className="text-xl font-medium text-center text-blue dark:text-white">
+                            Login
+                        </h5>
+                        <InputText name="email" type="text" placeholder="example@gmail.com"/>
+                        <InputText name="password" type="password" placeholder="..........." />
+                        <div className="flex items-start">
+                            <Link
+                                to="#"
+                                className=" text-md text-blue hover:underline dark:text-blue-500"
+                            >
+                                Forgot Password?
+                            </Link>
+                        </div>
+                        {loading && (
+                            <div className="flex items-center h-5 justify-center">
+                                <Spinner />
+                            </div>
+                        )}
+                        <div className="flex items-center justify-center">
+                            <button
+                                type="submit"
+                                className="w-full h-[50px] bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                                LOG IN
+                            </button>
+                        </div>
+                    </Form>
+                </Formik>
+            </div>
+        </div>
     );
 };
 export default Login;

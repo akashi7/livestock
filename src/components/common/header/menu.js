@@ -5,12 +5,15 @@ export const DropMenu = (
         items={[
             {
                 key: '1',
-                label: 'item two'
+                label: 'Profile Settings'
             },
             {
                 key: '4',
                 danger: true,
-                label: 'a danger item',
+                label: 'Logout',
+                onClick:()=>{
+                    window.location.href='/';
+                }
             },
         ]}
     />

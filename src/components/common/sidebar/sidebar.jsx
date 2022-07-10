@@ -1,52 +1,34 @@
-import {Layout, Menu } from "antd";
-import { StarOutlined} from '@ant-design/icons';
+import { Layout, Menu } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { MenuOutlined } from "@ant-design/icons";
+import { getMenus } from "../../../routes/menus";
+import logo from '../../../assets/images/logo.jpeg';
 const Sidebar = () => {
     const { Sider } = Layout;
-    const [collapse,setCollapse]=useState(false);
-    const items = [
-        {
-            label: "Dashboard",
-            key: "/",
-            icon:<StarOutlined/>,
-            children: [
-                {
-                    label: "add User",
-                    key: "/add",
-                },
-                {
-                    label: "add User",
-                    key: "/add",
-                },
-            ],
-        },
-        {
-            label: "Home",
-            key: "/home",
-            icon:<StarOutlined/>,
-            children: [
-                {
-                    label: "add User",
-                    key: "/add",
-                },
-                {
-                    label: "add User",
-                    key: "/add",
-                },
-            ],
-        },
-    ];
+    const [toggle, setToggle] = useState(false);
+    const navigate = useNavigate();
+    const handleNavigation = (e) => {
+        navigate(e.key);
+    };
     return (
         <Sider
             width={256}
-            collapsible
-            onCollapse={()=>setCollapse(!collapse)}
-            collapsed={collapse}
-            className="h-[100vh] bg-white"
-            style={{background:"#FAFBFE"}}
-            
+            collapsed={toggle}
+            className="min-h-[100%] bg-white"
+            style={{ background: "#FAFBFE"}}
         >
-            <Menu items={items} mode="inline"/>
+            <div className="h-[65px] w-[100%] bg-white mb-2 flex justify-between items-center">
+                <section className="w-4/6 h-[60px] flex items-center justify-center">
+                    <img src={logo} className="h-[40px] w-[70%] object-fit" alt="img"/>
+                </section>
+                <MenuOutlined
+                    onClick={() => setToggle(!toggle)}
+                    className="cursor-pointer border-blue border p-2 mr-2"
+                    style={{ fontSize: "15px", color: "#1D4ED8" }}
+                />
+            </div>
+            <Menu items={getMenus()} mode="inline" onClick={handleNavigation} />
         </Sider>
     );
 };
