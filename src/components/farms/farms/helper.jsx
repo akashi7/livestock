@@ -16,15 +16,39 @@ const menu = (
   );
 export const columns = [
   {
-    title: "First Name",
-    dataIndex: "firstname",
-    key: "firstname",
-    render: (text) => text,
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: "Last Name",
-    dataIndex: "lastname",
-    key: "lastname",
+    title: "Farmer",
+    dataIndex: "farmer",
+    key: "farmer",
+  },
+  {
+    title: "Province",
+    dataIndex: "province",
+    key: "province",
+  },
+  {
+    title: "district",
+    dataIndex: "district",
+    key: "district",
+  },
+  {
+    title: "Sector",
+    dataIndex: "sector",
+    key: "sector",
+  },
+  {
+    title: "Cell",
+    dataIndex: "cell",
+    key: "cell",
+  },
+  {
+    title: "Village",
+    dataIndex: "village",
+    key: "village",
   },
   {
     title: "Action",
@@ -42,25 +66,8 @@ export const columns = [
 ]
 export const data = [
   {
-    firstname: "firstname",
-    lastname: "John Brown",
-    gender: 32,
-    phone: "250787612847",
-    nid: "1234565",
-    farmer_cat:"1234565",
-    province:'North',
-    district:'Musanze',
-    sector:'Muhoza',
-    cell:'Musanze',
-    village:'Byimana'
-  },
-  {
-    firstname: "firstname",
-    lastname: "John Brown",
-    gender: 32,
-    phone: "250787612847",
-    nid: "1234565",
-    farmer_cat:"1234565",
+    name: "firstname",
+    farmer: "John Brown",
     province:'North',
     district:'Musanze',
     sector:'Muhoza',
