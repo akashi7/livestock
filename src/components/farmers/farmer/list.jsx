@@ -8,9 +8,7 @@ import { columns} from "./helper";
 function ListFarmers() {
     const { get } = useSelector((state) => state.farmer);
     const dispatch = useDispatch();
-    console.log(get)
     useEffect(()=>{
-        console.log(get);
         dispatch(getfarmers());
         /* eslint-disable-next-line */
     },[])

@@ -1,13 +1,21 @@
-import { Layout, Table } from "antd";
-import { useNavigate } from "react-router-dom";
-import { columns, data } from "./helper";
+import { Layout, Table } from 'antd';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAnimals } from '../../../state/slices/animal.slice';
+
+import { columns } from './helper';
 
 function ListAnimals() {
-    const navigate = useNavigate();
-    return (
-        <Layout className="h-[100vh] w-full">
-             <Table columns={columns} dataSource={data} />
-        </Layout>
-    );
+  const dispatch = useDispatch();
+  const { get } = useSelector((state) => state.animal);
+  useEffect(() => {
+    dispatch(getAnimals());
+    /* eslint-disable-next-line */
+  }, []);
+  return (
+    <Layout className="h-[100vh] w-full">
+      <Table columns={columns} dataSource={get.data} loading={get.loading} />
+    </Layout>
+  );
 }
 export default ListAnimals;
