@@ -65,17 +65,16 @@ const menus = [
           },
           {
             label: 'List',
-            key: '/vt/add-animal-expense',
+            key: '/vt/list-animal-expenses',
           },
         ],
       },
       {
         label: 'Farm expenses',
-        key: '/vt/list-expenses',
         children: [
           {
             label: 'Create',
-            key: '/vt/add-expense',
+            key: '/vt/create-farm-expenses',
           },
         ],
       },
