@@ -2,6 +2,9 @@ import * as http from './api';
 export const createAnimalExpense = (data) => {
   return http.POST('animal-expense/create', data);
 };
+export const createFamExpense = (data) => {
+  return http.POST('farm-expense/create', data);
+};
 export const getAnimalExpenses = () => {
   return http.GET('animal-expense/check/all');
 };

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   AllCategories,
   createAnimalExpense,
+  createFamExpense,
   getAnimalExpenses,
   getItemsValue,
 } from '../../utils/services/animalExp.service';
@@ -10,6 +11,19 @@ export const animalExpense = createAsyncThunk(
   'animalExpense',
   async ({ data, success }, { rejectWithValue }) => {
     return createAnimalExpense(data)
+      .then((resp) => {
+        success();
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  },
+);
+
+export const farmExpense = createAsyncThunk(
+  'farmregExpense',
+  async ({ data, success }, { rejectWithValue }) => {
+    return createFamExpense(data)
       .then((resp) => {
         success();
       })
@@ -115,6 +129,15 @@ const animalExpenseSlice = createSlice({
         state.catg.loading = false;
         state.catg.data = payload.data;
       });
+    // .addCase(farmExpense.pending, (state) => {
+    //   state.loading = true;
+    // })
+    // .addCase(farmExpense.fulfilled, (state) => {
+    //   state.loading = false;
+    // })
+    // .addCase(farmExpense.rejected, (state) => {
+    //   state.loading = false;
+    // });
   },
 });
 

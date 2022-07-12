@@ -3,10 +3,13 @@ import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getCategories } from '../../../state/slices/animalExp.slice';
+import {
+  farmExpense,
+  getCategories,
+  getItems,
+} from '../../../state/slices/animalExp.slice';
 import { getAllFarms } from '../../../state/slices/farm.slice';
 import { InputSelect, InputText } from '../../common/input';
-import { getItems } from '../../../state/slices/animalExp.slice';
 import { addFarmerExpenses } from '../validation';
 
 export default function FarmExpense() {
@@ -18,7 +21,7 @@ export default function FarmExpense() {
   const { catg, items } = useSelector((state) => state.animalExpenses);
   const initialValues = {
     creationDate: '',
-    animalId: '',
+    farmId: '',
     categoryId: '',
     itemId: '',
     quantity: '',
@@ -86,7 +89,15 @@ export default function FarmExpense() {
   }
 
   const handleSubmit = (values) => {
-    console.log(values);
+    values.categoryId = changeCat;
+    // dispatch(
+    //   farmExpense({
+    //     data: values,
+    //     success: () => {
+    //       window.alert('Expenses added ok');
+    //     },
+    //   }),
+    // );
   };
 
   return (
@@ -102,13 +113,13 @@ export default function FarmExpense() {
               <Col className="gutter-row" span={24}>
                 <p className="text-blue">Add Farmer expenses</p>
               </Col>
-              {/* <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="farmId"
                   options={Farm}
                   label="Select farm id"
                 />
-              </Col> */}
+              </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="categoryId"

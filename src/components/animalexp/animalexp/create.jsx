@@ -29,7 +29,7 @@ export default function AnimalExpenses() {
     dispatch(
       animalExpense({
         data: values,
-        success: () => navigate('/list-animal-expenses'),
+        success: () => navigate('/vt/list-animal-expenses'),
       }),
     );
   };
@@ -89,10 +89,6 @@ export default function AnimalExpenses() {
     /* eslint-disable-next-line */
   }, [catg.data]);
 
-  function onChange(val) {
-    console.log('onChange', val);
-  }
-
   return (
     <Layout className="h-[100vh]  items-center flex">
       <div className="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
@@ -118,7 +114,6 @@ export default function AnimalExpenses() {
                   name="categoryId"
                   options={category}
                   label="Select category id"
-                  onChange={(val) => onChange(val)}
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
