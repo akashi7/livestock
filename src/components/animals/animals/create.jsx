@@ -1,4 +1,4 @@
-import { Col, Layout, Row } from 'antd';
+import { Col, Layout, notification, Row } from 'antd';
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -49,11 +49,18 @@ function CreateAnimal() {
   }, []);
 
   function navigates() {
-    navigate('/vt/list-animals');
+    notification.success({
+      placement: 'topRight',
+      message: 'Animal Added Successfully',
+      duration: 3,
+      key: 'success',
+    });
+    setTimeout(() => {
+      navigate('/vt/list-animals');
+    }, 3000);
   }
 
   const handleSubmit = (values) => {
-    console.log({ values });
     dispatch(animal({ data: values, success: navigates }));
   };
   return (
@@ -73,7 +80,7 @@ function CreateAnimal() {
                 <InputSelect
                   name="farmId"
                   options={farmers}
-                  label="Select Farmer"
+                  label="Select Farm"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>

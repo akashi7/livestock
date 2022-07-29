@@ -2,7 +2,6 @@ import { Layout, Table } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnimals } from '../../../state/slices/animal.slice';
-
 import { columns } from './helper';
 
 function ListAnimals() {

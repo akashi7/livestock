@@ -1,8 +1,17 @@
-import { Col, Layout, Row } from 'antd';
+import { Col, Layout, notification, Row } from 'antd';
 import { Form, Formik } from 'formik';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { farmer } from '../../../state/slices/farmer.slice';
+
+import {
+  allProvinces,
+  getAllCells,
+  getAllDistricts,
+  getAllSectors,
+  getAllVillages,
+} from '../../../utils/services/Addressess';
 import { InputSelect, InputText } from '../../common/input';
 import { addFarmerSchema } from '../validations';
 
@@ -11,8 +20,64 @@ function CreateFarmer() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const successFull = () => {
-    navigate('/vt/');
+    notification.success({
+      placement: 'topRight',
+      message: 'Farmer Added Successfully',
+      duration: 3,
+      key: 'success',
+    });
+    setTimeout(() => {
+      navigate('/vt/');
+    }, 3000);
   };
+
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [sectors, setSectors] = useState([]);
+  const [cells, setCells] = useState([]);
+  const [villages, setVillages] = useState([]);
+  const [activeProvince, setActiveProvince] = useState('');
+  const [activeDistrict, setActiveDistrict] = useState('');
+  const [activeSector, setActiveSector] = useState('');
+  const [activeCell, setActiveCell] = useState('');
+
+  useEffect(() => {
+    allProvinces().then((resp) => setProvinces(resp));
+  }, []);
+  useEffect(() => {
+    if (activeProvince) {
+      getAllDistricts(activeProvince).then((resp) => setDistricts(resp));
+      setSectors([]);
+    }
+  }, [activeProvince]);
+  useEffect(() => {
+    if (activeDistrict) {
+      getAllSectors(activeProvince, activeDistrict).then((resp) =>
+        setSectors(resp),
+      );
+    }
+    /*eslint-disable-next-line */
+  }, [activeDistrict]);
+  useEffect(() => {
+    if (activeSector) {
+      getAllCells(activeProvince, activeDistrict, activeSector).then((resp) =>
+        setCells(resp),
+      );
+    }
+    /*eslint-disable-next-line */
+  }, [activeSector]);
+  useEffect(() => {
+    if (activeCell) {
+      getAllVillages(
+        activeProvince,
+        activeDistrict,
+        activeSector,
+        activeCell,
+      ).then((resp) => setVillages(resp));
+    }
+    /*eslint-disable-next-line */
+  }, [activeCell]);
+
   const initialValues = {
     firstname: '',
     lastname: '',
@@ -27,6 +92,10 @@ function CreateFarmer() {
     village: '',
   };
   const handleSubmit = (values) => {
+    values.province = activeProvince;
+    values.district = activeDistrict;
+    values.sector = activeSector;
+    values.cell = activeCell;
     dispatch(farmer({ data: values, success: successFull }));
   };
   return (
@@ -90,40 +159,44 @@ function CreateFarmer() {
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="province"
-                  options={[{ label: 'North', value: 'north' }]}
+                  value={activeProvince}
+                  onChange={(e) => setActiveProvince(e.target.value)}
                   label="Select Province"
+                  options={provinces}
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="district"
-                  options={[{ label: 'Musanze', value: 'musanze' }]}
+                  value={activeDistrict}
                   label="Select District"
+                  onChange={(e) => setActiveDistrict(e.target.value)}
+                  options={districts}
                 />
               </Col>
 
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="sector"
-                  options={[{ label: 'Muhoza', value: 'muhoza' }]}
+                  value={activeSector}
                   label="Select Sector"
+                  onChange={(e) => setActiveSector(e.target.value)}
+                  options={sectors}
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="cell"
-                  options={[{ label: 'Muhoza', value: 'muhoza' }]}
+                  value={activeCell}
                   label="Select Cell"
+                  onChange={(e) => setActiveCell(e.target.value)}
+                  options={cells}
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="village"
-                  options={[
-                    { label: 'Byimana', value: 'byimana' },
-                    { label: 'Byimanaa', value: 'byimanaa' },
-                    { label: 'Byimanaaa', value: 'byimanaaa' },
-                  ]}
+                  options={villages}
                   label="Select Village"
                 />
               </Col>

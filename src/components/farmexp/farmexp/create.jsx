@@ -3,11 +3,7 @@ import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  farmExpense,
-  getCategories,
-  getItems,
-} from '../../../state/slices/animalExp.slice';
+import { getCategories, getItems } from '../../../state/slices/animalExp.slice';
 import { getAllFarms } from '../../../state/slices/farm.slice';
 import { InputSelect, InputText } from '../../common/input';
 import { addFarmerExpenses } from '../validation';
@@ -84,7 +80,6 @@ export default function FarmExpense() {
   }, [items.data]);
 
   function onChange(val) {
-    console.log(val.target.value);
     setChangeCat(val.target.value);
   }
 

@@ -1,10 +1,18 @@
-import { Col, Layout, Row } from 'antd';
+import { Col, Layout, Row, notification } from 'antd';
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { farm } from '../../../state/slices/farm.slice';
 import { getfarmers } from '../../../state/slices/farmer.slice';
+
+import {
+  allProvinces,
+  getAllCells,
+  getAllDistricts,
+  getAllSectors,
+  getAllVillages,
+} from '../../../utils/services/Addressess';
 import { InputSelect, InputText } from '../../common/input';
 import { addFarmSchema } from '../validations';
 
@@ -13,6 +21,66 @@ function CreateFarms() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.farm);
   const { get } = useSelector((state) => state.farmer);
+
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [sectors, setSectors] = useState([]);
+  const [cells, setCells] = useState([]);
+  const [villages, setVillages] = useState([]);
+  const [activeProvince, setActiveProvince] = useState('');
+  const [activeDistrict, setActiveDistrict] = useState('');
+  const [activeSector, setActiveSector] = useState('');
+  const [activeCell, setActiveCell] = useState('');
+
+  useEffect(() => {
+    allProvinces().then((resp) => setProvinces(resp));
+  }, []);
+  useEffect(() => {
+    if (activeProvince) {
+      getAllDistricts(activeProvince).then((resp) => setDistricts(resp));
+      setSectors([]);
+    }
+  }, [activeProvince]);
+  useEffect(() => {
+    if (activeDistrict) {
+      getAllSectors(activeProvince, activeDistrict).then((resp) =>
+        setSectors(resp),
+      );
+    }
+    /*eslint-disable-next-line */
+  }, [activeDistrict]);
+  useEffect(() => {
+    if (activeSector) {
+      getAllCells(activeProvince, activeDistrict, activeSector).then((resp) =>
+        setCells(resp),
+      );
+    }
+    /*eslint-disable-next-line */
+  }, [activeSector]);
+  useEffect(() => {
+    if (activeCell) {
+      getAllVillages(
+        activeProvince,
+        activeDistrict,
+        activeSector,
+        activeCell,
+      ).then((resp) => setVillages(resp));
+    }
+    /*eslint-disable-next-line */
+  }, [activeCell]);
+
+  function successFull() {
+    notification.success({
+      placement: 'topRight',
+      message: 'Farm Added Successfully',
+      duration: 3,
+      key: 'success',
+    });
+    setTimeout(() => {
+      navigate('/vt/list-farms');
+    }, 3000);
+  }
+
   const initialValues = {
     name: '',
     farmerId: '',
@@ -24,7 +92,11 @@ function CreateFarms() {
     others: '',
   };
   const handleSubmit = (values) => {
-    dispatch(farm({ data: values, success: navigate('/vt/list-farms') }));
+    values.province = activeProvince;
+    values.district = activeDistrict;
+    values.sector = activeSector;
+    values.cell = activeCell;
+    dispatch(farm({ data: values, success: successFull }));
   };
 
   const [farmers, setfarmers] = useState([]);
@@ -43,7 +115,6 @@ function CreateFarms() {
       });
       return true;
     });
-    console.log(get.data);
     setfarmers(array);
   }
 
@@ -83,36 +154,44 @@ function CreateFarms() {
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="province"
-                  options={[{ label: 'North', value: 'north' }]}
+                  value={activeProvince}
+                  options={provinces}
                   label="Select Province"
+                  onChange={(e) => setActiveProvince(e.target.value)}
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="district"
-                  options={[{ label: 'Musanze', value: 'musanze' }]}
+                  value={activeDistrict}
+                  options={districts}
                   label="Select District"
+                  onChange={(e) => setActiveDistrict(e.target.value)}
                 />
               </Col>
 
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="sector"
-                  options={[{ label: 'Muhoza', value: 'muhoza' }]}
+                  value={activeSector}
                   label="Select Sector"
+                  onChange={(e) => setActiveSector(e.target.value)}
+                  options={sectors}
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="cell"
-                  options={[{ label: 'Muhoza', value: 'muhoza' }]}
+                  value={activeCell}
                   label="Select Cell"
+                  onChange={(e) => setActiveCell(e.target.value)}
+                  options={cells}
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="village"
-                  options={[{ label: 'Byimana', value: 'byimana' }]}
+                  options={villages}
                   label="Select Village"
                 />
               </Col>
