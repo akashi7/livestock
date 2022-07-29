@@ -56,9 +56,9 @@ export const columns = [
     render: (text, record) => (
       <Space size="middle">
         <Dropdown overlay={menu}>
-          <a>
+          <p>
             More <DownOutlined />
-          </a>
+          </p>
         </Dropdown>
       </Space>
     ),
