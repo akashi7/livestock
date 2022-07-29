@@ -1,76 +1,86 @@
 import {
-    StarOutlined,
-    UsergroupAddOutlined,
-    InfoCircleOutlined,
-    AccountBookOutlined
-} from "@ant-design/icons";
+  AccountBookOutlined,
+  InfoCircleOutlined,
+  StarOutlined,
+  UsergroupAddOutlined,
+} from '@ant-design/icons';
 const menus = [
-    {
-        label: "Dashboard",
-        key: "/vt/",
-        icon: <StarOutlined />,
-    },
-    {
-        label: "farmers",
-        key: "/vt/add-farmer",
-        icon: <UsergroupAddOutlined />,
+  {
+    label: 'Dashboard',
+    key: '/vt/',
+    icon: <StarOutlined />,
+  },
+  {
+    label: 'Farms',
+    icon: <InfoCircleOutlined />,
+    children: [
+      {
+        label: 'Create',
+        key: '/vt/add-farm',
+      },
+      {
+        label: 'List',
+        key: '/vt/list-farms',
+      },
+    ],
+  },
+  {
+    label: 'farmers',
+    icon: <UsergroupAddOutlined />,
+    children: [
+      {
+        label: 'Create',
+        key: '/vt/add-farmer',
+      },
+      {
+        label: 'List',
+        key: '/vt/',
+      },
+    ],
+  },
+  {
+    label: 'Animals',
+    icon: <InfoCircleOutlined />,
+    children: [
+      {
+        label: 'Create',
+        key: '/vt/add-animal',
+      },
+      {
+        label: 'List',
+        key: '/vt/list-animals',
+      },
+    ],
+  },
+  {
+    label: 'Expenses',
+    icon: <AccountBookOutlined />,
+    children: [
+      {
+        label: 'Animal Expense',
         children: [
-            {
-                label: "Create",
-                key: "/vt/add-farmer",
-            },
-            {
-                label: "List",
-                key: "/vt/",
-            },
+          {
+            label: 'Create',
+            key: '/vt/add-animal-expense',
+          },
+          {
+            label: 'List',
+            key: '/vt/list-animal-expenses',
+          },
         ],
-    },
-    {
-        label: "Animals",
-        key: "/vt/add-animal",
-        icon: <InfoCircleOutlined/>,
+      },
+      {
+        label: 'Farm expenses',
         children: [
-            {
-                label: "Create",
-                key: "/vt/add-animal",
-            },
-            {
-                label: "List",
-                key: "/vt/list-animals",
-            },
+          {
+            label: 'Create',
+            key: '/vt/create-farm-expenses',
+          },
         ],
-    },
-    {
-        label: "Farms",
-        key: "/vt/add-farm",
-        icon: <InfoCircleOutlined/>,
-        children: [
-            {
-                label: "Create",
-                key: "/vt/add-farm",
-            },
-            {
-                label: "List",
-                key: "/vt/list-farms",
-            },
-        ],
-    },
-    {
-        label: "Expenses",
-        key: "/vt/add-expense",
-        icon: <AccountBookOutlined />,
-        children: [
-            {
-                label: "Create",
-                key: "/vt/add-expense",
-            },
-            {
-                label: "List",
-                key: "/vt/list-expenses",
-            },
-        ],
-    },
+      },
+    ],
+  },
 ];
 export const getMenus = () => {
-    return menus;
+  return menus;
 };

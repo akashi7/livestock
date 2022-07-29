@@ -1,11 +1,11 @@
 
+import { Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Formik, Form } from "formik";
-import { useSelector, useDispatch } from "react-redux";
-import { loginSchema } from "./validations";
+import { authAdmin } from "../../state/slices/auth.slice";
 import { InputText } from "../common/input";
 import { Spinner } from "../common/spinner";
-import { authAdmin } from "../../state/slices/auth.slice";
+import { loginSchema } from "./validations";
 const Login = () => {
     const { loading } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
@@ -52,12 +52,12 @@ const Login = () => {
                             </div>
                         )}
                         <div className="flex items-center justify-center">
-                            <button
+                            {!loading&&<button
                                 type="submit"
                                 className="w-full h-[50px] bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
                                 LOG IN
-                            </button>
+                            </button>}
                         </div>
                     </Form>
                 </Formik>

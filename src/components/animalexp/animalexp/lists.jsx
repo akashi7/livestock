@@ -1,20 +1,23 @@
 import { Layout, Table } from 'antd';
+import { columns } from './helper';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllFarms } from '../../../state/slices/farm.slice';
-import { columns } from './helper';
+import { getAllAnimalExpense } from '../../../state/slices/animalExp.slice';
 
-function ListFarms() {
+function AnimalExpensesLists() {
   const dispatch = useDispatch();
-  const { get } = useSelector((state) => state.farm);
+  const { get } = useSelector((state) => state.animalExpenses);
+
   useEffect(() => {
-    dispatch(getAllFarms());
+    dispatch(getAllAnimalExpense());
     /* eslint-disable-next-line */
   }, []);
+
   return (
     <Layout className="h-[100vh] w-full">
       <Table columns={columns} dataSource={get.data} loading={get.loading} />
     </Layout>
   );
 }
-export default ListFarms;
+
+export default AnimalExpensesLists;

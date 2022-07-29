@@ -1,37 +1,31 @@
-import { Col, Layout, notification, Row } from 'antd';
+import { Col, Layout, Row } from 'antd';
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { animal } from '../../../state/slices/animal.slice';
+import { getCategories, getItems } from '../../../state/slices/animalExp.slice';
 import { getAllFarms } from '../../../state/slices/farm.slice';
 import { InputSelect, InputText } from '../../common/input';
-import { addFarmerSchema } from '../validations';
+import { addFarmerExpenses } from '../validation';
 
-function CreateAnimal() {
+export default function FarmExpense() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.animal);
+  const [category, setCategory] = useState([]);
+  const [item, setItem] = useState([]);
   const { get } = useSelector((state) => state.farm);
+  const { catg, items } = useSelector((state) => state.animalExpenses);
   const initialValues = {
+    creationDate: '',
     farmId: '',
-    earring_num: '',
-    sex: '',
-    animal_cat: '',
-    birthdate: '',
-    birthkgs: '',
-    parent: '',
-    expected_exit: '',
-    expected_exit_kgs: '',
+    categoryId: '',
+    itemId: '',
+    quantity: '',
   };
-  const [farmers, setfarmers] = useState([]);
+  const [Farm, setFarm] = useState([]);
+  const [changeCat, setChangeCat] = useState({});
 
-  useEffect(() => {
-    setFarmers();
-    /* eslint-disable-next-line */
-  }, [get.data]);
-
-  function setFarmers() {
+  function getFarm() {
     let array = [];
     get.data.map((item) => {
       array.push({
@@ -40,126 +34,141 @@ function CreateAnimal() {
       });
       return true;
     });
-    setfarmers(array);
+    setFarm(array);
+  }
+  function getItem() {
+    let array = [];
+    items.data.map((item) => {
+      array.push({
+        value: item.id,
+        label: item.name,
+      });
+      return true;
+    });
+    setItem(array);
+  }
+  function getCategory() {
+    let array = [];
+    catg.data.map((item) => {
+      array.push({
+        value: item.id,
+        label: item.name,
+      });
+      return true;
+    });
+    setCategory(array);
   }
 
   useEffect(() => {
     dispatch(getAllFarms());
+    dispatch(getCategories());
+    dispatch(getItems());
     /* eslint-disable-next-line */
   }, []);
 
-  function navigates() {
-    notification.success({
-      placement: 'topRight',
-      message: 'Animal Added Successfully',
-      duration: 3,
-      key: 'success',
-    });
-    setTimeout(() => {
-      navigate('/vt/list-animals');
-    }, 3000);
+  useEffect(() => {
+    getFarm();
+    /* eslint-disable-next-line */
+  }, [get.data]);
+  useEffect(() => {
+    getCategory();
+    /* eslint-disable-next-line */
+  }, [catg.data]);
+  useEffect(() => {
+    getItem();
+    /* eslint-disable-next-line */
+  }, [items.data]);
+
+  function onChange(val) {
+    setChangeCat(val.target.value);
   }
 
   const handleSubmit = (values) => {
-    dispatch(animal({ data: values, success: navigates }));
+    values.categoryId = changeCat;
+    // dispatch(
+    //   farmExpense({
+    //     data: values,
+    //     success: () => {
+    //       window.alert('Expenses added ok');
+    //     },
+    //   }),
+    // );
   };
+
   return (
     <Layout className="h-[100vh]  items-center flex">
       <div className="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
         <Formik
           initialValues={initialValues}
-          validationSchema={addFarmerSchema}
+          validationSchema={addFarmerExpenses}
           onSubmit={handleSubmit}
         >
           <Form className="space-y-12" action="#">
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className="gutter-row" span={24}>
-                <p className="text-blue">Add Animal</p>
+                <p className="text-blue">Add Farmer expenses</p>
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="farmId"
-                  options={farmers}
-                  label="Select Farm"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="earring_num"
-                  type="text"
-                  placeholder="earring_num"
-                  label="Tin/Code"
+                  options={Farm}
+                  label="Select farm id"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
-                  name="sex"
-                  label="Sex"
-                  options={[
-                    { label: 'Male', value: 'Male' },
-                    { label: 'Female', value: 'Female' },
-                  ]}
+                  name="categoryId"
+                  options={category}
+                  label="Select category id"
+                  value={changeCat}
+                  onChange={onChange}
                 />
               </Col>
-
+              <Col className="gutter-row mt-10" span={12}>
+                <InputSelect name="itemId" options={item} label="Item id" />
+              </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
-                  name="animal_cat"
+                  name="quantity"
                   type="text"
-                  placeholder="animal cat"
-                  label="Animal Cat"
+                  placeholder="Quantity"
+                  label="Quantity"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
-                  name="birthdate"
+                  name="item_name"
+                  type="text"
+                  placeholder="Item name"
+                  label="Item name"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="creationDate"
                   type="date"
-                  placeholder="Birthdate"
-                  label="birthdate"
+                  placeholder="Creation Date"
+                  label="Creation date"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
-                  name="birthkgs"
+                  name="price"
                   type="text"
-                  placeholder="birthkgs"
-                  label="Birth Kgs"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="parent"
-                  type="text"
-                  placeholder="parent"
-                  label="Parent"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="expected_exit"
-                  type="date"
-                  placeholder="expected exit"
-                  label="Expected Exit"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="expected_exit_kgs"
-                  type="text"
-                  placeholder="expected exit kgs"
-                  label="Expected Exit Kgs"
+                  placeholder="Price"
+                  label="Price"
                 />
               </Col>
             </Row>
             {/* <div className="flex items-center h-5 justify-center">
-                            <Spinner />
-                        </div> */}
+                          <Spinner />
+                      </div> */}
             <div className="flex items-center justify-center">
               <button
                 type="submit"
                 className="w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                {loading ? 'Loading...' : 'Submit'}
+                {/* {loading ? 'Loading...' : 'Add'} */}Add
               </button>
             </div>
           </Form>
@@ -168,4 +177,3 @@ function CreateAnimal() {
     </Layout>
   );
 }
-export default CreateAnimal;
