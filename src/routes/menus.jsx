@@ -43,12 +43,38 @@ const menus = [
     icon: <InfoCircleOutlined />,
     children: [
       {
-        label: 'Create',
-        key: '/vt/add-animal',
+        label: 'Create New',
+        children:[
+          {
+            label: 'Animal',
+            key: '/vt/add-animal',
+          },
+          {
+            label: 'Animal Group',
+            key: '/vt/add-animal-group',
+          },
+          {
+            label: 'Sickbay',
+            key: '/vt/add-sickbay',
+          },
+        ]
       },
       {
-        label: 'List',
-        key: '/vt/list-animals',
+        label: 'Lists',
+        children:[
+          {
+            label: 'Animals',
+            key: '/vt/list-animals',
+          },
+          {
+            label: 'Animals Groups',
+            key: '/vt/list-animalsGroup',
+          },
+          {
+            label: 'Sickbay',
+            key: '/vt/list-sickbay',
+          },
+        ]
       },
     ],
   },

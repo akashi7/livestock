@@ -3,59 +3,37 @@ import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { animal, getAllPurposeData, getAnimalCatgories } from '../../../state/slices/animal.slice';
-import { getAllFarms } from '../../../state/slices/farm.slice';
+import { createSickBy, getAllPurposeData, getAnimalCatgories, getAnimals } from '../../../state/slices/animal.slice';
 import { InputSelect, InputText } from '../../common/input';
-import { addFarmerSchema } from '../validations';
+import { addAnimalGroupSchema, addAnimalSickSchema, addFarmerSchema } from '../validations';
 
-function CreateAnimal() {
+function CreateAnimalSickBay() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.animal);
-  const { get } = useSelector((state) => state.farm);
+  const { loading } = useSelector((state) => state.animal.createSickBy);
+  const { get } = useSelector((state) => state.animal);
   const animalCatgories=useSelector((state)=>state.animal.categories);
-  const puporseData=useSelector((state)=>state.animal.purposeData);
-  console.log("animalCatgories",animalCatgories);
   const initialValues = {
-    farmId: '',
-    earring_num: '',
-    sex: '',
-    birthdate: '',
-    birthkgs: '',
-    parent: '',
-    expected_exit: '',
-    expected_exit_kgs: '',
-    animalCategoryId:'',
-    purposeId:''
+    onsetDate:"",
+    animalId:1,
+    animalCategoryId:"",
+    groupAnimalId:1,
+    intervention:"",
+    observation:"",
+    quantity:"",
+    medicineId:1
   };
-  const [farmers, setfarmers] = useState([]);
-
   useEffect(() => {
-    setFarmers();
-    /* eslint-disable-next-line */
-  }, [get.data]);
-  useEffect(() => {
-    dispatch(getAllFarms());
+    dispatch(getAnimals());
     dispatch(getAllPurposeData());
     dispatch(getAnimalCatgories());
     /* eslint-disable-next-line */
   }, []);
-  function setFarmers() {
-    let array = [];
-    get.data.map((item) => {
-      array.push({
-        value: item.id,
-        label: item.name,
-      });
-      return true;
-    });
-    setfarmers(array);
-  }
 
   function navigates() {
     notification.success({
       placement: 'topRight',
-      message: 'Animal Added Successfully',
+      message: 'Sickbay Added Successfully',
       duration: 3,
       key: 'success',
     });
@@ -65,26 +43,26 @@ function CreateAnimal() {
   }
 
   const handleSubmit = (values) => {
-    dispatch(animal({ data: values, success: navigates }));
+    dispatch(createSickBy({ data: values, success: navigates }));
   };
   return (
     <Layout className="h-[100vh]  items-center flex">
       <div className="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
         <Formik
           initialValues={initialValues}
-          validationSchema={addFarmerSchema}
+          validationSchema={addAnimalSickSchema}
           onSubmit={handleSubmit}
         >
           <Form className="space-y-12" action="#">
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className="gutter-row" span={24}>
-                <p className="text-blue">Add Animal</p>
+                <p className="text-blue">SickBy</p>
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
-                  name="farmId"
-                  options={farmers}
-                  label="Select Farm"
+                  name="animal"
+                  options={get?.data.map(item=>({"label":item.name,"value":item.id}))}
+                  label="Select Animal"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
@@ -96,67 +74,34 @@ function CreateAnimal() {
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
-                  name="earring_num"
+                  name="intervention"
                   type="text"
-                  placeholder="earring_num"
-                  label="Tin/Code"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputSelect
-                  name="sex"
-                  label="Sex"
-                  options={[
-                    { label: 'Male', value: 'Male' },
-                    { label: 'Female', value: 'Female' },
-                  ]}
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputSelect
-                  name="purposeId"
-                  options={puporseData?.data.map(item=>({"label":item.name,"value":item.id}))}
-                  label="Select Purpose"
+                  placeholder="Intervention"
+                  label="Intervention"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
-                  name="birthdate"
+                  name="observation"
+                  type="text"
+                  placeholder="Observation"
+                  label="Observation"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="quantity"
+                  type="text"
+                  placeholder="Quantity"
+                  label="Quantity"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="onsetDate"
                   type="date"
-                  placeholder="Birthdate"
-                  label="birthdate"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="birthkgs"
-                  type="text"
-                  placeholder="birthkgs"
-                  label="Birth Kgs"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="parent"
-                  type="text"
-                  placeholder="parent"
-                  label="Parent"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="expected_exit"
-                  type="date"
-                  placeholder="expected exit"
-                  label="Expected Exit"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="expected_exit_kgs"
-                  type="text"
-                  placeholder="expected exit kgs"
-                  label="Expected Exit Kgs"
+                  placeholder="onsetDate"
+                  label="OnsetDate"
                 />
               </Col>
             </Row>
@@ -177,4 +122,4 @@ function CreateAnimal() {
     </Layout>
   );
 }
-export default CreateAnimal;
+export default CreateAnimalSickBay;

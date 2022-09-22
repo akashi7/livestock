@@ -3,30 +3,29 @@ import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { animal, getAllPurposeData, getAnimalCatgories } from '../../../state/slices/animal.slice';
+import { addAnimalGroup, animal, getAllPurposeData, getAnimalCatgories } from '../../../state/slices/animal.slice';
 import { getAllFarms } from '../../../state/slices/farm.slice';
 import { InputSelect, InputText } from '../../common/input';
-import { addFarmerSchema } from '../validations';
+import { addAnimalGroupSchema, addFarmerSchema } from '../validations';
 
-function CreateAnimal() {
+function CreateGroupAnimal() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.animal);
+  const { loading } = useSelector((state) => state.animal.createAnimalGroup);
   const { get } = useSelector((state) => state.farm);
   const animalCatgories=useSelector((state)=>state.animal.categories);
   const puporseData=useSelector((state)=>state.animal.purposeData);
-  console.log("animalCatgories",animalCatgories);
   const initialValues = {
     farmId: '',
-    earring_num: '',
-    sex: '',
     birthdate: '',
-    birthkgs: '',
     parent: '',
     expected_exit: '',
-    expected_exit_kgs: '',
     animalCategoryId:'',
-    purposeId:''
+    purposeId:'',
+    name:'',
+    number:"",
+    femaleNumber:'',
+    birthkgs:''
   };
   const [farmers, setfarmers] = useState([]);
 
@@ -55,7 +54,7 @@ function CreateAnimal() {
   function navigates() {
     notification.success({
       placement: 'topRight',
-      message: 'Animal Added Successfully',
+      message: 'Group Animal Added Successfully',
       duration: 3,
       key: 'success',
     });
@@ -65,20 +64,20 @@ function CreateAnimal() {
   }
 
   const handleSubmit = (values) => {
-    dispatch(animal({ data: values, success: navigates }));
+    dispatch(addAnimalGroup({ data: values, success: navigates }));
   };
   return (
     <Layout className="h-[100vh]  items-center flex">
       <div className="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
         <Formik
           initialValues={initialValues}
-          validationSchema={addFarmerSchema}
+          validationSchema={addAnimalGroupSchema}
           onSubmit={handleSubmit}
         >
           <Form className="space-y-12" action="#">
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className="gutter-row" span={24}>
-                <p className="text-blue">Add Animal</p>
+                <p className="text-blue">Add Animal Group</p>
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
@@ -96,20 +95,10 @@ function CreateAnimal() {
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
-                  name="earring_num"
+                  name="name"
                   type="text"
-                  placeholder="earring_num"
-                  label="Tin/Code"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputSelect
-                  name="sex"
-                  label="Sex"
-                  options={[
-                    { label: 'Male', value: 'Male' },
-                    { label: 'Female', value: 'Female' },
-                  ]}
+                  placeholder="name"
+                  label="Name"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
@@ -117,6 +106,14 @@ function CreateAnimal() {
                   name="purposeId"
                   options={puporseData?.data.map(item=>({"label":item.name,"value":item.id}))}
                   label="Select Purpose"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="number"
+                  type="text"
+                  placeholder="number"
+                  label="Number"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
@@ -129,10 +126,18 @@ function CreateAnimal() {
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
-                  name="birthkgs"
+                  name="femaleNumber"
                   type="text"
-                  placeholder="birthkgs"
-                  label="Birth Kgs"
+                  placeholder="female number"
+                  label="Female Number"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="maleNumber"
+                  type="text"
+                  placeholder="male number"
+                  label="Male Number"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
@@ -146,17 +151,17 @@ function CreateAnimal() {
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
                   name="expected_exit"
-                  type="date"
-                  placeholder="expected exit"
-                  label="Expected Exit"
+                  type="text"
+                  placeholder="expected_exit"
+                  label="expected_exit"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
-                  name="expected_exit_kgs"
+                  name="birthkgs"
                   type="text"
-                  placeholder="expected exit kgs"
-                  label="Expected Exit Kgs"
+                  placeholder="birthkgs"
+                  label="Birth Kgs"
                 />
               </Col>
             </Row>
@@ -177,4 +182,4 @@ function CreateAnimal() {
     </Layout>
   );
 }
-export default CreateAnimal;
+export default CreateGroupAnimal;

@@ -3,8 +3,9 @@ import axios from 'axios';
 let mainAPI;
 
 process.env.NODE_ENV === 'development'
-  ? (mainAPI = 'http://localhost:5000/api/v1/')
+  ? (mainAPI = 'https://livestock-bank.herokuapp.com/api/v1/')
   : (mainAPI = 'https://livestock-bank.herokuapp.com/api/v1/');
+
 
 const instance = axios.create({
   baseURL: mainAPI,
