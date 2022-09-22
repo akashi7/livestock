@@ -25,7 +25,6 @@ export const getAnimals = createAsyncThunk(
         return resp.data;
       })
       .catch((error) => {
-        console.log(error);
         rejectWithValue(error);
       });
   },

@@ -1,11 +1,10 @@
-import { Routes, Route } from "react-router-dom";
-import Login from "../components/auth/login";
+import { Route, Routes } from 'react-router-dom';
+import Login from '../components/auth/login';
 function AuthRoutes() {
-    return (
-
-        <Routes>
-            <Route path="/login" element={<Login/>}></Route>
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />}></Route>
+    </Routes>
+  );
 }
 export default AuthRoutes;
