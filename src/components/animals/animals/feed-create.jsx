@@ -4,74 +4,66 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
-  createSickBy,
-  getAllPurposeData,
+  CreateFeed,
+  FeedItems,
+  getAllAnimalsGroup,
   getAnimalCatgories,
   getAnimals,
 } from '../../../state/slices/animal.slice';
 import { InputSelect, InputText } from '../../common/input';
-import { addAnimalSickSchema } from '../validations';
+import { AddFeedSchema } from '../validations';
 
-function CreateAnimalSickBay() {
+function CreateAnimalFeed() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.animal.createSickBy);
-  const { get } = useSelector((state) => state.animal);
+  const { get, animalsGroupData, feedData, createFeed } = useSelector(
+    (state) => state.animal,
+  );
   const animalCatgories = useSelector((state) => state.animal.categories);
+
   const initialValues = {
     onsetDate: '',
-    animalId: 1,
+    animalId: '',
     animalCategoryId: '',
-    groupAnimalId: 1,
-    intervention: '',
-    observation: '',
+    groupAnimalId: '',
     quantity: '',
-    medicineId: 1,
+    feedId: '',
   };
+
   useEffect(() => {
-    dispatch(getAnimals());
-    dispatch(getAllPurposeData());
     dispatch(getAnimalCatgories());
+    dispatch(getAllAnimalsGroup());
+    dispatch(getAnimals());
+    dispatch(FeedItems());
     /* eslint-disable-next-line */
   }, []);
 
   function navigates() {
     notification.success({
       placement: 'topRight',
-      message: 'Sickbay Added Successfully',
+      message: 'Animal Feed Added Successfully',
       duration: 3,
       key: 'success',
     });
     setTimeout(() => {
-      navigate('/vt/list-animals');
+      navigate('/vt/list-animal-feed');
     }, 3000);
   }
-
   const handleSubmit = (values) => {
-    dispatch(createSickBy({ data: values, success: navigates }));
+    dispatch(CreateFeed({ data: values, success: navigates }));
   };
   return (
     <Layout className="h-[100vh]  items-center flex">
       <div className="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
         <Formik
           initialValues={initialValues}
-          validationSchema={addAnimalSickSchema}
+          validationSchema={AddFeedSchema}
           onSubmit={handleSubmit}
         >
           <Form className="space-y-12" action="#">
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className="gutter-row" span={24}>
-                <p className="text-blue">Feed</p>
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputSelect
-                  name="animal"
-                  options={get?.data.map((item) => ({
-                    label: item.earring_num,
-                    value: item.id,
-                  }))}
-                  label="Select Animal"
-                />
+                <p className="text-blue">Add Animal Feed</p>
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
@@ -84,35 +76,50 @@ function CreateAnimalSickBay() {
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="intervention"
-                  type="text"
-                  placeholder="Intervention"
-                  label="Intervention"
+                <InputSelect
+                  name="animalId"
+                  options={get?.data.map((item) => ({
+                    label: item.earring_num,
+                    value: item.id,
+                  }))}
+                  label="Select Animal"
                 />
               </Col>
+
               <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="observation"
-                  type="text"
-                  placeholder="Observation"
-                  label="Observation"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="quantity"
-                  type="text"
-                  placeholder="Quantity"
-                  label="Quantity"
+                <InputSelect
+                  name="groupAnimalId"
+                  options={animalsGroupData?.data.map((item) => ({
+                    label: item.name,
+                    value: item.id,
+                  }))}
+                  label="Select Group Animal"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
                   name="onsetDate"
                   type="date"
-                  placeholder="onsetDate"
+                  placeholder="OnsetDate"
                   label="OnsetDate"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="quantity"
+                  type="text"
+                  placeholder="quantity"
+                  label="Quantity"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputSelect
+                  name="feedId"
+                  options={feedData?.data.map((item) => ({
+                    label: item.name,
+                    value: item.id,
+                  }))}
+                  label="Select Feed type"
                 />
               </Col>
             </Row>
@@ -124,7 +131,7 @@ function CreateAnimalSickBay() {
                 type="submit"
                 className="w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                {loading ? 'Loading...' : 'Submit'}
+                {createFeed.loading ? 'Loading...' : 'Submit'}
               </button>
             </div>
           </Form>
@@ -133,4 +140,4 @@ function CreateAnimalSickBay() {
     </Layout>
   );
 }
-export default CreateAnimalSickBay;
+export default CreateAnimalFeed;

@@ -24,3 +24,13 @@ export const getPurposeData = () => {
   return http.GET('purposelist/check/all');
 };
 
+export const createFeedData = (data) => {
+  return http.POST('animalfeed/create', data);
+};
+export const getFeedData = () => {
+  return http.GET('animalfeed/check/all');
+};
+
+export const getFeedIdsData = () => {
+  return http.GET('feed/check/all');
+};

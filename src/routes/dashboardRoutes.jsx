@@ -3,10 +3,14 @@ import { Route, Routes } from 'react-router-dom';
 import AnimalExpenses from '../components/animalexp/animalexp/create';
 import AnimalExpensesLists from '../components/animalexp/animalexp/lists';
 import CreateAnimal from '../components/animals/animals/create';
+import CreateCategory from '../components/animals/animals/create-category';
+import CreateAnimalFeed from '../components/animals/animals/feed-create';
+import ListAnimalFeeds from '../components/animals/animals/feed-list';
 import CreateGroupAnimal from '../components/animals/animals/groupAnimal';
 import ListAnimals from '../components/animals/animals/list';
 import ListAnimalsGroup from '../components/animals/animals/list-animalsGroup';
 import ListAnimalsSickBay from '../components/animals/animals/list-animalsSickbay';
+import ListAnimalsCategory from '../components/animals/animals/list-category';
 import CreateAnimalSickBay from '../components/animals/animals/sickbayCreate';
 import ContentWrapper from '../components/common/contentWrapper/contentWrapper';
 import Navbar from '../components/common/header/header';
@@ -44,6 +48,11 @@ function DashRoutes() {
             <Route path="/create-farm-expenses" element={<FarmExpense />} />
             <Route path="/list-expenses" element={<ListExpenses />} />
             <Route path="/add-expense" element={<CreateExpense />} />
+            <Route path="/add-expense" element={<CreateExpense />} />
+            <Route path="/create-category" element={<CreateCategory />} />
+            <Route path="/list-category" element={<ListAnimalsCategory />} />
+            <Route path="/create-animal-feed" element={<CreateAnimalFeed />} />
+            <Route path="/list-animal-feed" element={<ListAnimalFeeds />} />
           </Routes>
         </ContentWrapper>
       </Layout>

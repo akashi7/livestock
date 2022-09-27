@@ -19,7 +19,7 @@ const menus = [
         key: '/vt/add-farm',
       },
       {
-        label: 'List',
+        label: 'farms List',
         key: '/vt/list-farms',
       },
     ],
@@ -33,7 +33,7 @@ const menus = [
         key: '/vt/add-farmer',
       },
       {
-        label: 'List',
+        label: 'Farmers List',
         key: '/vt/',
       },
     ],
@@ -44,7 +44,7 @@ const menus = [
     children: [
       {
         label: 'Create New',
-        children:[
+        children: [
           {
             label: 'Animal',
             key: '/vt/add-animal',
@@ -57,11 +57,11 @@ const menus = [
             label: 'Sickbay',
             key: '/vt/add-sickbay',
           },
-        ]
+        ],
       },
       {
-        label: 'Lists',
-        children:[
+        label: 'All List',
+        children: [
           {
             label: 'Animals',
             key: '/vt/list-animals',
@@ -74,7 +74,7 @@ const menus = [
             label: 'Sickbay',
             key: '/vt/list-sickbay',
           },
-        ]
+        ],
       },
     ],
   },
@@ -106,7 +106,37 @@ const menus = [
       },
     ],
   },
+  {
+    label: 'Animal Category',
+    icon: <AccountBookOutlined />,
+    children: [
+      {
+        label: 'Create',
+        key: '/vt/create-category',
+      },
+      {
+        label: 'List',
+        key: '/vt/list-category',
+      },
+    ],
+  },
+  {
+    label: 'Animal Feed',
+    icon: <AccountBookOutlined />,
+    children: [
+      {
+        label: 'Create',
+        key: '/vt/create-animal-feed',
+      },
+      {
+        label: 'List',
+        key: '/vt/list-animal-feed',
+      },
+    ],
+  },
 ];
 export const getMenus = () => {
   return menus;
 };
+
+///create-animal-feed

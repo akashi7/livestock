@@ -1,5 +1,5 @@
-import { Space, Dropdown, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Space } from 'antd';
 const menu = (
   <Menu
     items={[
@@ -69,7 +69,7 @@ export const columns = [
     ),
   },
 ];
-export const AnimalsGroupcolumns= [
+export const AnimalsGroupcolumns = [
   {
     title: 'Id',
     dataIndex: 'id',
@@ -134,7 +134,7 @@ export const AnimalsGroupcolumns= [
     ),
   },
 ];
-export const AnimalsSickbaycolumns= [
+export const AnimalsSickbaycolumns = [
   {
     title: 'Id',
     dataIndex: 'id',
@@ -189,3 +189,68 @@ export const AnimalsSickbaycolumns= [
     ),
   },
 ];
+
+export const AnimalCategoryColums = [
+  {
+    title: 'Id',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Short Code',
+    dataIndex: 'shortcode',
+    key: 'shortcode',
+  },
+];
+
+// "onsetDate":"2022-05-05",
+//    "animalId":1,
+//    "animalCategoryId":2,
+//    "groupAnimalId":1,
+//    "quantity":12,
+//    "feedId":1
+
+export const AnimalFeedColmns = [
+  {
+    title: 'Id',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'Date',
+    dataIndex: 'onsetDate',
+    key: 'onsetDate',
+  },
+  {
+    title: 'AnimalId',
+    dataIndex: 'animalId',
+    key: 'animalId',
+  },
+  {
+    title: 'Feed name',
+    dataIndex: 'feed_name',
+    key: 'feed_name',
+  },
+  {
+    title: 'Group animal',
+    dataIndex: 'groupAnimalId',
+    key: 'groupAnimalId',
+  },
+  {
+    title: 'Quantity',
+    dataIndex: 'quantity',
+    key: 'quantity',
+  },
+  {
+    title: 'Price',
+    dataIndex: 'price',
+    key: 'price',
+  },
+];
+
+//hazawi singer

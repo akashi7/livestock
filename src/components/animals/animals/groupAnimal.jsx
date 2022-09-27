@@ -3,29 +3,33 @@ import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addAnimalGroup, animal, getAllPurposeData, getAnimalCatgories } from '../../../state/slices/animal.slice';
+import {
+  addAnimalGroup,
+  getAllPurposeData,
+  getAnimalCatgories,
+} from '../../../state/slices/animal.slice';
 import { getAllFarms } from '../../../state/slices/farm.slice';
 import { InputSelect, InputText } from '../../common/input';
-import { addAnimalGroupSchema, addFarmerSchema } from '../validations';
+import { addAnimalGroupSchema } from '../validations';
 
 function CreateGroupAnimal() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.animal.createAnimalGroup);
   const { get } = useSelector((state) => state.farm);
-  const animalCatgories=useSelector((state)=>state.animal.categories);
-  const puporseData=useSelector((state)=>state.animal.purposeData);
+  const animalCatgories = useSelector((state) => state.animal.categories);
+  const puporseData = useSelector((state) => state.animal.purposeData);
   const initialValues = {
     farmId: '',
     birthdate: '',
     parent: '',
     expected_exit: '',
-    animalCategoryId:'',
-    purposeId:'',
-    name:'',
-    number:"",
-    femaleNumber:'',
-    birthkgs:''
+    animalCategoryId: '',
+    purposeId: '',
+    name: '',
+    number: '',
+    femaleNumber: '',
+    birthkgs: '',
   };
   const [farmers, setfarmers] = useState([]);
 
@@ -59,7 +63,7 @@ function CreateGroupAnimal() {
       key: 'success',
     });
     setTimeout(() => {
-      navigate('/vt/list-animals');
+      navigate('/vt/list-animalsGroup');
     }, 3000);
   }
 
@@ -89,7 +93,10 @@ function CreateGroupAnimal() {
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="animalCategoryId"
-                  options={animalCatgories?.data.map(item=>({"label":item.name,"value":item.id}))}
+                  options={animalCatgories?.data.map((item) => ({
+                    label: item.name,
+                    value: item.id,
+                  }))}
                   label="Select Animal Category"
                 />
               </Col>
@@ -104,7 +111,10 @@ function CreateGroupAnimal() {
               <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="purposeId"
-                  options={puporseData?.data.map(item=>({"label":item.name,"value":item.id}))}
+                  options={puporseData?.data.map((item) => ({
+                    label: item.name,
+                    value: item.id,
+                  }))}
                   label="Select Purpose"
                 />
               </Col>

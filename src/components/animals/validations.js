@@ -24,14 +24,28 @@ export const addAnimalGroupSchema = Yup.object().shape({
     expected_exit: Yup.string().required("expected exit is Required"),
 });
 export const addAnimalSickSchema = Yup.object().shape({
-    onsetDate:Yup.string().required("Date is Required"),
-    animalId:Yup.string().required("Animal is Required"),
-    animalCategoryId:Yup.string().required("Animal Category is Required"),
-    groupAnimalId:Yup.string().required("Group Animal is Required"),
-    intervention:Yup.string().required("Intervation is Required"),
-    observation:Yup.string().required("Observation is Required"),
-    quantity:Yup.string().required("Quantity is Required"),
-    medicineId:Yup.string().required("Medecine is Required"),
+    onsetDate: Yup.string().required("Date is Required"),
+    animalId: Yup.string().required("Animal is Required"),
+    animalCategoryId: Yup.string().required("Animal Category is Required"),
+    groupAnimalId: Yup.string().required("Group Animal is Required"),
+    intervention: Yup.string().required("Intervation is Required"),
+    observation: Yup.string().required("Observation is Required"),
+    quantity: Yup.string().required("Quantity is Required"),
+    medicineId: Yup.string().required("Medecine is Required"),
+});
+
+export const AddAnimalCategorySchmea = Yup.object().shape({
+    name: Yup.string().required("Name is Required"),
+    shortcode: Yup.string().required("Shortcode is Required"),
+});
+
+export const AddFeedSchema = Yup.object().shape({
+    onsetDate: Yup.string().required("onsetDate is Required"),
+    animalId: Yup.string().required("animalId is Required"),
+    animalCategoryId: Yup.string().required("animalCategoryId is Required"),
+    groupAnimalId: Yup.string().required("groupAnimalId is Required"),
+    quantity: Yup.string().required("quantity is Required"),
+    feedId: Yup.string().required("feedId is Required"),
 });
 
 // {
