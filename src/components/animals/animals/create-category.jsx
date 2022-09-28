@@ -29,6 +29,7 @@ export default function CreateCategory() {
   function handleSubmit(values) {
     dispatch(CreateCategoryTY({ data: values, success: navigates }));
   }
+  const k = 6;
 
   return (
     <Layout className="h-[100vh]  items-center flex">
