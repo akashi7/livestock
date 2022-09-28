@@ -34,3 +34,6 @@ export const getFeedData = () => {
 export const getFeedIdsData = () => {
   return http.GET('feed/check/all');
 };
+export const createCategoryData = (data) => {
+  return http.GET('animalcategory/create', data);
+};

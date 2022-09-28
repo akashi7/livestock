@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   createAnimal,
+  createCategoryData,
   createFeedData,
   createGroupAnimal,
   createSickBay,
@@ -147,6 +148,18 @@ export const FeedItems = createAsyncThunk(
       });
   },
 );
+export const CreateCategoryTY = createAsyncThunk(
+  'create-category',
+  async ({ data, success }, { rejectWithValue }) => {
+    return createCategoryData(data)
+      .then((resp) => {
+        success();
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  },
+);
 const initialState = {
   loading: false,
   get: {
@@ -162,6 +175,7 @@ const initialState = {
   feedData: { loading: false, data: [] },
   createFeed: { loading: false },
   allFeeds: { loading: false, data: [] },
+  createCategory: { loading: false },
 };
 
 const animalSlice = createSlice({
@@ -279,6 +293,15 @@ const animalSlice = createSlice({
       })
       .addCase(GetAllFeeds.rejected, (state) => {
         state.allFeeds.loading = false;
+      })
+      .addCase(CreateCategoryTY.pending, (state) => {
+        state.createCategory.loading = true;
+      })
+      .addCase(CreateCategoryTY.fulfilled, (state) => {
+        state.createCategory.loading = false;
+      })
+      .addCase(CreateCategoryTY.rejected, (state) => {
+        state.createCategory.loading = false;
       });
   },
 });

@@ -1,14 +1,34 @@
-import { Col, Layout, Row } from 'antd';
+import { Col, Layout, notification, Row } from 'antd';
 import { Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { CreateCategoryTY } from '../../../state/slices/animal.slice';
 import { InputText } from '../../common/input';
 import { AddAnimalCategorySchmea } from '../validations';
 
 export default function CreateCategory() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { createCategory } = useSelector((state) => state.animal);
   const initialValues = {
     name: '',
     shortcode: '',
   };
-  function handleSubmit() {}
+
+  function navigates() {
+    notification.success({
+      placement: 'topRight',
+      message: 'Category Added Successfully',
+      duration: 3,
+      key: 'success',
+    });
+    setTimeout(() => {
+      navigate('/vt/list-category');
+    }, 3000);
+  }
+  function handleSubmit(values) {
+    dispatch(CreateCategoryTY({ data: values, success: navigates }));
+  }
 
   return (
     <Layout className="h-[100vh]  items-center flex">
@@ -48,7 +68,7 @@ export default function CreateCategory() {
                 type="submit"
                 className="w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Submit
+                {createCategory.loading ? 'loading....' : 'Submit'}
               </button>
             </div>
           </Form>
