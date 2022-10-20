@@ -29,7 +29,7 @@ export default function CreateCategory() {
   function handleSubmit(values) {
     dispatch(CreateCategoryTY({ data: values, success: navigates }));
   }
-  const k = 6;
+
 
   return (
     <Layout className="h-[100vh]  items-center flex">
@@ -61,9 +61,6 @@ export default function CreateCategory() {
                 />
               </Col>
             </Row>
-            {/* <div className="flex items-center h-5 justify-center">
-                            <Spinner />
-                        </div> */}
             <div className="flex items-center justify-center">
               <button
                 type="submit"
