@@ -32,7 +32,7 @@ export default function EventList() {
         {event.title}
         <br />{" "}
         <small style={{ marginLeft: "3px", color: "black" }}>
-          {event.title}
+          {event.description}
         </small>{" "}
       </div>
     );

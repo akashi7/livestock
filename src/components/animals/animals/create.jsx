@@ -1,16 +1,16 @@
-import { Col, Layout, notification, Row } from 'antd';
-import { Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Col, Layout, notification, Row } from "antd";
+import { Form, Formik } from "formik";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   animal,
   getAllPurposeData,
   getAnimalCatgories,
-} from '../../../state/slices/animal.slice';
-import { getAllFarms } from '../../../state/slices/farm.slice';
-import { InputSelect, InputText } from '../../common/input';
-import { addFarmerSchema } from '../validations';
+} from "../../../state/slices/animal.slice";
+import { getAllFarms } from "../../../state/slices/farm.slice";
+import { InputSelect, InputText } from "../../common/input";
+import { addFarmerSchema } from "../validations";
 
 function CreateAnimal() {
   const navigate = useNavigate();
@@ -19,18 +19,18 @@ function CreateAnimal() {
   const { get } = useSelector((state) => state.farm);
   const animalCatgories = useSelector((state) => state.animal.categories);
   const puporseData = useSelector((state) => state.animal.purposeData);
-  console.log('animalCatgories', animalCatgories);
   const initialValues = {
-    farmId: '',
-    earring_num: '',
-    sex: '',
-    birthdate: '',
-    birthkgs: '',
-    parent: '',
-    expected_exit: '',
-    expected_exit_kgs: '',
-    animalCategoryId: '',
-    purposeId: '',
+    farmId: "",
+    earring_num: "",
+    sex: "",
+    birthdate: "",
+    birthkgs: "",
+    parent: "",
+    expected_exit: "",
+    expected_exit_kgs: "",
+    animalCategoryId: "",
+    purposeId: "",
+    animalCost: "",
   };
   const [farmers, setfarmers] = useState([]);
 
@@ -58,13 +58,13 @@ function CreateAnimal() {
 
   function navigates() {
     notification.success({
-      placement: 'topRight',
-      message: 'Animal Added Successfully',
+      placement: "topRight",
+      message: "Animal Added Successfully",
       duration: 3,
-      key: 'success',
+      key: "success",
     });
     setTimeout(() => {
-      navigate('/vt/list-animals');
+      navigate("/vt/list-animals");
     }, 3000);
   }
 
@@ -114,8 +114,8 @@ function CreateAnimal() {
                   name="sex"
                   label="Sex"
                   options={[
-                    { label: 'Male', value: 'Male' },
-                    { label: 'Female', value: 'Female' },
+                    { label: "Male", value: "Male" },
+                    { label: "Female", value: "Female" },
                   ]}
                 />
               </Col>
@@ -169,6 +169,14 @@ function CreateAnimal() {
                   label="Expected Exit Kgs"
                 />
               </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="animalCost"
+                  type="text"
+                  placeholder="animalCost"
+                  label="animalCost"
+                />
+              </Col>
             </Row>
             {/* <div className="flex items-center h-5 justify-center">
                             <Spinner />
@@ -178,7 +186,7 @@ function CreateAnimal() {
                 type="submit"
                 className="w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                {loading ? 'Loading...' : 'Submit'}
+                {loading ? "Loading..." : "Submit"}
               </button>
             </div>
           </Form>
