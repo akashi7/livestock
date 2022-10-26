@@ -14,6 +14,7 @@ export default function CreateEvent() {
     start: "",
     end: "",
     title: "",
+    description: "",
   };
 
   function navigates() {
@@ -50,6 +51,14 @@ export default function CreateEvent() {
                   type="text"
                   placeholder="title"
                   label="title"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="description"
+                  type="text"
+                  placeholder="description"
+                  label="description"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={12}>

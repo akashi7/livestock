@@ -1,16 +1,16 @@
-import { Col, Layout, notification, Row } from 'antd';
-import { Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Col, Layout, notification, Row } from "antd";
+import { Form, Formik } from "formik";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   addAnimalGroup,
   getAllPurposeData,
   getAnimalCatgories,
-} from '../../../state/slices/animal.slice';
-import { getAllFarms } from '../../../state/slices/farm.slice';
-import { InputSelect, InputText } from '../../common/input';
-import { addAnimalGroupSchema } from '../validations';
+} from "../../../state/slices/animal.slice";
+import { getAllFarms } from "../../../state/slices/farm.slice";
+import { InputSelect, InputText } from "../../common/input";
+import { addAnimalGroupSchema } from "../validations";
 
 function CreateGroupAnimal() {
   const navigate = useNavigate();
@@ -20,16 +20,17 @@ function CreateGroupAnimal() {
   const animalCatgories = useSelector((state) => state.animal.categories);
   const puporseData = useSelector((state) => state.animal.purposeData);
   const initialValues = {
-    farmId: '',
-    birthdate: '',
-    parent: '',
-    expected_exit: '',
-    animalCategoryId: '',
-    purposeId: '',
-    name: '',
-    number: '',
-    femaleNumber: '',
-    birthkgs: '',
+    farmId: "",
+    birthdate: "",
+    parent: "",
+    expected_exit: "",
+    animalCategoryId: "",
+    purposeId: "",
+    name: "",
+    number: "",
+    femaleNumber: "",
+    birthkgs: "",
+    groupAnimalCost: "",
   };
   const [farmers, setfarmers] = useState([]);
 
@@ -57,13 +58,13 @@ function CreateGroupAnimal() {
 
   function navigates() {
     notification.success({
-      placement: 'topRight',
-      message: 'Group Animal Added Successfully',
+      placement: "topRight",
+      message: "Group Animal Added Successfully",
       duration: 3,
-      key: 'success',
+      key: "success",
     });
     setTimeout(() => {
-      navigate('/vt/list-animalsGroup');
+      navigate("/vt/list-animalsGroup");
     }, 3000);
   }
 
@@ -161,7 +162,7 @@ function CreateGroupAnimal() {
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
                   name="expected_exit"
-                  type="text"
+                  type="date"
                   placeholder="expected_exit"
                   label="expected_exit"
                 />
@@ -174,6 +175,14 @@ function CreateGroupAnimal() {
                   label="Birth Kgs"
                 />
               </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="groupAnimalCost"
+                  type="text"
+                  placeholder="groupAnimalCost"
+                  label="group Animal Cost"
+                />
+              </Col>
             </Row>
             {/* <div className="flex items-center h-5 justify-center">
                             <Spinner />
@@ -183,7 +192,7 @@ function CreateGroupAnimal() {
                 type="submit"
                 className="w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                {loading ? 'Loading...' : 'Submit'}
+                {loading ? "Loading..." : "Submit"}
               </button>
             </div>
           </Form>
