@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   createAnimal,
   createCategoryData,
@@ -12,10 +12,13 @@ import {
   getFeedData,
   getFeedIdsData,
   getPurposeData,
-} from '../../utils/services/animal.service';
+  listVaccination,
+  Vaccinate,
+  vaccinationData,
+} from "../../utils/services/animal.service";
 
 export const animal = createAsyncThunk(
-  'animal',
+  "animal",
   async ({ data, success }, { rejectWithValue }) => {
     return createAnimal(data)
       .then((resp) => {
@@ -25,10 +28,10 @@ export const animal = createAsyncThunk(
         console.log(error);
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const addAnimalGroup = createAsyncThunk(
-  'create animal group',
+  "create animal group",
   async ({ data, success }, { rejectWithValue }) => {
     return createGroupAnimal(data)
       .then((resp) => {
@@ -38,10 +41,10 @@ export const addAnimalGroup = createAsyncThunk(
         console.log(error);
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const createSickBy = createAsyncThunk(
-  'create sickBy',
+  "create sickBy",
   async ({ data, success }, { rejectWithValue }) => {
     return createSickBay(data)
       .then((resp) => {
@@ -50,10 +53,10 @@ export const createSickBy = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const getAnimals = createAsyncThunk(
-  'getanimals',
+  "getanimals",
   async (props, { rejectWithValue }) => {
     return getAnimalsData()
       .then((resp) => {
@@ -62,10 +65,10 @@ export const getAnimals = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const getAllAnimalsGroup = createAsyncThunk(
-  'getAllanimalsGroup',
+  "getAllanimalsGroup",
   async (props, { rejectWithValue }) => {
     return getAnimalsGroupData()
       .then((resp) => {
@@ -74,10 +77,10 @@ export const getAllAnimalsGroup = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const getAllAnimalsSickbay = createAsyncThunk(
-  'getAllanimalsSickbay',
+  "getAllanimalsSickbay",
   async (props, { rejectWithValue }) => {
     return getAnimalsSickbayData()
       .then((resp) => {
@@ -86,10 +89,10 @@ export const getAllAnimalsSickbay = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const getAnimalCatgories = createAsyncThunk(
-  'getanimalCatgories',
+  "getanimalCatgories",
   async (props, { rejectWithValue }) => {
     return getAnimalsCatData()
       .then((resp) => {
@@ -98,10 +101,10 @@ export const getAnimalCatgories = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const getAllPurposeData = createAsyncThunk(
-  'getpurposeData',
+  "getpurposeData",
   async (props, { rejectWithValue }) => {
     return getPurposeData()
       .then((resp) => {
@@ -110,10 +113,10 @@ export const getAllPurposeData = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const CreateFeed = createAsyncThunk(
-  'createFeedData',
+  "createFeedData",
   async ({ data, success }, { rejectWithValue }) => {
     return createFeedData(data)
       .then((resp) => {
@@ -122,10 +125,10 @@ export const CreateFeed = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const GetAllFeeds = createAsyncThunk(
-  'getFeedData',
+  "getFeedData",
   async (props, { rejectWithValue }) => {
     return getFeedData()
       .then((resp) => {
@@ -134,10 +137,10 @@ export const GetAllFeeds = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const FeedItems = createAsyncThunk(
-  'FeedList',
+  "FeedList",
   async (props, { rejectWithValue }) => {
     return getFeedIdsData()
       .then((resp) => {
@@ -146,10 +149,10 @@ export const FeedItems = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
 export const CreateCategoryTY = createAsyncThunk(
-  'create-category',
+  "create-category",
   async ({ data, success }, { rejectWithValue }) => {
     return createCategoryData(data)
       .then((resp) => {
@@ -158,28 +161,79 @@ export const CreateCategoryTY = createAsyncThunk(
       .catch((error) => {
         rejectWithValue(error);
       });
-  },
+  }
 );
+
+export const VaccinationData = createAsyncThunk(
+  "vac-data",
+  async (props, { rejectWithValue }) => {
+    return vaccinationData()
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const ListVaccinationsData = createAsyncThunk(
+  "list-vac-data",
+  async (props, { rejectWithValue }) => {
+    return listVaccination()
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const VaccinateAnimal = createAsyncThunk(
+  "vacy-data",
+  async ({ data, success }, { rejectWithValue }) => {
+    return Vaccinate(data)
+      .then((resp) => {
+        success();
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
 const initialState = {
   loading: false,
   get: {
     loading: false,
     data: [],
   },
-  categories: { loading: false, data: [], error: '' },
-  animalsGroupData: { loading: false, data: [], error: '' },
-  animalsSickBayData: { loading: false, data: [], error: '' },
-  purposeData: { loading: false, data: [], error: '' },
-  createAnimalGroup: { loading: false, error: '' },
-  createSickBy: { loading: false, error: '' },
+  categories: { loading: false, data: [], error: "" },
+  animalsGroupData: { loading: false, data: [], error: "" },
+  animalsSickBayData: { loading: false, data: [], error: "" },
+  purposeData: { loading: false, data: [], error: "" },
+  createAnimalGroup: { loading: false, error: "" },
+  createSickBy: { loading: false, error: "" },
   feedData: { loading: false, data: [] },
   createFeed: { loading: false },
   allFeeds: { loading: false, data: [] },
   createCategory: { loading: false },
+  vacciData: {
+    loading: false,
+    data: [],
+  },
+  vatinate: {
+    loading: false,
+  },
+  allVaccination: {
+    loading: false,
+    data: [],
+  },
 };
 
 const animalSlice = createSlice({
-  name: 'animal',
+  name: "animal",
   initialState,
   reducers: {
     next: (state) => {
@@ -302,6 +356,34 @@ const animalSlice = createSlice({
       })
       .addCase(CreateCategoryTY.rejected, (state) => {
         state.createCategory.loading = false;
+      })
+      .addCase(VaccinationData.pending, (state) => {
+        state.vacciData.loading = true;
+      })
+      .addCase(VaccinationData.fulfilled, (state, { payload }) => {
+        state.vacciData.data = payload.data;
+      })
+      .addCase(VaccinationData.rejected, (state) => {
+        state.vacciData.loading = false;
+      })
+      .addCase(VaccinateAnimal.pending, (state) => {
+        state.vatinate.loading = true;
+      })
+      .addCase(VaccinateAnimal.fulfilled, (state) => {
+        state.vatinate.loading = false;
+      })
+      .addCase(VaccinateAnimal.rejected, (state) => {
+        state.vatinate.loading = false;
+      })
+      .addCase(ListVaccinationsData.pending, (state) => {
+        state.allVaccination.loading = true;
+      })
+      .addCase(ListVaccinationsData.fulfilled, (state, { payload }) => {
+        state.allVaccination.loading = false;
+        state.allVaccination.data = payload.data;
+      })
+      .addCase(ListVaccinationsData.rejected, (state) => {
+        state.allVaccination.loading = false;
       });
   },
 });

@@ -72,7 +72,7 @@ function CreateAnimal() {
     dispatch(animal({ data: values, success: navigates }));
   };
   return (
-    <Layout className="h-[100vh]  items-center flex">
+    <Layout className="h-[100%]  items-center flex">
       <div className="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
         <Formik
           initialValues={initialValues}

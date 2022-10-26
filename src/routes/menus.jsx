@@ -57,6 +57,10 @@ const menus = [
             label: "Sickbay",
             key: "/vt/add-sickbay",
           },
+          {
+            label: "Vaccinate",
+            key: "/vt/vaccinate",
+          },
         ],
       },
       {
@@ -73,6 +77,10 @@ const menus = [
           {
             label: "Sickbay",
             key: "/vt/list-sickbay",
+          },
+          {
+            label: "List vaccination",
+            key: "/vt/list-vaccination",
           },
         ],
       },

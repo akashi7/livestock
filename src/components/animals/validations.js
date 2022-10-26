@@ -49,6 +49,15 @@ export const AddFeedSchema = Yup.object().shape({
   feedId: Yup.string().required("feedId is Required"),
 });
 
+export const vaccinationSchema = Yup.object().shape({
+  onsetDate: Yup.string().required("onsetDate is Required"),
+  description: Yup.string().required("description is Required"),
+  vaccinationId: Yup.string().required("vaccinationId is Required"),
+  groupAnimalId: Yup.string().required("groupAnimalId is Required"),
+  quantity: Yup.string().required("quantity is Required"),
+  nextAppointment: Yup.string().required("nextAppointment is Required"),
+});
+
 // {
 //     "farmId": "1",
 //     "earring_num": "99993344935",
