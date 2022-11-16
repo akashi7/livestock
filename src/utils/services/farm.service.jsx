@@ -1,7 +1,10 @@
-import * as http from './api';
+import * as http from "./api";
 export const createFarm = (data) => {
-  return http.POST('farm/create', data);
+  return http.POST("farm/create", data);
 };
 export const getFarms = () => {
-  return http.GET('farm/check/all');
+  return http.GET("farm/check/all");
+};
+export const getFarmReport = () => {
+  return http.GET("reports/farmers-district");
 };

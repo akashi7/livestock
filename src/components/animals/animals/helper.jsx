@@ -1,5 +1,5 @@
 import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Menu, Space } from "antd";
+import { Dropdown, Menu, Space, Button } from "antd";
 const menu = (
   <Menu
     items={[
@@ -14,61 +14,61 @@ const menu = (
     ]}
   />
 );
-export const columns = [
-  {
-    title: "Id",
-    dataIndex: "id",
-    key: "id",
-  },
-  {
-    title: "Earring_num",
-    dataIndex: "earring_num",
-    key: "earring_num",
-  },
-  {
-    title: "Gender",
-    dataIndex: "sex",
-    key: "sex",
-  },
-  {
-    title: "Category",
-    dataIndex: "animalCategoryId",
-    key: "animalCategoryId",
-  },
-  {
-    title: "Animal Cat",
-    dataIndex: "animal_cat",
-    key: "animal_cat",
-  },
-  {
-    title: "Birth Date",
-    dataIndex: "birthdate",
-    key: "birthdate",
-  },
-  {
-    title: "Parent",
-    dataIndex: "parent",
-    key: "parent",
-  },
-  {
-    title: "Expected Exit",
-    dataIndex: "expected_exit",
-    key: "expected_exit",
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (text, record) => (
-      <Space size="middle">
-        <Dropdown overlay={menu}>
-          <p>
-            More <DownOutlined />
-          </p>
-        </Dropdown>
-      </Space>
-    ),
-  },
-];
+
+export function getAnimalColums(dispatch) {
+  return [
+    {
+      title: "Id",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Earring_num",
+      dataIndex: "earring_num",
+      key: "earring_num",
+    },
+    {
+      title: "Gender",
+      dataIndex: "sex",
+      key: "sex",
+    },
+    {
+      title: "Category",
+      dataIndex: "animalCategoryId",
+      key: "animalCategoryId",
+    },
+    {
+      title: "Animal Cat",
+      dataIndex: "animal_cat",
+      key: "animal_cat",
+    },
+    {
+      title: "Birth Date",
+      dataIndex: "birthdate",
+      key: "birthdate",
+    },
+    {
+      title: "Parent",
+      dataIndex: "parent",
+      key: "parent",
+    },
+    {
+      title: "Expected Exit",
+      dataIndex: "expected_exit",
+      key: "expected_exit",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Space size="middle">
+          <Button onClick={() => dispatch(record)}>View</Button>
+        </Space>
+      ),
+    },
+  ];
+}
+
 export const AnimalsGroupcolumns = [
   {
     title: "Id",
@@ -308,6 +308,72 @@ export const AnimalVaccinationColmns = [
     title: "Created By",
     dataIndex: "createdBy",
     key: "createdBy",
+  },
+];
+
+export const AnimalReportcolumnsReports = [
+  {
+    title: "Id",
+    dataIndex: "id",
+    key: "id",
+  },
+  {
+    title: "Age In Days",
+    dataIndex: "ageInDays",
+    key: "ageInDays",
+  },
+  {
+    title: "Animal Category",
+    dataIndex: "animalCategory",
+    key: "animalCategory",
+  },
+  {
+    title: "Earring num",
+    dataIndex: "earring_num",
+    key: "earring_num",
+  },
+  {
+    title: "Farm name",
+    dataIndex: "farm_name",
+    key: "farm_name",
+  },
+  {
+    title: "Farmer Fname",
+    dataIndex: "farmer_firstname",
+    key: "farmer_firstname",
+  },
+  {
+    title: "Farmer Lname",
+    dataIndex: "farmer_lastname",
+    key: "farmer_lastname",
+  },
+  {
+    title: "Purpose List name",
+    dataIndex: "purposeList_name",
+    key: "purposeList_name",
+  },
+  {
+    title: "Sex",
+    dataIndex: "sex",
+    key: "sex",
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (text, record) => (
+      <Space size="middle">
+        <Dropdown overlay={menu}>
+          <p>
+            More <DownOutlined />
+          </p>
+        </Dropdown>
+      </Space>
+    ),
   },
 ];
 

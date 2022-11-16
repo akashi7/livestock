@@ -12,10 +12,13 @@ import ListAnimalsGroup from "../components/animals/animals/list-animalsGroup";
 import ListAnimalsSickBay from "../components/animals/animals/list-animalsSickbay";
 import ListAnimalsCategory from "../components/animals/animals/list-category";
 import ListVaccinations from "../components/animals/animals/list-vaccination";
+import ListAnimalReports from "../components/animals/animals/report";
 import CreateAnimalSickBay from "../components/animals/animals/sickbayCreate";
 import VacinateAnimal from "../components/animals/animals/vaccination";
+import OneAnimal from "../components/animals/animals/view-one";
 import ContentWrapper from "../components/common/contentWrapper/contentWrapper";
 import Navbar from "../components/common/header/header";
+import MenuBar from "../components/common/menubar/menubar";
 import Sidebar from "../components/common/sidebar/sidebar";
 import CreateEvent from "../components/events/events/create";
 import EventList from "../components/events/events/list";
@@ -26,9 +29,15 @@ import ListFarmers from "../components/farmers/farmer/list";
 import FarmExpense from "../components/farmexp/farmexp/create";
 import CreateFarms from "../components/farms/farms/create";
 import ListFarms from "../components/farms/farms/list";
+import ListFarmReports from "../components/farms/farms/reports";
 function DashRoutes() {
   return (
-    <Layout style={{ height: "100%" }}>
+    <Layout
+      style={{
+        height: "100vh",
+        width: "100%",
+      }}
+    >
       <Sidebar />
       <Layout>
         <Navbar />
@@ -37,6 +46,7 @@ function DashRoutes() {
             <Route path="/" element={<ListFarmers />} />
             <Route path="/add-farmer" element={<CreateFarmer />} />
             <Route path="/list-animals" element={<ListAnimals />} />
+            <Route path="/animal/:id" element={<OneAnimal />} />
             <Route path="/add-animal" element={<CreateAnimal />} />
             <Route path="/list-farms" element={<ListFarms />} />
             <Route path="/list-animalsGroup" element={<ListAnimalsGroup />} />
@@ -61,6 +71,8 @@ function DashRoutes() {
             <Route path="/event-list" element={<EventList />} />
             <Route path="/vaccinate" element={<VacinateAnimal />} />
             <Route path="list-vaccination" element={<ListVaccinations />} />
+            <Route path="/farm-reports" element={<ListFarmReports />} />
+            <Route path="/animal-reports" element={<ListAnimalReports />} />
           </Routes>
         </ContentWrapper>
       </Layout>

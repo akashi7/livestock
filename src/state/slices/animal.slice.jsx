@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
+  animalReport,
   createAnimal,
   createCategoryData,
   createFeedData,
@@ -15,6 +16,7 @@ import {
   listVaccination,
   Vaccinate,
   vaccinationData,
+  viewOneAnimal,
 } from "../../utils/services/animal.service";
 
 export const animal = createAsyncThunk(
@@ -203,6 +205,32 @@ export const VaccinateAnimal = createAsyncThunk(
   }
 );
 
+export const AnimalReport = createAsyncThunk(
+  "animal-rep-data",
+  async (props, { rejectWithValue }) => {
+    return animalReport()
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const SeeOneAnimal = createAsyncThunk(
+  "animal-one",
+  async ({ params }, { rejectWithValue }) => {
+    return viewOneAnimal(params)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
 const initialState = {
   loading: false,
   get: {
@@ -229,6 +257,14 @@ const initialState = {
   allVaccination: {
     loading: false,
     data: [],
+  },
+  animalReportsData: {
+    loading: false,
+    data: [],
+  },
+  animal: {
+    loading: false,
+    data: {},
   },
 };
 
@@ -384,6 +420,27 @@ const animalSlice = createSlice({
       })
       .addCase(ListVaccinationsData.rejected, (state) => {
         state.allVaccination.loading = false;
+      })
+      .addCase(AnimalReport.pending, (state) => {
+        state.animalReportsData.loading = true;
+      })
+      .addCase(AnimalReport.fulfilled, (state, { payload }) => {
+        state.animalReportsData.loading = false;
+        state.animalReportsData.data = payload.result;
+      })
+      .addCase(AnimalReport.rejected, (state) => {
+        state.animalReportsData.loading = false;
+      })
+      .addCase(SeeOneAnimal.pending, (state) => {
+        state.animal.loading = true;
+      })
+      .addCase(SeeOneAnimal.fulfilled, (state, { payload }) => {
+        state.animal.loading = false;
+        console.log({ payload });
+        state.animal.data = payload.data;
+      })
+      .addCase(SeeOneAnimal.rejected, (state) => {
+        state.animal.loading = false;
       });
   },
 });

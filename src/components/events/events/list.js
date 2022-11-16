@@ -14,6 +14,7 @@ export default function EventList() {
 
   useEffect(() => {
     dispatch(ListEventApi());
+    //eslint-disable-next-line
   }, []);
 
   const event = ({ event }) => {

@@ -4,155 +4,158 @@ import {
   StarOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
+
+const mainRoute = `vt`;
+
 const menus = [
   {
-    label: "Dashboard",
-    key: "/vt/",
+    label: `Dashboard`,
+    key: `/${mainRoute}/`,
     icon: <StarOutlined />,
   },
   {
-    label: "Farms",
-    icon: <InfoCircleOutlined />,
-    children: [
-      {
-        label: "Create",
-        key: "/vt/add-farm",
-      },
-      {
-        label: "farms List",
-        key: "/vt/list-farms",
-      },
-    ],
-  },
-  {
-    label: "farmers",
+    label: `farmers`,
     icon: <UsergroupAddOutlined />,
     children: [
       {
-        label: "Create",
-        key: "/vt/add-farmer",
+        label: `Create`,
+        key: `/${mainRoute}/add-farmer`,
       },
       {
-        label: "Farmers List",
-        key: "/vt/",
+        label: `Farmers List`,
+        key: `/${mainRoute}/`,
       },
     ],
   },
   {
-    label: "Animals",
+    label: `Farms`,
     icon: <InfoCircleOutlined />,
     children: [
       {
-        label: "Create New",
+        label: `Create`,
+        key: `/${mainRoute}/add-farm`,
+      },
+      {
+        label: `farms List`,
+        key: `/${mainRoute}/list-farms`,
+      },
+    ],
+  },
+
+  {
+    label: `Animals`,
+    icon: <InfoCircleOutlined />,
+    children: [
+      {
+        label: `Create New`,
         children: [
           {
-            label: "Animal",
-            key: "/vt/add-animal",
+            label: `Animal`,
+            key: `/${mainRoute}/add-animal`,
           },
           {
-            label: "Animal Group",
-            key: "/vt/add-animal-group",
+            label: `Animal Group`,
+            key: `/${mainRoute}/add-animal-group`,
           },
           {
-            label: "Sickbay",
-            key: "/vt/add-sickbay",
+            label: `Sickbay`,
+            key: `/${mainRoute}/add-sickbay`,
           },
           {
-            label: "Vaccinate",
-            key: "/vt/vaccinate",
+            label: `Vaccinate`,
+            key: `/${mainRoute}/vaccinate`,
           },
         ],
       },
       {
-        label: "All List",
-        children: [
-          {
-            label: "Animals",
-            key: "/vt/list-animals",
-          },
-          {
-            label: "Animals Groups",
-            key: "/vt/list-animalsGroup",
-          },
-          {
-            label: "Sickbay",
-            key: "/vt/list-sickbay",
-          },
-          {
-            label: "List vaccination",
-            key: "/vt/list-vaccination",
-          },
-        ],
+        label: `Animals List`,
+        key: `/${mainRoute}/list-animals`,
+      },
+      {
+        label: `Animals Groups List`,
+        key: `/${mainRoute}/list-animalsGroup`,
+      },
+      {
+        label: `Sickbay List`,
+        key: `/${mainRoute}/list-sickbay`,
+      },
+      {
+        label: `List of  vaccinations`,
+        key: `/${mainRoute}/list-vaccination`,
       },
     ],
   },
   {
-    label: "Expenses",
+    label: `Expenses`,
     icon: <AccountBookOutlined />,
     children: [
       {
-        label: "Animal Expense",
-        children: [
-          {
-            label: "Create",
-            key: "/vt/add-animal-expense",
-          },
-          {
-            label: "List",
-            key: "/vt/list-animal-expenses",
-          },
-        ],
+        label: `Create Animal expenses`,
+        key: `/${mainRoute}/add-animal-expense`,
       },
       {
-        label: "Farm expenses",
-        children: [
-          {
-            label: "Create",
-            key: "/vt/create-farm-expenses",
-          },
-        ],
+        label: `List Animal Expenses`,
+        key: `/${mainRoute}/list-animal-expenses`,
+      },
+      {
+        label: `Create Farm expense `,
+        key: `/${mainRoute}/create-farm-expenses`,
       },
     ],
   },
   {
-    label: "Animal Category",
+    label: `Animal Category`,
     icon: <AccountBookOutlined />,
     children: [
       {
-        label: "Create",
-        key: "/vt/create-category",
+        label: `Create`,
+        key: `/${mainRoute}/create-category`,
       },
       {
-        label: "List",
-        key: "/vt/list-category",
+        label: `List`,
+        key: `/${mainRoute}/list-category`,
       },
     ],
   },
   {
-    label: "Animal Feed",
+    label: `Animal Feed`,
     icon: <AccountBookOutlined />,
     children: [
       {
-        label: "Create",
-        key: "/vt/create-animal-feed",
+        label: `Create`,
+        key: `/${mainRoute}/create-animal-feed`,
       },
       {
-        label: "List",
-        key: "/vt/list-animal-feed",
+        label: `List`,
+        key: `/${mainRoute}/list-animal-feed`,
       },
     ],
   },
   {
-    label: "Events",
+    label: `Events`,
     icon: <AccountBookOutlined />,
     children: [
       {
-        label: "Create",
-        key: "/vt/create-event",
+        label: `Create`,
+        key: `/${mainRoute}/create-event`,
       },
       {
-        label: "List",
-        key: "/vt/event-list",
+        label: `List`,
+        key: `/${mainRoute}/event-list`,
+      },
+    ],
+  },
+  {
+    label: `Reports`,
+    icon: <AccountBookOutlined />,
+    children: [
+      {
+        label: `Farm Reports`,
+        key: `/${mainRoute}/farm-reports`,
+      },
+      {
+        label: `Animal Reports`,
+        key: `/${mainRoute}/animal-reports`,
       },
     ],
   },
