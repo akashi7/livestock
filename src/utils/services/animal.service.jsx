@@ -49,3 +49,11 @@ export const Vaccinate = (data) => {
 export const listVaccination = () => {
   return http.GET("vaccinating/check/all");
 };
+
+export const animalReport = () => {
+  return http.GET("reports/animal-farm-farmer");
+};
+
+export const viewOneAnimal = (params) => {
+  return http.GET(`animalcategory/${params}`);
+};

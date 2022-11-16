@@ -1,8 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createFarm, getFarms } from '../../utils/services/farm.service';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createFarm,
+  getFarmReport,
+  getFarms,
+} from "../../utils/services/farm.service";
 
 export const farm = createAsyncThunk(
-  'farm',
+  "farm",
   async ({ data, success }, { rejectWithValue }) => {
     return createFarm(data)
       .then((resp) => {
@@ -12,11 +16,11 @@ export const farm = createAsyncThunk(
         console.log(error);
         rejectWithValue(error);
       });
-  },
+  }
 );
 
 export const getAllFarms = createAsyncThunk(
-  'getAllfarms',
+  "getAllfarms",
   async (props, { rejectWithValue }) => {
     return getFarms()
       .then((resp) => {
@@ -26,20 +30,38 @@ export const getAllFarms = createAsyncThunk(
         console.log(error);
         rejectWithValue(error);
       });
-  },
+  }
+);
+
+export const GetFarmReport = createAsyncThunk(
+  "getFarmReport",
+  async (props, { rejectWithValue }) => {
+    return getFarmReport()
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        console.log(error);
+        rejectWithValue(error);
+      });
+  }
 );
 
 const initialState = {
   loading: false,
-  error: '',
+  error: "",
   get: {
+    loading: false,
+    data: [],
+  },
+  farmReport: {
     loading: false,
     data: [],
   },
 };
 
 const farmSlice = createSlice({
-  name: 'farm',
+  name: "farm",
   initialState,
   reducers: {
     next: (state) => {
@@ -63,6 +85,20 @@ const farmSlice = createSlice({
       .addCase(getAllFarms.fulfilled, (state, { payload }) => {
         state.get.loading = false;
         state.get.data = payload.data;
+      })
+      .addCase(getAllFarms.rejected, (state, { payload }) => {
+        state.get.loading = false;
+      })
+      .addCase(GetFarmReport.pending, (state) => {
+        state.farmReport.loading = true;
+      })
+      .addCase(GetFarmReport.fulfilled, (state, { payload }) => {
+        state.farmReport.loading = false;
+        console.log({ payload });
+        state.farmReport.data = payload;
+      })
+      .addCase(GetFarmReport.rejected, (state, { payload }) => {
+        state.farmReport.loading = false;
       });
   },
 });

@@ -1,0 +1,11 @@
+.hr {
+  border-bottom: 1px solid #31b0d5;
+  text-align: center;
+  width: 50%;
+}
+.hr-container {
+  width: 30%;
+}
+.container {
+  margin: 0 auto;
+}
