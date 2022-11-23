@@ -22,6 +22,7 @@ export default function TreatmentsList() {
   useEffect(() => {
     dispatch(TreatmentData({ param: id }));
     dispatch(SeeOneAnimal({ params: id }));
+    //eslint-disable-next-line
   }, []);
 
   const [toogle, setToogle] = useState(false);

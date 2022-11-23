@@ -15,6 +15,7 @@ export default function OneAnimal() {
 
   useEffect(() => {
     dispatch(SeeOneAnimal({ params: id }));
+    //eslint-disable-next-line
   }, [id]);
 
   return (

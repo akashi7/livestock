@@ -1,14 +1,12 @@
 import { Layout, Table } from "antd";
 import { useEffect } from "react";
-import MenuBar from "../../common/menubar/menubar";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  SeeOneAnimal,
-  TreatmentData,
-  CreateTreatmentData,
   GetAccountingData,
+  SeeOneAnimal,
 } from "../../../state/slices/animal.slice";
 import AnimalCard from "../../common/Cards";
+import MenuBar from "../../common/menubar/menubar";
 import { accountColumns } from "./helper";
 
 export default function ListAccounts() {
@@ -20,9 +18,8 @@ export default function ListAccounts() {
   useEffect(() => {
     dispatch(GetAccountingData({ param: id }));
     dispatch(SeeOneAnimal({ params: id }));
+    //eslint-disable-next-line
   }, []);
-
-  console.log({ accountings });
 
   return (
     <Layout className="layout-container">
