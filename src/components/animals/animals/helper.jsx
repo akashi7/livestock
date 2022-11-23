@@ -428,15 +428,23 @@ export const accountColumns = [
     key: "id",
   },
   {
-    title: "expense",
-    dataIndex: "expense",
-    key: "expense",
+    title: "type",
+    dataIndex: "type",
+    key: "type",
   },
   {
     title: "amount",
     dataIndex: "amount",
     key: "amount",
-    render: (text, row) => <div>expense</div>,
+    render: (text, row) => (
+      <div>
+        {row.type === "expense" ? (
+          <p style={{ color: "red" }}>{text}</p>
+        ) : (
+          <p style={{ color: "green" }}>{text} </p>
+        )}
+      </div>
+    ),
   },
   {
     title: "date",

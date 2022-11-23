@@ -22,6 +22,8 @@ export default function ListAccounts() {
     dispatch(SeeOneAnimal({ params: id }));
   }, []);
 
+  console.log({ accountings });
+
   return (
     <Layout className="layout-container">
       <div className="main-container">
