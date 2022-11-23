@@ -1,16 +1,13 @@
 import { Layout, Table } from "antd";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAnimals, SeeOneAnimal } from "../../../state/slices/animal.slice";
+import { getAnimals } from "../../../state/slices/animal.slice";
 import { getAnimalColums } from "./helper";
-import { MenuContext } from "../../../context/menuContext";
 
 function ListAnimals() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const { ToogleMenu } = useContext(MenuContext);
 
   const { get } = useSelector((state) => state.animal);
   useEffect(() => {

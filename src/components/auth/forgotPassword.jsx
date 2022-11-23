@@ -1,10 +1,8 @@
-import { Form, Formik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
-import { InputText } from '../common/input';
+import { Form, Formik } from "formik";
+import { Link } from "react-router-dom";
+import { InputText } from "../common/input";
 
 export default function ForgotPassword() {
-  const navigate = useNavigate();
-
   return (
     <div className="h-[100vh] w-[100%] items-center justify-center flex flex-row">
       <div className="w-[27%] h-[500px] flex justify-center items-start flex-col bg-white shadow-md border border-gray-200 lg:p-8 bg-login">

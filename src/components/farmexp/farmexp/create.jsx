@@ -1,26 +1,24 @@
-import { Col, Layout, Row } from 'antd';
-import { Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getCategories, getItems } from '../../../state/slices/animalExp.slice';
-import { getAllFarms } from '../../../state/slices/farm.slice';
-import { InputSelect, InputText } from '../../common/input';
-import { addFarmerExpenses } from '../validation';
+import { Col, Layout, Row } from "antd";
+import { Form, Formik } from "formik";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories, getItems } from "../../../state/slices/animalExp.slice";
+import { getAllFarms } from "../../../state/slices/farm.slice";
+import { InputSelect, InputText } from "../../common/input";
+import { addFarmerExpenses } from "../validation";
 
 export default function FarmExpense() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [category, setCategory] = useState([]);
   const [item, setItem] = useState([]);
   const { get } = useSelector((state) => state.farm);
   const { catg, items } = useSelector((state) => state.animalExpenses);
   const initialValues = {
-    creationDate: '',
-    farmId: '',
-    categoryId: '',
-    itemId: '',
-    quantity: '',
+    creationDate: "",
+    farmId: "",
+    categoryId: "",
+    itemId: "",
+    quantity: "",
   };
   const [Farm, setFarm] = useState([]);
   const [changeCat, setChangeCat] = useState({});

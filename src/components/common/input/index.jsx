@@ -1,5 +1,5 @@
-import { useField } from 'formik';
-import { Cascader, Input } from 'antd';
+import { useField } from "formik";
+import { Cascader, Input } from "antd";
 export const InputFloatingLabel = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
@@ -37,7 +37,7 @@ export const InputText = ({ label, ...props }) => {
           placeholder=" "
           {...field}
           {...props}
-          style={{ height: '50px' }}
+          style={{ height: "50px" }}
         />
       </div>
       {meta.touched && meta.error ? (
@@ -73,13 +73,13 @@ export const InputSelect = ({ label, options, ...props }) => {
   );
 };
 export const CascadeSelect = ({
-  width = '100%',
+  width = "100%",
   onChange,
   label,
   options,
   ...props
 }) => {
-  const [field, meta] = useField(props);
+  const [_, meta] = useField(props);
   return (
     <div className="">
       <label className="font-small">{label}</label>
