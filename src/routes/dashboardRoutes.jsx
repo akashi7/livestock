@@ -2,6 +2,7 @@ import { Layout } from "antd";
 import { Route, Routes } from "react-router-dom";
 import AnimalExpenses from "../components/animalexp/animalexp/create";
 import AnimalExpensesLists from "../components/animalexp/animalexp/lists";
+import ListAccounts from "../components/animals/animals/accounting";
 import CreateAnimal from "../components/animals/animals/create";
 import CreateCategory from "../components/animals/animals/create-category";
 import CreateAnimalFeed from "../components/animals/animals/feed-create";
@@ -14,11 +15,11 @@ import ListAnimalsCategory from "../components/animals/animals/list-category";
 import ListVaccinations from "../components/animals/animals/list-vaccination";
 import ListAnimalReports from "../components/animals/animals/report";
 import CreateAnimalSickBay from "../components/animals/animals/sickbayCreate";
+import TreatmentsList from "../components/animals/animals/treatments";
 import VacinateAnimal from "../components/animals/animals/vaccination";
 import OneAnimal from "../components/animals/animals/view-one";
 import ContentWrapper from "../components/common/contentWrapper/contentWrapper";
 import Navbar from "../components/common/header/header";
-import MenuBar from "../components/common/menubar/menubar";
 import Sidebar from "../components/common/sidebar/sidebar";
 import CreateEvent from "../components/events/events/create";
 import EventList from "../components/events/events/list";
@@ -32,14 +33,9 @@ import ListFarms from "../components/farms/farms/list";
 import ListFarmReports from "../components/farms/farms/reports";
 function DashRoutes() {
   return (
-    <Layout
-      style={{
-        height: "100vh",
-        width: "100%",
-      }}
-    >
+    <Layout className="h-[100vh]">
       <Sidebar />
-      <Layout>
+      <Layout className="h-[100%]">
         <Navbar />
         <ContentWrapper>
           <Routes>
@@ -70,9 +66,11 @@ function DashRoutes() {
             <Route path="/create-event" element={<CreateEvent />} />
             <Route path="/event-list" element={<EventList />} />
             <Route path="/vaccinate" element={<VacinateAnimal />} />
-            <Route path="list-vaccination" element={<ListVaccinations />} />
+            <Route path="/list-vaccination" element={<ListVaccinations />} />
             <Route path="/farm-reports" element={<ListFarmReports />} />
             <Route path="/animal-reports" element={<ListAnimalReports />} />
+            <Route path="/animal-treatments" element={<TreatmentsList />} />
+            <Route path="/animal-accounts" element={<ListAccounts />} />
           </Routes>
         </ContentWrapper>
       </Layout>

@@ -6,13 +6,17 @@ import {
   createFeedData,
   createGroupAnimal,
   createSickBay,
+  createTreatment,
   getAnimalsCatData,
   getAnimalsData,
   getAnimalsGroupData,
   getAnimalsSickbayData,
   getFeedData,
   getFeedIdsData,
+  getMedecines,
   getPurposeData,
+  listAccounting,
+  listTreatment,
   listVaccination,
   Vaccinate,
   vaccinationData,
@@ -47,8 +51,8 @@ export const addAnimalGroup = createAsyncThunk(
 );
 export const createSickBy = createAsyncThunk(
   "create sickBy",
-  async ({ data, success }, { rejectWithValue }) => {
-    return createSickBay(data)
+  async ({ resName, id, data, success }, { rejectWithValue }) => {
+    return createSickBay(resName, id, data)
       .then((resp) => {
         success();
       })
@@ -83,8 +87,8 @@ export const getAllAnimalsGroup = createAsyncThunk(
 );
 export const getAllAnimalsSickbay = createAsyncThunk(
   "getAllanimalsSickbay",
-  async (props, { rejectWithValue }) => {
-    return getAnimalsSickbayData()
+  async ({ param }, { rejectWithValue }) => {
+    return getAnimalsSickbayData(param)
       .then((resp) => {
         return resp.data;
       })
@@ -119,8 +123,8 @@ export const getAllPurposeData = createAsyncThunk(
 );
 export const CreateFeed = createAsyncThunk(
   "createFeedData",
-  async ({ data, success }, { rejectWithValue }) => {
-    return createFeedData(data)
+  async ({ resName, id, data, success }, { rejectWithValue }) => {
+    return createFeedData(resName, id, data)
       .then((resp) => {
         success();
       })
@@ -131,8 +135,8 @@ export const CreateFeed = createAsyncThunk(
 );
 export const GetAllFeeds = createAsyncThunk(
   "getFeedData",
-  async (props, { rejectWithValue }) => {
-    return getFeedData()
+  async ({ params }, { rejectWithValue }) => {
+    return getFeedData(params)
       .then((resp) => {
         return resp.data;
       })
@@ -181,8 +185,8 @@ export const VaccinationData = createAsyncThunk(
 
 export const ListVaccinationsData = createAsyncThunk(
   "list-vac-data",
-  async (props, { rejectWithValue }) => {
-    return listVaccination()
+  async ({ param }, { rejectWithValue }) => {
+    return listVaccination(param)
       .then((resp) => {
         return resp.data;
       })
@@ -194,8 +198,8 @@ export const ListVaccinationsData = createAsyncThunk(
 
 export const VaccinateAnimal = createAsyncThunk(
   "vacy-data",
-  async ({ data, success }, { rejectWithValue }) => {
-    return Vaccinate(data)
+  async ({ resName, id, data, success }, { rejectWithValue }) => {
+    return Vaccinate(resName, id, data)
       .then((resp) => {
         success();
       })
@@ -222,6 +226,58 @@ export const SeeOneAnimal = createAsyncThunk(
   "animal-one",
   async ({ params }, { rejectWithValue }) => {
     return viewOneAnimal(params)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const GetMedecinesData = createAsyncThunk(
+  "medecices",
+  async (props, { rejectWithValue }) => {
+    return getMedecines()
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const TreatmentData = createAsyncThunk(
+  "TreatmentData",
+  async ({ param }, { rejectWithValue }) => {
+    return listTreatment(param)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const CreateTreatmentData = createAsyncThunk(
+  "CreateTreatment",
+  async ({ resName, id, data, success }, { rejectWithValue }) => {
+    return createTreatment(resName, id, data)
+      .then((resp) => {
+        success();
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const GetAccountingData = createAsyncThunk(
+  "listacc",
+  async ({ param }, { rejectWithValue }) => {
+    return listAccounting(param)
       .then((resp) => {
         return resp.data;
       })
@@ -265,6 +321,21 @@ const initialState = {
   animal: {
     loading: false,
     data: {},
+  },
+  medecines: {
+    loading: false,
+    data: [],
+  },
+  treatments: {
+    loading: false,
+    data: [],
+  },
+  createTreatment: {
+    loading: false,
+  },
+  accountings: {
+    loading: false,
+    data: [],
   },
 };
 
@@ -436,11 +507,49 @@ const animalSlice = createSlice({
       })
       .addCase(SeeOneAnimal.fulfilled, (state, { payload }) => {
         state.animal.loading = false;
-        console.log({ payload });
         state.animal.data = payload.data;
       })
       .addCase(SeeOneAnimal.rejected, (state) => {
         state.animal.loading = false;
+      })
+      .addCase(GetMedecinesData.pending, (state) => {
+        state.medecines.loading = true;
+      })
+      .addCase(GetMedecinesData.fulfilled, (state, { payload }) => {
+        state.medecines.loading = false;
+        state.medecines.data = payload.data;
+      })
+      .addCase(GetMedecinesData.rejected, (state) => {
+        state.medecines.loading = false;
+      })
+      .addCase(TreatmentData.pending, (state) => {
+        state.treatments.loading = true;
+      })
+      .addCase(TreatmentData.fulfilled, (state, { payload }) => {
+        state.treatments.loading = false;
+        state.treatments.data = payload.data;
+      })
+      .addCase(TreatmentData.rejected, (state) => {
+        state.treatments.loading = false;
+      })
+      .addCase(CreateTreatmentData.pending, (state) => {
+        state.createTreatment.loading = true;
+      })
+      .addCase(CreateTreatmentData.fulfilled, (state) => {
+        state.createTreatment.loading = false;
+      })
+      .addCase(CreateTreatmentData.rejected, (state) => {
+        state.createTreatment.loading = false;
+      })
+      .addCase(GetAccountingData.pending, (state) => {
+        state.accountings.loading = true;
+      })
+      .addCase(GetAccountingData.fulfilled, (state, { payload }) => {
+        state.accountings.loading = false;
+        state.accountings.data = payload.data;
+      })
+      .addCase(GetAccountingData.rejected, (state) => {
+        state.accountings.loading = false;
       });
   },
 });

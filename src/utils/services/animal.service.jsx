@@ -5,11 +5,11 @@ export const createAnimal = (data) => {
 export const createGroupAnimal = (data) => {
   return http.POST("groupAnimal/create", data);
 };
-export const createSickBay = (data) => {
-  return http.POST("sickbay/create", data);
+export const createSickBay = (resName, id, data) => {
+  return http.POST(`sickbay/${resName}/${id}/create`, data);
 };
-export const getAnimalsSickbayData = () => {
-  return http.GET("sickbay/check/all");
+export const getAnimalsSickbayData = (id) => {
+  return http.GET(`sickbay/animal/${id}/check/all`);
 };
 export const getAnimalsGroupData = () => {
   return http.GET("groupAnimal/check/all");
@@ -24,11 +24,11 @@ export const getPurposeData = () => {
   return http.GET("purposelist/check/all");
 };
 
-export const createFeedData = (data) => {
-  return http.POST("animalfeed/create", data);
+export const createFeedData = (ResName, id, data) => {
+  return http.POST(`feeding/${ResName}/${id}/create`, data);
 };
-export const getFeedData = () => {
-  return http.GET("animalfeed/check/all");
+export const getFeedData = (id) => {
+  return http.GET(`feeding/animal/${id}/check/all`);
 };
 
 export const getFeedIdsData = () => {
@@ -42,12 +42,12 @@ export const vaccinationData = () => {
   return http.GET("vaccination/check/all");
 };
 
-export const Vaccinate = (data) => {
-  return http.POST("vaccinating/create", data);
+export const Vaccinate = (resName, id, data) => {
+  return http.POST(`vaccinating/${resName}/${id}/create `, data);
 };
 
-export const listVaccination = () => {
-  return http.GET("vaccinating/check/all");
+export const listVaccination = (id) => {
+  return http.GET(`vaccinating/animal/${id}/check/all`);
 };
 
 export const animalReport = () => {
@@ -55,5 +55,21 @@ export const animalReport = () => {
 };
 
 export const viewOneAnimal = (params) => {
-  return http.GET(`animalcategory/${params}`);
+  return http.GET(`animal/${params}`);
+};
+
+export const getMedecines = () => {
+  return http.GET(`medicine/check/all`);
+};
+
+export const listTreatment = (id) => {
+  return http.GET(`treatment/animal/${id}/check/all`);
+};
+
+export const createTreatment = (resName, id, data) => {
+  return http.POST(`treatment/${resName}/${id}/create`, data);
+};
+
+export const listAccounting = (id) => {
+  return http.GET(`accounting/animal/${id}/check/all`);
 };

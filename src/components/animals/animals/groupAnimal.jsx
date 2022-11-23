@@ -29,6 +29,7 @@ function CreateGroupAnimal() {
     name: "",
     number: "",
     femaleNumber: "",
+    MaleNumber: "",
     birthkgs: "",
     groupAnimalCost: "",
   };
@@ -72,7 +73,7 @@ function CreateGroupAnimal() {
     dispatch(addAnimalGroup({ data: values, success: navigates }));
   };
   return (
-    <Layout className="h-[100vh]  items-center flex">
+    <Layout className="h-[100%]  items-center flex">
       <div className="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
         <Formik
           initialValues={initialValues}
@@ -84,14 +85,14 @@ function CreateGroupAnimal() {
               <Col className="gutter-row" span={24}>
                 <p className="text-blue">Add Animal Group</p>
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputSelect
                   name="farmId"
                   options={farmers}
                   label="Select Farm"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputSelect
                   name="animalCategoryId"
                   options={animalCatgories?.data.map((item) => ({
@@ -101,7 +102,7 @@ function CreateGroupAnimal() {
                   label="Select Animal Category"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="name"
                   type="text"
@@ -109,7 +110,7 @@ function CreateGroupAnimal() {
                   label="Name"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputSelect
                   name="purposeId"
                   options={puporseData?.data.map((item) => ({
@@ -119,7 +120,7 @@ function CreateGroupAnimal() {
                   label="Select Purpose"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="number"
                   type="text"
@@ -127,7 +128,7 @@ function CreateGroupAnimal() {
                   label="Number"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="birthdate"
                   type="date"
@@ -135,7 +136,7 @@ function CreateGroupAnimal() {
                   label="birthdate"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="femaleNumber"
                   type="text"
@@ -143,7 +144,7 @@ function CreateGroupAnimal() {
                   label="Female Number"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="maleNumber"
                   type="text"
@@ -151,7 +152,7 @@ function CreateGroupAnimal() {
                   label="Male Number"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="parent"
                   type="text"
@@ -159,7 +160,7 @@ function CreateGroupAnimal() {
                   label="Parent"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="expected_exit"
                   type="date"
@@ -167,7 +168,7 @@ function CreateGroupAnimal() {
                   label="expected_exit"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="birthkgs"
                   type="text"
@@ -175,7 +176,7 @@ function CreateGroupAnimal() {
                   label="Birth Kgs"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="groupAnimalCost"
                   type="text"

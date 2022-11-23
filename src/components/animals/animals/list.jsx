@@ -19,6 +19,7 @@ function ListAnimals() {
   }, []);
 
   function Dispatch(animals) {
+    localStorage.setItem("id", animals.id);
     navigate(`/vt/animal/${animals.id}`);
   }
 

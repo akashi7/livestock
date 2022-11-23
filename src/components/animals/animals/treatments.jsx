@@ -2,29 +2,26 @@ import { Layout, Table } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  ListVaccinationsData,
   SeeOneAnimal,
-  getAnimalCatgories,
-  VaccinationData,
-  VaccinateAnimal,
+  TreatmentData,
+  CreateTreatmentData,
 } from "../../../state/slices/animal.slice";
 import AnimalCard from "../../common/Cards";
 import MenuBar from "../../common/menubar/menubar";
-import "../animal.css";
-import AddVaccinateModal from "../modals/addvaccinate";
-import { AnimalVaccinationColmns } from "./helper";
+import AddTreatmentModal from "../modals/addTreatment";
+import { TreatmentsColumn } from "./helper";
 
-function ListVaccinations() {
+export default function TreatmentsList() {
   const dispatch = useDispatch();
-  const { allVaccination, animal, animalsGroupData, vacciData, vatinate } =
-    useSelector((state) => state.animal);
+
+  const { treatments, animal, createTreatment } = useSelector(
+    (state) => state.animal
+  );
   const id = localStorage.getItem("id");
+
   useEffect(() => {
-    dispatch(ListVaccinationsData({ param: id }));
+    dispatch(TreatmentData({ param: id }));
     dispatch(SeeOneAnimal({ params: id }));
-    dispatch(getAnimalCatgories());
-    dispatch(VaccinationData());
-    /* eslint-disable-next-line */
   }, []);
 
   const [toogle, setToogle] = useState(false);
@@ -49,25 +46,23 @@ function ListVaccinations() {
               Add new
             </button>
             {toogle && (
-              <AddVaccinateModal
-                id={id}
-                animalGroup={animalsGroupData}
-                vaccinations={vacciData}
+              <AddTreatmentModal
                 toogle={toogle}
                 Toogle={Toogle}
-                VaccinateAnimal={VaccinateAnimal}
+                id={id}
+                CreateTreatmentData={CreateTreatmentData}
+                TreatmentData={TreatmentData}
                 dispatch={dispatch}
-                ListVaccinationsData={ListVaccinationsData}
-                vatinate={vatinate}
+                createTreatment={createTreatment}
               />
             )}
+            <br />
           </div>
-          <br />
           <div style={{ margin: "10px" }}>
             <Table
-              columns={AnimalVaccinationColmns}
-              dataSource={allVaccination.data}
-              loading={allVaccination.loading}
+              columns={TreatmentsColumn}
+              dataSource={treatments.data}
+              loading={treatments.loading}
             />
           </div>
         </div>
@@ -75,4 +70,3 @@ function ListVaccinations() {
     </Layout>
   );
 }
-export default ListVaccinations;

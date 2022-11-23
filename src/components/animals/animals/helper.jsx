@@ -1,5 +1,6 @@
 import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Menu, Space, Button } from "antd";
+import { Button, Dropdown, Menu, Space } from "antd";
+import moment from "moment";
 const menu = (
   <Menu
     items={[
@@ -23,39 +24,34 @@ export function getAnimalColums(dispatch) {
       key: "id",
     },
     {
-      title: "Earring_num",
-      dataIndex: "earring_num",
-      key: "earring_num",
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
     },
     {
       title: "Gender",
-      dataIndex: "sex",
-      key: "sex",
+      dataIndex: "gender",
+      key: "gender",
     },
     {
-      title: "Category",
-      dataIndex: "animalCategoryId",
-      key: "animalCategoryId",
+      title: "Age",
+      dataIndex: "age",
+      key: "age",
     },
     {
-      title: "Animal Cat",
-      dataIndex: "animal_cat",
-      key: "animal_cat",
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
     },
     {
-      title: "Birth Date",
-      dataIndex: "birthdate",
-      key: "birthdate",
+      title: "Breed",
+      dataIndex: "breed",
+      key: "breed",
     },
     {
-      title: "Parent",
-      dataIndex: "parent",
-      key: "parent",
-    },
-    {
-      title: "Expected Exit",
-      dataIndex: "expected_exit",
-      key: "expected_exit",
+      title: "Weight",
+      dataIndex: "weight",
+      key: "weight",
     },
     {
       title: "Action",
@@ -151,9 +147,9 @@ export const AnimalsSickbaycolumns = [
     key: "animalCategoryId",
   },
   {
-    title: "Group Animal",
-    dataIndex: "groupAnimalId",
-    key: "groupAnimalId",
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
   },
   {
     title: 'Intervention"',
@@ -176,17 +172,10 @@ export const AnimalsSickbaycolumns = [
     key: "medicine_name",
   },
   {
-    title: "Action",
-    key: "action",
-    render: (text, record) => (
-      <Space size="middle">
-        <Dropdown overlay={menu}>
-          <p>
-            More <DownOutlined />
-          </p>
-        </Dropdown>
-      </Space>
-    ),
+    title: "Date",
+    dataIndex: "onsetDate",
+    key: "onsetDate",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
   },
 ];
 
@@ -225,6 +214,7 @@ export const AnimalFeedColmns = [
     title: "Date",
     dataIndex: "onsetDate",
     key: "onsetDate",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
   },
   {
     title: "AnimalId",
@@ -235,11 +225,6 @@ export const AnimalFeedColmns = [
     title: "Feed name",
     dataIndex: "feed_name",
     key: "feed_name",
-  },
-  {
-    title: "Group animal",
-    dataIndex: "groupAnimalId",
-    key: "groupAnimalId",
   },
   {
     title: "Quantity",
@@ -377,4 +362,98 @@ export const AnimalReportcolumnsReports = [
   },
 ];
 
-//hazawi singer
+export const TreatmentsColumn = [
+  {
+    title: "Id",
+    dataIndex: "id",
+    key: "id",
+  },
+  {
+    title: "Type",
+    dataIndex: "type",
+    key: "type",
+  },
+  {
+    title: "Product",
+    dataIndex: "product",
+    key: "product",
+  },
+  {
+    title: "Batch",
+    dataIndex: "batch",
+    key: "batch",
+  },
+  {
+    title: "Amount",
+    dataIndex: "amount",
+    key: "amount",
+  },
+  {
+    title: "Site",
+    dataIndex: "site",
+    key: "site",
+  },
+  {
+    title: "Withdrawal date",
+    dataIndex: "withdrawal_date",
+    key: "withdrawal_date",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
+  },
+  {
+    title: "Retreat date",
+    dataIndex: "retreat_date",
+    key: "retreat_date",
+  },
+  {
+    title: "technician",
+    dataIndex: "technician",
+    key: "technician",
+  },
+  {
+    title: "Cost",
+    dataIndex: "cost",
+    key: "cost",
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
+  },
+];
+
+export const accountColumns = [
+  {
+    title: "Id",
+    dataIndex: "id",
+    key: "id",
+  },
+  {
+    title: "expense",
+    dataIndex: "expense",
+    key: "expense",
+  },
+  {
+    title: "amount",
+    dataIndex: "amount",
+    key: "amount",
+    render: (text, row) => <div>expense</div>,
+  },
+  {
+    title: "date",
+    dataIndex: "date",
+    key: "date",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
+  },
+  {
+    title: "description",
+    dataIndex: "description",
+    key: "description",
+  },
+  {
+    title: "category",
+    dataIndex: "category",
+    key: "category",
+  },
+];
+
+//hazawi singer "type": "expense",

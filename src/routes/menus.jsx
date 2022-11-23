@@ -57,32 +57,32 @@ const menus = [
             label: `Animal Group`,
             key: `/${mainRoute}/add-animal-group`,
           },
-          {
-            label: `Sickbay`,
-            key: `/${mainRoute}/add-sickbay`,
-          },
-          {
-            label: `Vaccinate`,
-            key: `/${mainRoute}/vaccinate`,
-          },
+          // {
+          //   label: `Sickbay`,
+          //   key: `/${mainRoute}/add-sickbay`,
+          // },
+          // {
+          //   label: `Vaccinate`,
+          //   key: `/${mainRoute}/vaccinate`,
+          // },
         ],
       },
       {
         label: `Animals List`,
         key: `/${mainRoute}/list-animals`,
       },
-      {
-        label: `Animals Groups List`,
-        key: `/${mainRoute}/list-animalsGroup`,
-      },
-      {
-        label: `Sickbay List`,
-        key: `/${mainRoute}/list-sickbay`,
-      },
-      {
-        label: `List of  vaccinations`,
-        key: `/${mainRoute}/list-vaccination`,
-      },
+      // {
+      //   label: `Animals Groups List`,
+      //   key: `/${mainRoute}/list-animalsGroup`,
+      // },
+      // {
+      //   label: `Sickbay List`,
+      //   key: `/${mainRoute}/list-sickbay`,
+      // },
+      // {
+      //   label: `List of  vaccinations`,
+      //   key: `/${mainRoute}/list-vaccination`,
+      // },
     ],
   },
   {
@@ -117,34 +117,34 @@ const menus = [
       },
     ],
   },
-  {
-    label: `Animal Feed`,
-    icon: <AccountBookOutlined />,
-    children: [
-      {
-        label: `Create`,
-        key: `/${mainRoute}/create-animal-feed`,
-      },
-      {
-        label: `List`,
-        key: `/${mainRoute}/list-animal-feed`,
-      },
-    ],
-  },
-  {
-    label: `Events`,
-    icon: <AccountBookOutlined />,
-    children: [
-      {
-        label: `Create`,
-        key: `/${mainRoute}/create-event`,
-      },
-      {
-        label: `List`,
-        key: `/${mainRoute}/event-list`,
-      },
-    ],
-  },
+  // {
+  //   label: `Animal Feed`,
+  //   icon: <AccountBookOutlined />,
+  //   children: [
+  //     {
+  //       label: `Create`,
+  //       key: `/${mainRoute}/create-animal-feed`,
+  //     },
+  //     {
+  //       label: `List`,
+  //       key: `/${mainRoute}/list-animal-feed`,
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: `Events`,
+  //   icon: <AccountBookOutlined />,
+  //   children: [
+  //     {
+  //       label: `Create`,
+  //       key: `/${mainRoute}/create-event`,
+  //     },
+  //     {
+  //       label: `List`,
+  //       key: `/${mainRoute}/event-list`,
+  //     },
+  //   ],
+  // },
   {
     label: `Reports`,
     icon: <AccountBookOutlined />,
@@ -164,4 +164,38 @@ export const getMenus = () => {
   return menus;
 };
 
+export const getAnchors = (id) => {
+  return [
+    {
+      label: `Details`,
+      key: `/${mainRoute}/animal/${id}`,
+    },
+    {
+      label: "Feedings",
+      key: `/${mainRoute}/list-animal-feed`,
+    },
+    {
+      label: "SeekBay",
+      key: `/${mainRoute}/list-sickbay`,
+    },
+    {
+      label: "Task",
+      key: `/${mainRoute}/event-list`,
+    },
+    {
+      label: "Vaccinate",
+      key: `/${mainRoute}/list-vaccination`,
+    },
+    {
+      label: "Treatement",
+      key: `/${mainRoute}/animal-treatments`,
+    },
+    {
+      label: "Account",
+      key: `/${mainRoute}/animal-accounts`,
+    },
+  ];
+};
+
 ///create-animal-feed
+///animal-accounts
