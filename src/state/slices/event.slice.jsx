@@ -3,8 +3,8 @@ import { createEvent, listEvent } from "../../utils/services/event.service";
 
 export const CreateEventApi = createAsyncThunk(
   "create-event",
-  async ({ data, success }, { rejectWithValue }) => {
-    return createEvent(data)
+  async ({ resName, id, data, success }, { rejectWithValue }) => {
+    return createEvent(resName, id, data)
       .then(() => {
         success();
       })
@@ -16,8 +16,8 @@ export const CreateEventApi = createAsyncThunk(
 );
 export const ListEventApi = createAsyncThunk(
   "list-event",
-  async (props, { rejectWithValue }) => {
-    return listEvent()
+  async ({ param }, { rejectWithValue }) => {
+    return listEvent(param)
       .then((resp) => {
         return resp.data;
       })

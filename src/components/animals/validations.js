@@ -11,7 +11,7 @@ export const addFarmerSchema = Yup.object().shape({
   coloring: Yup.string().required("coloring is Required"),
   condition_score: Yup.number().required("condition_score is Required"),
   description: Yup.string().required("description is Required"),
-  harvest_label: Yup.string().required("harvest_label is Required"),
+  // harvest_label: Yup.string().required("harvest_label is Required"),
   harvest_unit: Yup.string().required("harvest_unit is Required"),
   keywords: Yup.string().required("keywords is Required"),
   name: Yup.string().required("name is Required"),
@@ -20,8 +20,8 @@ export const addFarmerSchema = Yup.object().shape({
   purchased: Yup.boolean().required("purchased is Required"),
   retention_score: Yup.number().required("retention_score is Required"),
   status: Yup.string().required("status is Required"),
-  weight: Yup.number().required("weight is Required"),
-  height: Yup.number().required("height is Required"),
+  // weight: Yup.number().required("weight is Required"),
+  // height: Yup.number().required("height is Required"),
 });
 export const addAnimalGroupSchema = Yup.object().shape({
   farmId: Yup.string().required("Farmer is Required"),
@@ -56,6 +56,19 @@ export const AddFeedSchema = Yup.object().shape({
   feedId: Yup.string().required("feedId is Required"),
 });
 
+export const createEventSchema = Yup.object().shape({
+  title: Yup.string().required("title is Required"),
+  description: Yup.string().required("description is Required"),
+  start: Yup.string().required("start date is Required"),
+  end: Yup.string().required("end date is Required"),
+});
+
+export const AddMeasuremtSchema = Yup.object().shape({
+  date: Yup.string().required("date is Required"),
+  height: Yup.string().required("height is Required"),
+  weight: Yup.string().required("weight is Required"),
+});
+
 export const AddTreatSchema = Yup.object().shape({
   amount: Yup.string().required("amount is Required"),
   batch: Yup.string().required("batch is Required"),
@@ -76,7 +89,6 @@ export const vaccinationSchema = Yup.object().shape({
   onsetDate: Yup.string().required("onsetDate is Required"),
   description: Yup.string().required("description is Required"),
   vaccinationId: Yup.string().required("vaccinationId is Required"),
-  groupAnimalId: Yup.string().required("groupAnimalId is Required"),
   quantity: Yup.string().required("quantity is Required"),
   nextAppointment: Yup.string().required("nextAppointment is Required"),
 });

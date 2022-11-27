@@ -238,6 +238,7 @@ export const AnimalVaccinationColmns = [
     title: "Date",
     dataIndex: "onsetDate",
     key: "onsetDate",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
   },
   {
     title: "Next appointment",
@@ -250,14 +251,10 @@ export const AnimalVaccinationColmns = [
     key: "description",
   },
   {
-    title: "Group animal",
-    dataIndex: "groupAnimalId",
-    key: "groupAnimalId",
-  },
-  {
     title: "created",
     dataIndex: "createdAt",
     key: "createdAt",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
   },
   {
     title: "vaccination",
@@ -280,7 +277,7 @@ export const AnimalVaccinationColmns = [
     key: "quantity",
   },
   {
-    title: "Created By",
+    title: "By",
     dataIndex: "createdBy",
     key: "createdBy",
   },
@@ -446,3 +443,32 @@ export const accountColumns = [
 ];
 
 //hazawi singer "type": "expense",
+
+export const AllMeasuresColumn = [
+  {
+    title: "date",
+    dataIndex: "date",
+    key: "date",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
+  },
+  {
+    title: "height",
+    dataIndex: "height",
+    key: "height",
+  },
+  {
+    title: "weight",
+    dataIndex: "weight",
+    key: "weight",
+  },
+  {
+    title: "condition_score",
+    dataIndex: "condition_score",
+    key: "condition_score",
+  },
+  {
+    title: "fec",
+    dataIndex: "fec",
+    key: "fec",
+  },
+];

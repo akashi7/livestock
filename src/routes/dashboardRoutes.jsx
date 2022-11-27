@@ -13,6 +13,7 @@ import ListAnimalsGroup from "../components/animals/animals/list-animalsGroup";
 import ListAnimalsSickBay from "../components/animals/animals/list-animalsSickbay";
 import ListAnimalsCategory from "../components/animals/animals/list-category";
 import ListVaccinations from "../components/animals/animals/list-vaccination";
+import Measurement from "../components/animals/animals/measurement";
 import ListAnimalReports from "../components/animals/animals/report";
 import CreateAnimalSickBay from "../components/animals/animals/sickbayCreate";
 import TreatmentsList from "../components/animals/animals/treatments";
@@ -71,6 +72,7 @@ function DashRoutes() {
             <Route path="/animal-reports" element={<ListAnimalReports />} />
             <Route path="/animal-treatments" element={<TreatmentsList />} />
             <Route path="/animal-accounts" element={<ListAccounts />} />
+            <Route path="/animal-measures" element={<Measurement />} />
           </Routes>
         </ContentWrapper>
       </Layout>

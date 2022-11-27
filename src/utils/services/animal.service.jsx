@@ -73,3 +73,16 @@ export const createTreatment = (resName, id, data) => {
 export const listAccounting = (id) => {
   return http.GET(`accounting/animal/${id}/check/all`);
 };
+
+export const createMeasurement = (id, data) => {
+  return http.POST(`measurement/${id}/create`, data);
+};
+export const getMeasurements = (id) => {
+  return http.GET(`measurement/${id}/check/all`);
+};
+
+export const allAnimalActivities = (id) => {
+  return http.GET(`activities/animal/${id}/check/all`);
+};
+
+//activities/animal/1/check/all

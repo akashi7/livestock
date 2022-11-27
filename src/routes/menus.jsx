@@ -194,6 +194,10 @@ export const getAnchors = (id) => {
       label: "Account",
       key: `/${mainRoute}/animal-accounts`,
     },
+    {
+      label: "Measurement",
+      key: `/${mainRoute}/animal-measures`,
+    },
   ];
 };
 

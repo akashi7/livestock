@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
+  allAnimalActivities,
   animalReport,
   createAnimal,
   createCategoryData,
   createFeedData,
   createGroupAnimal,
+  createMeasurement,
   createSickBay,
   createTreatment,
   getAnimalsCatData,
@@ -13,6 +15,7 @@ import {
   getAnimalsSickbayData,
   getFeedData,
   getFeedIdsData,
+  getMeasurements,
   getMedecines,
   getPurposeData,
   listAccounting,
@@ -286,6 +289,44 @@ export const GetAccountingData = createAsyncThunk(
       });
   }
 );
+export const CreateMesurementData = createAsyncThunk(
+  "mes",
+  async ({ id, data, success }, { rejectWithValue }) => {
+    return createMeasurement(id, data)
+      .then((resp) => {
+        success();
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const GetALLMesurementsData = createAsyncThunk(
+  "all-mes",
+  async ({ param }, { rejectWithValue }) => {
+    return getMeasurements(param)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
+
+export const GetAllanimalActivities = createAsyncThunk(
+  "all-actt",
+  async ({ param }, { rejectWithValue }) => {
+    return allAnimalActivities(param)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((error) => {
+        rejectWithValue(error);
+      });
+  }
+);
 
 const initialState = {
   loading: false,
@@ -334,6 +375,18 @@ const initialState = {
     loading: false,
   },
   accountings: {
+    loading: false,
+    data: [],
+  },
+  measures: {
+    loading: false,
+    data: [],
+  },
+  AllMeasures: {
+    loading: false,
+    data: [],
+  },
+  activities: {
     loading: false,
     data: [],
   },
@@ -551,6 +604,36 @@ const animalSlice = createSlice({
       })
       .addCase(GetAccountingData.rejected, (state) => {
         state.accountings.loading = false;
+      })
+      .addCase(CreateMesurementData.pending, (state) => {
+        state.measures.loading = true;
+      })
+      .addCase(CreateMesurementData.fulfilled, (state, { payload }) => {
+        state.measures.loading = false;
+        state.measures.data = payload.data;
+      })
+      .addCase(CreateMesurementData.rejected, (state) => {
+        state.measures.loading = false;
+      })
+      .addCase(GetALLMesurementsData.pending, (state) => {
+        state.AllMeasures.loading = true;
+      })
+      .addCase(GetALLMesurementsData.fulfilled, (state, { payload }) => {
+        state.AllMeasures.loading = false;
+        state.AllMeasures.data = payload.data;
+      })
+      .addCase(GetALLMesurementsData.rejected, (state) => {
+        state.AllMeasures.loading = false;
+      })
+      .addCase(GetAllanimalActivities.pending, (state) => {
+        state.activities.loading = true;
+      })
+      .addCase(GetAllanimalActivities.fulfilled, (state, { payload }) => {
+        state.activities.loading = false;
+        state.activities.data = payload.data;
+      })
+      .addCase(GetAllanimalActivities.rejected, (state) => {
+        state.activities.loading = false;
       });
   },
 });

@@ -31,6 +31,7 @@ export default function AddVaccinateModal({
       duration: 3,
       key: "success",
     });
+    Toogle(false);
   }
 
   const handleSubmit = (values) => {
@@ -73,16 +74,7 @@ export default function AddVaccinateModal({
                   label="onset Date"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputSelect
-                  name="groupAnimalId"
-                  options={animalGroup?.data.map((item) => ({
-                    label: item.name,
-                    value: item.id,
-                  }))}
-                  label="Select Group Animal"
-                />
-              </Col>
+
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
                   name="description"

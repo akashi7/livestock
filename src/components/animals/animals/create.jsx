@@ -40,7 +40,6 @@ function CreateAnimal() {
     coloring: "",
     condition_score: 0,
     description: "",
-    harvest_label: "",
     harvest_unit: "",
     keywords: "",
     name: "",
@@ -50,8 +49,6 @@ function CreateAnimal() {
     retention_score: 0,
     status: "",
     type: "",
-    weight: 0,
-    height: 0,
   };
   const [farmers, setfarmers] = useState([]);
   const [gender, setGender] = useState("");
@@ -100,6 +97,9 @@ function CreateAnimal() {
     values.tag_number = "23";
     values.electronic_id = "445td";
     values.type = "type";
+    values.harvest_label = "yuuu";
+    values.height = "78";
+    values.weight = "87";
     dispatch(animal({ data: values, success: navigates }));
   };
   return (
@@ -252,22 +252,22 @@ function CreateAnimal() {
                   </div>
                 </div>
               </Col>
-              <Col className="gutter-row mt-10" span={6}>
+              {/* <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="weight"
                   type="text"
                   placeholder="weight"
                   label="weight"
                 />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="height"
                   type="text"
                   placeholder="height"
                   label="height"
                 />
-              </Col>
+              </Col> */}
               <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="coloring"
@@ -325,14 +325,14 @@ function CreateAnimal() {
                   label="Condition score"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={6}>
+              {/* <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="harvest_label"
                   type="text"
                   placeholder="harvest_label"
                   label="Harvest label"
                 />
-              </Col>
+              </Col> */}
               <Col className="gutter-row mt-10" span={6}>
                 <InputSelect
                   name="harvest_unit"

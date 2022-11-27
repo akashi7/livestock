@@ -1,16 +1,38 @@
 .hr {
   border-bottom: 1px solid #31b0d5;
   text-align: center;
-  width: 30%;
+  width: 50%;
   margin-top: 10px;
 }
 
 .container {
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.rhb {
+  font-size: 18px;
+  color: #31b0d5;
+}
+
+.left-s {
+  width: 50%;
+}
+.right-s {
+  width: 50%;
 }
 
 .layout-container {
   height: 100%;
+}
+
+.rt-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  padding: 4px;
+  margin: 7px;
 }
 
 .line-container {

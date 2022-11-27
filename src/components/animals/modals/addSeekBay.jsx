@@ -42,7 +42,7 @@ export default function AddSeekBayModal({
 
   return (
     <Modal
-      title="New Sickbay "
+      title="Quantity (milliliters)"
       centered
       visible={toogle}
       onOk={() => Toogle(false)}
