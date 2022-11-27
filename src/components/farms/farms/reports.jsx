@@ -11,11 +11,13 @@ function ListFarmReports() {
     dispatch(GetFarmReport());
     /* eslint-disable-next-line */
   }, []);
+
+  console.log({ farmReport });
   return (
     <Layout className="h-[100vh] w-full">
       <Table
         columns={columnsReports}
-        dataSource={farmReport.data}
+        dataSource={farmReport.data.data}
         loading={farmReport.loading}
       />
     </Layout>

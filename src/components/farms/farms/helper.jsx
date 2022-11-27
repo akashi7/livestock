@@ -78,66 +78,41 @@ export const data = [
 
 export const columnsReports = [
   {
-    title: "Id",
-    dataIndex: "id",
-    key: "id",
+    title: "District",
+    dataIndex: "district",
+    key: "district",
   },
   {
-    title: "Age In Days",
-    dataIndex: "ageInDays",
-    key: "ageInDays",
+    title: "Farmers",
+    dataIndex: "farmers",
+    key: "farmers",
   },
   {
-    title: "Animal Category",
-    dataIndex: "animalCategory",
-    key: "animalCategory",
+    title: "Gender",
+    dataIndex: "gender",
+    key: "gender",
   },
   {
-    title: "Earring num",
-    dataIndex: "earring_num",
-    key: "earring_num",
+    title: "gender female",
+    dataIndex: "gender_female",
+    key: "gender_female",
   },
   {
-    title: "Farm name",
-    dataIndex: "farm_name",
-    key: "farm_name",
+    title: "gender male",
+    dataIndex: "gender_male",
+    key: "gender_male",
   },
-  {
-    title: "Farmer Fname",
-    dataIndex: "farmer_firstname",
-    key: "farmer_firstname",
-  },
-  {
-    title: "Farmer Lname",
-    dataIndex: "farmer_lastname",
-    key: "farmer_lastname",
-  },
-  {
-    title: "Purpose List name",
-    dataIndex: "purposeList_name",
-    key: "purposeList_name",
-  },
-  {
-    title: "Sex",
-    dataIndex: "sex",
-    key: "sex",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (text, record) => (
-      <Space size="middle">
-        <Dropdown overlay={menu}>
-          <p>
-            More <DownOutlined />
-          </p>
-        </Dropdown>
-      </Space>
-    ),
-  },
+  // {
+  //   title: "Action",
+  //   key: "action",
+  //   render: (text, record) => (
+  //     <Space size="middle">
+  //       <Dropdown overlay={menu}>
+  //         <p>
+  //           More <DownOutlined />
+  //         </p>
+  //       </Dropdown>
+  //     </Space>
+  //   ),
+  // },
 ];

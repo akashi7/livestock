@@ -497,6 +497,7 @@ const animalSlice = createSlice({
       })
       .addCase(AnimalReport.fulfilled, (state, { payload }) => {
         state.animalReportsData.loading = false;
+        console.log("iii", payload);
         state.animalReportsData.data = payload.result;
       })
       .addCase(AnimalReport.rejected, (state) => {

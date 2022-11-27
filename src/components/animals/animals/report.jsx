@@ -11,6 +11,8 @@ function ListAnimalReports() {
     dispatch(AnimalReport());
     /* eslint-disable-next-line */
   }, []);
+
+  console.log({ animalReportsData });
   return (
     <Layout className="h-[100vh] w-full">
       <Table

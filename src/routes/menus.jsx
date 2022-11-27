@@ -153,10 +153,10 @@ const menus = [
         label: `Farm Reports`,
         key: `/${mainRoute}/farm-reports`,
       },
-      {
-        label: `Animal Reports`,
-        key: `/${mainRoute}/animal-reports`,
-      },
+      // {
+      //   label: `Animal Reports`,
+      //   key: `/${mainRoute}/animal-reports`,
+      // },
     ],
   },
 ];
