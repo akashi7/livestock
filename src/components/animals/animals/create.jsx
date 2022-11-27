@@ -10,7 +10,14 @@ import {
 } from "../../../state/slices/animal.slice";
 import { getAllFarms } from "../../../state/slices/farm.slice";
 import { InputSelect, InputText } from "../../common/input";
-import { BreedStatus, harvestUnits, onFeed, purchased } from "../data/data";
+import "../animal.css";
+import {
+  BreedStatus,
+  harvestUnits,
+  onFeed,
+  purchased,
+  Status,
+} from "../data/data";
 import { addFarmerSchema } from "../validations";
 
 function CreateAnimal() {
@@ -40,15 +47,11 @@ function CreateAnimal() {
     on_feed: false,
     purchase_price: 0,
     purchased: false,
-    registry_number: "",
     retention_score: 0,
     status: "",
-    tag_color: "",
-    tag_number: "",
     type: "",
     weight: 0,
     height: 0,
-    electronic_id: "",
   };
   const [farmers, setfarmers] = useState([]);
   const [gender, setGender] = useState("");
@@ -92,10 +95,15 @@ function CreateAnimal() {
     values.is_neutered = false;
     values.breeding_stock = false;
     values.gender = gender;
+    values.registry_number = "1222222";
+    values.tag_color = "er";
+    values.tag_number = "23";
+    values.electronic_id = "445td";
+    values.type = "type";
     dispatch(animal({ data: values, success: navigates }));
   };
   return (
-    <Layout className="h-[100%] items-center flex overflow-auto">
+    <Layout className="h-[100%] items-center flex overflow-auto" id="scroll">
       <div className="p-4 w-[80%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 mb-8 ">
         <Formik
           initialValues={initialValues}
@@ -104,9 +112,25 @@ function CreateAnimal() {
         >
           <Form className="space-y-9" action="#">
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col className="gutter-row" span={24}>
+              {/* <Col className="gutter-row" span={24}>
                 <p className="text-blue">Add Animal</p>
+              </Col> */}
+
+              <Col className="gutter-row" span={24}>
+                <br />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <div className="header">
+                    <h1 className="title">Basic information</h1>
+                  </div>
+                </div>
               </Col>
+
               <Col className="gutter-row mt-10" span={6}>
                 <InputSelect
                   name="farm_id"
@@ -126,10 +150,18 @@ function CreateAnimal() {
               </Col>
               <Col className="gutter-row mt-10" span={6}>
                 <InputText
+                  name="name"
+                  type="text"
+                  placeholder="name"
+                  label="name"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                <InputText
                   name="earring_num"
                   type="text"
                   placeholder="earring_num"
-                  label="Tin/Code"
+                  label="earring_num"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={6}>
@@ -156,19 +188,15 @@ function CreateAnimal() {
                 />
               </Col>
               <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="birth_date"
-                  type="date"
-                  placeholder="birth_date"
-                  label="Birth date"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="birth_weight"
-                  type="text"
-                  placeholder="birth_weight"
-                  label="birth_weight"
+                <InputSelect
+                  name="status"
+                  label="status"
+                  options={Status.map((status) => {
+                    return {
+                      value: status,
+                      label: status,
+                    };
+                  })}
                 />
               </Col>
               <Col className="gutter-row mt-10" span={6}>
@@ -180,7 +208,7 @@ function CreateAnimal() {
                 />
               </Col>
               {gender && gender === "Female" ? (
-                <Col className="gutter-row mt-10" span={6}>
+                <Col className="gutter-row mt-10" span={12}>
                   <InputSelect
                     name="breeding_status"
                     label="breeding_status"
@@ -193,6 +221,76 @@ function CreateAnimal() {
                   />
                 </Col>
               ) : null}
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="keywords"
+                  type="text"
+                  placeholder="keywords"
+                  label="keywords"
+                />
+              </Col>
+
+              <Col className="gutter-row" span={24}>
+                <br />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <div className="header">
+                    <h1 className="title">Birth information</h1>
+                  </div>
+                </div>
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="birth_date"
+                  type="date"
+                  placeholder="birth_date"
+                  label="Birth date"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={12}>
+                <InputText
+                  name="birth_weight"
+                  type="text"
+                  placeholder="birth_weight"
+                  label="birth_weight"
+                />
+              </Col>
+
+              <Col className="gutter-row" span={24}>
+                <br />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <div className="header">
+                    <h1 className="title">Physical information</h1>
+                  </div>
+                </div>
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                <InputText
+                  name="weight"
+                  type="text"
+                  placeholder="weight"
+                  label="weight"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                <InputText
+                  name="height"
+                  type="text"
+                  placeholder="height"
+                  label="height"
+                />
+              </Col>
               <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="coloring"
@@ -203,18 +301,43 @@ function CreateAnimal() {
               </Col>
               <Col className="gutter-row mt-10" span={6}>
                 <InputText
-                  name="condition_score"
+                  name="retention_score"
                   type="text"
-                  placeholder="condition_score"
-                  label="Condition score"
+                  placeholder="retention_score"
+                  label="retention score"
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={6}>
+
+              <Col className="gutter-row mt-10" span={12}>
                 <InputText
                   name="description"
                   type="text"
                   placeholder="description"
                   label="description"
+                />
+              </Col>
+
+              <Col className="gutter-row" span={24}>
+                <br />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <div className="header">
+                    <h1 className="title">Additional information</h1>
+                  </div>
+                </div>
+              </Col>
+
+              <Col className="gutter-row mt-10" span={6}>
+                <InputText
+                  name="condition_score"
+                  type="text"
+                  placeholder="condition_score"
+                  label="Condition score"
                 />
               </Col>
               <Col className="gutter-row mt-10" span={6}>
@@ -249,7 +372,7 @@ function CreateAnimal() {
                   })}
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={6}>
+              <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="purchased"
                   label="purchased"
@@ -261,100 +384,13 @@ function CreateAnimal() {
                   })}
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="keywords"
-                  type="text"
-                  placeholder="keywords"
-                  label="keywords"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="name"
-                  type="text"
-                  placeholder="name"
-                  label="name"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
+
+              <Col className="gutter-row mt-10" span={12}>
                 <InputText
                   name="purchase_price"
                   type="text"
                   placeholder="purchase_price"
                   label="purchase price"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="registry_number"
-                  type="text"
-                  placeholder="registry_number"
-                  label="registry number"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="retention_score"
-                  type="text"
-                  placeholder="retention_score"
-                  label="retention score"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="status"
-                  type="text"
-                  placeholder="status"
-                  label="status"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="tag_color"
-                  type="text"
-                  placeholder="tag_color"
-                  label="tag_color"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="tag_number"
-                  type="text"
-                  placeholder="tag_number"
-                  label="tag_number"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="type"
-                  type="text"
-                  placeholder="type"
-                  label="type"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="weight"
-                  type="text"
-                  placeholder="weight"
-                  label="weight"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="height"
-                  type="text"
-                  placeholder="height"
-                  label="height"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="electronic_id"
-                  type="text"
-                  placeholder="electronic_id"
-                  label="electronic_id"
                 />
               </Col>
             </Row>

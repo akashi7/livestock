@@ -38,6 +38,8 @@ function ListAnimalsSickBay() {
     setToogle(!toogle);
   }
 
+  console.log({ animalsSickBayData });
+
   return (
     <Layout className="layout-container">
       <div className="main-container">

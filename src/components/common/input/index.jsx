@@ -29,7 +29,7 @@ export const InputFloatingLabel = ({ label, ...props }) => {
 export const InputText = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <div>
+    <>
       <div className="relative z-0">
         <label className="font-small">{label}</label>
         <Input
@@ -43,7 +43,7 @@ export const InputText = ({ label, ...props }) => {
       {meta.touched && meta.error ? (
         <span className="font-small text-red-700 mt-[4px]">{meta.error}</span>
       ) : null}
-    </div>
+    </>
   );
 };
 export const InputSelect = ({ label, options, ...props }) => {

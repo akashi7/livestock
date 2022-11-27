@@ -16,7 +16,7 @@ export default function AddFeedModal({
 }) {
   const initialValues = {
     onsetDate: "",
-    animalCategoryId: "",
+    // animalCategoryId: "",
     quantity: "",
     feedId: "",
   };
@@ -59,7 +59,7 @@ export default function AddFeedModal({
               <Col className="gutter-row" span={24}>
                 <p className="text-blue">Add Animal Feed</p>
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              {/* <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="animalCategoryId"
                   options={categories?.data.map((item) => ({
@@ -68,7 +68,7 @@ export default function AddFeedModal({
                   }))}
                   label="Select Animal Category"
                 />
-              </Col>
+              </Col> */}
               <Col className="gutter-row mt-10" span={12}>
                 <InputText
                   name="onsetDate"

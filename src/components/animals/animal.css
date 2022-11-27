@@ -73,3 +73,34 @@
   font-size: 15px;
   width: 130px;
 }
+.input-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.fui {
+  width: 120px;
+}
+.ll {
+  width: 30%;
+}
+.lv {
+  width: 30%;
+}
+.animal-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+#scroll::-webkit-scrollbar {
+  width: 10px;
+}
+#scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+#scroll::-webkit-scrollbar-thumb {
+  background-color: #31b0d5;
+  outline: 1px solid #31b0d5;
+}

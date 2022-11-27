@@ -85,38 +85,38 @@ const menus = [
       // },
     ],
   },
-  {
-    label: `Expenses`,
-    icon: <AccountBookOutlined />,
-    children: [
-      {
-        label: `Create Animal expenses`,
-        key: `/${mainRoute}/add-animal-expense`,
-      },
-      {
-        label: `List Animal Expenses`,
-        key: `/${mainRoute}/list-animal-expenses`,
-      },
-      {
-        label: `Create Farm expense `,
-        key: `/${mainRoute}/create-farm-expenses`,
-      },
-    ],
-  },
-  {
-    label: `Animal Category`,
-    icon: <AccountBookOutlined />,
-    children: [
-      {
-        label: `Create`,
-        key: `/${mainRoute}/create-category`,
-      },
-      {
-        label: `List`,
-        key: `/${mainRoute}/list-category`,
-      },
-    ],
-  },
+  // {
+  //   label: `Expenses`,
+  //   icon: <AccountBookOutlined />,
+  //   children: [
+  //     {
+  //       label: `Create Animal expenses`,
+  //       key: `/${mainRoute}/add-animal-expense`,
+  //     },
+  //     {
+  //       label: `List Animal Expenses`,
+  //       key: `/${mainRoute}/list-animal-expenses`,
+  //     },
+  //     {
+  //       label: `Create Farm expense `,
+  //       key: `/${mainRoute}/create-farm-expenses`,
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: `Animal Category`,
+  //   icon: <AccountBookOutlined />,
+  //   children: [
+  //     {
+  //       label: `Create`,
+  //       key: `/${mainRoute}/create-category`,
+  //     },
+  //     {
+  //       label: `List`,
+  //       key: `/${mainRoute}/list-category`,
+  //     },
+  //   ],
+  // },
   // {
   //   label: `Animal Feed`,
   //   icon: <AccountBookOutlined />,
@@ -171,11 +171,11 @@ export const getAnchors = (id) => {
       key: `/${mainRoute}/animal/${id}`,
     },
     {
-      label: "Feedings",
+      label: "Feeding",
       key: `/${mainRoute}/list-animal-feed`,
     },
     {
-      label: "SeekBay",
+      label: "SickBay",
       key: `/${mainRoute}/list-sickbay`,
     },
     {
@@ -183,7 +183,7 @@ export const getAnchors = (id) => {
       key: `/${mainRoute}/event-list`,
     },
     {
-      label: "Vaccinate",
+      label: "Vaccinating",
       key: `/${mainRoute}/list-vaccination`,
     },
     {

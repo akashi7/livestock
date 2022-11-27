@@ -1,5 +1,5 @@
 import { DownOutlined } from "@ant-design/icons";
-import { Button, Dropdown, Menu, Space } from "antd";
+import { Dropdown, Menu, Space } from "antd";
 import moment from "moment";
 const menu = (
   <Menu
@@ -18,11 +18,6 @@ const menu = (
 
 export function getAnimalColums(dispatch) {
   return [
-    {
-      title: "Id",
-      dataIndex: "id",
-      key: "id",
-    },
     {
       title: "Name",
       dataIndex: "name",
@@ -58,7 +53,17 @@ export function getAnimalColums(dispatch) {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button onClick={() => dispatch(record)}>View</Button>
+          <button
+            style={{
+              backgroundColor: "#31B0D5",
+              padding: "2px",
+              color: "white",
+              width: "75px",
+            }}
+            onClick={() => dispatch(record)}
+          >
+            view
+          </button>
         </Space>
       ),
     },
@@ -132,9 +137,10 @@ export const AnimalsGroupcolumns = [
 ];
 export const AnimalsSickbaycolumns = [
   {
-    title: "Id",
-    dataIndex: "id",
-    key: "id",
+    title: "Date",
+    dataIndex: "onsetDate",
+    key: "onsetDate",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
   },
   {
     title: "Name",
@@ -152,7 +158,7 @@ export const AnimalsSickbaycolumns = [
     key: "price",
   },
   {
-    title: 'Intervention"',
+    title: "Intervention",
     dataIndex: "intervention",
     key: "intervention",
   },
@@ -170,12 +176,6 @@ export const AnimalsSickbaycolumns = [
     title: "Medicine",
     dataIndex: "medicine_name",
     key: "medicine_name",
-  },
-  {
-    title: "Date",
-    dataIndex: "onsetDate",
-    key: "onsetDate",
-    render: (text) => moment(text).format("MM/DD/YYYY"),
   },
 ];
 
@@ -206,11 +206,6 @@ export const AnimalCategoryColums = [
 
 export const AnimalFeedColmns = [
   {
-    title: "Id",
-    dataIndex: "id",
-    key: "id",
-  },
-  {
     title: "Date",
     dataIndex: "onsetDate",
     key: "onsetDate",
@@ -239,11 +234,6 @@ export const AnimalFeedColmns = [
 ];
 
 export const AnimalVaccinationColmns = [
-  {
-    title: "Id",
-    dataIndex: "id",
-    key: "id",
-  },
   {
     title: "Date",
     dataIndex: "onsetDate",
@@ -364,11 +354,6 @@ export const AnimalReportcolumnsReports = [
 
 export const TreatmentsColumn = [
   {
-    title: "Id",
-    dataIndex: "id",
-    key: "id",
-  },
-  {
     title: "Type",
     dataIndex: "type",
     key: "type",
@@ -423,9 +408,10 @@ export const TreatmentsColumn = [
 
 export const accountColumns = [
   {
-    title: "Id",
-    dataIndex: "id",
-    key: "id",
+    title: "date",
+    dataIndex: "date",
+    key: "date",
+    render: (text) => moment(text).format("MM/DD/YYYY"),
   },
   {
     title: "type",
@@ -446,12 +432,7 @@ export const accountColumns = [
       </div>
     ),
   },
-  {
-    title: "date",
-    dataIndex: "date",
-    key: "date",
-    render: (text) => moment(text).format("MM/DD/YYYY"),
-  },
+
   {
     title: "description",
     dataIndex: "description",
