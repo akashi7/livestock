@@ -95,7 +95,7 @@ function CreateAnimal() {
     values.is_neutered = false;
     values.breeding_stock = false;
     values.gender = gender;
-    values.registry_number = "1222222";
+    values.registry_number = "622222";
     values.tag_color = "er";
     values.tag_number = "23";
     values.electronic_id = "445td";
@@ -208,7 +208,7 @@ function CreateAnimal() {
                 />
               </Col>
               {gender && gender === "Female" ? (
-                <Col className="gutter-row mt-10" span={12}>
+                <Col className="gutter-row mt-10" span={6}>
                   <InputSelect
                     name="breeding_status"
                     label="breeding_status"
@@ -221,7 +221,7 @@ function CreateAnimal() {
                   />
                 </Col>
               ) : null}
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="keywords"
                   type="text"
@@ -229,35 +229,12 @@ function CreateAnimal() {
                   label="keywords"
                 />
               </Col>
-
-              <Col className="gutter-row" span={24}>
-                <br />
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    width: "100%",
-                  }}
-                >
-                  <div className="header">
-                    <h1 className="title">Birth information</h1>
-                  </div>
-                </div>
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="birth_date"
                   type="date"
                   placeholder="birth_date"
                   label="Birth date"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={12}>
-                <InputText
-                  name="birth_weight"
-                  type="text"
-                  placeholder="birth_weight"
-                  label="birth_weight"
                 />
               </Col>
 
@@ -308,12 +285,20 @@ function CreateAnimal() {
                 />
               </Col>
 
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="description"
                   type="text"
                   placeholder="description"
                   label="description"
+                />
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                <InputText
+                  name="birth_weight"
+                  type="text"
+                  placeholder="birth_weight"
+                  label="birth_weight"
                 />
               </Col>
 
@@ -372,7 +357,7 @@ function CreateAnimal() {
                   })}
                 />
               </Col>
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputSelect
                   name="purchased"
                   label="purchased"
@@ -385,7 +370,7 @@ function CreateAnimal() {
                 />
               </Col>
 
-              <Col className="gutter-row mt-10" span={12}>
+              <Col className="gutter-row mt-10" span={6}>
                 <InputText
                   name="purchase_price"
                   type="text"
