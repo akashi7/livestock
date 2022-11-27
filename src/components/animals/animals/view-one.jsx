@@ -22,7 +22,7 @@ export default function OneAnimal() {
     <Layout className="layout-container">
       <div className="main-container">
         <MenuBar />
-        <div className="leftContainer">
+        <div className="leftContainer" id="scroll">
           {animal.loading ? <Loader /> : <AnimalDetails props={animal.data} />}
         </div>
       </div>
