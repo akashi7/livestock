@@ -206,9 +206,11 @@ export default function AnimalDetails({ props, activities }) {
               return (
                 <div key={idx}>
                   <div className="rt-container">
-                    <p>Type</p>
-                    <p> {act.type} </p>
-                    <p>Amount</p>
+                    <p style={{ width: "90px" }}>
+                      {" "}
+                      {moment(props.date).format("MM/DD/YYYY")}{" "}
+                    </p>
+                    <p style={{ width: "70px" }}> {act.type} </p>
                     {act.type === "expense" ? (
                       <p style={{ color: "red" }}>{act.amount}</p>
                     ) : (

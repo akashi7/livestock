@@ -58,3 +58,17 @@ export const Status = [
   "Weaning",
   "Archived",
 ];
+
+export const categoriesData = [
+  "Breeding", 
+  "Deworming", 
+  "General", 
+  "Grazing",
+  "Grooming", 
+  "Injury", 
+  "Medication",
+  "Supplement", 
+  "Vaccination", 
+  "Veterinarian", 
+  "Other" 
+]

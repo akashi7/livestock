@@ -13,6 +13,7 @@ import MenuBar from "../../common/menubar/menubar";
 import "../animal.css";
 import { AddSeekBayModal } from "../modals";
 import { AnimalsSickbaycolumns } from "./helper";
+import Search from "../../common/search";
 
 function ListAnimalsSickBay() {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ function ListAnimalsSickBay() {
       <div className="main-container">
         <MenuBar />
         <div className="leftContainer">
-          <AnimalCard props={animal.data} />
+          <AnimalCard props={animal.data} round={true} />
           <br />
           <div style={{ margin: "10px" }}>
             <button
@@ -68,6 +69,9 @@ function ListAnimalsSickBay() {
                 getAllAnimalsSickbay={getAllAnimalsSickbay}
               />
             )}
+          </div>
+          <div>
+            <Search />
           </div>
           <br />
           <div style={{ margin: "10px" }}>

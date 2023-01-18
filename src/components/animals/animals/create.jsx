@@ -1,122 +1,469 @@
-import { Col, Layout, notification, Row } from "antd";
-import { Form, Formik } from "formik";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Layout, Row, notification } from 'antd'
+import { Form, Formik } from 'formik'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import {
   animal,
   getAllPurposeData,
   getAnimalCatgories,
-} from "../../../state/slices/animal.slice";
-import { getAllFarms } from "../../../state/slices/farm.slice";
-import { InputSelect, InputText } from "../../common/input";
-import "../animal.css";
+} from '../../../state/slices/animal.slice'
+import { getAllFarms } from '../../../state/slices/farm.slice'
+import { InputSelect, InputText } from '../../common/input'
+import '../animal.css'
 import {
   BreedStatus,
+  Status,
   harvestUnits,
   onFeed,
   purchased,
-  Status,
-} from "../data/data";
-import { addFarmerSchema } from "../validations";
+} from '../data/data'
+import { addFarmerSchema } from '../validations'
 
 function CreateAnimal() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.animal);
-  const { get } = useSelector((state) => state.farm);
-  const animalCatgories = useSelector((state) => state.animal.categories);
-  const puporseData = useSelector((state) => state.animal.purposeData);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { loading } = useSelector((state) => state.animal)
+  const { get } = useSelector((state) => state.farm)
+  const animalCatgories = useSelector((state) => state.animal.categories)
+  const puporseData = useSelector((state) => state.animal.purposeData)
 
   const initialValues = {
-    animalCategory_id: "",
-    earring_num: "",
-    farm_id: "",
-    purpose_id: "",
-    birth_date: "",
+    animalCategory_id: '',
+    earring_num: '',
+    farm_id: '',
+    purpose_id: '',
+    birth_date: '',
     birth_weight: 0,
-    breed: "",
-    breeding_status: "",
-    coloring: "",
+    breed: '',
+    breeding_status: '',
+    coloring: '',
     condition_score: 0,
-    description: "",
-    harvest_unit: "",
-    keywords: "",
-    name: "",
+    description: '',
+    harvest_unit: '',
+    keywords: '',
+    name: '',
     on_feed: false,
     purchase_price: 0,
     purchased: false,
     retention_score: 0,
-    status: "",
-    type: "",
-  };
-  const [farmers, setfarmers] = useState([]);
-  const [gender, setGender] = useState("");
+    status: '',
+    type: '',
+  }
+  const [farmers, setfarmers] = useState([])
+  const [gender, setGender] = useState('')
 
   useEffect(() => {
-    setFarmers();
+    setFarmers()
     /* eslint-disable-next-line */
-  }, [get.data]);
+  }, [get.data])
   useEffect(() => {
-    dispatch(getAllFarms());
-    dispatch(getAllPurposeData());
-    dispatch(getAnimalCatgories());
+    dispatch(getAllFarms())
+    dispatch(getAllPurposeData())
+    dispatch(getAnimalCatgories())
     /* eslint-disable-next-line */
-  }, []);
+  }, [])
   function setFarmers() {
-    let array = [];
+    let array = []
     get.data.map((item) => {
       array.push({
         value: item.id,
         label: item.name,
-      });
-      return true;
-    });
-    setfarmers(array);
+      })
+      return true
+    })
+    setfarmers(array)
   }
 
   function navigates() {
     notification.success({
-      placement: "topRight",
-      message: "Animal Added Successfully",
+      placement: 'topRight',
+      message: 'Animal Added Successfully',
       duration: 3,
-      key: "success",
-    });
+      key: 'success',
+    })
     setTimeout(() => {
-      navigate("/vt/list-animals");
-    }, 3000);
+      navigate('/vt/list-animals')
+    }, 3000)
   }
 
   const handleSubmit = (values) => {
-    values.is_group = false;
-    values.is_neutered = false;
-    values.breeding_stock = false;
-    values.gender = gender;
-    values.registry_number = "622222";
-    values.tag_color = "er";
-    values.tag_number = "23";
-    values.electronic_id = "445td";
-    values.type = "type";
-    values.harvest_label = "yuuu";
-    values.height = "78";
-    values.weight = "87";
-    dispatch(animal({ data: values, success: navigates }));
-  };
+    values.is_group = false
+    values.is_neutered = false
+    values.breeding_stock = false
+    values.gender = gender
+    values.registry_number = '622222'
+    values.tag_color = 'er'
+    values.tag_number = '23'
+    values.electronic_id = '445td'
+    values.type = 'type'
+    values.harvest_label = 'yuuu'
+    values.height = '78'
+    values.weight = '87'
+    dispatch(animal({ data: values, success: navigates }))
+  }
   return (
-    <Layout className="h-[100%] items-center flex overflow-auto" id="scroll">
-      <div className="p-4 w-[80%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 mb-8 ">
+    <Layout className='h-[100%] items-center flex overflow-auto' id='scroll'>
+      <div className='p-4 w-[80%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 mb-8 '>
         <Formik
           initialValues={initialValues}
           validationSchema={addFarmerSchema}
           onSubmit={handleSubmit}
         >
-          <Form className="space-y-9" action="#">
+          <Form className='space-y-3' action='#'>
+            <p className=' text-lg p-[5px]'>New Animal</p>
+
+            <div className='animal-create-h'>
+              <p>Basic information</p>
+            </div>
+
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>Select Farm</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='farm_id'
+                    height={'20px'}
+                    options={farmers}
+                    // label="Select Farm"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>category</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='animalCategory_id'
+                    height={'20px'}
+                    options={animalCatgories?.data.map((item) => ({
+                      label: item.name,
+                      value: item.id,
+                    }))}
+                    // label="Select Animal Category"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>Name</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='name'
+                    height={'35px'}
+                    type='text'
+                    placeholder='name'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>earring_num</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='earring_num'
+                    type='text'
+                    height={'35px'}
+                    placeholder='earring_num'
+                    // label="earring_num"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>Gender</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='gender'
+                    value={gender}
+                    required
+                    height={'20px'}
+                    options={[
+                      { label: 'Male', value: 'Male' },
+                      { label: 'Female', value: 'Female' },
+                    ]}
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>purpose</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='purpose_id'
+                    height={'20px'}
+                    options={puporseData?.data.map((item) => ({
+                      label: item.name,
+                      value: item.id,
+                    }))}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>Status</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='status'
+                    height={'20px'}
+                    options={Status.map((status) => {
+                      return {
+                        value: status,
+                        label: status,
+                      }
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>breed</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='breed'
+                    height={'35px'}
+                    type='text'
+                    placeholder='breed'
+                  />
+                </div>
+              </div>
+            </div>
+            {gender && gender === 'Female' ? (
+              <div className='cont'>
+                <div className='kkpoer'>
+                  <span className='span'>breed status</span>
+                  <div className='w-[80%]'>
+                    <InputSelect
+                      name='breeding_status'
+                      height={'20px'}
+                      options={BreedStatus.map((breed) => {
+                        return {
+                          value: breed,
+                          label: breed,
+                        }
+                      })}
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : null}
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>keywords</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='keywords'
+                    type='text'
+                    placeholder='keywords'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>birth date</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='birth_date'
+                    type='date'
+                    placeholder='birth_date'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='animal-create-h'>
+              <p>Physical information</p>
+            </div>
+            {/* <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>weight</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='weight'
+                    type='text'
+                    placeholder='weight'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div> */}
+            {/* <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>height</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='height'
+                    type='text'
+                    placeholder='height'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div> */}
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>coloring</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='coloring'
+                    type='text'
+                    placeholder='coloring'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>retention</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='retention_score'
+                    type='text'
+                    placeholder='retention_score'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>description</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='description'
+                    type='text'
+                    placeholder='description'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>birth weight</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='birth_weight'
+                    type='text'
+                    placeholder='birth_weight'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='animal-create-h'>
+              <p>Additional information</p>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>condition</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='condition_score'
+                    type='text'
+                    placeholder='condition_score'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>harvest label</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='harvest_label'
+                    type='text'
+                    placeholder='harvest_label'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div> */}
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>harvest unit</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='harvest_unit'
+                    height={'20px'}
+                    options={harvestUnits.map((harvest) => {
+                      return {
+                        value: harvest,
+                        label: harvest,
+                      }
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>On feed</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='on_feed'
+                    height={'20px'}
+                    options={onFeed.map((feed) => {
+                      return {
+                        value: feed.value,
+                        label: feed.label,
+                      }
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>purchased</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='purchased'
+                    height={'20px'}
+                    options={purchased.map((feed) => {
+                      return {
+                        value: feed.value,
+                        label: feed.label,
+                      }
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>purchase price</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='purchase_price'
+                    type='text'
+                    placeholder='purchase_price'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               {/* <Col className="gutter-row" span={24}>
                 <p className="text-blue">Add Animal</p>
               </Col> */}
 
-              <Col className="gutter-row" span={24}>
+              {/* <Col className="gutter-row" span={24}>
                 <br />
                 <div
                   style={{
@@ -131,114 +478,42 @@ function CreateAnimal() {
                 </div>
               </Col>
 
-              <Col className="gutter-row mt-10" span={6}>
-                <InputSelect
+              <Col className="gutter-row mt-10 w-[100px] bg-slate-800 items-center p-[3px] " span={6}>
+                <div className="kkpoer" >
+                  <span className="span">Select Farm</span>
+                 <div className="akashi" >
+                 <InputSelect
                   name="farm_id"
                   options={farmers}
-                  label="Select Farm"
+                  // label="Select Farm"
                 />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputSelect
-                  name="animalCategory_id"
-                  options={animalCatgories?.data.map((item) => ({
-                    label: item.name,
-                    value: item.id,
-                  }))}
-                  label="Select Animal Category"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="name"
-                  type="text"
-                  placeholder="name"
-                  label="name"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="earring_num"
-                  type="text"
-                  placeholder="earring_num"
-                  label="earring_num"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputSelect
-                  name="gender"
-                  label="gender"
-                  value={gender}
-                  required
-                  options={[
-                    { label: "Male", value: "Male" },
-                    { label: "Female", value: "Female" },
-                  ]}
-                  onChange={(e) => setGender(e.target.value)}
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputSelect
-                  name="purpose_id"
-                  options={puporseData?.data.map((item) => ({
-                    label: item.name,
-                    value: item.id,
-                  }))}
-                  label="Select Purpose"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputSelect
-                  name="status"
-                  label="status"
-                  options={Status.map((status) => {
-                    return {
-                      value: status,
-                      label: status,
-                    };
-                  })}
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="breed"
-                  type="text"
-                  placeholder="breed"
-                  label="Breed"
-                />
-              </Col>
-              {gender && gender === "Female" ? (
-                <Col className="gutter-row mt-10" span={6}>
-                  <InputSelect
-                    name="breeding_status"
-                    label="breeding_status"
-                    options={BreedStatus.map((breed) => {
-                      return {
-                        value: breed,
-                        label: breed,
-                      };
-                    })}
-                  />
-                </Col>
-              ) : null}
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="keywords"
-                  type="text"
-                  placeholder="keywords"
-                  label="keywords"
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="birth_date"
-                  type="date"
-                  placeholder="birth_date"
-                  label="Birth date"
-                />
-              </Col>
+                 </div>
+                </div>
+                
+              </Col> */}
 
-              <Col className="gutter-row" span={24}>
+              {/* 
+              <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+
+              {/* <Col className="gutter-row" span={24}>
                 <br />
                 <div
                   style={{
@@ -251,58 +526,28 @@ function CreateAnimal() {
                     <h1 className="title">Physical information</h1>
                   </div>
                 </div>
-              </Col>
-              {/* <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="weight"
-                  type="text"
-                  placeholder="weight"
-                  label="weight"
-                />
               </Col> */}
               {/* <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="height"
-                  type="text"
-                  placeholder="height"
-                  label="height"
-                />
+                
               </Col> */}
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="coloring"
-                  type="text"
-                  placeholder="coloring"
-                  label="Coloring"
-                />
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
               </Col>
               <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="retention_score"
-                  type="text"
-                  placeholder="retention_score"
-                  label="retention score"
-                />
-              </Col>
+               
+              </Col> */}
 
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="description"
-                  type="text"
-                  placeholder="description"
-                  label="description"
-                />
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
               </Col>
               <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="birth_weight"
-                  type="text"
-                  placeholder="birth_weight"
-                  label="birth_weight"
-                />
-              </Col>
+                
+              </Col> */}
 
-              <Col className="gutter-row" span={24}>
+              {/* <Col className="gutter-row" span={24}>
                 <br />
                 <div
                   style={{
@@ -315,85 +560,43 @@ function CreateAnimal() {
                     <h1 className="title">Additional information</h1>
                   </div>
                 </div>
-              </Col>
-
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="condition_score"
-                  type="text"
-                  placeholder="condition_score"
-                  label="Condition score"
-                />
-              </Col>
-              {/* <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="harvest_label"
-                  type="text"
-                  placeholder="harvest_label"
-                  label="Harvest label"
-                />
               </Col> */}
-              <Col className="gutter-row mt-10" span={6}>
-                <InputSelect
-                  name="harvest_unit"
-                  label="harvest_unit"
-                  options={harvestUnits.map((harvest) => {
-                    return {
-                      value: harvest,
-                      label: harvest,
-                    };
-                  })}
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputSelect
-                  name="on_feed"
-                  label="on_feed"
-                  options={onFeed.map((feed) => {
-                    return {
-                      value: feed.value,
-                      label: feed.label,
-                    };
-                  })}
-                />
-              </Col>
-              <Col className="gutter-row mt-10" span={6}>
-                <InputSelect
-                  name="purchased"
-                  label="purchased"
-                  options={purchased.map((feed) => {
-                    return {
-                      value: feed.value,
-                      label: feed.label,
-                    };
-                  })}
-                />
-              </Col>
 
-              <Col className="gutter-row mt-10" span={6}>
-                <InputText
-                  name="purchase_price"
-                  type="text"
-                  placeholder="purchase_price"
-                  label="purchase price"
-                />
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
               </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
             </Row>
             {/* <div className="flex items-center h-5 justify-center">
                             <Spinner />
                         </div> */}
-            <div className="flex items-center justify-center">
+            <div className='flex items-center justify-center'>
               <button
-                type="submit"
-                className="w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type='submit'
+                className='w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
               >
-                {loading ? "Loading..." : "Submit"}
+                {loading ? 'Loading...' : 'Submit'}
               </button>
             </div>
           </Form>
         </Formik>
       </div>
     </Layout>
-  );
+  )
 }
-export default CreateAnimal;
+export default CreateAnimal

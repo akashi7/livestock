@@ -1,30 +1,28 @@
 import { Layout, Table } from 'antd'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  ListVaccinationsData,
   SeeOneAnimal,
-  getAnimalCatgories,
-  VaccinationData,
-  VaccinateAnimal,
+  retrieveAllanimalYields,
+  CreateAnimalYield,
 } from '../../../state/slices/animal.slice'
 import AnimalCard from '../../common/Cards'
 import MenuBar from '../../common/menubar/menubar'
 import '../animal.css'
-import AddVaccinateModal from '../modals/addvaccinate'
-import { AnimalVaccinationColmns } from './helper'
+import { AddYieldModal } from '../modals'
+import { YieldsColumn } from './helper'
 import Search from '../../common/search'
 
-function ListVaccinations() {
+function ListAnimalYields() {
   const dispatch = useDispatch()
-  const { allVaccination, animal, animalsGroupData, vacciData, vatinate } =
-    useSelector((state) => state.animal)
+  const { createYield, animal, listYields } = useSelector(
+    (state) => state.animal
+  )
   const id = localStorage.getItem('id')
+
   useEffect(() => {
-    dispatch(ListVaccinationsData({ param: id }))
+    dispatch(retrieveAllanimalYields({ param: id }))
     dispatch(SeeOneAnimal({ params: id }))
-    dispatch(getAnimalCatgories())
-    dispatch(VaccinationData())
     /* eslint-disable-next-line */
   }, [])
 
@@ -47,19 +45,16 @@ function ListVaccinations() {
               className='w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
               onClick={Toogle}
             >
-              Add new
+              New Yield
             </button>
             {toogle && (
-              <AddVaccinateModal
-                id={id}
-                animalGroup={animalsGroupData}
-                vaccinations={vacciData}
+              <AddYieldModal
+                Toogle={setToogle}
                 toogle={toogle}
-                Toogle={Toogle}
-                VaccinateAnimal={VaccinateAnimal}
+                CreateYield={CreateAnimalYield}
+                createYield={createYield}
                 dispatch={dispatch}
-                ListVaccinationsData={ListVaccinationsData}
-                vatinate={vatinate}
+                id={id}
               />
             )}
           </div>
@@ -69,9 +64,12 @@ function ListVaccinations() {
           <br />
           <div style={{ margin: '10px' }}>
             <Table
-              columns={AnimalVaccinationColmns}
-              dataSource={allVaccination.data}
-              loading={allVaccination.loading}
+              columns={YieldsColumn}
+              dataSource={listYields.data}
+              loading={listYields.loading}
+              pagination={{
+                defaultPageSize: 5,
+              }}
             />
           </div>
         </div>
@@ -79,4 +77,4 @@ function ListVaccinations() {
     </Layout>
   )
 }
-export default ListVaccinations
+export default ListAnimalYields

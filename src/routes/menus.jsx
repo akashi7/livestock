@@ -3,9 +3,9 @@ import {
   InfoCircleOutlined,
   StarOutlined,
   UsergroupAddOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons'
 
-const mainRoute = `vt`;
+const mainRoute = `vt`
 
 const menus = [
   {
@@ -70,6 +70,10 @@ const menus = [
       {
         label: `Animals List`,
         key: `/${mainRoute}/list-animals`,
+      },
+      {
+        label: `Group list`,
+        key: `/${mainRoute}/list-animalsGroup`,
       },
       // {
       //   label: `Animals Groups List`,
@@ -159,10 +163,10 @@ const menus = [
       // },
     ],
   },
-];
+]
 export const getMenus = () => {
-  return menus;
-};
+  return menus
+}
 
 export const getAnchors = (id) => {
   return [
@@ -171,35 +175,43 @@ export const getAnchors = (id) => {
       key: `/${mainRoute}/animal/${id}`,
     },
     {
-      label: "Feeding",
+      label: 'Notes',
+      key: `/${mainRoute}/animal-notes`,
+    },
+    {
+      label: 'Feeding',
       key: `/${mainRoute}/list-animal-feed`,
     },
     {
-      label: "SickBay",
+      label: 'SickBay',
       key: `/${mainRoute}/list-sickbay`,
     },
     {
-      label: "Task",
+      label: 'Task',
       key: `/${mainRoute}/event-list`,
     },
     {
-      label: "Vaccinating",
+      label: 'Vaccinating',
       key: `/${mainRoute}/list-vaccination`,
     },
     {
-      label: "Treatement",
+      label: 'Treatement',
       key: `/${mainRoute}/animal-treatments`,
     },
     {
-      label: "Account",
+      label: 'Account',
       key: `/${mainRoute}/animal-accounts`,
     },
     {
-      label: "Measurement",
+      label: 'Measurement',
       key: `/${mainRoute}/animal-measures`,
     },
-  ];
-};
+    {
+      label: 'Yield',
+      key: `/${mainRoute}/animal-yields`,
+    },
+  ]
+}
 
 ///create-animal-feed
 ///animal-accounts

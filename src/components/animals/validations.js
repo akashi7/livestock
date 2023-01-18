@@ -56,11 +56,31 @@ export const AddFeedSchema = Yup.object().shape({
   feedId: Yup.string().required("feedId is Required"),
 });
 
+export const AddYieldSchema = Yup.object().shape({
+   qty: Yup.string().required("Quantity is Required"),
+    date: Yup.string().required("date is Required"),
+    batch_number: Yup.string().required("batch_number is Required"),
+    trace_number: Yup.string().required("trace_number is Required"),
+    grade: Yup.string().required("grade is Required"),
+    Price: Yup.string().required("Price is Required"),
+    description: Yup.string().required("description is Required"),
+})
+
+
+export const AddNotesSchema = Yup.object().shape({
+  date: Yup.string().required("Date is Required"),
+  description: Yup.string().required("description is Required"),
+  category: Yup.string().required("category is Required"),
+  keywords: Yup.string().required("keyword is Required"),
+
+});
+
+
 export const createEventSchema = Yup.object().shape({
   title: Yup.string().required("title is Required"),
   description: Yup.string().required("description is Required"),
-  start: Yup.string().required("start date is Required"),
-  end: Yup.string().required("end date is Required"),
+  start_time: Yup.string().required("start date is Required"),
+  end_time: Yup.string().required("end date is Required"),
 });
 
 export const AddMeasuremtSchema = Yup.object().shape({

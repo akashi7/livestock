@@ -1,31 +1,30 @@
-import { Col, Modal, notification, Row } from 'antd'
+import { Col, Modal, Row, notification } from 'antd'
 import { Form, Formik } from 'formik'
 import { InputSelect, InputText } from '../../common/input'
-import { AddFeedSchema } from '../validations'
+import { categoriesData } from '../data/data'
+import { AddNotesSchema } from '../validations'
 
-export default function AddFeedModal({
+export default function AddNotesModal({
   Toogle,
   toogle,
-  CreateFeed,
-  createFeed,
-  dispatch,
-  feed,
-  categories,
+  createNote,
   id,
-  getAllFeeds,
+  allNotes,
+  dispatch,
+  CreateAnimalNotes,
 }) {
   const initialValues = {
-    onsetDate: '',
-    // animalCategoryId: "",
-    quantity: '',
-    feedId: '',
+    date: '',
+    description: '',
+    category: '',
+    keywords: '',
   }
 
   function navigates() {
-    dispatch(getAllFeeds({ params: id }))
+    dispatch(allNotes({ param: id }))
     notification.success({
       placement: 'topRight',
-      message: 'Animal Feed Added Successfully',
+      message: 'Note Added Successfully',
       duration: 3,
       key: 'success',
     })
@@ -34,13 +33,17 @@ export default function AddFeedModal({
 
   function handleSubmit(values) {
     dispatch(
-      CreateFeed({ resName: 'animal', id, data: values, success: navigates })
+      CreateAnimalNotes({
+        resName: 'animal',
+        id,
+        data: values,
+        success: navigates,
+      })
     )
   }
-
   return (
     <Modal
-      title='Add Feed'
+      title='New note'
       centered
       visible={toogle}
       onOk={() => Toogle(false)}
@@ -51,48 +54,48 @@ export default function AddFeedModal({
       <div className='p-4 w-[100%] h-auto bg-white sm:p-6 lg:p-8'>
         <Formik
           initialValues={initialValues}
-          validationSchema={AddFeedSchema}
+          validationSchema={AddNotesSchema}
           onSubmit={handleSubmit}
         >
           <Form className='space-y-12' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className='gutter-row' span={24}>
-                <p className='text-blue'>Add Animal Feed</p>
+                <p className='text-blue'>New note</p>
               </Col>
-              {/* <Col className="gutter-row mt-10" span={12}>
+              <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
-                  name="animalCategoryId"
-                  options={categories?.data.map((item) => ({
-                    label: item.name,
-                    value: item.id,
-                  }))}
-                  label="Select Animal Category"
+                  name='category'
+                  label='category'
+                  options={categoriesData.map((category) => {
+                    return {
+                      value: category,
+                      label: category,
+                    }
+                  })}
                 />
-              </Col> */}
+              </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='onsetDate'
+                  name='date'
                   type='date'
-                  placeholder='OnsetDate'
-                  label='OnsetDate'
+                  placeholder='date'
+                  label='date'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='quantity'
+                  name='description'
                   type='text'
-                  placeholder='quantity'
-                  label='Quantity'
+                  placeholder='description'
+                  label='Description'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
-                <InputSelect
-                  name='feedId'
-                  options={feed?.data.map((item) => ({
-                    label: item.name,
-                    value: item.id,
-                  }))}
-                  label='Select Feed type'
+                <InputText
+                  name='keywords'
+                  type='text'
+                  placeholder='keywords'
+                  label='Keywords'
                 />
               </Col>
             </Row>
@@ -102,7 +105,7 @@ export default function AddFeedModal({
                 type='submit'
                 className='w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
               >
-                {createFeed.loading ? 'Loading...' : 'Submit'}
+                {createNote.loading ? 'Loading....' : 'Submit'}
               </button>
             </div>
           </Form>

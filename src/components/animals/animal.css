@@ -17,10 +17,10 @@
 }
 
 .left-s {
-  width: 50%;
+  width: 65%;
 }
 .right-s {
-  width: 50%;
+  width: 25%;
 }
 
 .layout-container {
@@ -29,28 +29,17 @@
 
 .rt-container {
   display: flex;
-  justify-content: space-between;
-  background-color: whitesmoke;
-  padding: 4px;
+  padding: 5px;
   margin: 7px;
+  flex-direction: row;
+  width: 120%;
+  border: 1px solid #31b0d5;
 }
 
 .line-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.animal-t {
-  text-transform: capitalize;
-  font-weight: bold;
-  font-size: 20px;
-  margin-left: 10px;
-}
-.animalId {
-  margin-left: 10px;
-  background-color: whitesmoke;
-  padding: 5px;
 }
 
 .main-container {
@@ -75,7 +64,7 @@
 }
 .title {
   color: #31b0d5;
-  font-weight: "bold";
+  font-weight: 'bold';
   font-size: 20px;
 }
 .subd-container {
@@ -125,4 +114,36 @@
 #scroll::-webkit-scrollbar-thumb {
   background-color: #31b0d5;
   outline: 1px solid #31b0d5;
+}
+
+.kkpoer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px;
+  margin: 5px;
+}
+.span {
+  width: 100px;
+  line-height: 50px;
+}
+.cont {
+  margin: 0 auto;
+  width: 60%;
+}
+
+.animal-create-h {
+  border-bottom: 1px solid #31b0d5;
+  padding: 5px;
+}
+.animal-create-h p {
+  font-size: 20px;
+  color: #31b0d5;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
