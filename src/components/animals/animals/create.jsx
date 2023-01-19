@@ -9,7 +9,7 @@ import {
   getAnimalCatgories,
 } from '../../../state/slices/animal.slice'
 import { getAllFarms } from '../../../state/slices/farm.slice'
-import { InputSelect, InputText } from '../../common/input'
+import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import '../animal.css'
 import {
   BreedStatus,
@@ -342,10 +342,9 @@ function CreateAnimal() {
               <div className='kkpoer'>
                 <span className='span'>description</span>
                 <div className='w-[80%]'>
-                  <InputText
-                    name='description'
-                    type='text'
+                  <InputTextArea
                     placeholder='description'
+                    name='description'
                     height={'35px'}
                   />
                 </div>

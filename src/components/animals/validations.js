@@ -75,6 +75,12 @@ export const AddNotesSchema = Yup.object().shape({
 
 });
 
+export const AddGroupSchema = Yup.object().shape({
+  name: Yup.string().required("name is Required"),
+  description: Yup.string().required("description is Required"),
+  farm_id: Yup.string().required("farm id is Required"),
+});
+
 
 export const createEventSchema = Yup.object().shape({
   title: Yup.string().required("title is Required"),

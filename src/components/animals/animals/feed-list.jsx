@@ -44,7 +44,7 @@ function ListAnimalFeeds() {
         <div className='leftContainer'>
           <AnimalCard props={animal.data} round={true} />
           <br />
-          <div style={{ margin: '10px' }}>
+          <div className='m-[10px] flex justify-between items-center'>
             <button
               type='button'
               className='w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
@@ -52,6 +52,9 @@ function ListAnimalFeeds() {
             >
               New Feeding
             </button>
+            <div className='w-[60%]  h-[40px]'>
+              <Search />
+            </div>
             {toogle && (
               <AddFeedModal
                 Toogle={setToogle}
@@ -66,9 +69,7 @@ function ListAnimalFeeds() {
               />
             )}
           </div>
-          <div>
-            <Search />
-          </div>
+
           <br />
           <div style={{ margin: '10px' }}>
             <Table

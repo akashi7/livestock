@@ -8,3 +8,9 @@
   height: 100%;
   margin-top: 4px;
 }
+
+@media only screen and (min-width: 992px) and (min-width: 1200px) {
+  .wrapper {
+    padding: 20px;
+  }
+}

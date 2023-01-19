@@ -3,7 +3,7 @@ export const createAnimal = (data) => {
   return http.POST('animal/create', data)
 }
 export const createGroupAnimal = (data) => {
-  return http.POST('groupAnimal/create', data)
+  return http.POST('livestock_groups/create', data)
 }
 export const createSickBay = (resName, id, data) => {
   return http.POST(`sickbay/${resName}/${id}/create`, data)

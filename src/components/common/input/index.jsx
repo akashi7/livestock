@@ -46,6 +46,26 @@ export const InputText = ({ label, height, ...props }) => {
     </>
   )
 }
+
+export const InputTextArea = ({ label, height, ...props }) => {
+  const [field, meta] = useField(props)
+  return (
+    <>
+      <div lassName='relative z-0'>
+        <label className='font-small'>{label}</label>
+        <textarea
+          className='p-2 h-[100px] appearance-none border border-white-500 rounded w-full  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
+          {...field}
+          {...props}
+        />
+      </div>
+      {meta.touched && meta.error ? (
+        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+      ) : null}
+    </>
+  )
+}
+
 export const InputSelect = ({ label, options, height, ...props }) => {
   const [field, meta] = useField(props)
   return (
@@ -56,7 +76,7 @@ export const InputSelect = ({ label, options, height, ...props }) => {
           className={`h-[${
             height ? height : '50px'
           }] p-2 appearance-none border border-white-500 rounded w-full  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`}
-          placeholder=' '
+          placeholder=''
           {...field}
           {...props}
         >

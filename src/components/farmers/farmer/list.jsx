@@ -27,8 +27,10 @@ function ListFarmers() {
         <DashCard title='Total Animals' number={animal.data.length} />
         <DashCard title='Schedules In This Week' number='6' />
       </div>
-      <div className='mt-10'>
-        <Search />
+      <div className='mt-10 flex justify-end '>
+        <div className='w-[400px]'>
+          <Search />
+        </div>
       </div>
       <h2 className=' mb-3 text-blue text-lg'>Farmers</h2>
       <div>

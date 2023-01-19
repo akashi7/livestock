@@ -3,9 +3,9 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getAnimals } from '../../../state/slices/animal.slice'
-import { getAnimalColums } from './helper'
-import '../animal.css'
 import Search from '../../common/search'
+import '../animal.css'
+import { getAnimalColums } from './helper'
 
 function ListAnimals() {
   const dispatch = useDispatch()
@@ -24,8 +24,10 @@ function ListAnimals() {
 
   return (
     <Layout className='h-[100%] w-full'>
-      <div>
-        <Search />
+      <div className=' flex justify-end '>
+        <div className='w-[56%]'>
+          <Search />
+        </div>
       </div>
       <div>
         <Table

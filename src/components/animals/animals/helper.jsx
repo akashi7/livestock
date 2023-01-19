@@ -25,6 +25,18 @@ export function getAnimalColums(dispatch) {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      render: (text, row) => (
+        <div>
+          {row.is_group === true ? (
+            <div className='flex flex-row'>
+              <p className='isG'>G</p>
+              <p className='pl-[7px]'> {text} </p>
+            </div>
+          ) : (
+            <p>{text} </p>
+          )}
+        </div>
+      ),
     },
     {
       title: 'Gender',
