@@ -19,7 +19,6 @@ export const farmer = createAsyncThunk(
 export const getfarmers = createAsyncThunk(
     "getAllFarmers",
     async (props,{ rejectWithValue }) => {
-        console.log("getfarmers");
         return getFarmers()
             .then((resp) => {
                 console.log(resp);

@@ -1,0 +1,15 @@
+.pop {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.ri {
+  margin-bottom: 20px;
+}
+.s-input {
+  width: 40%;
+}
+.s-button {
+  margin-left: 30px;
+}

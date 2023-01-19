@@ -1,136 +1,601 @@
-import { Col, Layout, Row } from "antd";
-import { Form, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
-import { InputSelect, InputText } from "../../common/input";
-import { addFarmerSchema } from "../validations";
+import { Layout, Row, notification } from 'antd'
+import { Form, Formik } from 'formik'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import {
+  animal,
+  getAllPurposeData,
+  getAnimalCatgories,
+} from '../../../state/slices/animal.slice'
+import { getAllFarms } from '../../../state/slices/farm.slice'
+import { InputSelect, InputText, InputTextArea } from '../../common/input'
+import '../animal.css'
+import {
+  BreedStatus,
+  Status,
+  harvestUnits,
+  onFeed,
+  purchased,
+} from '../data/data'
+import { addFarmerSchema } from '../validations'
 
 function CreateAnimal() {
-    const navigate = useNavigate();
-    const initialValues = {
-        farmId: "",
-        earring_num: "",
-        gender: "",
-        animal_cat: "",
-        birthdate: "",
-        birthkgs: "",
-        parent: "",
-        expected_exit: "",
-        expected_exit_kgs: "",
-    };
-    const handleSubmit = (values) => {
-        console.log(values);
-        navigate("/");
-    };
-    const handleAddress = (values) => {
-        console.log(values);
-        return (initialValues.address = values);
-    };
-    return (
-        <Layout className="h-[100vh]  items-center flex">
-            <div class="p-4 w-[60%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8">
-                <Formik
-                    initialValues={initialValues}
-                    validationSchema={addFarmerSchema}
-                    onSubmit={handleSubmit}
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { loading } = useSelector((state) => state.animal)
+  const { get } = useSelector((state) => state.farm)
+  const animalCatgories = useSelector((state) => state.animal.categories)
+  const puporseData = useSelector((state) => state.animal.purposeData)
+
+  const initialValues = {
+    animalCategory_id: '',
+    earring_num: '',
+    farm_id: '',
+    purpose_id: '',
+    birth_date: '',
+    birth_weight: 0,
+    breed: '',
+    breeding_status: '',
+    coloring: '',
+    condition_score: 0,
+    description: '',
+    harvest_unit: '',
+    keywords: '',
+    name: '',
+    on_feed: false,
+    purchase_price: 0,
+    purchased: false,
+    retention_score: 0,
+    status: '',
+    type: '',
+  }
+  const [farmers, setfarmers] = useState([])
+  const [gender, setGender] = useState('')
+
+  useEffect(() => {
+    setFarmers()
+    /* eslint-disable-next-line */
+  }, [get.data])
+  useEffect(() => {
+    dispatch(getAllFarms())
+    dispatch(getAllPurposeData())
+    dispatch(getAnimalCatgories())
+    /* eslint-disable-next-line */
+  }, [])
+  function setFarmers() {
+    let array = []
+    get.data.map((item) => {
+      array.push({
+        value: item.id,
+        label: item.name,
+      })
+      return true
+    })
+    setfarmers(array)
+  }
+
+  function navigates() {
+    notification.success({
+      placement: 'topRight',
+      message: 'Animal Added Successfully',
+      duration: 3,
+      key: 'success',
+    })
+    setTimeout(() => {
+      navigate('/vt/list-animals')
+    }, 3000)
+  }
+
+  const handleSubmit = (values) => {
+    values.is_group = false
+    values.is_neutered = false
+    values.breeding_stock = false
+    values.gender = gender
+    values.registry_number = '622222'
+    values.tag_color = 'er'
+    values.tag_number = '23'
+    values.electronic_id = '445td'
+    values.type = 'type'
+    values.harvest_label = 'yuuu'
+    values.height = '78'
+    values.weight = '87'
+    dispatch(animal({ data: values, success: navigates }))
+  }
+  return (
+    <Layout className='h-[100%] items-center flex overflow-auto' id='scroll'>
+      <div className='p-4 w-[80%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 mb-8 '>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={addFarmerSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form className='space-y-3' action='#'>
+            <p className=' text-lg p-[5px]'>New Animal</p>
+
+            <div className='animal-create-h'>
+              <p>Basic information</p>
+            </div>
+
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>Select Farm</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='farm_id'
+                    height={'20px'}
+                    options={farmers}
+                    // label="Select Farm"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>category</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='animalCategory_id'
+                    height={'20px'}
+                    options={animalCatgories?.data.map((item) => ({
+                      label: item.name,
+                      value: item.id,
+                    }))}
+                    // label="Select Animal Category"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>Name</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='name'
+                    height={'35px'}
+                    type='text'
+                    placeholder='name'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>earring_num</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='earring_num'
+                    type='text'
+                    height={'35px'}
+                    placeholder='earring_num'
+                    // label="earring_num"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>Gender</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='gender'
+                    value={gender}
+                    required
+                    height={'20px'}
+                    options={[
+                      { label: 'Male', value: 'Male' },
+                      { label: 'Female', value: 'Female' },
+                    ]}
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>purpose</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='purpose_id'
+                    height={'20px'}
+                    options={puporseData?.data.map((item) => ({
+                      label: item.name,
+                      value: item.id,
+                    }))}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>Status</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='status'
+                    height={'20px'}
+                    options={Status.map((status) => {
+                      return {
+                        value: status,
+                        label: status,
+                      }
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>breed</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='breed'
+                    height={'35px'}
+                    type='text'
+                    placeholder='breed'
+                  />
+                </div>
+              </div>
+            </div>
+            {gender && gender === 'Female' ? (
+              <div className='cont'>
+                <div className='kkpoer'>
+                  <span className='span'>breed status</span>
+                  <div className='w-[80%]'>
+                    <InputSelect
+                      name='breeding_status'
+                      height={'20px'}
+                      options={BreedStatus.map((breed) => {
+                        return {
+                          value: breed,
+                          label: breed,
+                        }
+                      })}
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : null}
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>keywords</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='keywords'
+                    type='text'
+                    placeholder='keywords'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>birth date</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='birth_date'
+                    type='date'
+                    placeholder='birth_date'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='animal-create-h'>
+              <p>Physical information</p>
+            </div>
+            {/* <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>weight</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='weight'
+                    type='text'
+                    placeholder='weight'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div> */}
+            {/* <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>height</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='height'
+                    type='text'
+                    placeholder='height'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div> */}
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>coloring</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='coloring'
+                    type='text'
+                    placeholder='coloring'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>retention</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='retention_score'
+                    type='text'
+                    placeholder='retention_score'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>description</span>
+                <div className='w-[80%]'>
+                  <InputTextArea
+                    placeholder='description'
+                    name='description'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>birth weight</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='birth_weight'
+                    type='text'
+                    placeholder='birth_weight'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='animal-create-h'>
+              <p>Additional information</p>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>condition</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='condition_score'
+                    type='text'
+                    placeholder='condition_score'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>harvest label</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='harvest_label'
+                    type='text'
+                    placeholder='harvest_label'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div> */}
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>harvest unit</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='harvest_unit'
+                    height={'20px'}
+                    options={harvestUnits.map((harvest) => {
+                      return {
+                        value: harvest,
+                        label: harvest,
+                      }
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>On feed</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='on_feed'
+                    height={'20px'}
+                    options={onFeed.map((feed) => {
+                      return {
+                        value: feed.value,
+                        label: feed.label,
+                      }
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>purchased</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='purchased'
+                    height={'20px'}
+                    options={purchased.map((feed) => {
+                      return {
+                        value: feed.value,
+                        label: feed.label,
+                      }
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='cont'>
+              <div className='kkpoer'>
+                <span className='span'>purchase price</span>
+                <div className='w-[80%]'>
+                  <InputText
+                    name='purchase_price'
+                    type='text'
+                    placeholder='purchase_price'
+                    height={'35px'}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+              {/* <Col className="gutter-row" span={24}>
+                <p className="text-blue">Add Animal</p>
+              </Col> */}
+
+              {/* <Col className="gutter-row" span={24}>
+                <br />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
                 >
-                    <Form class="space-y-12" action="#">
-                        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                            <Col className="gutter-row" span={24}>
-                                <p className="text-blue">Add Animal</p>
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputSelect
-                                    name="farmerId"
-                                    options={[
-                                        { label: "James", value: "1" },
-                                        { label: "Mucyo", value: "2" },
-                                    ]}
-                                    onChange={handleAddress}
-                                    label="Select Farmer"
-                                />
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputText
-                                    name="earring_num"
-                                    type="text"
-                                    placeholder="earring_num"
-                                    label="Tin/Code"
-                                />
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputSelect
-                                    name="gender"
-                                    label="Gender"
-                                    options={[
-                                        { label: "Male", value: "Male" },
-                                        { label: "Female", value: "Female" },
-                                    ]}
-                                />
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputText
-                                    name="animal_cat"
-                                    type="text"
-                                    placeholder="animal cat"
-                                    label="Animal Cat"
-                                />
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputText
-                                    name="birthdate"
-                                    type="date"
-                                    placeholder="Birthdate"
-                                    label="birthdate"
-                                />
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputText
-                                    name="birthkgs"
-                                    type="text"
-                                    placeholder="birthkgs"
-                                    label="Birth Kgs"
-                                />
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputText
-                                    name="parent"
-                                    type="text"
-                                    placeholder="parent"
-                                    label="Parent"
-                                />
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputText
-                                    name="expected_exit"
-                                    type="date"
-                                    placeholder="expected exit"
-                                    label="Expected Exit"
-                                />
-                            </Col>
-                            <Col className="gutter-row mt-10" span={12}>
-                                <InputText
-                                    name="expected_exit_kgs"
-                                    type="date"
-                                    placeholder="expected exit kgs"
-                                    label="Expected Exit Kgs"
-                                />
-                            </Col>
-                        </Row>
-                        {/* <div className="flex items-center h-5 justify-center">
+                  <div className="header">
+                    <h1 className="title">Basic information</h1>
+                  </div>
+                </div>
+              </Col>
+
+              <Col className="gutter-row mt-10 w-[100px] bg-slate-800 items-center p-[3px] " span={6}>
+                <div className="kkpoer" >
+                  <span className="span">Select Farm</span>
+                 <div className="akashi" >
+                 <InputSelect
+                  name="farm_id"
+                  options={farmers}
+                  // label="Select Farm"
+                />
+                 </div>
+                </div>
+                
+              </Col> */}
+
+              {/* 
+              <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+
+              {/* <Col className="gutter-row" span={24}>
+                <br />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <div className="header">
+                    <h1 className="title">Physical information</h1>
+                  </div>
+                </div>
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+               
+              </Col> */}
+
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+
+              {/* <Col className="gutter-row" span={24}>
+                <br />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <div className="header">
+                    <h1 className="title">Additional information</h1>
+                  </div>
+                </div>
+              </Col> */}
+
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col>
+              <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+
+              {/* <Col className="gutter-row mt-10" span={6}>
+                
+              </Col> */}
+            </Row>
+            {/* <div className="flex items-center h-5 justify-center">
                             <Spinner />
                         </div> */}
-                        <div className="flex items-center justify-center">
-                            <button
-                                type="submit"
-                                class="w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            >
-                                Submit
-                            </button>
-                        </div>
-                    </Form>
-                </Formik>
+            <div className='flex items-center justify-center'>
+              <button
+                type='submit'
+                className='w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+              >
+                {loading ? 'Loading...' : 'Submit'}
+              </button>
             </div>
-        </Layout>
-    );
+          </Form>
+        </Formik>
+      </div>
+    </Layout>
+  )
 }
-export default CreateAnimal;
+export default CreateAnimal

@@ -1,0 +1,35 @@
+.round {
+  background-color: #31b0d5;
+  width: 5%;
+  padding: 7px;
+  text-align: center;
+  border-radius: 80%;
+  color: white;
+}
+.rouz {
+  background-color: #31b0d5;
+  width: 3%;
+  padding: 7px;
+  text-align: center;
+  border-radius: 80%;
+  color: white;
+}
+.animal-t {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.animalId {
+  margin-left: 10px;
+  background-color: rgb(133, 200, 32);
+  padding: 5px;
+  color: white;
+}
+
+.animal-header {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

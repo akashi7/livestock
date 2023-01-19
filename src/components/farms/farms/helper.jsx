@@ -1,19 +1,19 @@
-import {Space, Dropdown, Menu } from "antd"
-import {DownOutlined} from '@ant-design/icons';
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown, Menu, Space } from "antd";
 const menu = (
-    <Menu
-      items={[
-        {
-          key: '1',
-          label: 'Action 1',
-        },
-        {
-          key: '2',
-          label: 'Action 2',
-        },
-      ]}
-    />
-  );
+  <Menu
+    items={[
+      {
+        key: "1",
+        label: "Action 1",
+      },
+      {
+        key: "2",
+        label: "Action 2",
+      },
+    ]}
+  />
+);
 export const columns = [
   {
     title: "Name",
@@ -54,24 +54,65 @@ export const columns = [
     title: "Action",
     key: "action",
     render: (text, record) => (
-        <Space size="middle">
+      <Space size="middle">
         <Dropdown overlay={menu}>
-          <a>
+          <p>
             More <DownOutlined />
-          </a>
+          </p>
         </Dropdown>
       </Space>
     ),
   },
-]
+];
 export const data = [
   {
     name: "firstname",
     farmer: "John Brown",
-    province:'North',
-    district:'Musanze',
-    sector:'Muhoza',
-    cell:'Musanze',
-    village:'Byimana'
+    province: "North",
+    district: "Musanze",
+    sector: "Muhoza",
+    cell: "Musanze",
+    village: "Byimana",
   },
-]
+];
+
+export const columnsReports = [
+  {
+    title: "District",
+    dataIndex: "district",
+    key: "district",
+  },
+  {
+    title: "Farmers",
+    dataIndex: "farmers",
+    key: "farmers",
+  },
+  {
+    title: "Gender",
+    dataIndex: "gender",
+    key: "gender",
+  },
+  {
+    title: "gender female",
+    dataIndex: "gender_female",
+    key: "gender_female",
+  },
+  {
+    title: "gender male",
+    dataIndex: "gender_male",
+    key: "gender_male",
+  },
+  // {
+  //   title: "Action",
+  //   key: "action",
+  //   render: (text, record) => (
+  //     <Space size="middle">
+  //       <Dropdown overlay={menu}>
+  //         <p>
+  //           More <DownOutlined />
+  //         </p>
+  //       </Dropdown>
+  //     </Space>
+  //   ),
+  // },
+];

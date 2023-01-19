@@ -1,0 +1,162 @@
+.hr {
+  border-bottom: 1px solid #31b0d5;
+  text-align: center;
+  width: 50%;
+  margin-top: 10px;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.rhb {
+  font-size: 18px;
+  color: #31b0d5;
+}
+
+.left-s {
+  width: 65%;
+}
+.right-s {
+  width: 25%;
+}
+
+.layout-container {
+  height: 100%;
+}
+
+.rt-container {
+  display: flex;
+  padding: 5px;
+  margin: 7px;
+  flex-direction: row;
+  width: 120%;
+  border: 1px solid #31b0d5;
+}
+
+.line-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.leftContainer {
+  width: 100%;
+  margin-left: 150px;
+  padding: 20px;
+  background-color: white;
+  height: 100%;
+  overflow-y: auto;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 10px;
+}
+.title {
+  color: #31b0d5;
+  font-weight: 'bold';
+  font-size: 20px;
+}
+.subd-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.detailsContainer {
+  margin: 10px;
+}
+.second {
+  padding-left: 10px;
+  font-size: 15px;
+}
+.first {
+  font-weight: bold;
+  font-size: 15px;
+  width: 130px;
+}
+.input-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.fui {
+  width: 120px;
+}
+.ll {
+  width: 30%;
+}
+.lv {
+  width: 30%;
+}
+.animal-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+#scroll::-webkit-scrollbar {
+  width: 10px;
+}
+#scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+#scroll::-webkit-scrollbar-thumb {
+  background-color: #31b0d5;
+  outline: 1px solid #31b0d5;
+}
+
+.kkpoer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px;
+  margin: 5px;
+}
+.span {
+  width: 100px;
+  line-height: 50px;
+}
+.cont {
+  margin: 0 auto;
+  width: 60%;
+}
+
+.animal-create-h {
+  border-bottom: 1px solid #31b0d5;
+  padding: 5px;
+}
+.animal-create-h p {
+  font-size: 20px;
+  color: #31b0d5;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.isG {
+  background-color: #31b0d5;
+  color: white;
+  border-radius: 25px;
+  width: 32px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 992px) and (min-width: 1200px) {
+  .leftContainer {
+    padding: 60px;
+  }
+}
