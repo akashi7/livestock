@@ -72,3 +72,15 @@ export const categoriesData = [
   "Veterinarian", 
   "Other" 
 ]
+
+export const breedAnimalStatus = [
+"Exposed",
+"Pregnant",
+"Failed",
+"Complete",
+]
+export const breedingMethod = [
+  "Natural Service",
+  "Articificial Insemination",
+  "Embryo Transfer"
+  ]

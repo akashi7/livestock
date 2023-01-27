@@ -2,6 +2,9 @@ import * as http from './api'
 export const createAnimal = (data) => {
   return http.POST('animal/create', data)
 }
+export const editAnimal = (id, data) => {
+  return http.PUT(`animal/${id} `, data)
+}
 export const createGroupAnimal = (data) => {
   return http.POST('livestock_groups/create', data)
 }
@@ -103,6 +106,14 @@ export const createAnimalYield = (id, data) => {
 
 export const ListAnimalYield = (id) => {
   return http.GET(`yield/animal/${id}/check/all`)
+}
+
+export const createAnimalBreed = (id, data) => {
+  return http.POST(`breeding/animal/${id}/create`, data)
+}
+
+export const ListAnimalBreed = (id) => {
+  return http.GET(`breeding/animal/${id}/check/all`)
 }
 
 //activities/animal/1/check/all

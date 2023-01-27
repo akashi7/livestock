@@ -4,5 +4,6 @@ import AddSeekBayModal from "./addSeekBay";
 import AddYieldModal from "./addYield";
 import OneNoteModal from "./oneNote";
 import AddGroupModal from "./addGroup";
-export { AddFeedModal, AddSeekBayModal, AddNotesModal, AddYieldModal, OneNoteModal,AddGroupModal };
+import AddBreedModal from "./addBreedModal";
+export { AddFeedModal, AddSeekBayModal, AddNotesModal, AddYieldModal, OneNoteModal,AddGroupModal,AddBreedModal };
 

@@ -66,6 +66,17 @@ export const AddYieldSchema = Yup.object().shape({
     description: Yup.string().required("description is Required"),
 })
 
+export const AddBreedSchema = Yup.object().shape({
+   update_animal_status: Yup.string().required("animal is Required"),
+   date: Yup.string().required("date is Required"),
+   breeding_method: Yup.string().required("breeding_method is Required"),
+   technicial: Yup.string().required("technicial is Required"),
+   amount: Yup.string().required("amount is Required"),
+   cost: Yup.string().required("cost is Required"),
+   unit: Yup.string().required("unit is Required"),
+   description: Yup.string().required("description is Required"),
+})
+
 
 export const AddNotesSchema = Yup.object().shape({
   date: Yup.string().required("Date is Required"),

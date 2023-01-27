@@ -53,10 +53,10 @@ const menus = [
             label: `Animal`,
             key: `/${mainRoute}/add-animal`,
           },
-          {
-            label: `Animal Group`,
-            key: `/${mainRoute}/add-animal-group`,
-          },
+          // {
+          //   label: `Animal Group`,
+          //   key: `/${mainRoute}/add-animal-group`,
+          // },
           // {
           //   label: `Sickbay`,
           //   key: `/${mainRoute}/add-sickbay`,
@@ -209,6 +209,10 @@ export const getAnchors = (id) => {
     {
       label: 'Yield',
       key: `/${mainRoute}/animal-yields`,
+    },
+    {
+      label: 'Breeding',
+      key: `/${mainRoute}/animal-breeds`,
     },
   ]
 }

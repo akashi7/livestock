@@ -1,21 +1,25 @@
-import { Layout, Table } from 'antd'
+import { Layout } from 'antd'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addAnimalGroup,
   getAllAnimalsGroup,
+  handleState,
 } from '../../../state/slices/animal.slice'
+import { getAllFarms } from '../../../state/slices/farm.slice'
 import '../animal.css'
 import { AddGroupModal } from '../modals'
-import { AnimalsGroupcolumns } from './helper'
 
 function ListAnimalsGroup() {
   const dispatch = useDispatch()
   const { animalsGroupData, createAnimalGroup } = useSelector(
     (state) => state.animal
   )
+  const { get } = useSelector((state) => state.farm)
   useEffect(() => {
     dispatch(getAllAnimalsGroup())
+    dispatch(getAllFarms())
+
     /* eslint-disable-next-line */
   }, [])
 
@@ -43,16 +47,19 @@ function ListAnimalsGroup() {
             getAnimals={getAllAnimalsGroup}
             addAnimal={addAnimalGroup}
             createAnimalGroup={createAnimalGroup}
+            Farms={get}
+            defaultState={handleState}
           />
         )}
       </div>
-      <div>
+      <br />
+      {/* <div>
         <Table
           columns={AnimalsGroupcolumns}
           dataSource={animalsGroupData.data}
           loading={animalsGroupData.loading}
         />
-      </div>
+      </div> */}
     </Layout>
   )
 }

@@ -563,3 +563,42 @@ export const YieldsColumn = [
     key: 'Price',
   },
 ]
+
+export const BreedsColumn = [
+  {
+    title: 'Date',
+    dataIndex: 'date',
+    key: 'date',
+    render: (text) => moment(text).format('MM/DD/YYYY'),
+  },
+  {
+    title: 'Description',
+    dataIndex: 'description',
+    key: 'description',
+  },
+  {
+    title: 'animal status',
+    dataIndex: 'update_animal_status',
+    key: 'update_animal_status',
+  },
+  {
+    title: 'breeding method',
+    dataIndex: 'breeding_method',
+    key: 'breeding_method',
+  },
+  {
+    title: 'Technicial',
+    dataIndex: 'technicial',
+    key: 'technicial',
+  },
+  {
+    title: 'Amount',
+    dataIndex: 'amount',
+    key: 'amount',
+  },
+  {
+    title: 'Cost',
+    dataIndex: 'cost',
+    key: 'cost',
+  },
+]
