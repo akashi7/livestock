@@ -4,12 +4,13 @@
   flex-direction: row;
   justify-content: center;
 }
-.ri {
+.ru {
   margin-bottom: 20px;
   width: 100%;
 }
-.s-input {
-  width: 40%;
+.s-inputs {
+  width: 20%;
+  margin: 4px;
 }
 .s-button {
   margin-left: 30px;

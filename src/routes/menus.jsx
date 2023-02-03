@@ -154,13 +154,17 @@ const menus = [
     icon: <AccountBookOutlined />,
     children: [
       {
-        label: `Farm Reports`,
-        key: `/${mainRoute}/farm-reports`,
+        label: `Treatment`,
+        key: `/${mainRoute}/report/treatment`,
       },
-      // {
-      //   label: `Animal Reports`,
-      //   key: `/${mainRoute}/animal-reports`,
-      // },
+      {
+        label: `Due dates`,
+        key: `/${mainRoute}/report/duedates`,
+      },
+      {
+        label: `Reproduction`,
+        key: `/${mainRoute}/report/reproduction`,
+      },
     ],
   },
 ]
@@ -213,6 +217,31 @@ export const getAnchors = (id) => {
     {
       label: 'Breeding',
       key: `/${mainRoute}/animal-breeds`,
+    },
+  ]
+}
+
+export const getGroupAnchors = (id) => {
+  return [
+    {
+      label: `Details`,
+      key: `/${mainRoute}/groupanimal/${id}`,
+    },
+    {
+      label: 'Notes',
+      key: `/${mainRoute}/groupanimal`,
+    },
+    {
+      label: 'Feeding',
+      key: `/${mainRoute}/groupanimal`,
+    },
+    {
+      label: 'SickBay',
+      key: `/${mainRoute}/groupanimal`,
+    },
+    {
+      label: 'Task',
+      key: `/${mainRoute}/groupanimal`,
     },
   ]
 }

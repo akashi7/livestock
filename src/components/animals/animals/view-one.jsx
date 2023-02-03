@@ -1,7 +1,7 @@
 import { Layout } from 'antd'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {
   GetAllanimalActivities,
   SeeOneAnimal,
@@ -12,8 +12,6 @@ import '../animal.css'
 import AnimalDetails from './animal-details'
 
 export default function OneAnimal() {
-  const location = useLocation()
-  const State = location.state
   const { animal, activities } = useSelector((state) => state.animal)
   const { id } = useParams()
   const dispatch = useDispatch()
@@ -23,11 +21,6 @@ export default function OneAnimal() {
     dispatch(GetAllanimalActivities({ param: id }))
     //eslint-disable-next-line
   }, [id])
-
-  useEffect(() => {
-    if (State) {
-    }
-  }, [State])
 
   return (
     <Layout className='layout-container'>

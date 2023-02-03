@@ -73,6 +73,10 @@ export const createTreatment = (resName, id, data) => {
   return http.POST(`treatment/${resName}/${id}/create`, data)
 }
 
+export const createAccounting = (id, data) => {
+  return http.POST(`accounting/animal/${id}/create`, data)
+}
+
 export const listAccounting = (id) => {
   return http.GET(`accounting/animal/${id}/check/all`)
 }
@@ -115,5 +119,27 @@ export const createAnimalBreed = (id, data) => {
 export const ListAnimalBreed = (id) => {
   return http.GET(`breeding/animal/${id}/check/all`)
 }
+
+export const SearchAnimalGroup = (param) => {
+  return http.GET(`animal?name=${param.name}`)
+}
+
+export const AddAnimalToGroup = (groupId, animalId) => {
+  return http.PUT(`animal/${animalId}/${groupId}`)
+}
+
+export const viewGroupAnimal = (groupId) => {
+  return http.GET(`livestock_groups/${groupId}`)
+}
+export const GetTreatmentReport = () => {
+  return http.GET(`reports/livestock/treatments`)
+}
+
+export const GetreportTypes = () => {
+  return http.GET(`reports/types`)
+}
+
+
+
 
 //activities/animal/1/check/all

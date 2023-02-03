@@ -14,6 +14,8 @@ export default function AddGroupModal({
   createAnimalGroup,
   Farms,
   defaultState,
+  setTrigger,
+  setData,
 }) {
   const initialValues = {
     name: '',
@@ -51,10 +53,15 @@ export default function AddGroupModal({
   }
 
   useEffect(() => {
-    if (createAnimalGroup && createAnimalGroup.data) {
+    if (createAnimalGroup && createAnimalGroup.data && state.type === 'set') {
       navigate(`/vt/animal/${createAnimalGroup.data.id}/edit`, {
         state: createAnimalGroup.data,
       })
+    }
+    if (createAnimalGroup && createAnimalGroup.data && state.type === 'basic') {
+      setTrigger(true)
+      Toogle(false)
+      setData(createAnimalGroup.data)
     }
     return () => dispatch(defaultState())
     //eslint-disable-next-line

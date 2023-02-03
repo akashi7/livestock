@@ -3,6 +3,7 @@ import { Dropdown, Menu, Space } from 'antd'
 import moment from 'moment'
 import { FaEye, FaTrash } from 'react-icons/fa'
 import { FiEdit2 } from 'react-icons/fi'
+import { IoIosAddCircle } from 'react-icons/io'
 
 const menu = (
   <Menu
@@ -82,68 +83,45 @@ export function getAnimalColums(dispatch) {
   ]
 }
 
-export const AnimalsGroupcolumns = [
+export const AnimalsGroupcolumns = (Dispatch) => [
   {
-    title: 'Id',
-    dataIndex: 'id',
-    key: 'id',
+    title: 'Date',
+    dataIndex: 'createdAt',
+    key: 'createdAt',
+    render: (text) => moment(text).format('MM/DD/YYYY'),
   },
   {
-    title: 'Name',
+    title: 'Description',
+    dataIndex: 'description',
+    key: 'description',
+  },
+  {
+    title: 'Group qty',
+    dataIndex: 'group_qty',
+    key: 'group_qty',
+  },
+  {
+    title: 'Name"',
     dataIndex: 'name',
     key: 'name',
   },
   {
-    title: 'Animal Category',
-    dataIndex: 'animalCategoryId',
-    key: 'animalCategoryId',
-  },
-  {
-    title: 'Purpose',
-    dataIndex: 'purposeId',
-    key: 'purposeId',
-  },
-  {
-    title: 'Number"',
-    dataIndex: 'number',
-    key: 'number',
-  },
-  {
-    title: 'Birthdate',
-    dataIndex: 'birthdate',
-    key: 'birthdate',
-  },
-  {
-    title: 'Female Number',
-    dataIndex: 'maleNumber',
-    key: 'maleNumber',
-  },
-  {
-    title: 'Male Number',
-    dataIndex: 'maleNumber',
-    key: 'maleNumber',
-  },
-  {
-    title: 'parent',
-    dataIndex: 'parent',
-    key: 'parent',
-  },
-  {
-    title: 'Expected_exit',
-    dataIndex: 'expected_exit',
-    key: 'expected_exit',
+    title: 'Type',
+    dataIndex: 'type',
+    key: 'type',
   },
   {
     title: 'Action',
     key: 'action',
     render: (text, record) => (
-      <Space size='middle'>
-        <Dropdown overlay={menu}>
-          <p>
-            More <DownOutlined />
-          </p>
-        </Dropdown>
-      </Space>
+      <div className=''>
+        <FaEye
+          size={22}
+          color={'#31b0d5'}
+          onClick={() => Dispatch(record)}
+          className='cursor-pointer'
+        />
+      </div>
     ),
   },
 ]
@@ -397,6 +375,7 @@ export const TreatmentsColumn = [
     title: 'Retreat date',
     dataIndex: 'retreat_date',
     key: 'retreat_date',
+    render: (text) => moment(text).format('MM/DD/YYYY'),
   },
   {
     title: 'technician',
@@ -423,9 +402,46 @@ export const accountColumns = [
     render: (text) => moment(text).format('MM/DD/YYYY'),
   },
   {
+    title: 'description',
+    dataIndex: 'description',
+    key: 'description',
+  },
+  {
+    title: 'category',
+    dataIndex: 'category',
+    key: 'category',
+  },
+  {
     title: 'type',
     dataIndex: 'type',
     key: 'type',
+    render: (text, row) => (
+      <div>
+        {row.type === 'expense' ? (
+          <p
+            style={{
+              color: 'white',
+              backgroundColor: 'red',
+              padding: '5px',
+              width: 'fit-content',
+            }}
+          >
+            {text}
+          </p>
+        ) : (
+          <p
+            style={{
+              color: 'white',
+              backgroundColor: 'green',
+              padding: '5px',
+              width: 'fit-content',
+            }}
+          >
+            {text}{' '}
+          </p>
+        )}
+      </div>
+    ),
   },
   {
     title: 'amount',
@@ -440,17 +456,6 @@ export const accountColumns = [
         )}
       </div>
     ),
-  },
-
-  {
-    title: 'description',
-    dataIndex: 'description',
-    key: 'description',
-  },
-  {
-    title: 'category',
-    dataIndex: 'category',
-    key: 'category',
   },
 ]
 
@@ -600,5 +605,42 @@ export const BreedsColumn = [
     title: 'Cost',
     dataIndex: 'cost',
     key: 'cost',
+  },
+]
+
+export const SearchedAnimal = (dispatch) => [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (text, record) => (
+      <div className='text-center'>
+        <IoIosAddCircle
+          size={22}
+          color={'#31b0d5'}
+          onClick={() => dispatch(record)}
+          className='cursor-pointer'
+        />
+      </div>
+    ),
   },
 ]

@@ -36,6 +36,10 @@ import ListNotes from '../components/animals/animals/notes'
 import ListAnimalYields from '../components/animals/animals/yield'
 import EditAnimal from '../components/animals/animals/edit'
 import ListAnimalBreeding from '../components/animals/animals/breeding'
+import ViewOneGroup from '../components/animals/animals/one-group'
+import TreatmentReport from '../components/reports/report/treatments'
+import DueDateReport from '../components/reports/report/duedates'
+import ReproductionReport from '../components/reports/report/reproduction'
 function DashRoutes() {
   return (
     <Layout className='h-[100vh]'>
@@ -81,6 +85,13 @@ function DashRoutes() {
             <Route path='/animal-notes' element={<ListNotes />} />
             <Route path='/animal-yields' element={<ListAnimalYields />} />
             <Route path='/animal-breeds' element={<ListAnimalBreeding />} />
+            <Route path='/group-animal/:id' element={<ViewOneGroup />} />
+            <Route path='/report/treatment' element={<TreatmentReport />} />
+            <Route path='/report/duedates' element={<DueDateReport />} />
+            <Route
+              path='/report/reproduction'
+              element={<ReproductionReport />}
+            />
           </Routes>
         </ContentWrapper>
       </Layout>

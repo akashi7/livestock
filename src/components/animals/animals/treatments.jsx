@@ -63,11 +63,14 @@ export default function TreatmentsList() {
             )}
           </div>
           <br />
-          <div style={{ margin: '10px' }}>
+          <div style={{ margin: '10px', width: '100%' }}>
             <Table
               columns={TreatmentsColumn}
               dataSource={treatments.data}
               loading={treatments.loading}
+              pagination={{
+                defaultPageSize: 5,
+              }}
             />
           </div>
         </div>

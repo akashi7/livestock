@@ -17,7 +17,7 @@ export const addFarmerSchema = Yup.object().shape({
   name: Yup.string().required("name is Required"),
   on_feed: Yup.boolean().required("on_feed is Required"),
   purchase_price: Yup.number().required("purchase_price is Required"),
-  purchased: Yup.boolean().required("purchased is Required"),
+  // purchased: Yup.boolean().required("purchased is Required"),
   retention_score: Yup.number().required("retention_score is Required"),
   status: Yup.string().required("status is Required"),
   // weight: Yup.number().required("weight is Required"),
@@ -54,6 +54,17 @@ export const AddFeedSchema = Yup.object().shape({
   // animalCategoryId: Yup.string().required("animalCategoryId is Required"),
   quantity: Yup.string().required("quantity is Required"),
   feedId: Yup.string().required("feedId is Required"),
+});
+
+export const AddAccountSchema = Yup.object().shape({
+  // type: Yup.string().required("type is Required"),
+    amount: Yup.number().required("amount is Required and a number"),
+    date: Yup.string().required("date is Required"),
+    // vendor: Yup.string().required("vendor is Required"),
+    category: Yup.string().required("category is Required"),
+    check_number: Yup.string().required("check_number is Required"),
+    keywords: Yup.string().required("keywords is Required"),
+    description: Yup.string().required("description is Required"),
 });
 
 export const AddYieldSchema = Yup.object().shape({
