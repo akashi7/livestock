@@ -1,5 +1,8 @@
-import { Layout, Table } from 'antd'
+import { Layout } from 'antd'
+import moment from 'moment'
 import { useEffect, useState } from 'react'
+import { FaTrash } from 'react-icons/fa'
+import { FiEdit2 } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   CreateAnimalNotes,
@@ -12,7 +15,6 @@ import MenuBar from '../../common/menubar/menubar'
 import Search from '../../common/search'
 import '../animal.css'
 import { AddNotesModal, OneNoteModal } from '../modals'
-import { NotesColumn } from './helper'
 
 function ListNotes() {
   const dispatch = useDispatch()
@@ -81,15 +83,38 @@ function ListNotes() {
           <br />
           <div style={{ margin: '10px' }}>
             <div>
-              <Table
-                columns={NotesColumn(DispatchOneNote)}
-                dataSource={allNotes.data}
-                loading={allNotes.loading}
-                rowKey={(notes) => notes.id}
-                pagination={{
-                  defaultPageSize: 5,
-                }}
-              />
+              {allNotes.data.map((note, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    className='flex justify-between m-[10px] w-[100%] items-center bg-smoke p-[10px] border-l-4 border-blue'
+                  >
+                    <div className='flex flex-col'>
+                      <p className='m-1'>
+                        {' '}
+                        {moment(note.date).format('MM/DD/YYYY')}{' '}
+                      </p>
+                      <p className='m-1'> {note.description} </p>
+                      <p className='bg-black w-[100%] p-[5px] text-white m-1'>
+                        {' '}
+                        {note.category}{' '}
+                      </p>
+                    </div>
+                    <div className='flex justify-between  items-center'>
+                      <FiEdit2
+                        size={22}
+                        color={'#31b0d5'}
+                        className='cursor-pointer m-[5px]'
+                      />
+                      <FaTrash
+                        size={19}
+                        color={'#C70000'}
+                        className='cursor-pointer m-[5px]'
+                      />
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>

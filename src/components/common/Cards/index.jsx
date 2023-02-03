@@ -1,6 +1,6 @@
 import './index.css'
 
-export default function AnimalCard({ props, round }) {
+export default function AnimalCard({ props, round, group }) {
   return (
     <div className='animal-header'>
       {props.name && (
@@ -10,7 +10,11 @@ export default function AnimalCard({ props, round }) {
         </div>
       )}
       <h3 className='animal-t'>{props.name}</h3>
-      <h3 className='animalId'> {props.earring_num} </h3>
+      <h3 className='animalId'>
+        {' '}
+        {/* {group?"":} */}
+        {props.earring_num ? props.earring_num : 'N/A'}{' '}
+      </h3>
     </div>
   )
 }

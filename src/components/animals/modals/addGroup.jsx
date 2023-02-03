@@ -1,7 +1,8 @@
 import { Modal, notification } from 'antd'
 import { Form, Formik } from 'formik'
-import { useState } from 'react'
-import { InputText, InputTextArea } from '../../common/input'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import { AddGroupSchema } from '../validations'
 
 export default function AddGroupModal({
@@ -11,12 +12,18 @@ export default function AddGroupModal({
   getAnimals,
   addAnimal,
   createAnimalGroup,
+  Farms,
+  defaultState,
+  setTrigger,
+  setData,
 }) {
   const initialValues = {
     name: '',
     description: '',
     farm_id: 1,
   }
+
+  const navigate = useNavigate()
 
   const [state, setState] = useState({
     type: 'set',
@@ -28,6 +35,13 @@ export default function AddGroupModal({
     })
   }
 
+  useEffect(() => {
+    setFarmers()
+    /* eslint-disable-next-line */
+  }, [Farms.data])
+
+  const [farmers, setfarmers] = useState([])
+
   function navigates() {
     dispatch(getAnimals())
     notification.success({
@@ -36,12 +50,38 @@ export default function AddGroupModal({
       duration: 3,
       key: 'success',
     })
-    Toogle(false)
   }
+
+  useEffect(() => {
+    if (createAnimalGroup && createAnimalGroup.data && state.type === 'set') {
+      navigate(`/vt/animal/${createAnimalGroup.data.id}/edit`, {
+        state: createAnimalGroup.data,
+      })
+    }
+    if (createAnimalGroup && createAnimalGroup.data && state.type === 'basic') {
+      setTrigger(true)
+      Toogle(false)
+      setData(createAnimalGroup.data)
+    }
+    return () => dispatch(defaultState())
+    //eslint-disable-next-line
+  }, [createAnimalGroup])
 
   function handleSubmit(values) {
     values.type = state.type
     dispatch(addAnimal({ data: values, success: navigates }))
+  }
+
+  function setFarmers() {
+    let array = []
+    Farms.data.map((item) => {
+      array.push({
+        value: item.id,
+        label: item.name,
+      })
+      return true
+    })
+    setfarmers(array)
   }
 
   return (
@@ -75,6 +115,19 @@ export default function AddGroupModal({
                   />
                 </div>
               </div>
+
+              <div className='kkpoer'>
+                <span className='span'>Farmers</span>
+                <div className='w-[80%]'>
+                  <InputSelect
+                    name='farm_id'
+                    height={'20px'}
+                    options={farmers}
+                    // label="Select Farm"
+                  />
+                </div>
+              </div>
+
               <div className='kkpoer'>
                 <span className='span'>Description</span>
                 <div className='w-[80%]'>

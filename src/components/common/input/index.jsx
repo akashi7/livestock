@@ -51,7 +51,7 @@ export const InputTextArea = ({ label, height, ...props }) => {
   const [field, meta] = useField(props)
   return (
     <>
-      <div lassName='relative z-0'>
+      <div className='relative z-0'>
         <label className='font-small'>{label}</label>
         <textarea
           className='p-2 h-[100px] appearance-none border border-white-500 rounded w-full  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'

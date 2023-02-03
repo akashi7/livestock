@@ -17,7 +17,7 @@ export const addFarmerSchema = Yup.object().shape({
   name: Yup.string().required("name is Required"),
   on_feed: Yup.boolean().required("on_feed is Required"),
   purchase_price: Yup.number().required("purchase_price is Required"),
-  purchased: Yup.boolean().required("purchased is Required"),
+  // purchased: Yup.boolean().required("purchased is Required"),
   retention_score: Yup.number().required("retention_score is Required"),
   status: Yup.string().required("status is Required"),
   // weight: Yup.number().required("weight is Required"),
@@ -56,6 +56,17 @@ export const AddFeedSchema = Yup.object().shape({
   feedId: Yup.string().required("feedId is Required"),
 });
 
+export const AddAccountSchema = Yup.object().shape({
+  // type: Yup.string().required("type is Required"),
+    amount: Yup.number().required("amount is Required and a number"),
+    date: Yup.string().required("date is Required"),
+    // vendor: Yup.string().required("vendor is Required"),
+    category: Yup.string().required("category is Required"),
+    check_number: Yup.string().required("check_number is Required"),
+    keywords: Yup.string().required("keywords is Required"),
+    description: Yup.string().required("description is Required"),
+});
+
 export const AddYieldSchema = Yup.object().shape({
    qty: Yup.string().required("Quantity is Required"),
     date: Yup.string().required("date is Required"),
@@ -64,6 +75,17 @@ export const AddYieldSchema = Yup.object().shape({
     grade: Yup.string().required("grade is Required"),
     Price: Yup.string().required("Price is Required"),
     description: Yup.string().required("description is Required"),
+})
+
+export const AddBreedSchema = Yup.object().shape({
+   update_animal_status: Yup.string().required("animal is Required"),
+   date: Yup.string().required("date is Required"),
+   breeding_method: Yup.string().required("breeding_method is Required"),
+   technicial: Yup.string().required("technicial is Required"),
+   amount: Yup.string().required("amount is Required"),
+   cost: Yup.string().required("cost is Required"),
+   unit: Yup.string().required("unit is Required"),
+   description: Yup.string().required("description is Required"),
 })
 
 

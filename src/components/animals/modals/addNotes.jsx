@@ -1,6 +1,6 @@
 import { Col, Modal, Row, notification } from 'antd'
 import { Form, Formik } from 'formik'
-import { InputSelect, InputText } from '../../common/input'
+import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import { categoriesData } from '../data/data'
 import { AddNotesSchema } from '../validations'
 
@@ -83,9 +83,8 @@ export default function AddNotesModal({
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
-                <InputText
+                <InputTextArea
                   name='description'
-                  type='text'
                   placeholder='description'
                   label='Description'
                 />

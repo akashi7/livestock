@@ -1,65 +1,16 @@
 import moment from 'moment'
 import { FaTrash } from 'react-icons/fa'
 import { FiEdit2 } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 import AnimalCard from '../../common/Cards'
 import '../animal.css'
 
 export default function AnimalDetails({ props, activities }) {
-  // age: "6 days";
-  // animalCategory_id: 4;
-  // birth_date: "2022-11-15T00:00:00.000Z";
-  // birth_weight: "7";
-  // bred_date: null;
-  // breed: "uyewq";
-  // breed_id: null;
-  // breeding_status: "Pregnant";
-  // breeding_stock: "false";
-  // coloring: "yuffv";
-  // condition_score: "5";
-  // contact_id: null;
-  // createdAt: "2022-11-21T11:52:09.048Z";
-  // createdBy: 2;
-  // death_date: null;
-  // deceased_reason: null;
-  // description: "vaccinate animal 201";
-  // earring_num: "56554";
-  // electronic_id: "ytrewsrty";
-  // estimated_value: null;
-  // farm_id: 1;
-  // father_id: null;
-  // feed: null;
-  // gender: "Female";
-  // group_id: null;
-  // group_qty: null;
-  // harvest_label: "utreyycdd";
-  // harvest_unit: "Lost";
-  // height: "80";
-  // id: 3;
-  // internal_id: null;
-  // is_group: false;
-  // is_neutered: false;
-  // keywords: "ytrewr";
-  // market_price: null;
-  // measurement_date: null;
-  // mother_id: null;
-  // name: "develop";
-  // on_feed: false;
-  // other_tag_number: null;
-  // purchase_date: null;
-  // purchase_price: "0";
-  // purchased: false;
-  // purchased_from_id: null;
-  // purpose_id: 1;
-  // registry_number: "6543123";
-  // retention_score: "76";
-  // sale_date: null;
-  // sale_price: null;
-  // sold_to: null;
-  // status: "active";
-  // tag_color: "uytre";
-  // tag_number: "65432";
-  // updatedAt: "2022-11-21T11:52:09.048Z";
-  // weight: "20";
+  const navigate = useNavigate()
+
+  function navigates(id, prop) {
+    navigate(`/vt/animal/${id}/edit`, { state: prop })
+  }
 
   return (
     <div className='container'>
@@ -201,7 +152,12 @@ export default function AnimalDetails({ props, activities }) {
           <br />
           <div className='icons'>
             <p className='rhb'> Recent activities </p>
-            <FiEdit2 size={22} color={'#31b0d5'} className='cursor-pointer' />
+            <FiEdit2
+              size={22}
+              color={'#31b0d5'}
+              className='cursor-pointer'
+              onClick={() => navigates(props.id, props)}
+            />
             <FaTrash size={19} color={'#C70000'} className='cursor-pointer' />
           </div>
           <br />

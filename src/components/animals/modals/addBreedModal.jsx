@@ -1,9 +1,10 @@
 import { Col, Modal, Row, notification } from 'antd'
 import { Form, Formik } from 'formik'
-import { InputText, InputTextArea } from '../../common/input'
-import { AddYieldSchema } from '../validations'
+import { InputText, InputTextArea, InputSelect } from '../../common/input'
+import { AddBreedSchema } from '../validations'
+import { breedAnimalStatus, breedingMethod } from '../data/data'
 
-export default function AddYieldModal({
+export default function AddBreedModal({
   Toogle,
   toogle,
   CreateYield,
@@ -13,12 +14,13 @@ export default function AddYieldModal({
   yields,
 }) {
   const initialValues = {
-    qty: '',
     date: '',
-    batch_number: '',
-    trace_number: '',
-    grade: '',
-    Price: '',
+    update_animal_status: '',
+    breeding_method: '',
+    technicial: '',
+    amount: '',
+    unit: '',
+    cost: '',
     description: '',
   }
 
@@ -26,7 +28,7 @@ export default function AddYieldModal({
     dispatch(yields({ param: id }))
     notification.success({
       placement: 'topRight',
-      message: 'Animal Yield Added Successfully',
+      message: 'Animal Breed Added Successfully',
       duration: 3,
       key: 'success',
     })
@@ -39,7 +41,7 @@ export default function AddYieldModal({
 
   return (
     <Modal
-      title='Add Yield'
+      title='Add Breed'
       centered
       visible={toogle}
       onOk={() => Toogle(false)}
@@ -50,13 +52,13 @@ export default function AddYieldModal({
       <div className='p-4 w-[100%] h-auto bg-white sm:p-6 lg:p-8'>
         <Formik
           initialValues={initialValues}
-          validationSchema={AddYieldSchema}
+          validationSchema={AddBreedSchema}
           onSubmit={handleSubmit}
         >
           <Form className='space-y-12' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className='gutter-row' span={24}>
-                <p className='text-blue'>Add Yield</p>
+                <p className='text-blue'>Add Breed</p>
               </Col>
 
               <Col className='gutter-row mt-10' span={12}>
@@ -68,43 +70,59 @@ export default function AddYieldModal({
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
-                <InputText
-                  name='qty'
-                  type='text'
-                  placeholder='quantity'
-                  label='Quantity'
+                <InputSelect
+                  name='update_animal_status'
+                  label='status'
+                  options={breedAnimalStatus.map((status) => {
+                    return {
+                      value: status,
+                      label: status,
+                    }
+                  })}
+                />
+              </Col>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputSelect
+                  name='breeding_method'
+                  label='method'
+                  options={breedingMethod.map((method) => {
+                    return {
+                      value: method,
+                      label: method,
+                    }
+                  })}
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='batch_number'
+                  name='technicial'
                   type='text'
-                  placeholder='batch_number'
-                  label='batch number'
+                  placeholder='technicial'
+                  label='technicial'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='trace_number'
+                  name='amount'
                   type='text'
-                  placeholder='trace_number'
-                  label='trace number'
+                  placeholder='amount'
+                  label='Amount'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='grade'
+                  name='unit'
                   type='text'
-                  placeholder='grade'
-                  label='grade'
+                  placeholder='unit'
+                  label='Unit'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='Price'
+                  name='cost'
                   type='text'
-                  placeholder='Price'
-                  label='Price'
+                  placeholder='Cost'
+                  label='Cost'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>

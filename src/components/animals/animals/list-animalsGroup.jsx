@@ -4,25 +4,43 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   addAnimalGroup,
   getAllAnimalsGroup,
+  handleState,
+  searchAnimalAction,
+  AddToGroup,
 } from '../../../state/slices/animal.slice'
+import { getAllFarms } from '../../../state/slices/farm.slice'
 import '../animal.css'
-import { AddGroupModal } from '../modals'
+import { AddGroupModal, SearchAnimalModal } from '../modals'
 import { AnimalsGroupcolumns } from './helper'
+import { useNavigate } from 'react-router-dom'
 
 function ListAnimalsGroup() {
   const dispatch = useDispatch()
-  const { animalsGroupData, createAnimalGroup } = useSelector(
-    (state) => state.animal
-  )
+  const navigate = useNavigate()
+  const {
+    animalsGroupData,
+    createAnimalGroup,
+    searchedAnimal,
+    addToGroupState,
+  } = useSelector((state) => state.animal)
+  const { get } = useSelector((state) => state.farm)
   useEffect(() => {
     dispatch(getAllAnimalsGroup())
+    dispatch(getAllFarms())
     /* eslint-disable-next-line */
   }, [])
 
   const [toogle, setToogle] = useState(false)
+  const [trigger, setTrigger] = useState(false)
+  const [Data, setData] = useState(null)
 
   function Toogle() {
     setToogle(!toogle)
+  }
+
+  function Dispatch(groupanimal) {
+    localStorage.setItem('gId', groupanimal.id)
+    navigate(`/vt/group-animal/${groupanimal.id}`)
   }
 
   return (
@@ -43,14 +61,34 @@ function ListAnimalsGroup() {
             getAnimals={getAllAnimalsGroup}
             addAnimal={addAnimalGroup}
             createAnimalGroup={createAnimalGroup}
+            Farms={get}
+            defaultState={handleState}
+            setData={setData}
+            setTrigger={setTrigger}
+          />
+        )}
+        {trigger && (
+          <SearchAnimalModal
+            toogle={trigger}
+            Toogle={setTrigger}
+            names={Data?.name}
+            searchAnimalAction={searchAnimalAction}
+            dispatch={dispatch}
+            searchedAnimal={searchedAnimal}
+            addToGroupState={addToGroupState}
+            AddToGroup={AddToGroup}
+            groupAnimalId={Data?.id}
+            defaultState={handleState}
           />
         )}
       </div>
+      <br />
       <div>
         <Table
-          columns={AnimalsGroupcolumns}
+          columns={AnimalsGroupcolumns(Dispatch)}
           dataSource={animalsGroupData.data}
           loading={animalsGroupData.loading}
+          rowKey={(animals) => animals.id}
         />
       </div>
     </Layout>

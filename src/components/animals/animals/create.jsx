@@ -87,6 +87,8 @@ function CreateAnimal() {
     }, 3000)
   }
 
+  const [purchaseState, setPurchase] = useState(false)
+
   const handleSubmit = (values) => {
     values.is_group = false
     values.is_neutered = false
@@ -100,6 +102,7 @@ function CreateAnimal() {
     values.harvest_label = 'yuuu'
     values.height = '78'
     values.weight = '87'
+    values.purchased = purchaseState
     dispatch(animal({ data: values, success: navigates }))
   }
   return (
@@ -161,13 +164,13 @@ function CreateAnimal() {
             </div>
             <div className='cont'>
               <div className='kkpoer'>
-                <span className='span'>earring_num</span>
+                <span className='span'>earring num</span>
                 <div className='w-[80%]'>
                   <InputText
                     name='earring_num'
                     type='text'
                     height={'35px'}
-                    placeholder='earring_num'
+                    placeholder='earring num'
                     // label="earring_num"
                   />
                 </div>
@@ -370,11 +373,16 @@ function CreateAnimal() {
               <div className='kkpoer'>
                 <span className='span'>condition</span>
                 <div className='w-[80%]'>
-                  <InputText
+                  <InputSelect
                     name='condition_score'
-                    type='text'
-                    placeholder='condition_score'
                     height={'35px'}
+                    options={[
+                      { label: '1', value: 1 },
+                      { label: '2', value: 2 },
+                      { label: '3', value: 3 },
+                      { label: '4', value: 4 },
+                      { label: '5', value: 5 },
+                    ]}
                   />
                 </div>
               </div>
@@ -433,36 +441,39 @@ function CreateAnimal() {
                   <InputSelect
                     name='purchased'
                     height={'20px'}
+                    value={purchaseState}
                     options={purchased.map((feed) => {
                       return {
                         value: feed.value,
                         label: feed.label,
                       }
                     })}
+                    onChange={(e) => setPurchase(e.target.value)}
                   />
                 </div>
               </div>
             </div>
-            <div className='cont'>
-              <div className='kkpoer'>
-                <span className='span'>purchase price</span>
-                <div className='w-[80%]'>
-                  <InputText
-                    name='purchase_price'
-                    type='text'
-                    placeholder='purchase_price'
-                    height={'35px'}
-                  />
+            {purchaseState === 'true' && (
+              <div className='cont'>
+                <div className='kkpoer'>
+                  <span className='span'>purchase price</span>
+                  <div className='w-[80%]'>
+                    <InputText
+                      name='purchase_price'
+                      type='text'
+                      placeholder='purchase_price'
+                      height={'35px'}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              {/* <Col className="gutter-row" span={24}>
+            {/* <Col className="gutter-row" span={24}>
                 <p className="text-blue">Add Animal</p>
               </Col> */}
 
-              {/* <Col className="gutter-row" span={24}>
+            {/* <Col className="gutter-row" span={24}>
                 <br />
                 <div
                   style={{
@@ -491,28 +502,28 @@ function CreateAnimal() {
                 
               </Col> */}
 
-              {/* 
+            {/* 
               <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
 
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col>
               <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
 
-              {/* <Col className="gutter-row" span={24}>
+            {/* <Col className="gutter-row" span={24}>
                 <br />
                 <div
                   style={{
@@ -526,27 +537,27 @@ function CreateAnimal() {
                   </div>
                 </div>
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col>
               <Col className="gutter-row mt-10" span={6}>
                
               </Col> */}
 
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col>
               <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
 
-              {/* <Col className="gutter-row" span={24}>
+            {/* <Col className="gutter-row" span={24}>
                 <br />
                 <div
                   style={{
@@ -561,26 +572,26 @@ function CreateAnimal() {
                 </div>
               </Col> */}
 
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col>
               <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
 
-              {/* <Col className="gutter-row mt-10" span={6}>
+            {/* <Col className="gutter-row mt-10" span={6}>
                 
               </Col> */}
-            </Row>
+
             {/* <div className="flex items-center h-5 justify-center">
                             <Spinner />
                         </div> */}

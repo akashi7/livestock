@@ -1,8 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
+  AddAnimalToGroup,
+  GetTreatmentReport,
+  GetreportTypes,
+  ListAnimalBreed,
+  ListAnimalYield,
+  SearchAnimalGroup,
+  Vaccinate,
   allAnimalActivities,
   animalReport,
+  createAccounting,
   createAnimal,
+  createAnimalBreed,
   createAnimalNote,
   createAnimalYield,
   createCategoryData,
@@ -11,6 +20,7 @@ import {
   createMeasurement,
   createSickBay,
   createTreatment,
+  editAnimal,
   getAnimalsCatData,
   getAnimalsData,
   getAnimalsGroupData,
@@ -22,12 +32,11 @@ import {
   getOneAnimalNote,
   getPurposeData,
   listAccounting,
-  ListAnimalYield,
   listTreatment,
   listVaccination,
   retrieveAnimalNotes,
-  Vaccinate,
   vaccinationData,
+  viewGroupAnimal,
   viewOneAnimal,
 } from '../../utils/services/animal.service'
 
@@ -44,19 +53,7 @@ export const animal = createAsyncThunk(
       })
   }
 )
-export const addAnimalGroup = createAsyncThunk(
-  'create animal group',
-  async ({ data, success }, { rejectWithValue }) => {
-    return createGroupAnimal(data)
-      .then((resp) => {
-        success()
-      })
-      .catch((error) => {
-        console.log(error)
-        rejectWithValue(error)
-      })
-  }
-)
+
 export const createSickBy = createAsyncThunk(
   'create sickBy',
   async ({ resName, id, data, success }, { rejectWithValue }) => {
@@ -82,7 +79,7 @@ export const getAnimals = createAsyncThunk(
   }
 )
 export const getAllAnimalsGroup = createAsyncThunk(
-  'getAllanimalsGroup',
+  'getAllAnimalsGroup',
   async (props, { rejectWithValue }) => {
     return getAnimalsGroupData()
       .then((resp) => {
@@ -243,6 +240,21 @@ export const SeeOneAnimal = createAsyncThunk(
   }
 )
 
+export const addAnimalGroup = createAsyncThunk(
+  'create animal group',
+  async ({ data, success }, { rejectWithValue }) => {
+    return createGroupAnimal(data)
+      .then((resp) => {
+        success()
+        return resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+        rejectWithValue(error)
+      })
+  }
+)
+
 export const GetMedecinesData = createAsyncThunk(
   'medecices',
   async (props, { rejectWithValue }) => {
@@ -273,6 +285,19 @@ export const CreateTreatmentData = createAsyncThunk(
   'CreateTreatment',
   async ({ resName, id, data, success }, { rejectWithValue }) => {
     return createTreatment(resName, id, data)
+      .then((resp) => {
+        success()
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const CreateAccountingData = createAsyncThunk(
+  'creatacc',
+  async ({ id, data, success }, { rejectWithValue }) => {
+    return createAccounting(id, data)
       .then((resp) => {
         success()
       })
@@ -397,6 +422,108 @@ export const GetOneAnimalNote = createAsyncThunk(
   }
 )
 
+export const CreateAnimalBreed = createAsyncThunk(
+  'Create-animal-breed',
+  async ({ id, data, success }, { rejectWithValue }) => {
+    return createAnimalBreed(id, data)
+      .then((resp) => {
+        success()
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+export const EditAnimals = createAsyncThunk(
+  'edit-animal',
+  async ({ id, data, success }, { rejectWithValue }) => {
+    return editAnimal(id, data)
+      .then((resp) => {
+        success()
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+export const AllanimalBreeds = createAsyncThunk(
+  'all-breeds',
+  async ({ param }, { rejectWithValue }) => {
+    return ListAnimalBreed(param)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const searchAnimalAction = createAsyncThunk(
+  'search-animal',
+  async ({ param }, { rejectWithValue }) => {
+    return SearchAnimalGroup(param)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const AddToGroup = createAsyncThunk(
+  'add-animal-to-group',
+  async ({ groupId, animalId, success }, { rejectWithValue }) => {
+    return AddAnimalToGroup(groupId, animalId)
+      .then((resp) => {
+        success()
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const ViewGroupAnimal = createAsyncThunk(
+  'view-one-group-animal',
+  async ({ groupId }, { rejectWithValue }) => {
+    return viewGroupAnimal(groupId)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const ViewTreatmentReport = createAsyncThunk(
+  't-rep',
+  async (props, { rejectWithValue }) => {
+    return GetTreatmentReport()
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const ViewTypesReport = createAsyncThunk(
+  't-rep-za',
+  async (props, { rejectWithValue }) => {
+    return GetreportTypes()
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
 const initialState = {
   loading: false,
   get: {
@@ -407,7 +534,7 @@ const initialState = {
   animalsGroupData: { loading: false, data: [], error: '' },
   animalsSickBayData: { loading: false, data: [], error: '' },
   purposeData: { loading: false, data: [], error: '' },
-  createAnimalGroup: { loading: false, error: '' },
+  createAnimalGroup: { loading: false, error: '', data: null },
   createSickBy: { loading: false, error: '' },
   feedData: { loading: false, data: [] },
   createFeed: { loading: false },
@@ -477,14 +604,52 @@ const initialState = {
     loading: false,
     data: [],
   },
+  createBreed: {
+    loading: false,
+  },
+  listBreeds: {
+    loading: false,
+    data: [],
+  },
+  editAnimalS: {
+    loading: false,
+  },
+  searchedAnimal: {
+    loading: false,
+    data: [],
+  },
+  addToGroupState: {
+    loading: false,
+    status: false,
+  },
+  onegroupAnimal: {
+    loading: false,
+    data: {},
+  },
+  createAcct: {
+    loading: false,
+  },
+  treatReports: {
+    loading: false,
+    data: [],
+  },
+  typesReport: {
+    loading: false,
+    data: [],
+  },
 }
 
 const animalSlice = createSlice({
   name: 'animal',
   initialState,
   reducers: {
-    next: (state) => {
-      console.log(state)
+    handleState: (state) => {
+      state.createAnimalGroup.loading = false
+      state.createAnimalGroup.data = null
+      state.addToGroupState.loading = false
+      state.addToGroupState.status = false
+      state.searchedAnimal.loading = false
+      state.searchedAnimal.data = []
     },
   },
   extraReducers: (builder) => {
@@ -501,8 +666,9 @@ const animalSlice = createSlice({
       .addCase(addAnimalGroup.pending, (state) => {
         state.createAnimalGroup.loading = true
       })
-      .addCase(addAnimalGroup.fulfilled, (state) => {
+      .addCase(addAnimalGroup.fulfilled, (state, { payload }) => {
         state.createAnimalGroup.loading = false
+        state.createAnimalGroup.data = payload.data
       })
       .addCase(addAnimalGroup.rejected, (state) => {
         state.createAnimalGroup.loading = false
@@ -551,6 +717,7 @@ const animalSlice = createSlice({
       })
       .addCase(getAllAnimalsGroup.fulfilled, (state, { payload }) => {
         state.animalsGroupData.loading = false
+        console.log({ payload })
         state.animalsGroupData.data = payload.data
       })
       .addCase(getAllAnimalsGroup.rejected, (state) => {
@@ -769,7 +936,98 @@ const animalSlice = createSlice({
       .addCase(GetOneAnimalNote.rejected, (state) => {
         state.oneNote.loading = false
       })
+      .addCase(CreateAnimalBreed.fulfilled, (state) => {
+        state.createBreed.loading = false
+      })
+      .addCase(CreateAnimalBreed.rejected, (state) => {
+        state.createBreed.loading = false
+      })
+      .addCase(CreateAnimalBreed.pending, (state) => {
+        state.createBreed.loading = true
+      })
+      .addCase(AllanimalBreeds.fulfilled, (state, { payload }) => {
+        state.listBreeds.loading = false
+        state.listBreeds.data = payload.data
+      })
+      .addCase(AllanimalBreeds.rejected, (state) => {
+        state.listBreeds.loading = false
+      })
+      .addCase(AllanimalBreeds.pending, (state) => {
+        state.listBreeds.loading = true
+      })
+      .addCase(EditAnimals.fulfilled, (state) => {
+        state.editAnimalS.loading = false
+      })
+      .addCase(EditAnimals.rejected, (state) => {
+        state.editAnimalS.loading = false
+      })
+      .addCase(EditAnimals.pending, (state) => {
+        state.editAnimalS.loading = true
+      })
+      .addCase(searchAnimalAction.fulfilled, (state, { payload }) => {
+        state.searchedAnimal.loading = false
+        state.searchedAnimal.data = payload.data
+      })
+      .addCase(searchAnimalAction.rejected, (state) => {
+        state.searchedAnimal.loading = false
+      })
+      .addCase(searchAnimalAction.pending, (state) => {
+        state.searchedAnimal.loading = true
+      })
+      .addCase(AddToGroup.fulfilled, (state) => {
+        state.addToGroupState.loading = false
+        state.addToGroupState.status = true
+      })
+      .addCase(AddToGroup.rejected, (state) => {
+        state.addToGroupState.loading = false
+      })
+      .addCase(AddToGroup.pending, (state) => {
+        state.addToGroupState.loading = true
+      })
+      .addCase(ViewGroupAnimal.fulfilled, (state, { payload }) => {
+        state.onegroupAnimal.loading = false
+        state.onegroupAnimal.data = payload.data
+      })
+      .addCase(ViewGroupAnimal.rejected, (state) => {
+        state.onegroupAnimal.loading = false
+      })
+      .addCase(ViewGroupAnimal.pending, (state) => {
+        state.onegroupAnimal.loading = true
+      })
+      .addCase(CreateAccountingData.fulfilled, (state) => {
+        state.createAcct.loading = false
+      })
+      .addCase(CreateAccountingData.rejected, (state) => {
+        state.createAcct.loading = false
+      })
+      .addCase(CreateAccountingData.pending, (state) => {
+        state.createAcct.loading = true
+      })
+      .addCase(ViewTreatmentReport.fulfilled, (state, { payload }) => {
+        state.treatReports.loading = false
+        console.log({ payload })
+        state.treatReports.data = payload.result
+      })
+      .addCase(ViewTreatmentReport.rejected, (state) => {
+        state.treatReports.loading = false
+      })
+      .addCase(ViewTreatmentReport.pending, (state) => {
+        state.treatReports.loading = true
+      })
+      .addCase(ViewTypesReport.fulfilled, (state, { payload }) => {
+        state.typesReport.loading = false
+        state.typesReport.data = payload.data
+      })
+      .addCase(ViewTypesReport.rejected, (state) => {
+        state.typesReport.loading = false
+      })
+      .addCase(ViewTypesReport.pending, (state) => {
+        state.typesReport.loading = true
+      })
   },
 })
 
+export const { handleState } = animalSlice.actions
+
 export default animalSlice.reducer
+//CreateAccountingData
