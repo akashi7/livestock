@@ -56,9 +56,6 @@ export default function AddFeedModal({
         >
           <Form className='space-y-12' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col className='gutter-row' span={24}>
-                <p className='text-blue'>Add Animal Feed</p>
-              </Col>
               {/* <Col className="gutter-row mt-10" span={12}>
                 <InputSelect
                   name="animalCategoryId"

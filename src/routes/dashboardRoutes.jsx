@@ -40,6 +40,11 @@ import ViewOneGroup from '../components/animals/animals/one-group'
 import TreatmentReport from '../components/reports/report/treatments'
 import DueDateReport from '../components/reports/report/duedates'
 import ReproductionReport from '../components/reports/report/reproduction'
+import ViewOneFarm from '../components/farms/farms/one'
+import CashFlow from '../components/farms/farms/cashflow'
+import FarmTransaction from '../components/farms/farms/transaction'
+import UpcomingTreatmentsReports from '../components/reports/report/upcomingt'
+import PLStatement from '../components/farms/farms/plstatement'
 function DashRoutes() {
   return (
     <Layout className='h-[100vh]'>
@@ -89,9 +94,17 @@ function DashRoutes() {
             <Route path='/report/treatment' element={<TreatmentReport />} />
             <Route path='/report/duedates' element={<DueDateReport />} />
             <Route
+              path='/report/upcoming_treatment'
+              element={<UpcomingTreatmentsReports />}
+            />
+            <Route
               path='/report/reproduction'
               element={<ReproductionReport />}
             />
+            <Route path='/farm/:id' element={<ViewOneFarm />} />
+            <Route path='/farm/:id/cashflow' element={<CashFlow />} />
+            <Route path='/farm/:id/transaction' element={<FarmTransaction />} />
+            <Route path='/farm/:id/pl' element={<PLStatement />} />
           </Routes>
         </ContentWrapper>
       </Layout>

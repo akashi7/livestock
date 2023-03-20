@@ -135,11 +135,17 @@ export const GetTreatmentReport = () => {
   return http.GET(`reports/livestock/treatments`)
 }
 
+export const upComingTreatmentReport = () => {
+  return http.GET(
+    `reports/livestock/upcoming_treatments?startDate=${new Date()}&endDate=2023-04-04`
+  )
+}
 export const GetreportTypes = () => {
   return http.GET(`reports/types`)
 }
 
-
-
+export const GetContactApi = () => {
+  return http.GET(`contact/check/all`)
+}
 
 //activities/animal/1/check/all

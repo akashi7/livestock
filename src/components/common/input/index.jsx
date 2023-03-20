@@ -1,5 +1,8 @@
 import { Cascader, Input } from 'antd'
 import { useField } from 'formik'
+import { useContext } from 'react'
+import { MenuContext } from '../../../context/menuContext'
+
 export const InputFloatingLabel = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   return (
@@ -66,8 +69,9 @@ export const InputTextArea = ({ label, height, ...props }) => {
   )
 }
 
-export const InputSelect = ({ label, options, height, ...props }) => {
+export const InputSelect = ({ label, options, height, enable, ...props }) => {
   const [field, meta] = useField(props)
+  const { ToogleModal } = useContext(MenuContext)
   return (
     <div className=''>
       <div className='relative z-0 '>
@@ -80,7 +84,16 @@ export const InputSelect = ({ label, options, height, ...props }) => {
           {...field}
           {...props}
         >
+          {/* {enable && options.length === 0 ? (
+            <option value='' onClick={() => ToogleModal()}>
+              --Add new--
+            </option>
+          ) : (
+            <option value=''>Select Option</option>
+          )} */}
+
           <option value=''>Select Option</option>
+
           {options.map((item, index) => (
             <option value={item.value} key={index}>
               {item.label}

@@ -83,6 +83,19 @@ export function getAnimalColums(dispatch) {
   ]
 }
 
+export const AnimalViewGroup = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
+  }
+]
+
 export const AnimalsGroupcolumns = (Dispatch) => [
   {
     title: 'Date',

@@ -13,6 +13,7 @@ export default function AddAccountModal({
   getAllAcc,
   dispatch,
   createAcc,
+  contact,
 }) {
   const initialValues = {
     type: '',
@@ -70,10 +71,6 @@ export default function AddAccountModal({
         >
           <Form className='space-y-12' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col className='gutter-row' span={24}>
-                <p className='text-blue'>Add Accounting</p>
-              </Col>
-
               <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='type'
@@ -104,11 +101,14 @@ export default function AddAccountModal({
               </Col>
               {type && (
                 <Col className='gutter-row mt-10' span={12}>
-                  <InputText
-                    name='vendor'
-                    type='text'
-                    placeholder={type === 'expense' ? 'payee' : 'customer'}
+                  <InputSelect
+                    name='type'
+                    // enable={true}
                     label={type === 'expense' ? 'payee' : 'customer'}
+                    options={contact?.data?.map((type) => ({
+                      label: type,
+                      value: type,
+                    }))}
                   />
                 </Col>
               )}

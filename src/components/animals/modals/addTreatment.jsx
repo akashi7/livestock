@@ -61,18 +61,17 @@ export default function AddTreatmentModal({
       width={1000}
       footer={null}
     >
-      <div className='p-4 w-[100%] h-[580px] bg-white sm:p-6 lg:p-8 overflow-auto '>
+      <div
+        className='p-4 w-[100%] h-[580px] bg-white sm:p-6 lg:p-8 overflow-auto '
+        id='scroll'
+      >
         <Formik
           initialValues={initialValues}
           validationSchema={AddTreatSchema}
           onSubmit={handleSubmit}
         >
-          <Form className='space-y-12' action='#'>
+          <Form className='space-y-6' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col className='gutter-row' span={24}>
-                <p className='text-blue'>Add Animal Treatement</p>
-              </Col>
-
               <Col className='gutter-row mt-10' span={8}>
                 <InputText
                   name='date'

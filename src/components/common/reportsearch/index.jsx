@@ -3,7 +3,7 @@ import { Form, Formik } from 'formik'
 import { InputText } from '../input'
 import './index.css'
 
-export default function SearchReport() {
+export default function SearchReport({ disabled }) {
   const initialValues = {}
   const handleSubmit = () => {}
   return (
@@ -11,14 +11,16 @@ export default function SearchReport() {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className='space-y-3'>
           <div className='pop'>
-            <div className='s-inputs'>
-              <InputText
-                name={'search'}
-                type='text'
-                placeholder={'search'}
-                height={'40px'}
-              />
-            </div>
+            {disabled ? null : (
+              <div className='s-inputs'>
+                <InputText
+                  name={'search'}
+                  type='text'
+                  placeholder={'search'}
+                  height={'40px'}
+                />
+              </div>
+            )}
             <div className='s-inputs'>
               <InputText
                 name={'from'}

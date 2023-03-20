@@ -2,27 +2,33 @@ import { Layout, Table } from 'antd'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  CreateAccountingData,
   GetAccountingData,
   SeeOneAnimal,
-  CreateAccountingData,
+  ContactsApi,
 } from '../../../state/slices/animal.slice'
 import AnimalCard from '../../common/Cards'
 import MenuBar from '../../common/menubar/menubar'
-import { accountColumns } from './helper'
 import Search from '../../common/search'
 import { AddAccountModal } from '../modals'
+import { accountColumns } from './helper'
+import { MenuContext } from '../../../context/menuContext'
+import { useContext } from 'react'
 
 export default function ListAccounts() {
   const dispatch = useDispatch()
 
-  const { animal, accountings, createAcct } = useSelector(
+  const { animal, accountings, createAcct, contacts } = useSelector(
     (state) => state.animal
   )
   const id = localStorage.getItem('id')
 
+  const { modal } = useContext(MenuContext)
+
   useEffect(() => {
     dispatch(GetAccountingData({ param: id }))
     dispatch(SeeOneAnimal({ params: id }))
+    dispatch(ContactsApi())
     //eslint-disable-next-line
   }, [])
 
@@ -31,8 +37,6 @@ export default function ListAccounts() {
   function Toogle() {
     setToogle(!toogle)
   }
-
-  console.log({ accountings })
 
   return (
     <Layout className='layout-container'>
@@ -61,13 +65,35 @@ export default function ListAccounts() {
                 getAllAcc={GetAccountingData}
                 dispatch={dispatch}
                 createAcc={CreateAccountingData}
+                contact={contacts}
               />
             )}
+            {modal && <p>Akashi</p>}
+          </div>
+          <div className='mt-[20px] mb-[25px]'>
+            <div className=' flex justify-start w-[100%] m-[10px]'>
+              <p className='m-[5px] bg-red text-white p-[5px] '>
+                expense : {accountings.data?.result2?.expense_amount}{' '}
+              </p>
+              <p className='m-[5px] text-white p-[5px] bg-green'>
+                income : {accountings.data?.result2?.income_amount}
+              </p>
+              <p
+                className={`m-[5px] p-[5px] text-white ${
+                  accountings.data?.result2?.income_amount >
+                  accountings.data?.result2?.expense_amount
+                    ? 'bg-green'
+                    : 'bg-red'
+                } `}
+              >
+                profit : {accountings.data?.result2?.profit_amount}
+              </p>
+            </div>
           </div>
           <div style={{ margin: '10px' }}>
             <Table
               columns={accountColumns}
-              dataSource={accountings.data}
+              dataSource={accountings.data.data}
               loading={accountings.loading}
             />
           </div>

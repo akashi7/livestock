@@ -20,6 +20,13 @@
   font-size: 20px;
   margin-left: 10px;
 }
+.animal-v {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 10px;
+  color: #31b0d5;
+}
 .animalId {
   margin-left: 10px;
   background-color: rgb(133, 200, 32);

@@ -155,7 +155,16 @@ const menus = [
     children: [
       {
         label: `Treatment`,
-        key: `/${mainRoute}/report/treatment`,
+        children: [
+          {
+            label: 'treatment',
+            key: `/${mainRoute}/report/treatment`,
+          },
+          {
+            label: 'upcoming',
+            key: `/${mainRoute}/report/upcoming_treatment`,
+          },
+        ],
       },
       {
         label: `Due dates`,
@@ -242,6 +251,27 @@ export const getGroupAnchors = (id) => {
     {
       label: 'Task',
       key: `/${mainRoute}/groupanimal`,
+    },
+  ]
+}
+
+export const getFarmAnchors = (id) => {
+  return [
+    {
+      label: `Details`,
+      key: `/${mainRoute}/farm/${id}`,
+    },
+    {
+      label: `Transaction`,
+      key: `/${mainRoute}/farm/${id}/transaction`,
+    },
+    {
+      label: 'Cashflow',
+      key: `/${mainRoute}/farm/${id}/cashflow`,
+    },
+    {
+      label: 'Pl statement',
+      key: `/${mainRoute}/farm/${id}/pl`,
     },
   ]
 }
