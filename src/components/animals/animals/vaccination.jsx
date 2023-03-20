@@ -4,10 +4,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  animal,
   getAnimalCatgories,
-  VaccinationData,
   VaccinateAnimal,
+  VaccinationData,
 } from "../../../state/slices/animal.slice";
 import { InputSelect, InputText } from "../../common/input";
 import { vaccinationSchema } from "../validations";

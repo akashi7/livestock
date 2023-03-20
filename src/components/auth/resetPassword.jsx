@@ -1,6 +1,5 @@
-import { Form, Formik } from 'formik';
-import { Link } from 'react-router-dom';
-import { InputText } from '../common/input';
+import { Form, Formik } from "formik";
+import { InputText } from "../common/input";
 
 export default function ResetPassword() {
   return (

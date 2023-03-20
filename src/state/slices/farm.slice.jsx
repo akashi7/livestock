@@ -1,55 +1,115 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
+  FarmReportCashflow,
+  FarmReportPLstatement,
+  FarmReportTransactions,
   createFarm,
   getFarmReport,
   getFarms,
-} from "../../utils/services/farm.service";
+  viewOneFarm,
+} from '../../utils/services/farm.service'
 
 export const farm = createAsyncThunk(
-  "farm",
+  'farm',
   async ({ data, success }, { rejectWithValue }) => {
     return createFarm(data)
       .then((resp) => {
-        success();
+        success()
       })
       .catch((error) => {
-        console.log(error);
-        rejectWithValue(error);
-      });
+        console.log(error)
+        rejectWithValue(error)
+      })
   }
-);
+)
 
 export const getAllFarms = createAsyncThunk(
-  "getAllfarms",
+  'getAllfarms',
   async (props, { rejectWithValue }) => {
     return getFarms()
       .then((resp) => {
-        return resp.data;
+        return resp.data
       })
       .catch((error) => {
-        console.log(error);
-        rejectWithValue(error);
-      });
+        console.log(error)
+        rejectWithValue(error)
+      })
   }
-);
+)
+
+export const ViewOnefarm = createAsyncThunk(
+  'view-one-farm',
+  async ({ param }, { rejectWithValue }) => {
+    return viewOneFarm(param)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+        rejectWithValue(error)
+      })
+  }
+)
 
 export const GetFarmReport = createAsyncThunk(
-  "getFarmReport",
+  'getFarmReport',
   async (props, { rejectWithValue }) => {
     return getFarmReport()
       .then((resp) => {
-        return resp.data;
+        return resp.data
       })
       .catch((error) => {
-        console.log(error);
-        rejectWithValue(error);
-      });
+        console.log(error)
+        rejectWithValue(error)
+      })
   }
-);
+)
+
+export const GetFarmTransactionReport = createAsyncThunk(
+  'getFarmReporttra',
+  async ({ param }, { rejectWithValue }) => {
+    return FarmReportTransactions(param)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const FarmCashflow = createAsyncThunk(
+  'getFarmReportcash',
+  async ({ param }, { rejectWithValue }) => {
+    return FarmReportCashflow(param)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const FarmPL = createAsyncThunk(
+  'getFarmReportpl',
+  async ({ param }, { rejectWithValue }) => {
+    return FarmReportPLstatement(param)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+        rejectWithValue(error)
+      })
+  }
+)
 
 const initialState = {
   loading: false,
-  error: "",
+  error: '',
   get: {
     loading: false,
     data: [],
@@ -58,49 +118,104 @@ const initialState = {
     loading: false,
     data: [],
   },
-};
+  oneFarm: {
+    loading: false,
+    data: {},
+  },
+  transaction: {
+    loading: false,
+    data: {},
+  },
+  cashflow: {
+    loading: false,
+    data: {},
+  },
+  pl: {
+    loading: false,
+    data: {},
+  },
+}
 
 const farmSlice = createSlice({
-  name: "farm",
+  name: 'farm',
   initialState,
   reducers: {
     next: (state) => {
-      console.log(state);
+      console.log(state)
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(farm.pending, (state) => {
-        state.loading = true;
+        state.loading = true
       })
       .addCase(farm.fulfilled, (state) => {
-        state.loading = false;
+        state.loading = false
       })
       .addCase(farm.rejected, (state) => {
-        state.loading = false;
+        state.loading = false
       })
       .addCase(getAllFarms.pending, (state) => {
-        state.get.loading = true;
+        state.get.loading = true
       })
       .addCase(getAllFarms.fulfilled, (state, { payload }) => {
-        state.get.loading = false;
-        state.get.data = payload.data;
+        state.get.loading = false
+        state.get.data = payload.data
       })
       .addCase(getAllFarms.rejected, (state, { payload }) => {
-        state.get.loading = false;
+        state.get.loading = false
       })
       .addCase(GetFarmReport.pending, (state) => {
-        state.farmReport.loading = true;
+        state.farmReport.loading = true
       })
       .addCase(GetFarmReport.fulfilled, (state, { payload }) => {
-        state.farmReport.loading = false;
-        console.log({ payload });
-        state.farmReport.data = payload;
+        state.farmReport.loading = false
+        state.farmReport.data = payload
       })
       .addCase(GetFarmReport.rejected, (state, { payload }) => {
-        state.farmReport.loading = false;
-      });
+        state.farmReport.loading = false
+      })
+      .addCase(ViewOnefarm.pending, (state) => {
+        state.oneFarm.loading = true
+      })
+      .addCase(ViewOnefarm.fulfilled, (state, { payload }) => {
+        state.oneFarm.loading = false
+        state.oneFarm.data = payload.data
+      })
+      .addCase(ViewOnefarm.rejected, (state) => {
+        state.oneFarm.loading = false
+      })
+      .addCase(GetFarmTransactionReport.pending, (state) => {
+        state.transaction.loading = true
+      })
+      .addCase(GetFarmTransactionReport.fulfilled, (state, { payload }) => {
+        state.transaction.loading = false
+        state.transaction.data = payload.results
+      })
+      .addCase(GetFarmTransactionReport.rejected, (state) => {
+        state.transaction.loading = false
+      })
+      .addCase(FarmCashflow.pending, (state) => {
+        state.cashflow.loading = true
+      })
+      .addCase(FarmCashflow.fulfilled, (state, { payload }) => {
+        state.cashflow.loading = false
+        state.cashflow.data = payload.cashflow
+      })
+      .addCase(FarmCashflow.rejected, (state) => {
+        state.cashflow.loading = false
+      })
+      .addCase(FarmPL.pending, (state) => {
+        state.pl.loading = true
+      })
+      .addCase(FarmPL.fulfilled, (state, { payload }) => {
+        state.pl.loading = false
+        state.pl.data = payload.pl
+      })
+      .addCase(FarmPL.rejected, (state) => {
+        state.pl.loading = false
+      })
   },
-});
+})
 
-export default farmSlice.reducer;
+export default farmSlice.reducer

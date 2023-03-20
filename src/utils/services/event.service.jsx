@@ -1,7 +1,7 @@
 import * as http from "./api";
-export const createEvent = (data) => {
-  return http.POST("event/create", data);
+export const createEvent = (resName, id, data) => {
+  return http.POST(`task/${resName}/${id}/create`, data);
 };
-export const listEvent = () => {
-  return http.GET("event/check/all");
+export const listEvent = (id) => {
+  return http.GET(`task/animal/${id}/check/all`);
 };

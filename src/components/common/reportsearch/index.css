@@ -1,0 +1,17 @@
+.pop {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.ru {
+  margin-bottom: 20px;
+  width: 100%;
+}
+.s-inputs {
+  width: 20%;
+  margin: 4px;
+}
+.s-button {
+  margin-left: 30px;
+}

@@ -1,27 +1,24 @@
-import { Anchor, Layout } from "antd";
-import { useContext } from "react";
+import { Layout, Menu } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
-import { MenuContext } from "../../../context/menuContext";
+import { getAnchors } from "../../../routes/menus";
 import "./menu.css";
 
-const { Link } = Anchor;
-
 export default function MenuBar() {
-  const { menuBar } = useContext(MenuContext);
-
   const navigate = useNavigate();
   const { id } = useParams();
-  const handleClick = (e, link) => {
-    e.preventDefault();
-    navigate(link);
+  const Id = id ? id : localStorage.getItem("id");
+  const handleNavigation = (e) => {
+    navigate(e.key);
   };
   const { Content } = Layout;
   return (
     <Content className={`menuBar`}>
-      <Anchor affix={false} onClick={handleClick} className="v">
-        <Link href={`/vt/animal/${id}`} title="Details" />
-        <Link href="#components-anchor-demo-static" title="Feeding" />
-      </Anchor>
+      <Menu
+        items={getAnchors(Id)}
+        mode="inline"
+        onClick={handleNavigation}
+        className="tags"
+      />
     </Content>
   );
 }
