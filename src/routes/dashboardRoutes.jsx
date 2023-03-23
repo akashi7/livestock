@@ -45,6 +45,8 @@ import CashFlow from '../components/farms/farms/cashflow'
 import FarmTransaction from '../components/farms/farms/transaction'
 import UpcomingTreatmentsReports from '../components/reports/report/upcomingt'
 import PLStatement from '../components/farms/farms/plstatement'
+import Genealogy from '../components/animals/animals/genealogy'
+import Offspring from '../components/animals/animals/offspring'
 function DashRoutes() {
   return (
     <Layout className='h-[100vh]'>
@@ -93,6 +95,9 @@ function DashRoutes() {
             <Route path='/group-animal/:id' element={<ViewOneGroup />} />
             <Route path='/report/treatment' element={<TreatmentReport />} />
             <Route path='/report/duedates' element={<DueDateReport />} />
+            <Route path='/genealogy' element={<Genealogy />} />
+            <Route path='/offSpring' element={<Offspring />} />
+
             <Route
               path='/report/upcoming_treatment'
               element={<UpcomingTreatmentsReports />}

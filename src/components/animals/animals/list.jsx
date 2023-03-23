@@ -17,6 +17,8 @@ function ListAnimals() {
     /* eslint-disable-next-line */
   }, [])
 
+  console.log({ get })
+
   function Dispatch(animals) {
     localStorage.setItem('id', animals.id)
     navigate(`/vt/animal/${animals.id}`)

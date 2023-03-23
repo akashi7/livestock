@@ -71,7 +71,16 @@ export default function AddVaccinateModal({
                   label='onset Date'
                 />
               </Col>
-
+              <Col className='gutter-row mt-10' span={12}>
+                <InputSelect
+                  name='per_head'
+                  options={[
+                    { label: 'Per Head', value: true },
+                    { label: 'Total for group', value: false },
+                  ]}
+                  label='Group distribution'
+                />
+              </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='nextAppointment'

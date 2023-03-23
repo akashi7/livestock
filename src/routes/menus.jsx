@@ -216,6 +216,14 @@ export const getAnchors = (id) => {
       key: `/${mainRoute}/animal-accounts`,
     },
     {
+      label: 'Genealogy',
+      key: `/${mainRoute}/genealogy`,
+    },
+    {
+      label: 'Offspring',
+      key: `/${mainRoute}/offSpring`,
+    },
+    {
       label: 'Measurement',
       key: `/${mainRoute}/animal-measures`,
     },

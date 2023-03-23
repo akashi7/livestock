@@ -7,7 +7,7 @@ export const addFarmerSchema = Yup.object().shape({
   birth_date: Yup.string().required("birth_date is Required"),
   birth_weight: Yup.string().required("birth_weight is Required"),
   breed: Yup.string().required("breed is Required"),
-  breeding_status: Yup.string().required("breeding_status is Required"),
+  // breeding_status: Yup.string().required("breeding_status is Required"),
   coloring: Yup.string().required("coloring is Required"),
   condition_score: Yup.number().required("condition_score is Required"),
   description: Yup.string().required("description is Required"),
