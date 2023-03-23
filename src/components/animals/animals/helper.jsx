@@ -26,18 +26,21 @@ export function getAnimalColums(dispatch) {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: (text, row) => (
-        <div>
-          {row.is_group === true ? (
-            <div className='flex flex-row'>
-              <p className='isG'>G</p>
-              <p className='pl-[7px]'> {text} </p>
-            </div>
-          ) : (
-            <p>{text} </p>
-          )}
-        </div>
-      ),
+      render: (text, row) =>
+        dispatch.length === 1 ? (
+          <div>
+            {row.is_group === true ? (
+              <div className='flex flex-row'>
+                <p className='isG'>G</p>
+                <p className='pl-[7px]'> {text} </p>
+              </div>
+            ) : (
+              <p>{text} </p>
+            )}
+          </div>
+        ) : (
+          <p> {text} </p>
+        ),
     },
     {
       title: 'Gender',
@@ -65,23 +68,39 @@ export function getAnimalColums(dispatch) {
       key: 'weight',
     },
     {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <div className='icons'>
-          <FaEye
-            size={22}
-            color={'#31b0d5'}
-            onClick={() => dispatch(record)}
-            className='cursor-pointer'
-          />
-          <FiEdit2 size={22} color={'#31b0d5'} className='cursor-pointer' />
-          <FaTrash size={19} color={'#C70000'} className='cursor-pointer' />
-        </div>
-      ),
+      title: dispatch.length === 1 ? 'Action' : 'Isgroup',
+      key: dispatch.length === 1 ? 'action' : 'is_group',
+      render: (text, record) =>
+        dispatch.length === 1 ? (
+          <div className='icons'>
+            <FaEye
+              size={22}
+              color={'#31b0d5'}
+              onClick={() => dispatch(record)}
+              className='cursor-pointer'
+            />
+            <FiEdit2 size={22} color={'#31b0d5'} className='cursor-pointer' />
+            <FaTrash size={19} color={'#C70000'} className='cursor-pointer' />
+          </div>
+        ) : (
+          <p></p>
+        ),
     },
   ]
 }
+
+export const AnimalViewGroup = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
+  },
+]
 
 export const AnimalsGroupcolumns = (Dispatch) => [
   {

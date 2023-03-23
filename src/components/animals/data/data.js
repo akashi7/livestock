@@ -43,7 +43,7 @@ export const purchased = [
 ];
 
 export const Status = [
-  "Active",
+  "active",
   "Butchered",
   "Culled",
   "Deceased",

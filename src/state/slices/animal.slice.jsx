@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
+  AddAncestors,
   AddAnimalToGroup,
+  AnimalOffSpring,
+  GetContactApi,
   GetTreatmentReport,
   GetreportTypes,
   ListAnimalBreed,
@@ -35,6 +38,7 @@ import {
   listTreatment,
   listVaccination,
   retrieveAnimalNotes,
+  upComingTreatmentReport,
   vaccinationData,
   viewGroupAnimal,
   viewOneAnimal,
@@ -524,6 +528,58 @@ export const ViewTypesReport = createAsyncThunk(
   }
 )
 
+export const UpcomingT = createAsyncThunk(
+  'up-t-rep-za',
+  async (props, { rejectWithValue }) => {
+    return upComingTreatmentReport()
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const ContactsApi = createAsyncThunk(
+  'up-t-rep-za-co',
+  async (props, { rejectWithValue }) => {
+    return GetContactApi()
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const addAncestorsApi = createAsyncThunk(
+  'up-t-rep-za-co-za',
+  async ({ gender, id, data, success }, { rejectWithValue }) => {
+    return AddAncestors(gender, id, data)
+      .then((resp) => {
+        success()
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const AnimalOffSpringApi = createAsyncThunk(
+  'up-t-rep-za-co-zaaa',
+  async ({ id }, { rejectWithValue }) => {
+    return AnimalOffSpring(id)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
 const initialState = {
   loading: false,
   get: {
@@ -634,6 +690,21 @@ const initialState = {
     data: [],
   },
   typesReport: {
+    loading: false,
+    data: [],
+  },
+  upcomingt: {
+    loading: false,
+    data: [],
+  },
+  contacts: {
+    loading: false,
+    data: [],
+  },
+  ancestor: {
+    loading: false,
+  },
+  offSpring: {
     loading: false,
     data: [],
   },
@@ -853,7 +924,7 @@ const animalSlice = createSlice({
       })
       .addCase(GetAccountingData.fulfilled, (state, { payload }) => {
         state.accountings.loading = false
-        state.accountings.data = payload.data
+        state.accountings.data = payload.results
       })
       .addCase(GetAccountingData.rejected, (state) => {
         state.accountings.loading = false
@@ -1005,7 +1076,6 @@ const animalSlice = createSlice({
       })
       .addCase(ViewTreatmentReport.fulfilled, (state, { payload }) => {
         state.treatReports.loading = false
-        console.log({ payload })
         state.treatReports.data = payload.result
       })
       .addCase(ViewTreatmentReport.rejected, (state) => {
@@ -1024,10 +1094,48 @@ const animalSlice = createSlice({
       .addCase(ViewTypesReport.pending, (state) => {
         state.typesReport.loading = true
       })
+      .addCase(UpcomingT.fulfilled, (state, { payload }) => {
+        state.upcomingt.loading = false
+        state.upcomingt.data = payload.result
+      })
+      .addCase(UpcomingT.rejected, (state) => {
+        state.upcomingt.loading = false
+      })
+      .addCase(UpcomingT.pending, (state) => {
+        state.upcomingt.loading = true
+      })
+      .addCase(ContactsApi.fulfilled, (state, { payload }) => {
+        state.contacts.loading = false
+        state.contacts.data = payload.data
+      })
+      .addCase(ContactsApi.rejected, (state) => {
+        state.contacts.loading = false
+      })
+      .addCase(ContactsApi.pending, (state) => {
+        state.contacts.loading = true
+      })
+      .addCase(addAncestorsApi.fulfilled, (state) => {
+        state.ancestor.loading = false
+      })
+      .addCase(addAncestorsApi.rejected, (state) => {
+        state.ancestor.loading = false
+      })
+      .addCase(addAncestorsApi.pending, (state) => {
+        state.ancestor.loading = true
+      })
+      .addCase(AnimalOffSpringApi.fulfilled, (state, { payload }) => {
+        state.offSpring.loading = false
+        state.offSpring.data = payload.data
+      })
+      .addCase(AnimalOffSpringApi.rejected, (state) => {
+        state.offSpring.loading = false
+      })
+      .addCase(AnimalOffSpringApi.pending, (state) => {
+        state.offSpring.loading = true
+      })
   },
 })
 
 export const { handleState } = animalSlice.actions
 
 export default animalSlice.reducer
-//CreateAccountingData

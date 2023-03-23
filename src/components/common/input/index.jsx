@@ -1,5 +1,9 @@
 import { Cascader, Input } from 'antd'
 import { useField } from 'formik'
+import { useContext } from 'react'
+import { MenuContext } from '../../../context/menuContext'
+import './input.css'
+
 export const InputFloatingLabel = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   return (
@@ -21,7 +25,7 @@ export const InputFloatingLabel = ({ label, ...props }) => {
         </label>
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </div>
   )
@@ -41,7 +45,7 @@ export const InputText = ({ label, height, ...props }) => {
         />
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </>
   )
@@ -60,13 +64,13 @@ export const InputTextArea = ({ label, height, ...props }) => {
         />
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </>
   )
 }
 
-export const InputSelect = ({ label, options, height, ...props }) => {
+export const InputSelect = ({ label, options, height, enable, ...props }) => {
   const [field, meta] = useField(props)
   return (
     <div className=''>
@@ -80,7 +84,16 @@ export const InputSelect = ({ label, options, height, ...props }) => {
           {...field}
           {...props}
         >
+          {/* {enable && options.length === 0 ? (
+            <option value='' onClick={() => ToogleModal()}>
+              --Add new--
+            </option>
+          ) : (
+            <option value=''>Select Option</option>
+          )} */}
+
           <option value=''>Select Option</option>
+
           {options.map((item, index) => (
             <option value={item.value} key={index}>
               {item.label}
@@ -89,7 +102,7 @@ export const InputSelect = ({ label, options, height, ...props }) => {
         </select>
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </div>
   )
@@ -113,7 +126,7 @@ export const CascadeSelect = ({
         />
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </div>
   )

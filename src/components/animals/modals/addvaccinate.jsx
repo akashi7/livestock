@@ -63,9 +63,6 @@ export default function AddVaccinateModal({
         >
           <Form className='space-y-12' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col className='gutter-row' span={24}>
-                <p className='text-blue'>Vaccinated Animal</p>
-              </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='onsetDate'
@@ -74,7 +71,16 @@ export default function AddVaccinateModal({
                   label='onset Date'
                 />
               </Col>
-
+              <Col className='gutter-row mt-10' span={12}>
+                <InputSelect
+                  name='per_head'
+                  options={[
+                    { label: 'Per Head', value: true },
+                    { label: 'Total for group', value: false },
+                  ]}
+                  label='Group distribution'
+                />
+              </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='nextAppointment'

@@ -56,19 +56,16 @@ export default function AddFeedModal({
         >
           <Form className='space-y-12' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col className='gutter-row' span={24}>
-                <p className='text-blue'>Add Animal Feed</p>
-              </Col>
-              {/* <Col className="gutter-row mt-10" span={12}>
+              <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
-                  name="animalCategoryId"
-                  options={categories?.data.map((item) => ({
-                    label: item.name,
-                    value: item.id,
-                  }))}
-                  label="Select Animal Category"
+                  name='per_head'
+                  options={[
+                    { label: 'Per Head', value: true },
+                    { label: 'Total for group', value: false },
+                  ]}
+                  label='Group distribution'
                 />
-              </Col> */}
+              </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='onsetDate'

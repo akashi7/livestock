@@ -116,6 +116,7 @@ function CreateFarmer() {
                   name='firstname'
                   type='text'
                   placeholder='First Name'
+                  label={'First name'}
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
@@ -123,6 +124,7 @@ function CreateFarmer() {
                   name='lastname'
                   type='text'
                   placeholder='Last Name'
+                  label={'Last name'}
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
@@ -130,6 +132,7 @@ function CreateFarmer() {
                   name='phone'
                   type='text'
                   placeholder='Phone Number'
+                  label={'Phone'}
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
@@ -137,6 +140,7 @@ function CreateFarmer() {
                   name='nid'
                   type='text'
                   placeholder='National Identity'
+                  label={'NID'}
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
@@ -150,10 +154,14 @@ function CreateFarmer() {
                 />
               </Col>
               <Col className='gutter-row mt-[60px]' span={12}>
-                <InputText
+                <InputSelect
                   name='farmer_cat'
                   type='text'
-                  placeholder='Farmer Cat'
+                  options={[
+                    { label: 'Farmer A', value: 'farmer_a' },
+                    { label: 'Farmer B', value: 'farmer_b' },
+                  ]}
+                  label={'farmer category'}
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>

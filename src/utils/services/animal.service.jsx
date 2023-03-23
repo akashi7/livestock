@@ -135,11 +135,25 @@ export const GetTreatmentReport = () => {
   return http.GET(`reports/livestock/treatments`)
 }
 
+export const upComingTreatmentReport = () => {
+  return http.GET(
+    `reports/livestock/upcoming_treatments?startDate=${new Date()}&endDate=2023-04-04`
+  )
+}
 export const GetreportTypes = () => {
   return http.GET(`reports/types`)
 }
 
+export const GetContactApi = () => {
+  return http.GET(`contact/check/all`)
+}
 
+export const AddAncestors = (gender, parent, data) => {
+  return http.POST(`animal/new?gender=${gender}&parent_of=${parent}`, data)
+}
 
+export const AnimalOffSpring = (id) => {
+  return http.GET(`animal/${id}/offstring`)
+}
 
-//activities/animal/1/check/all
+//animal/c9149370-8420-492c-948e-18b353a7b75a/offstring

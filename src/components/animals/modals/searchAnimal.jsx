@@ -1,8 +1,8 @@
 import { Modal, Table, notification } from 'antd'
-import Search from '../../common/search'
-import { SearchedAnimal } from '../animals/helper'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Search from '../../common/search'
+import { SearchedAnimal } from '../animals/helper'
 
 export default function SearchAnimalModal({
   toogle,
@@ -15,6 +15,8 @@ export default function SearchAnimalModal({
   AddToGroup,
   groupAnimalId,
   defaultState,
+  ViewGroupAnimal,
+  handleState,
 }) {
   function navigates() {
     notification.success({
@@ -34,16 +36,19 @@ export default function SearchAnimalModal({
         success: navigates,
       })
     )
+    handleState && dispatch(handleState())
+    ViewGroupAnimal && Toogle()
+    ViewGroupAnimal && dispatch(ViewGroupAnimal({ groupId: groupAnimalId }))
   }
 
   useEffect(() => {
-    if (addToGroupState && addToGroupState.status) {
+    if (addToGroupState && addToGroupState?.status) {
       localStorage.setItem('gId', groupAnimalId)
       navigate(`/vt/group-animal/${groupAnimalId}`)
     }
-    return () => dispatch(defaultState())
+    return () => defaultState && dispatch(defaultState())
     /* eslint-disable-next-line */
-  }, [addToGroupState.status])
+  }, [addToGroupState?.status])
 
   return (
     <Modal
