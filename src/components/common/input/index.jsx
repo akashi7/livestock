@@ -2,6 +2,7 @@ import { Cascader, Input } from 'antd'
 import { useField } from 'formik'
 import { useContext } from 'react'
 import { MenuContext } from '../../../context/menuContext'
+import './input.css'
 
 export const InputFloatingLabel = ({ label, ...props }) => {
   const [field, meta] = useField(props)
@@ -24,7 +25,7 @@ export const InputFloatingLabel = ({ label, ...props }) => {
         </label>
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </div>
   )
@@ -44,7 +45,7 @@ export const InputText = ({ label, height, ...props }) => {
         />
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </>
   )
@@ -63,7 +64,7 @@ export const InputTextArea = ({ label, height, ...props }) => {
         />
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </>
   )
@@ -71,7 +72,6 @@ export const InputTextArea = ({ label, height, ...props }) => {
 
 export const InputSelect = ({ label, options, height, enable, ...props }) => {
   const [field, meta] = useField(props)
-  const { ToogleModal } = useContext(MenuContext)
   return (
     <div className=''>
       <div className='relative z-0 '>
@@ -102,7 +102,7 @@ export const InputSelect = ({ label, options, height, enable, ...props }) => {
         </select>
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </div>
   )
@@ -126,7 +126,7 @@ export const CascadeSelect = ({
         />
       </div>
       {meta.touched && meta.error ? (
-        <span className='font-small text-red-700 mt-[4px]'>{meta.error}</span>
+        <span className='error'>{meta.error}</span>
       ) : null}
     </div>
   )

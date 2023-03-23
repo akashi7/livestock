@@ -1,9 +1,10 @@
-import { Layout, Row, notification } from 'antd'
+import { Layout, notification } from 'antd'
 import { Form, Formik } from 'formik'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
+  addAncestorsApi,
   animal,
   getAllPurposeData,
   getAnimalCatgories,
@@ -20,10 +21,10 @@ import {
 } from '../data/data'
 import { addFarmerSchema } from '../validations'
 
-function CreateAnimal() {
+function CreateAnimal({ newgender, id }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { loading } = useSelector((state) => state.animal)
+  const { loading, ancestor } = useSelector((state) => state.animal)
   const { get } = useSelector((state) => state.farm)
   const animalCatgories = useSelector((state) => state.animal.categories)
   const puporseData = useSelector((state) => state.animal.purposeData)
@@ -75,6 +76,10 @@ function CreateAnimal() {
     setfarmers(array)
   }
 
+  useEffect(() => {
+    newgender && newgender && setGender(newgender)
+  }, [newgender])
+
   function navigates() {
     notification.success({
       placement: 'topRight',
@@ -88,6 +93,8 @@ function CreateAnimal() {
   }
 
   const [purchaseState, setPurchase] = useState(false)
+
+  console.log({ gender })
 
   const handleSubmit = (values) => {
     values.is_group = false
@@ -103,19 +110,34 @@ function CreateAnimal() {
     values.height = '78'
     values.weight = '87'
     values.purchased = purchaseState
-    dispatch(animal({ data: values, success: navigates }))
+    console.log({ values })
+    newgender
+      ? dispatch(
+          addAncestorsApi({
+            gender: gender,
+            id,
+            data: values,
+            success: navigates,
+          })
+        )
+      : dispatch(animal({ data: values, success: navigates }))
   }
   return (
     <Layout className='h-[100%] items-center flex overflow-auto' id='scroll'>
-      <div className='p-4 w-[80%] h-auto bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 mb-8 '>
+      <div
+        className={`p-4 w-[${
+          newgender ? '100%' : '80%'
+        }] h-auto bg-white rounded-lg ${
+          !newgender && 'border border-gray-200'
+        } shadow-md sm:p-6 lg:p-8 mb-8 `}
+      >
         <Formik
           initialValues={initialValues}
           validationSchema={addFarmerSchema}
           onSubmit={handleSubmit}
         >
           <Form className='space-y-3' action='#'>
-            <p className=' text-lg p-[5px]'>New Animal</p>
-
+            {!newgender && <p className=' text-lg p-[5px]'>New Animal</p>}
             <div className='animal-create-h'>
               <p>Basic information</p>
             </div>
@@ -186,8 +208,8 @@ function CreateAnimal() {
                     required
                     height={'20px'}
                     options={[
-                      { label: 'Male', value: 'Male' },
-                      { label: 'Female', value: 'Female' },
+                      { label: 'Male', value: 'male' },
+                      { label: 'Female', value: 'female' },
                     ]}
                     onChange={(e) => setGender(e.target.value)}
                   />
@@ -240,7 +262,7 @@ function CreateAnimal() {
                 </div>
               </div>
             </div>
-            {gender && gender === 'Female' ? (
+            {gender && gender === 'female' ? (
               <div className='cont'>
                 <div className='kkpoer'>
                   <span className='span'>breed status</span>
@@ -600,7 +622,11 @@ function CreateAnimal() {
                 type='submit'
                 className='w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
               >
-                {loading ? 'Loading...' : 'Submit'}
+                {loading
+                  ? 'Loading...'
+                  : ancestor.loading
+                  ? 'Loading...'
+                  : 'Submit'}
               </button>
             </div>
           </Form>

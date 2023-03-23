@@ -148,4 +148,12 @@ export const GetContactApi = () => {
   return http.GET(`contact/check/all`)
 }
 
-//activities/animal/1/check/all
+export const AddAncestors = (gender, parent, data) => {
+  return http.POST(`animal/new?gender=${gender}&parent_of=${parent}`, data)
+}
+
+export const AnimalOffSpring = (id) => {
+  return http.GET(`animal/${id}/offstring`)
+}
+
+//animal/c9149370-8420-492c-948e-18b353a7b75a/offstring

@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
+  AddAncestors,
   AddAnimalToGroup,
+  AnimalOffSpring,
   GetContactApi,
   GetTreatmentReport,
   GetreportTypes,
@@ -552,6 +554,32 @@ export const ContactsApi = createAsyncThunk(
   }
 )
 
+export const addAncestorsApi = createAsyncThunk(
+  'up-t-rep-za-co-za',
+  async ({ gender, id, data, success }, { rejectWithValue }) => {
+    return AddAncestors(gender, id, data)
+      .then((resp) => {
+        success()
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const AnimalOffSpringApi = createAsyncThunk(
+  'up-t-rep-za-co-zaaa',
+  async ({ id }, { rejectWithValue }) => {
+    return AnimalOffSpring(id)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
 const initialState = {
   loading: false,
   get: {
@@ -670,6 +698,13 @@ const initialState = {
     data: [],
   },
   contacts: {
+    loading: false,
+    data: [],
+  },
+  ancestor: {
+    loading: false,
+  },
+  offSpring: {
     loading: false,
     data: [],
   },
@@ -1078,6 +1113,25 @@ const animalSlice = createSlice({
       })
       .addCase(ContactsApi.pending, (state) => {
         state.contacts.loading = true
+      })
+      .addCase(addAncestorsApi.fulfilled, (state) => {
+        state.ancestor.loading = false
+      })
+      .addCase(addAncestorsApi.rejected, (state) => {
+        state.ancestor.loading = false
+      })
+      .addCase(addAncestorsApi.pending, (state) => {
+        state.ancestor.loading = true
+      })
+      .addCase(AnimalOffSpringApi.fulfilled, (state, { payload }) => {
+        state.offSpring.loading = false
+        state.offSpring.data = payload.data
+      })
+      .addCase(AnimalOffSpringApi.rejected, (state) => {
+        state.offSpring.loading = false
+      })
+      .addCase(AnimalOffSpringApi.pending, (state) => {
+        state.offSpring.loading = true
       })
   },
 })
