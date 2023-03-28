@@ -1,7 +1,13 @@
 import { Modal } from 'antd'
 import CreateAnimal from '../animals/create'
 
-export default function NewAnimalModal({ toogle, Toogle, gender, id }) {
+export default function NewAnimalModal({
+  toogle,
+  Toogle,
+  gender,
+  id,
+  animalCat,
+}) {
   return (
     <Modal
       title='Animal'
@@ -13,7 +19,7 @@ export default function NewAnimalModal({ toogle, Toogle, gender, id }) {
       footer={null}
     >
       <div className='p-1 w-[100%] h-auto bg-white sm:p-6 lg:p-8'>
-        <CreateAnimal newgender={gender} id={id} />
+        <CreateAnimal newgender={gender} id={id} animalCat={animalCat} />
       </div>
     </Modal>
   )

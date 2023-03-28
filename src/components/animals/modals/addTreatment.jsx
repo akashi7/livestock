@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik'
 import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import { AddTreatSchema } from '../validations'
 import { Modes, ModeTypes } from '../data/data'
+import { useState } from 'react'
 
 export default function AddTreatmentModal({
   toogle,
@@ -40,7 +41,12 @@ export default function AddTreatmentModal({
     Toogle(false)
   }
 
+  const [state, setState] = useState({
+    value: false,
+  })
+
   function handleSubmit(values) {
+    values.per_head = state.value
     dispatch(
       CreateTreatmentData({
         resName: 'animal',
@@ -49,6 +55,10 @@ export default function AddTreatmentModal({
         success: navigates,
       })
     )
+  }
+
+  function ChangeType(e) {
+    setState({ ...state, value: e.target.value })
   }
 
   return (
@@ -72,41 +82,7 @@ export default function AddTreatmentModal({
         >
           <Form className='space-y-6' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col className='gutter-row mt-10' span={8}>
-                <InputText
-                  name='date'
-                  type='date'
-                  placeholder='Date'
-                  label='Date'
-                />
-              </Col>
-              <Col className='gutter-row mt-10' span={8}>
-                <InputText
-                  name='retreat_date'
-                  type='date'
-                  placeholder='Retreat date'
-                  label='Retreat date'
-                />
-              </Col>
-
-              <Col className='gutter-row mt-10' span={8}>
-                <InputText
-                  name='batch'
-                  type='text'
-                  placeholder='batch'
-                  label='batch'
-                />
-              </Col>
-              <Col className='gutter-row mt-10' span={8}>
-                <InputText
-                  name='cost'
-                  type='text'
-                  placeholder='cost'
-                  label='cost'
-                />
-              </Col>
-
-              <Col className='gutter-row mt-10' span={8}>
+              <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='type'
                   label='teatment type'
@@ -116,7 +92,7 @@ export default function AddTreatmentModal({
                   }))}
                 />
               </Col>
-              <Col className='gutter-row mt-10' span={8}>
+              <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='mode'
                   label='treatment mode'
@@ -126,15 +102,7 @@ export default function AddTreatmentModal({
                   }))}
                 />
               </Col>
-              <Col className='gutter-row mt-10' span={8}>
-                <InputText
-                  name='amount'
-                  type='text'
-                  placeholder='amount'
-                  label='amount'
-                />
-              </Col>
-              <Col className='gutter-row mt-10' span={8}>
+              <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='product'
                   type='text'
@@ -142,31 +110,16 @@ export default function AddTreatmentModal({
                   label='product'
                 />
               </Col>
-              <Col className='gutter-row mt-10' span={8}>
+              <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='site'
-                  type='text'
-                  placeholder='site'
-                  label='site'
+                  name='retreat_date'
+                  type='date'
+                  placeholder='Retreat date'
+                  label='Retreat date'
                 />
               </Col>
-              <Col className='gutter-row mt-10' span={8}>
-                <InputText
-                  name='technician'
-                  type='text'
-                  placeholder='technician'
-                  label='technician'
-                />
-              </Col>
-              <Col className='gutter-row mt-10' span={8}>
-                <InputText
-                  name='keywords'
-                  type='text'
-                  placeholder='keywords'
-                  label='keywords'
-                />
-              </Col>
-              <Col className='gutter-row mt-10' span={8}>
+
+              <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='withdrawal_date'
                   type='date'
@@ -174,7 +127,67 @@ export default function AddTreatmentModal({
                   label='withdrawal_date'
                 />
               </Col>
-              <Col className='gutter-row mt-10' span={8}>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='site'
+                  type='text'
+                  placeholder='site'
+                  label='site'
+                />
+              </Col>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='technician'
+                  type='text'
+                  placeholder='technician'
+                  label='technician'
+                />
+              </Col>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='date'
+                  type='date'
+                  placeholder='Treatment date'
+                  label='Treatment date'
+                />
+              </Col>
+
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='batch'
+                  type='text'
+                  placeholder='batch'
+                  label='batch'
+                />
+              </Col>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='cost'
+                  type='text'
+                  placeholder='cost'
+                  label='cost'
+                />
+              </Col>
+
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='amount'
+                  type='text'
+                  placeholder='amount'
+                  label='amount'
+                />
+              </Col>
+
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='keywords'
+                  type='text'
+                  placeholder='keywords'
+                  label='keywords'
+                />
+              </Col>
+              {/* 
+              <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='per_head'
                   options={[
@@ -183,8 +196,37 @@ export default function AddTreatmentModal({
                   ]}
                   label='Group distribution'
                 />
-              </Col>
-              <Col className='gutter-row mt-10' span={8}>
+              </Col> */}
+
+              <div className='mt-10 ml-2'>
+                <div className='kkpoer'>
+                  <span className='span'>distribution</span>
+                  <div className='flex  flex-row  w-[100%]'>
+                    <div className=' flex flex-row justify-start m-[5px] items-center'>
+                      <input
+                        type={'radio'}
+                        className='w-[70%]'
+                        value={'true'}
+                        onChange={ChangeType}
+                        checked={state.value === 'true'}
+                      />
+                      <label className='w-[170px] '>Per Head</label>
+                    </div>
+                    <div className=' flex flex-row justify-start m-[5px] items-center  '>
+                      <input
+                        type={'radio'}
+                        className='w-[70%]'
+                        value={'false'}
+                        checked={state.value === 'false'}
+                        onChange={ChangeType}
+                      />
+                      <label className='w-[170px] '>Total for group</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <Col className='gutter-row mt-10' span={12}>
                 <InputTextArea name='description' label='description' />
               </Col>
             </Row>

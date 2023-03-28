@@ -70,6 +70,44 @@ export const InputTextArea = ({ label, height, ...props }) => {
   )
 }
 
+export const SelectInput = ({ label, options, height, ...props }) => {
+  // const [field, meta] = useField(props)
+  return (
+    <div className=''>
+      <div className='relative z-0 '>
+        <label className='font-small'>{label}</label>
+        <select
+          className={`h-[${
+            height ? height : '50px'
+          }] p-2 appearance-none border border-white-500 rounded w-full  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`}
+          placeholder=''
+          // {...field}
+          {...props}
+        >
+          {/* {enable && options.length === 0 ? (
+            <option value='' onClick={() => ToogleModal()}>
+              --Add new--
+            </option>
+          ) : (
+            <option value=''>Select Option</option>
+          )} */}
+
+          <option value=''>Select Option</option>
+
+          {options.map((item, index) => (
+            <option value={item.value} key={index}>
+              {item.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      {/* {meta.touched && meta.error ? (
+        <span className='error'>{meta.error}</span>
+      ) : null} */}
+    </div>
+  )
+}
+
 export const InputSelect = ({ label, options, height, enable, ...props }) => {
   const [field, meta] = useField(props)
   return (

@@ -155,5 +155,14 @@ export const AddAncestors = (gender, parent, data) => {
 export const AnimalOffSpring = (id) => {
   return http.GET(`animal/${id}/offstring`)
 }
+export const GetAllMales = (id) => {
+  return http.GET(`animal/males/all`)
+}
+export const GetAllFemales = (id) => {
+  return http.GET(`animal/females/all`)
+}
+export const GetAllAncestors = (id) => {
+  return http.GET(`animal/${id}/ancestory`)
+}
 
 //animal/c9149370-8420-492c-948e-18b353a7b75a/offstring

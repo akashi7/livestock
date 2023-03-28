@@ -1,13 +1,13 @@
 import { Layout, notification } from 'antd'
 import { Form, Formik } from 'formik'
-import { useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { EditAnimals } from '../../../state/slices/animal.slice'
 import AnimalCard from '../../common/Cards'
-import { InputText, InputTextArea } from '../../common/input'
+import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import MenuBar from '../../common/menubar/menubar'
 import '../animal.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { EditAnimals } from '../../../state/slices/animal.slice'
-import { useNavigate } from 'react-router-dom'
+import { Status, harvestUnits } from '../data/data'
 
 function EditAnimal() {
   const location = useLocation()
@@ -17,6 +17,8 @@ function EditAnimal() {
   const { editAnimalS } = useSelector((state) => state.animal)
   const navigate = useNavigate()
 
+  console.log({ Datas })
+
   let initialValues = {
     name: Datas.name,
     type: Datas.breed,
@@ -25,13 +27,13 @@ function EditAnimal() {
     internal_id: Datas.internal_id,
     status: Datas.status,
     coloring: Datas.caloring,
-    retention_score: Datas.retention_score,
     description: Datas.description,
     tag_number: Datas.tag_number,
     harvest_unit: Datas.harvest_unit,
     market_price: Datas.market_price,
     estimated_value: Datas.estimated_value,
     is_group: Datas.is_group,
+    condition: Datas.condition,
   }
   function navigates() {
     notification.success({
@@ -45,6 +47,7 @@ function EditAnimal() {
     }, 3000)
   }
   function handleSubmit(values) {
+    console.log({ values })
     dispatch(EditAnimals({ id: Datas.id, data: values, success: navigates }))
   }
 
@@ -75,6 +78,21 @@ function EditAnimal() {
                       </div>
                     </div>
                   </div>
+                  {Datas && Datas.is_group === true && (
+                    <div className='cont'>
+                      <div className='kkpoer'>
+                        <span className='span'>How Many In Set</span>
+                        <div className='w-[80%]'>
+                          <InputText
+                            name='group_qty'
+                            height={'35px'}
+                            type='text'
+                            placeholder='group qty'
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   <div className='cont'>
                     <div className='kkpoer'>
                       <span className='span'>Type</span>
@@ -133,12 +151,15 @@ function EditAnimal() {
                     <div className='kkpoer'>
                       <span className='span'>Status</span>
                       <div className='w-[80%]'>
-                        <InputText
+                        <InputSelect
                           name='status'
-                          type='text'
-                          height={'35px'}
-                          placeholder='status'
-                          // label="earring_num"
+                          height={'20px'}
+                          options={Status.map((status) => {
+                            return {
+                              value: status,
+                              label: status,
+                            }
+                          })}
                         />
                       </div>
                     </div>
@@ -175,13 +196,18 @@ function EditAnimal() {
                   </div>
                   <div className='cont'>
                     <div className='kkpoer'>
-                      <span className='span'>retention</span>
+                      <span className='span'>condition</span>
                       <div className='w-[80%]'>
-                        <InputText
-                          name='retention_score'
-                          type='text'
-                          placeholder='retention_score'
+                        <InputSelect
+                          name='condition_score'
                           height={'35px'}
+                          options={[
+                            { label: '1', value: 1 },
+                            { label: '2', value: 2 },
+                            { label: '3', value: 3 },
+                            { label: '4', value: 4 },
+                            { label: '5', value: 5 },
+                          ]}
                         />
                       </div>
                     </div>
@@ -205,11 +231,15 @@ function EditAnimal() {
                     <div className='kkpoer'>
                       <span className='span'>Harvest unit</span>
                       <div className='w-[80%]'>
-                        <InputText
+                        <InputSelect
                           name='harvest_unit'
-                          type='text'
-                          placeholder='harvest_unit'
-                          height={'35px'}
+                          height={'20px'}
+                          options={harvestUnits.map((harvest) => {
+                            return {
+                              value: harvest,
+                              label: harvest,
+                            }
+                          })}
                         />
                       </div>
                     </div>

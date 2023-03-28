@@ -3,6 +3,9 @@ import {
   AddAncestors,
   AddAnimalToGroup,
   AnimalOffSpring,
+  GetAllAncestors,
+  GetAllFemales,
+  GetAllMales,
   GetContactApi,
   GetTreatmentReport,
   GetreportTypes,
@@ -580,6 +583,45 @@ export const AnimalOffSpringApi = createAsyncThunk(
   }
 )
 
+export const GetAllMalesAnimalsApi = createAsyncThunk(
+  'up-ui',
+  async (props, { rejectWithValue }) => {
+    return GetAllMales()
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const GetAllFemalesAnimalsApi = createAsyncThunk(
+  'up-ui=zx',
+  async (props, { rejectWithValue }) => {
+    return GetAllFemales()
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const AllAncestors = createAsyncThunk(
+  'up-ui=zx./',
+  async ({id}, { rejectWithValue }) => {
+    return GetAllAncestors(id)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
 const initialState = {
   loading: false,
   get: {
@@ -708,6 +750,18 @@ const initialState = {
     loading: false,
     data: [],
   },
+  allMales: {
+    loading: false,
+    data: [],
+  },
+  allFemales: {
+    loading: false,
+    data: [],
+  },
+  ancestors:{
+    loading:false,
+    data:[]
+  }
 }
 
 const animalSlice = createSlice({
@@ -1132,6 +1186,36 @@ const animalSlice = createSlice({
       })
       .addCase(AnimalOffSpringApi.pending, (state) => {
         state.offSpring.loading = true
+      })
+      .addCase(GetAllMalesAnimalsApi.fulfilled, (state, { payload }) => {
+        state.allMales.loading = false
+        state.allMales.data = payload.data
+      })
+      .addCase(GetAllMalesAnimalsApi.rejected, (state) => {
+        state.allMales.loading = false
+      })
+      .addCase(GetAllMalesAnimalsApi.pending, (state) => {
+        state.allMales.loading = true
+      })
+      .addCase(GetAllFemalesAnimalsApi.fulfilled, (state, { payload }) => {
+        state.allFemales.loading = false
+        state.allFemales.data = payload.data
+      })
+      .addCase(GetAllFemalesAnimalsApi.rejected, (state) => {
+        state.allFemales.loading = false
+      })
+      .addCase(GetAllFemalesAnimalsApi.pending, (state) => {
+        state.allFemales.loading = true
+      })
+      .addCase(AllAncestors.fulfilled, (state, { payload }) => {
+        state.ancestors.loading = false
+        state.ancestors.data = payload.data
+      })
+      .addCase(AllAncestors.rejected, (state) => {
+        state.ancestors.loading = false
+      })
+      .addCase(AllAncestors.pending, (state) => {
+        state.ancestors.loading = true
       })
   },
 })

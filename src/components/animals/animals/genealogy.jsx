@@ -1,20 +1,32 @@
-import { Layout } from 'antd'
+import { Layout, Table } from 'antd'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SeeOneAnimal } from '../../../state/slices/animal.slice'
+import {
+  SeeOneAnimal,
+  GetAllMalesAnimalsApi,
+  GetAllFemalesAnimalsApi,
+  AllAncestors,
+  addAncestorsApi,
+} from '../../../state/slices/animal.slice'
 import AnimalCard from '../../common/Cards'
 import MenuBar from '../../common/menubar/menubar'
 import AncestorsModal from '../modals/addancestors'
 import NewAnimalModal from '../modals/renderAnimal'
+import { getAnimalColums } from './helper'
 
 export default function Genealogy() {
   const dispatch = useDispatch()
 
-  const { animal } = useSelector((state) => state.animal)
+  const { animal, allMales, allFemales, ancestors } = useSelector(
+    (state) => state.animal
+  )
   const id = localStorage.getItem('id')
 
   useEffect(() => {
     dispatch(SeeOneAnimal({ params: id }))
+    dispatch(GetAllFemalesAnimalsApi())
+    dispatch(GetAllMalesAnimalsApi())
+    dispatch(AllAncestors({ id }))
     //eslint-disable-next-line
   }, [])
 
@@ -25,6 +37,8 @@ export default function Genealogy() {
   function Toogle() {
     setToogle(!toogle)
   }
+
+  console.log('s', animal && animal.data)
 
   return (
     <Layout className='layout-container'>
@@ -48,6 +62,11 @@ export default function Genealogy() {
                 Toogle={setToogle}
                 setChange={setChange}
                 setGender={setGender}
+                allMales={allMales?.data}
+                allFemales={allFemales?.data}
+                addAncestorsApi={addAncestorsApi}
+                dispatch={dispatch}
+                animals={animal && animal.data}
               />
             )}
             {change && (
@@ -56,15 +75,17 @@ export default function Genealogy() {
                 Toogle={setChange}
                 gender={gender}
                 id={id}
+                animalCat={animal && animal.data}
               />
             )}
           </div>
           <div style={{ margin: '10px' }}>
-            {/* <Table
-          columns={accountColumns}
-          dataSource={accountings.data.data}
-          loading={accountings.loading}
-        /> */}
+            <Table
+              columns={getAnimalColums(() => null)}
+              dataSource={ancestors.data}
+              loading={ancestors.loading}
+              rowKey={(animal) => animal.id}
+            />
           </div>
         </div>
       </div>

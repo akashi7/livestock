@@ -39,8 +39,13 @@ function ListAnimalsGroup() {
   }
 
   function Dispatch(groupanimal) {
-    localStorage.setItem('gId', groupanimal.id)
-    navigate(`/vt/group-animal/${groupanimal.id}`)
+    if (groupanimal.type === 'set') {
+      localStorage.setItem('id', groupanimal.id)
+      navigate(`/vt/animal/${groupanimal.id}`)
+    } else {
+      localStorage.setItem('gId', groupanimal.id)
+      navigate(`/vt/group-animal/${groupanimal.id}`)
+    }
   }
 
   return (

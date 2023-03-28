@@ -166,14 +166,14 @@ const menus = [
           },
         ],
       },
-      {
-        label: `Due dates`,
-        key: `/${mainRoute}/report/duedates`,
-      },
-      {
-        label: `Reproduction`,
-        key: `/${mainRoute}/report/reproduction`,
-      },
+      // {
+      //   label: `Due dates`,
+      //   key: `/${mainRoute}/report/duedates`,
+      // },
+      // {
+      //   label: `Reproduction`,
+      //   key: `/${mainRoute}/report/reproduction`,
+      // },
     ],
   },
 ]
@@ -223,18 +223,18 @@ export const getAnchors = (id) => {
       label: 'Offspring',
       key: `/${mainRoute}/offSpring`,
     },
-    {
-      label: 'Measurement',
-      key: `/${mainRoute}/animal-measures`,
-    },
-    {
-      label: 'Yield',
-      key: `/${mainRoute}/animal-yields`,
-    },
-    {
-      label: 'Breeding',
-      key: `/${mainRoute}/animal-breeds`,
-    },
+    // {
+    //   label: 'Measurement',
+    //   key: `/${mainRoute}/animal-measures`,
+    // },
+    // {
+    //   label: 'Yield',
+    //   key: `/${mainRoute}/animal-yields`,
+    // },
+    // {
+    //   label: 'Breeding',
+    //   key: `/${mainRoute}/animal-breeds`,
+    // },
   ]
 }
 

@@ -21,7 +21,7 @@ import {
 } from '../data/data'
 import { addFarmerSchema } from '../validations'
 
-function CreateAnimal({ newgender, id }) {
+function CreateAnimal({ newgender, id, animalCat }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { loading, ancestor } = useSelector((state) => state.animal)
@@ -29,28 +29,30 @@ function CreateAnimal({ newgender, id }) {
   const animalCatgories = useSelector((state) => state.animal.categories)
   const puporseData = useSelector((state) => state.animal.purposeData)
 
-  const initialValues = {
-    animalCategory_id: '',
-    earring_num: '',
-    farm_id: '',
-    purpose_id: '',
-    birth_date: '',
-    birth_weight: 0,
-    breed: '',
-    breeding_status: '',
-    coloring: '',
-    condition_score: 0,
-    description: '',
-    harvest_unit: '',
-    keywords: '',
-    name: '',
-    on_feed: false,
-    purchase_price: 0,
-    purchased: false,
-    retention_score: 0,
-    status: '',
-    type: '',
-  }
+  const initialValues = animalCat
+    ? animalCat
+    : {
+        animalCategory_id: '',
+        earring_num: '',
+        farm_id: '',
+        purpose_id: '',
+        birth_date: '',
+        birth_weight: 0,
+        breed: '',
+        breeding_status: '',
+        coloring: '',
+        condition_score: 0,
+        description: '',
+        harvest_unit: '',
+        keywords: '',
+        name: '',
+        on_feed: false,
+        purchase_price: 0,
+        purchased: false,
+        retention_score: 0,
+        status: '',
+        type: '',
+      }
   const [farmers, setfarmers] = useState([])
   const [gender, setGender] = useState('')
 
@@ -94,8 +96,6 @@ function CreateAnimal({ newgender, id }) {
 
   const [purchaseState, setPurchase] = useState(false)
 
-  console.log({ gender })
-
   const handleSubmit = (values) => {
     values.is_group = false
     values.is_neutered = false
@@ -110,7 +110,6 @@ function CreateAnimal({ newgender, id }) {
     values.height = '78'
     values.weight = '87'
     values.purchased = purchaseState
-    console.log({ values })
     newgender
       ? dispatch(
           addAncestorsApi({
@@ -142,19 +141,22 @@ function CreateAnimal({ newgender, id }) {
               <p>Basic information</p>
             </div>
 
-            <div className='cont'>
-              <div className='kkpoer'>
-                <span className='span'>Select Farm</span>
-                <div className='w-[80%]'>
-                  <InputSelect
-                    name='farm_id'
-                    height={'20px'}
-                    options={farmers}
-                    // label="Select Farm"
-                  />
+            {!newgender && (
+              <div className='cont'>
+                <div className='kkpoer'>
+                  <span className='span'>Select Farm</span>
+                  <div className='w-[80%]'>
+                    <InputSelect
+                      name='farm_id'
+                      height={'20px'}
+                      options={farmers}
+                      // label="Select Farm"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
+
             <div className='cont'>
               <div className='kkpoer'>
                 <span className='span'>category</span>
@@ -349,7 +351,7 @@ function CreateAnimal({ newgender, id }) {
                 </div>
               </div>
             </div>
-            <div className='cont'>
+            {/* <div className='cont'>
               <div className='kkpoer'>
                 <span className='span'>retention</span>
                 <div className='w-[80%]'>
@@ -361,8 +363,7 @@ function CreateAnimal({ newgender, id }) {
                   />
                 </div>
               </div>
-            </div>
-
+            </div> */}
             <div className='cont'>
               <div className='kkpoer'>
                 <span className='span'>description</span>

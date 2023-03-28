@@ -103,26 +103,26 @@ export const AnimalViewGroup = [
 ]
 
 export const AnimalsGroupcolumns = (Dispatch) => [
+  // {
+  //   title: 'Date',
+  //   dataIndex: 'createdAt',
+  //   key: 'createdAt',
+  //   render: (text) => moment(text).format('MM/DD/YYYY'),
+  // },
+  // {
+  //   title: 'Description',
+  //   dataIndex: 'description',
+  //   key: 'description',
+  // },
   {
-    title: 'Date',
-    dataIndex: 'createdAt',
-    key: 'createdAt',
-    render: (text) => moment(text).format('MM/DD/YYYY'),
-  },
-  {
-    title: 'Description',
-    dataIndex: 'description',
-    key: 'description',
-  },
-  {
-    title: 'Group qty',
-    dataIndex: 'group_qty',
-    key: 'group_qty',
-  },
-  {
-    title: 'Name"',
+    title: 'Name',
     dataIndex: 'name',
     key: 'name',
+  },
+  {
+    title: 'Animals',
+    dataIndex: 'group_qty',
+    key: 'group_qty',
   },
   {
     title: 'Type',

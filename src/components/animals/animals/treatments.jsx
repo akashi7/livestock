@@ -11,6 +11,7 @@ import MenuBar from '../../common/menubar/menubar'
 import Search from '../../common/search'
 import AddTreatmentModal from '../modals/addTreatment'
 import { TreatmentsColumn } from './helper'
+import '../animal.css'
 
 export default function TreatmentsList() {
   const dispatch = useDispatch()
