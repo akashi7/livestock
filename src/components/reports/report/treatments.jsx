@@ -9,6 +9,7 @@ import LineChart from '../../common/charts/lineChart'
 import PieChart from '../../common/charts/pieChart'
 import SearchReport from '../../common/reportsearch'
 import { TreatmentReportColumn } from './helper'
+import PieChartComponent from '../../common/piechart'
 
 export default function TreatmentReport() {
   const dispatch = useDispatch()
@@ -22,13 +23,12 @@ export default function TreatmentReport() {
 
   return (
     <Layout className='h-[100%] w-[100%]'>
-      <div className='flex h-[350px] justify-between items-center m-[15px] p-[10px] border-[1.1px] border-blue'>
-        <div className='w-[50%]'>
-          <LineChart />
-        </div>
-        <div className='w-[100%] flex justify-center'>
-          <div className=' w-[330px]  '>
-            <PieChart />
+      <div className='flex justify-center '>
+        <div className='h-fit w-fit m-[15px] p-[10px] border-[1.1px] border-blue'>
+          <div className='w-[100%] flex justify-center items-center'>
+            <div className=' w-fit text-center '>
+              <PieChartComponent />
+            </div>
           </div>
         </div>
       </div>

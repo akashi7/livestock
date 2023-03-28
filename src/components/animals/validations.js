@@ -121,7 +121,7 @@ export const AddTreatSchema = Yup.object().shape({
   amount: Yup.string().required("amount is Required"),
   batch: Yup.string().required("batch is Required"),
   cost: Yup.string().required("cost is Required"),
-  date: Yup.string().required("date is Required"),
+  // date: Yup.string().required("date is Required"),
   description: Yup.string().required("description is Required"),
   keywords: Yup.string().required("keywords is Required"),
   mode: Yup.string().required("mode is Required"),
