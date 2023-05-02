@@ -1,9 +1,6 @@
-import { DownOutlined } from '@ant-design/icons'
-import { Dropdown, Menu, Space } from 'antd'
 import moment from 'moment'
 import { FaEye, FaTrash } from 'react-icons/fa'
 import { FiEdit2 } from 'react-icons/fi'
-import { IoIosAddCircle } from 'react-icons/io'
 
 export const columns = (dispatch) => [
   {
