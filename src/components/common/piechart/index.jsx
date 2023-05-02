@@ -51,7 +51,7 @@ const PieChartComponent = ({ typesReport }) => {
 
   return (
     <div className='w-[100%] '>
-      <h1>Favorite Beverages - technostuf.com</h1>
+      <h1>Types</h1>
       <div className=''>
         <ResponsiveContainer width={400} height={400} className='text-center'>
           <PieChart width={500} height={500}>
