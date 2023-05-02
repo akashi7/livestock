@@ -24,7 +24,10 @@ export default function DueDateReport() {
           columns={TreatmentReportColumn}
           dataSource={[]}
           loading={false}
-          // rowKey={(animals) => animals.id}
+          rowKey={(animals) => animals.id}
+          pagination={{
+            defaultPageSize: 5,
+          }}
         />
       </div>
     </Layout>

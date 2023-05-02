@@ -34,7 +34,14 @@ function ListFarmers() {
       </div>
       <h2 className=' mb-3 text-blue text-lg'>Farmers</h2>
       <div>
-        <Table columns={columns} dataSource={get.data} loading={false} />
+        <Table
+          columns={columns}
+          dataSource={get.data}
+          loading={false}
+          pagination={{
+            defaultPageSize: 5,
+          }}
+        />
       </div>
     </Layout>
   )

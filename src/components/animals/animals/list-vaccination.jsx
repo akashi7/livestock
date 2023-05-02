@@ -73,6 +73,9 @@ function ListVaccinations() {
               columns={AnimalVaccinationColmns}
               dataSource={allVaccination.data}
               loading={allVaccination.loading}
+              pagination={{
+                defaultPageSize: 5,
+              }}
             />
           </div>
         </div>

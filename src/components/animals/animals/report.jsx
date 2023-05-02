@@ -18,6 +18,9 @@ function ListAnimalReports() {
         columns={AnimalReportcolumnsReports}
         dataSource={animalReportsData.data}
         loading={animalReportsData.loading}
+        pagination={{
+          defaultPageSize: 5,
+        }}
       />
     </Layout>
   )

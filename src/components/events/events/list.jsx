@@ -5,7 +5,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { SeeOneAnimal } from '../../../state/slices/animal.slice'
-import { ListEventApi, CreateEventApi } from '../../../state/slices/event.slice'
+import { CreateEventApi, ListEventApi } from '../../../state/slices/event.slice'
 import AddEventModal from '../../animals/modals/addEvent'
 import AnimalCard from '../../common/Cards'
 import MenuBar from '../../common/menubar/menubar'
@@ -26,8 +26,6 @@ export default function EventList() {
   }, [])
 
   const [toogle, setToogle] = useState(false)
-
-  console.log({ Events })
 
   function Toogle() {
     setToogle(!toogle)

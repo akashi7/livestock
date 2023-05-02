@@ -85,6 +85,9 @@ export default function Genealogy() {
               dataSource={ancestors.data}
               loading={ancestors.loading}
               rowKey={(animal) => animal.id}
+              pagination={{
+                defaultPageSize: 5,
+              }}
             />
           </div>
         </div>

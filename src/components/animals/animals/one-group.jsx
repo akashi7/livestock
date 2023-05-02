@@ -44,6 +44,9 @@ export default function ViewOneGroup() {
               dataSource={onegroupAnimal.data.records}
               loading={onegroupAnimal.loading}
               rowKey={(animals) => animals.id}
+              pagination={{
+                defaultPageSize: 5,
+              }}
             />
           </div>
         </div>

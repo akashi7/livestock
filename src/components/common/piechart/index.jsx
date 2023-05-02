@@ -1,13 +1,24 @@
 import React from 'react'
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
-const PieChartComponent = () => {
-  const data = [
-    { name: 'Tea', value: 400 },
-    { name: 'Coffee', value: 300 },
-    { name: 'Cola', value: 300 },
-    { name: 'Water', value: 200 },
-  ]
+const PieChartComponent = ({ typesReport }) => {
+  // const data = [
+  //   { name: 'Tea', value: 400 },
+  //   { name: 'Coffee', value: 300 },
+  //   { name: 'Cola', value: 300 },
+  //   { name: 'Water', value: 200 },
+  // ]
+
+  console.log({ typesReport })
+
+  const data = typesReport.data.map((type) => {
+    return {
+      name: type.type,
+      value: parseInt(type.treatments),
+    }
+  })
+
+  console.log({ data })
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 

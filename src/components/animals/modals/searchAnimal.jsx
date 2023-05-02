@@ -78,6 +78,9 @@ export default function SearchAnimalModal({
             dataSource={searchedAnimal.data}
             loading={searchedAnimal.loading}
             rowKey={(animals) => animals.id}
+            pagination={{
+              defaultPageSize: 5,
+            }}
           />
         )}
       </div>

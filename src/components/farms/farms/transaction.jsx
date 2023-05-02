@@ -8,7 +8,7 @@ import {
 } from '../../../state/slices/farm.slice'
 import AnimalCard from '../../common/Cards'
 import LineChart from '../../common/charts/lineChart'
-import PieChart from '../../common/charts/pieChart'
+// import PieChart from '../../common/charts/pieChart'
 import FarmMenuBar from '../../common/menubar/farmMenu'
 import { Farmcolumn } from './helper'
 
@@ -23,8 +23,6 @@ export default function FarmTransaction() {
     //eslint-disable-next-line
   }, [id])
 
-  console.log({ transaction })
-
   return (
     <Layout className='layout-container'>
       <div className='main-container'>
@@ -38,13 +36,13 @@ export default function FarmTransaction() {
           />
           <div className='flex h-[350px] mt-[30px] justify-between items-center m-[15px] p-[10px] border-[1.1px] border-blue'>
             <div className='w-[50%]'>
-              <LineChart />
+              <LineChart transaction={transaction.data?.review} />
             </div>
-            <div className='w-[100%] flex justify-center'>
+            {/* <div className='w-[100%] flex justify-center'>
               <div className=' w-[330px]  '>
                 <PieChart />
               </div>
-            </div>
+            </div> */}
           </div>
           <div className='mt-[20px] mb-[25px]'>
             <div className=' flex justify-start w-[100%] m-[10px]'>
@@ -76,6 +74,9 @@ export default function FarmTransaction() {
               dataSource={transaction.data.data}
               loading={transaction.loading}
               rowKey={(rep) => rep.id}
+              pagination={{
+                defaultPageSize: 5,
+              }}
             />
           </div>
         </div>

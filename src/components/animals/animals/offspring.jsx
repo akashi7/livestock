@@ -59,6 +59,9 @@ export default function Offspring() {
               columns={getAnimalColums(() => null)}
               dataSource={offSpring.data}
               loading={offSpring.loading}
+              pagination={{
+                defaultPageSize: 5,
+              }}
             />
           </div>
         </div>

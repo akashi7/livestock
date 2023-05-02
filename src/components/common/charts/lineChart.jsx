@@ -35,19 +35,19 @@ export const options = {
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
-export default function LineChart() {
+export default function LineChart({ transaction }) {
   const data = {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
-        data: [2, 3, 9, 0, 8, 9, 0, 3, 32, 70],
+        label: 'Expense',
+        data: [transaction?.expense_amount],
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
-        label: 'Dataset 2',
-        data: [18, 13, 19, 10, 78, 19, 20, 13, 36, 20],
+        label: 'Income',
+        data: [transaction?.income_amount],
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },

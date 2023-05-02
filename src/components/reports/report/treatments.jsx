@@ -5,11 +5,9 @@ import {
   ViewTreatmentReport,
   ViewTypesReport,
 } from '../../../state/slices/animal.slice'
-import LineChart from '../../common/charts/lineChart'
-import PieChart from '../../common/charts/pieChart'
+import PieChartComponent from '../../common/piechart'
 import SearchReport from '../../common/reportsearch'
 import { TreatmentReportColumn } from './helper'
-import PieChartComponent from '../../common/piechart'
 
 export default function TreatmentReport() {
   const dispatch = useDispatch()
@@ -27,7 +25,7 @@ export default function TreatmentReport() {
         <div className='h-fit w-fit m-[15px] p-[10px] border-[1.1px] border-blue'>
           <div className='w-[100%] flex justify-center items-center'>
             <div className=' w-fit text-center '>
-              <PieChartComponent />
+              <PieChartComponent typesReport={typesReport} />
             </div>
           </div>
         </div>
@@ -41,6 +39,9 @@ export default function TreatmentReport() {
           dataSource={treatReports.data.data_result}
           loading={treatReports.loading}
           rowKey={(rep) => rep.id}
+          pagination={{
+            defaultPageSize: 5,
+          }}
         />
       </div>
     </Layout>
