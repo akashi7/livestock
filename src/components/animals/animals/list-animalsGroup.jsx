@@ -94,6 +94,9 @@ function ListAnimalsGroup() {
           dataSource={animalsGroupData.data}
           loading={animalsGroupData.loading}
           rowKey={(animals) => animals.id}
+          pagination={{
+            defaultPageSize: 5,
+          }}
         />
       </div>
     </Layout>

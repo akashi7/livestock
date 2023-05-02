@@ -4,6 +4,7 @@ import SearchReport from '../../common/reportsearch'
 import { useDispatch, useSelector } from 'react-redux'
 import { UpcomingT } from '../../../state/slices/animal.slice'
 import { TreatmentReportColumn } from './helper'
+import '../index.css'
 
 export default function UpcomingTreatmentsReports() {
   const dispatch = useDispatch()
@@ -35,6 +36,9 @@ export default function UpcomingTreatmentsReports() {
           dataSource={upcomingt.data.data_result}
           loading={upcomingt.loading}
           rowKey={(rep) => rep.id}
+          pagination={{
+            defaultPageSize: 5,
+          }}
         />
       </div>
     </Layout>

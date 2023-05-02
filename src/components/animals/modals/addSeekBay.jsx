@@ -2,6 +2,7 @@ import { Col, Modal, Row, notification } from 'antd'
 import { Form, Formik } from 'formik'
 import { InputSelect, InputText } from '../../common/input'
 import { addAnimalSickSchema } from '../validations'
+import { useState } from 'react'
 
 export default function AddSeekBayModal({
   Toogle,
@@ -35,9 +36,18 @@ export default function AddSeekBayModal({
   }
 
   const handleSubmit = (values) => {
+    values.per_head = state.value
     dispatch(
       createSickBy({ resName: 'animal', id, data: values, success: navigates })
     )
+  }
+
+  const [state, setState] = useState({
+    value: 'false',
+  })
+
+  function ChangeType(e) {
+    setState({ ...state, value: e.target.value })
   }
 
   return (
@@ -68,7 +78,7 @@ export default function AddSeekBayModal({
                   label='Select Animal Category'
                 />
               </Col>
-              <Col className='gutter-row mt-10' span={12}>
+              {/* <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='per_head'
                   options={[
@@ -77,7 +87,7 @@ export default function AddSeekBayModal({
                   ]}
                   label='Group distribution'
                 />
-              </Col>
+              </Col> */}
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='intervention'
@@ -110,6 +120,33 @@ export default function AddSeekBayModal({
                   label='OnsetDate'
                 />
               </Col>
+              <div className='mt-10 ml-2'>
+                <div className='kkpoer'>
+                  <span className='span'>distribution</span>
+                  <div className='flex  flex-row  w-[100%]'>
+                    <div className=' flex flex-row justify-start m-[5px] items-center'>
+                      <input
+                        type={'radio'}
+                        className='w-[70%]'
+                        value={'true'}
+                        onChange={ChangeType}
+                        checked={state.value === 'true'}
+                      />
+                      <label className='w-[170px] '>Per Head</label>
+                    </div>
+                    <div className=' flex flex-row justify-start m-[5px] items-center  '>
+                      <input
+                        type={'radio'}
+                        className='w-[70%]'
+                        value={'false'}
+                        checked={state.value === 'false'}
+                        onChange={ChangeType}
+                      />
+                      <label className='w-[170px] '>Total for group</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='medicineId'

@@ -12,6 +12,7 @@ export const DropMenu = (
                 danger: true,
                 label: 'Logout',
                 onClick:()=>{
+                    localStorage.clear()
                     window.location.href='/';
                 }
             },

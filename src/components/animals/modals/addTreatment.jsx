@@ -4,6 +4,7 @@ import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import { AddTreatSchema } from '../validations'
 import { Modes, ModeTypes } from '../data/data'
 import { useState } from 'react'
+import moment from 'moment'
 
 export default function AddTreatmentModal({
   toogle,
@@ -42,11 +43,18 @@ export default function AddTreatmentModal({
   }
 
   const [state, setState] = useState({
-    value: false,
+    value: 'false',
   })
+
+  function ChangeType(e) {
+    setState({ ...state, value: e.target.value })
+  }
 
   function handleSubmit(values) {
     values.per_head = state.value
+    const date = new Date(values.date)
+    date.setDate(date.getDate() + values.days)
+    values.withdrawal_date = moment(new Date(date)).format('YYYY-MM-DD')
     dispatch(
       CreateTreatmentData({
         resName: 'animal',
@@ -55,10 +63,6 @@ export default function AddTreatmentModal({
         success: navigates,
       })
     )
-  }
-
-  function ChangeType(e) {
-    setState({ ...state, value: e.target.value })
   }
 
   return (
@@ -112,19 +116,19 @@ export default function AddTreatmentModal({
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='retreat_date'
+                  name='date'
                   type='date'
-                  placeholder='Retreat date'
-                  label='Retreat date'
+                  placeholder='Treatment date'
+                  label='Treatment date'
                 />
               </Col>
 
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='withdrawal_date'
-                  type='date'
-                  placeholder='withdrawal_date'
-                  label='withdrawal_date'
+                  name='days'
+                  type='number'
+                  placeholder='days'
+                  label='days'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
@@ -145,10 +149,10 @@ export default function AddTreatmentModal({
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
-                  name='date'
+                  name='retreat_date'
                   type='date'
-                  placeholder='Treatment date'
-                  label='Treatment date'
+                  placeholder='Booster date'
+                  label='Booster date'
                 />
               </Col>
 

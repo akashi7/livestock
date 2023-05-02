@@ -132,12 +132,14 @@ export const viewGroupAnimal = (groupId) => {
   return http.GET(`livestock_groups/${groupId}`)
 }
 export const GetTreatmentReport = () => {
-  return http.GET(`reports/livestock/treatments`)
+  return http.GET(
+    `reports/livestock/treatments?startDate=2022-04-04&endDate=2023-04-04`
+  )
 }
 
 export const upComingTreatmentReport = () => {
   return http.GET(
-    `reports/livestock/upcoming_treatments?startDate=${new Date()}&endDate=2023-04-04`
+    `reports/livestock/upcoming_treatments?startDate=2022-04-04&endDate=2023-04-04`
   )
 }
 export const GetreportTypes = () => {
@@ -163,6 +165,10 @@ export const GetAllFemales = (id) => {
 }
 export const GetAllAncestors = (id) => {
   return http.GET(`animal/${id}/ancestory`)
+}
+
+export const searchAnimal = (name) => {
+  return http.PUT(`animal/search/animals/?name=${name.name}`)
 }
 
 //animal/c9149370-8420-492c-948e-18b353a7b75a/offstring

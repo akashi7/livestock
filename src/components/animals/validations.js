@@ -130,7 +130,7 @@ export const AddTreatSchema = Yup.object().shape({
   site: Yup.string().required("site is Required"),
   technician: Yup.string().required("technician is Required"),
   type: Yup.string().required("type is Required"),
-  withdrawal_date: Yup.string().required("withdrawal_date is Required"),
+  // withdrawal_date: Yup.string().required("withdrawal_date is Required"),
 });
 
 export const vaccinationSchema = Yup.object().shape({

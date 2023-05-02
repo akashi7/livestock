@@ -1,5 +1,5 @@
-import { DownOutlined } from '@ant-design/icons';
-import { Dropdown, Menu, Space } from 'antd';
+import { DownOutlined } from '@ant-design/icons'
+import { Dropdown, Menu, Space } from 'antd'
 const menu = (
   <Menu
     items={[
@@ -13,7 +13,7 @@ const menu = (
       },
     ]}
   />
-);
+)
 export const columns = [
   {
     title: 'First Name',
@@ -42,7 +42,7 @@ export const columns = [
     key: 'nid',
   },
   {
-    title: 'Farmer_cat',
+    title: 'Category',
     dataIndex: 'farmer_cat',
     key: 'farmer_cat',
   },
@@ -75,7 +75,7 @@ export const columns = [
     title: 'Action',
     key: 'action',
     render: (text, record) => (
-      <Space size="middle">
+      <Space size='middle'>
         <Dropdown overlay={menu}>
           <p>
             More <DownOutlined />
@@ -84,7 +84,7 @@ export const columns = [
       </Space>
     ),
   },
-];
+]
 
 export const data = [
   {
@@ -503,4 +503,4 @@ export const data = [
     cell: 'Musanze',
     village: 'Byimana',
   },
-];
+]

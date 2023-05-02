@@ -1,26 +1,29 @@
-import { Layout, Table } from "antd";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GetFarmReport } from "../../../state/slices/farm.slice";
-import { columnsReports } from "./helper";
+import { Layout, Table } from 'antd'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { GetFarmReport } from '../../../state/slices/farm.slice'
+import { columnsReports } from './helper'
 
 function ListFarmReports() {
-  const dispatch = useDispatch();
-  const { farmReport } = useSelector((state) => state.farm);
+  const dispatch = useDispatch()
+  const { farmReport } = useSelector((state) => state.farm)
   useEffect(() => {
-    dispatch(GetFarmReport());
+    dispatch(GetFarmReport())
     /* eslint-disable-next-line */
-  }, []);
+  }, [])
 
-  console.log({ farmReport });
+  console.log({ farmReport })
   return (
-    <Layout className="h-[100vh] w-full">
+    <Layout className='h-[100vh] w-full'>
       <Table
         columns={columnsReports}
         dataSource={farmReport.data.data}
         loading={farmReport.loading}
+        pagination={{
+          defaultPageSize: 5,
+        }}
       />
     </Layout>
-  );
+  )
 }
-export default ListFarmReports;
+export default ListFarmReports

@@ -30,6 +30,9 @@ function ListFarms() {
         columns={columns(Dispatch)}
         dataSource={get.data}
         loading={get.loading}
+        pagination={{
+          defaultPageSize: 5,
+        }}
       />
     </Layout>
   )

@@ -151,16 +151,7 @@ export const AnimalsSickbaycolumns = [
     key: 'onsetDate',
     render: (text) => moment(text).format('MM/DD/YYYY'),
   },
-  {
-    title: 'Name',
-    dataIndex: 'animalId',
-    key: 'animalId',
-  },
-  {
-    title: 'Animal Category',
-    dataIndex: 'animalCategoryId',
-    key: 'animalCategoryId',
-  },
+
   {
     title: 'Price',
     dataIndex: 'price',
@@ -219,11 +210,6 @@ export const AnimalFeedColmns = [
     dataIndex: 'onsetDate',
     key: 'onsetDate',
     render: (text) => moment(text).format('MM/DD/YYYY'),
-  },
-  {
-    title: 'AnimalId',
-    dataIndex: 'animalId',
-    key: 'animalId',
   },
   {
     title: 'Feed name',
@@ -384,32 +370,33 @@ export const TreatmentsColumn = [
     dataIndex: 'site',
     key: 'site',
   },
-  {
-    title: 'Withdrawal date',
-    dataIndex: 'withdrawal_date',
-    key: 'withdrawal_date',
-    render: (text) => moment(text).format('MM/DD/YYYY'),
-  },
-  {
-    title: 'Retreat date',
-    dataIndex: 'retreat_date',
-    key: 'retreat_date',
-    render: (text) => moment(text).format('MM/DD/YYYY'),
-  },
-  {
-    title: 'technician',
-    dataIndex: 'technician',
-    key: 'technician',
-  },
+  // {
+  //   title: 'Withdrawal date',
+  //   dataIndex: 'withdrawal_date',
+  //   key: 'withdrawal_date',
+  //   render: (text) => moment(text).format('MM/DD/YYYY'),
+  // },
+
+  // {
+  //   title: 'technician',
+  //   dataIndex: 'technician',
+  //   key: 'technician',
+  // },
   {
     title: 'Cost',
     dataIndex: 'cost',
     key: 'cost',
   },
+  // {
+  //   title: 'Description',
+  //   dataIndex: 'description',
+  //   key: 'description',
+  // },
   {
-    title: 'Description',
-    dataIndex: 'description',
-    key: 'description',
+    title: 'date',
+    dataIndex: 'date',
+    key: 'date',
+    render: (text) => moment(text).format('MM/DD/YYYY'),
   },
 ]
 

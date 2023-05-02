@@ -1,13 +1,19 @@
 import moment from 'moment'
 
+export const onHeaderRow = (columns, index) => {
+  return {
+    style: { backgroundColor: 'blueviolet' }, // set the background color for the header row
+  }
+}
+
 export const TreatmentReportColumn = [
   {
-    title: 'Animal Name',
+    title: 'Name',
     dataIndex: 'name',
     key: 'name',
   },
   {
-    title: 'Animal Breed',
+    title: 'Breed',
     dataIndex: 'breed',
     key: 'breed',
   },
@@ -20,16 +26,6 @@ export const TreatmentReportColumn = [
     title: 'Mode',
     dataIndex: 'mode',
     key: 'mode',
-  },
-  {
-    title: 'Description',
-    dataIndex: 'Description',
-    key: 'Description',
-  },
-  {
-    title: 'Site',
-    dataIndex: 'site',
-    key: 'site',
   },
   {
     title: 'Batch',

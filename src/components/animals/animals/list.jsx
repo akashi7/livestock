@@ -2,7 +2,7 @@ import { Layout, Table } from 'antd'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getAnimals } from '../../../state/slices/animal.slice'
+import { getAnimals, SearchAnimal } from '../../../state/slices/animal.slice'
 import Search from '../../common/search'
 import '../animal.css'
 import { getAnimalColums } from './helper'
@@ -17,18 +17,24 @@ function ListAnimals() {
     /* eslint-disable-next-line */
   }, [])
 
-  console.log({ get })
-
   function Dispatch(animals) {
     localStorage.setItem('id', animals.id)
     navigate(`/vt/animal/${animals.id}`)
   }
 
+  const name = ''
+
   return (
     <Layout className='h-[100%] w-full'>
       <div className=' flex justify-end '>
         <div className='w-[56%]'>
-          <Search />
+          <Search
+            name={name}
+            dispatch={dispatch}
+            action={SearchAnimal}
+            state={get}
+            typeName={'name'}
+          />
         </div>
       </div>
       <div>
@@ -37,6 +43,9 @@ function ListAnimals() {
           dataSource={get.data}
           loading={get.loading}
           rowKey={(animals) => animals.id}
+          pagination={{
+            defaultPageSize: 5,
+          }}
         />
       </div>
     </Layout>

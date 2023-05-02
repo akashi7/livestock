@@ -2,6 +2,7 @@ import { Col, Modal, notification, Row } from 'antd'
 import { Form, Formik } from 'formik'
 import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import { vaccinationSchema } from '../validations'
+import { useState } from 'react'
 
 export default function AddVaccinateModal({
   Toogle,
@@ -35,6 +36,7 @@ export default function AddVaccinateModal({
   }
 
   const handleSubmit = (values) => {
+    values.per_head = state.value
     dispatch(
       VaccinateAnimal({
         resName: 'animal',
@@ -43,6 +45,14 @@ export default function AddVaccinateModal({
         success: navigates,
       })
     )
+  }
+
+  const [state, setState] = useState({
+    value: 'false',
+  })
+
+  function ChangeType(e) {
+    setState({ ...state, value: e.target.value })
   }
 
   return (
@@ -71,7 +81,7 @@ export default function AddVaccinateModal({
                   label='onset Date'
                 />
               </Col>
-              <Col className='gutter-row mt-10' span={12}>
+              {/* <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='per_head'
                   options={[
@@ -80,13 +90,13 @@ export default function AddVaccinateModal({
                   ]}
                   label='Group distribution'
                 />
-              </Col>
+              </Col> */}
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='nextAppointment'
                   type='date'
                   placeholder='nextAppointment'
-                  label='next Appointment'
+                  label='Next appointment'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>
@@ -108,6 +118,33 @@ export default function AddVaccinateModal({
                   label='Select vaccination Id'
                 />
               </Col>
+              <div className='mt-10 ml-2'>
+                <div className='kkpoer'>
+                  <span className='span'>distribution</span>
+                  <div className='flex  flex-row  w-[100%]'>
+                    <div className=' flex flex-row justify-start m-[5px] items-center'>
+                      <input
+                        type={'radio'}
+                        className='w-[70%]'
+                        value={'true'}
+                        onChange={ChangeType}
+                        checked={state.value === 'true'}
+                      />
+                      <label className='w-[170px] '>Per Head</label>
+                    </div>
+                    <div className=' flex flex-row justify-start m-[5px] items-center  '>
+                      <input
+                        type={'radio'}
+                        className='w-[70%]'
+                        value={'false'}
+                        checked={state.value === 'false'}
+                        onChange={ChangeType}
+                      />
+                      <label className='w-[170px] '>Total for group</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <Col className='gutter-row mt-10' span={12}>
                 <InputTextArea
                   name='description'

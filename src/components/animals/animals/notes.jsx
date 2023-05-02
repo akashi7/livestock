@@ -6,7 +6,7 @@ import { FiEdit2 } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   CreateAnimalNotes,
-  GetOneAnimalNote,
+  // GetOneAnimalNote,
   SeeOneAnimal,
   retrieveAllanimalNotes,
 } from '../../../state/slices/animal.slice'
@@ -23,6 +23,7 @@ function ListNotes() {
     (state) => state.animal
   )
   const id = localStorage.getItem('id')
+
   useEffect(() => {
     dispatch(retrieveAllanimalNotes({ param: id }))
     dispatch(SeeOneAnimal({ params: id }))
@@ -35,10 +36,10 @@ function ListNotes() {
     setToogle(!toogle)
   }
 
-  const DispatchOneNote = (record) => {
-    setModal(!modal)
-    dispatch(GetOneAnimalNote({ resName: 'animal', resId: id, id: record.id }))
-  }
+  // const DispatchOneNote = (record) => {
+  //   setModal(!modal)
+  //   dispatch(GetOneAnimalNote({ resName: 'animal', resId: id, id: record.id }))
+  // }
 
   const [modal, setModal] = useState(false)
 

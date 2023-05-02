@@ -41,6 +41,7 @@ import {
   listTreatment,
   listVaccination,
   retrieveAnimalNotes,
+  searchAnimal,
   upComingTreatmentReport,
   vaccinationData,
   viewGroupAnimal,
@@ -611,8 +612,21 @@ export const GetAllFemalesAnimalsApi = createAsyncThunk(
 
 export const AllAncestors = createAsyncThunk(
   'up-ui=zx./',
-  async ({id}, { rejectWithValue }) => {
+  async ({ id }, { rejectWithValue }) => {
     return GetAllAncestors(id)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const SearchAnimal = createAsyncThunk(
+  'up-ui=zx./ccc',
+  async ({ param }, { rejectWithValue }) => {
+    return searchAnimal(param)
       .then((resp) => {
         return resp.data
       })
@@ -758,10 +772,10 @@ const initialState = {
     loading: false,
     data: [],
   },
-  ancestors:{
-    loading:false,
-    data:[]
-  }
+  ancestors: {
+    loading: false,
+    data: [],
+  },
 }
 
 const animalSlice = createSlice({
@@ -1216,6 +1230,16 @@ const animalSlice = createSlice({
       })
       .addCase(AllAncestors.pending, (state) => {
         state.ancestors.loading = true
+      })
+      .addCase(SearchAnimal.pending, (state) => {
+        state.get.loading = true
+      })
+      .addCase(SearchAnimal.fulfilled, (state, { payload }) => {
+        state.get.loading = false
+        state.get.data = payload.data
+      })
+      .addCase(SearchAnimal.rejected, (state) => {
+        state.get.loading = false
       })
   },
 })

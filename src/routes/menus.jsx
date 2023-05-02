@@ -53,18 +53,6 @@ const menus = [
             label: `Animal`,
             key: `/${mainRoute}/add-animal`,
           },
-          // {
-          //   label: `Animal Group`,
-          //   key: `/${mainRoute}/add-animal-group`,
-          // },
-          // {
-          //   label: `Sickbay`,
-          //   key: `/${mainRoute}/add-sickbay`,
-          // },
-          // {
-          //   label: `Vaccinate`,
-          //   key: `/${mainRoute}/vaccinate`,
-          // },
         ],
       },
       {
@@ -75,80 +63,8 @@ const menus = [
         label: `Group list`,
         key: `/${mainRoute}/list-animalsGroup`,
       },
-      // {
-      //   label: `Animals Groups List`,
-      //   key: `/${mainRoute}/list-animalsGroup`,
-      // },
-      // {
-      //   label: `Sickbay List`,
-      //   key: `/${mainRoute}/list-sickbay`,
-      // },
-      // {
-      //   label: `List of  vaccinations`,
-      //   key: `/${mainRoute}/list-vaccination`,
-      // },
     ],
   },
-  // {
-  //   label: `Expenses`,
-  //   icon: <AccountBookOutlined />,
-  //   children: [
-  //     {
-  //       label: `Create Animal expenses`,
-  //       key: `/${mainRoute}/add-animal-expense`,
-  //     },
-  //     {
-  //       label: `List Animal Expenses`,
-  //       key: `/${mainRoute}/list-animal-expenses`,
-  //     },
-  //     {
-  //       label: `Create Farm expense `,
-  //       key: `/${mainRoute}/create-farm-expenses`,
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: `Animal Category`,
-  //   icon: <AccountBookOutlined />,
-  //   children: [
-  //     {
-  //       label: `Create`,
-  //       key: `/${mainRoute}/create-category`,
-  //     },
-  //     {
-  //       label: `List`,
-  //       key: `/${mainRoute}/list-category`,
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: `Animal Feed`,
-  //   icon: <AccountBookOutlined />,
-  //   children: [
-  //     {
-  //       label: `Create`,
-  //       key: `/${mainRoute}/create-animal-feed`,
-  //     },
-  //     {
-  //       label: `List`,
-  //       key: `/${mainRoute}/list-animal-feed`,
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: `Events`,
-  //   icon: <AccountBookOutlined />,
-  //   children: [
-  //     {
-  //       label: `Create`,
-  //       key: `/${mainRoute}/create-event`,
-  //     },
-  //     {
-  //       label: `List`,
-  //       key: `/${mainRoute}/event-list`,
-  //     },
-  //   ],
-  // },
   {
     label: `Reports`,
     icon: <AccountBookOutlined />,
@@ -166,14 +82,6 @@ const menus = [
           },
         ],
       },
-      // {
-      //   label: `Due dates`,
-      //   key: `/${mainRoute}/report/duedates`,
-      // },
-      // {
-      //   label: `Reproduction`,
-      //   key: `/${mainRoute}/report/reproduction`,
-      // },
     ],
   },
 ]
@@ -242,23 +150,23 @@ export const getGroupAnchors = (id) => {
   return [
     {
       label: `Details`,
-      key: `/${mainRoute}/groupanimal/${id}`,
+      key: `/${mainRoute}/group-animal/${id}`,
     },
     {
       label: 'Notes',
-      key: `/${mainRoute}/groupanimal`,
+      key: `/${mainRoute}/groupanimals`,
     },
     {
       label: 'Feeding',
-      key: `/${mainRoute}/groupanimal`,
+      key: `/${mainRoute}/groupanimalv`,
     },
     {
       label: 'SickBay',
-      key: `/${mainRoute}/groupanimal`,
+      key: `/${mainRoute}/groupanimalt`,
     },
     {
       label: 'Task',
-      key: `/${mainRoute}/groupanimal`,
+      key: `/${mainRoute}/groupanimalk`,
     },
   ]
 }

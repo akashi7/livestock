@@ -2,6 +2,7 @@ import { Col, Modal, notification, Row } from 'antd'
 import { Form, Formik } from 'formik'
 import { InputSelect, InputText } from '../../common/input'
 import { AddFeedSchema } from '../validations'
+import { useState } from 'react'
 
 export default function AddFeedModal({
   Toogle,
@@ -33,9 +34,18 @@ export default function AddFeedModal({
   }
 
   function handleSubmit(values) {
+    values.per_head = state.value
     dispatch(
       CreateFeed({ resName: 'animal', id, data: values, success: navigates })
     )
+  }
+
+  const [state, setState] = useState({
+    value: 'false',
+  })
+
+  function ChangeType(e) {
+    setState({ ...state, value: e.target.value })
   }
 
   return (
@@ -56,7 +66,7 @@ export default function AddFeedModal({
         >
           <Form className='space-y-12' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col className='gutter-row mt-10' span={12}>
+              {/* <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='per_head'
                   options={[
@@ -65,7 +75,8 @@ export default function AddFeedModal({
                   ]}
                   label='Group distribution'
                 />
-              </Col>
+              </Col> */}
+
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
                   name='onsetDate'
@@ -82,6 +93,7 @@ export default function AddFeedModal({
                   label='Quantity'
                 />
               </Col>
+
               <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='feedId'
@@ -92,6 +104,33 @@ export default function AddFeedModal({
                   label='Select Feed type'
                 />
               </Col>
+              <div className='mt-10 ml-2'>
+                <div className='kkpoer'>
+                  <span className='span'>distribution</span>
+                  <div className='flex  flex-row  w-[100%]'>
+                    <div className=' flex flex-row justify-start m-[5px] items-center'>
+                      <input
+                        type={'radio'}
+                        className='w-[70%]'
+                        value={'true'}
+                        onChange={ChangeType}
+                        checked={state.value === 'true'}
+                      />
+                      <label className='w-[170px] '>Per Head</label>
+                    </div>
+                    <div className=' flex flex-row justify-start m-[5px] items-center  '>
+                      <input
+                        type={'radio'}
+                        className='w-[70%]'
+                        value={'false'}
+                        checked={state.value === 'false'}
+                        onChange={ChangeType}
+                      />
+                      <label className='w-[170px] '>Total for group</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </Row>
 
             <div className='flex items-center justify-center'>

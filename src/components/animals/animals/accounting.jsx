@@ -95,6 +95,9 @@ export default function ListAccounts() {
               columns={accountColumns}
               dataSource={accountings.data.data}
               loading={accountings.loading}
+              pagination={{
+                defaultPageSize: 5,
+              }}
             />
           </div>
         </div>

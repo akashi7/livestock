@@ -15,23 +15,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-:root{
-  --main-color:#1D4ED8;
+:root {
+  --main-color: #1d4ed8;
 }
-.bg-login{
+.ant-table-thead .ant-table-cell {
+  background-color: #31b0d5;
+  color: white;
+}
+.bg-login {
   background-image: url('./assets/images/livestock.jpeg');
-  background-size:cover;
+  background-size: cover;
   position: relative;
 }
-.bg-login::before{
-  width:100%;
-  height:500px;
-  left:0;
-  top:0;
-  opacity:0.3;
+.bg-login::before {
+  width: 100%;
+  height: 500px;
+  left: 0;
+  top: 0;
+  opacity: 0.3;
   content: '';
-  position:absolute;
-  background:#31B0D5;
-  z-index:1;
+  position: absolute;
+  background: #31b0d5;
+  z-index: 1;
 }
-
