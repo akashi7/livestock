@@ -41,7 +41,10 @@ export const addAnimalSickSchema = Yup.object().shape({
   intervention: Yup.string().required("Intervation is Required"),
   observation: Yup.string().required("Observation is Required"),
   quantity: Yup.string().required("Quantity is Required"),
-  medicineId: Yup.string().required("Medecine is Required"),
+  medecine_name: Yup.string().required("Medecine is Required"),
+  price: Yup.string().required("price is Required"),
+  measurement: Yup.string().required("measurement is Required"),
+
 });
 
 export const AddAnimalCategorySchmea = Yup.object().shape({
@@ -53,7 +56,9 @@ export const AddFeedSchema = Yup.object().shape({
   onsetDate: Yup.string().required("onsetDate is Required"),
   // animalCategoryId: Yup.string().required("animalCategoryId is Required"),
   quantity: Yup.string().required("quantity is Required"),
-  feedId: Yup.string().required("feedId is Required"),
+  measurement: Yup.string().required("measurement is Required"),
+  price: Yup.string().required("price is Required"),
+  feed_name: Yup.string().required("feed_name is Required"),
 });
 
 export const AddAccountSchema = Yup.object().shape({
@@ -136,8 +141,10 @@ export const AddTreatSchema = Yup.object().shape({
 export const vaccinationSchema = Yup.object().shape({
   onsetDate: Yup.string().required("onsetDate is Required"),
   description: Yup.string().required("description is Required"),
-  vaccinationId: Yup.string().required("vaccinationId is Required"),
+  vaccination_name: Yup.string().required("vaccination name is Required"),
   quantity: Yup.string().required("quantity is Required"),
+  price: Yup.string().required("price is Required"),
+  measurement:Yup.string().required("measurement is Required"),
   nextAppointment: Yup.string().required("nextAppointment is Required"),
 });
 

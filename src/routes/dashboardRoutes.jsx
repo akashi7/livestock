@@ -47,6 +47,7 @@ import UpcomingTreatmentsReports from '../components/reports/report/upcomingt'
 import PLStatement from '../components/farms/farms/plstatement'
 import Genealogy from '../components/animals/animals/genealogy'
 import Offspring from '../components/animals/animals/offspring'
+import GroupFeeding from '../components/animals/animals/group-feed'
 function DashRoutes() {
   return (
     <Layout className='h-[100vh]'>
@@ -97,7 +98,6 @@ function DashRoutes() {
             <Route path='/report/duedates' element={<DueDateReport />} />
             <Route path='/genealogy' element={<Genealogy />} />
             <Route path='/offSpring' element={<Offspring />} />
-
             <Route
               path='/report/upcoming_treatment'
               element={<UpcomingTreatmentsReports />}
@@ -110,6 +110,7 @@ function DashRoutes() {
             <Route path='/farm/:id/cashflow' element={<CashFlow />} />
             <Route path='/farm/:id/transaction' element={<FarmTransaction />} />
             <Route path='/farm/:id/pl' element={<PLStatement />} />
+            <Route path='/group/feed/:id' element={<GroupFeeding />} />
           </Routes>
         </ContentWrapper>
       </Layout>

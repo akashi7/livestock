@@ -51,7 +51,8 @@ export default function AddTreatmentModal({
   }
 
   function handleSubmit(values) {
-    values.per_head = state.value
+    // values.per_head = state.value
+    values.record_transaction = true
     const date = new Date(values.date)
     date.setDate(date.getDate() + values.days)
     values.withdrawal_date = moment(new Date(date)).format('YYYY-MM-DD')
@@ -202,7 +203,7 @@ export default function AddTreatmentModal({
                 />
               </Col> */}
 
-              <div className='mt-10 ml-2'>
+              {/* <div className='mt-10 ml-2'>
                 <div className='kkpoer'>
                   <span className='span'>distribution</span>
                   <div className='flex  flex-row  w-[100%]'>
@@ -228,7 +229,7 @@ export default function AddTreatmentModal({
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <Col className='gutter-row mt-10' span={12}>
                 <InputTextArea name='description' label='description' />

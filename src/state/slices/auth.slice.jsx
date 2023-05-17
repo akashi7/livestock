@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { authenticateAdmin } from '../../utils/services/auth.service'
+import {
+  authenticateAdmin,
+  signUpAdmin,
+} from '../../utils/services/auth.service'
 import { notification } from 'antd'
 
 export const authAdmin = createAsyncThunk(
@@ -22,34 +25,59 @@ export const authAdmin = createAsyncThunk(
       })
   }
 )
+export const authSignUp = createAsyncThunk(
+  'auth-admin-signup',
+  async ({ data, success }, { rejectWithValue }) => {
+    return signUpAdmin(data)
+      .then((resp) => {
+        success()
+        localStorage.setItem('token', resp.data.token)
+        localStorage.setItem('user', JSON.stringify(resp.data.data))
+      })
+      .catch((error) => {
+        notification.error({
+          placement: 'topRight',
+          message: error.response.data.error,
+          duration: 5,
+          key: 'error',
+        })
+        rejectWithValue(error)
+      })
+  }
+)
 const initialState = {
   loading: false,
   authenticated: false,
   user: {},
   error: '',
+  loader: false,
 }
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    next: (state) => {
-      console.log(state)
-    },
+    next: (state) => {},
   },
   extraReducers: (builder) => {
     builder
       .addCase(authAdmin.pending, (state) => {
         state.loading = true
-        console.log(state)
       })
       .addCase(authAdmin.fulfilled, (state) => {
         state.loading = false
-        console.log(state)
       })
       .addCase(authAdmin.rejected, (state) => {
         state.loading = false
-        console.log(state)
+      })
+      .addCase(authSignUp.pending, (state) => {
+        state.loader = true
+      })
+      .addCase(authSignUp.fulfilled, (state) => {
+        state.loader = false
+      })
+      .addCase(authSignUp.rejected, (state) => {
+        state.loader = false
       })
   },
 })

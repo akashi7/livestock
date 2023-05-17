@@ -26,7 +26,7 @@ function ListAnimalFeeds() {
   useEffect(() => {
     dispatch(FeedItems())
     dispatch(getAnimalCatgories())
-    dispatch(GetAllFeeds({ params: id }))
+    dispatch(GetAllFeeds({ params: id, type: 'animal' }))
     dispatch(SeeOneAnimal({ params: id }))
     /* eslint-disable-next-line */
   }, [])

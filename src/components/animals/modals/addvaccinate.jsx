@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik'
 import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import { vaccinationSchema } from '../validations'
 import { useState } from 'react'
+import { MeasurementsData } from '../data/data'
 
 export default function AddVaccinateModal({
   Toogle,
@@ -18,10 +19,12 @@ export default function AddVaccinateModal({
   const initialValues = {
     onsetDate: '',
     description: '',
-    vaccinationId: '',
     groupAnimalId: '',
     quantity: '',
     nextAppointment: '',
+    vaccination_name: '',
+    price: '',
+    measurement: '',
   }
 
   function navigates() {
@@ -36,7 +39,7 @@ export default function AddVaccinateModal({
   }
 
   const handleSubmit = (values) => {
-    values.per_head = state.value
+    // values.per_head = state.value
     dispatch(
       VaccinateAnimal({
         resName: 'animal',
@@ -101,24 +104,39 @@ export default function AddVaccinateModal({
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
+                  name='vaccination_name'
+                  type='text'
+                  placeholder='vaccination name'
+                  label='vaccination name'
+                />
+              </Col>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
                   name='quantity'
                   type='text'
                   placeholder='quantity'
                   label='Quantity'
                 />
               </Col>
-
               <Col className='gutter-row mt-10' span={12}>
-                <InputSelect
-                  name='vaccinationId'
-                  options={vaccinations?.data.map((item) => ({
-                    label: item.name,
-                    value: item.id,
-                  }))}
-                  label='Select vaccination Id'
+                <InputText
+                  name='price'
+                  type='text'
+                  placeholder='price'
+                  label='price'
                 />
               </Col>
-              <div className='mt-10 ml-2'>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputSelect
+                  name='measurement'
+                  options={MeasurementsData.map((item) => ({
+                    label: item,
+                    value: item,
+                  }))}
+                  label='Select Measurement'
+                />
+              </Col>
+              {/* <div className='mt-10 ml-2'>
                 <div className='kkpoer'>
                   <span className='span'>distribution</span>
                   <div className='flex  flex-row  w-[100%]'>
@@ -144,7 +162,7 @@ export default function AddVaccinateModal({
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <Col className='gutter-row mt-10' span={12}>
                 <InputTextArea
                   name='description'

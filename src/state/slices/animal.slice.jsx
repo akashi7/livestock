@@ -148,8 +148,8 @@ export const CreateFeed = createAsyncThunk(
 )
 export const GetAllFeeds = createAsyncThunk(
   'getFeedData',
-  async ({ params }, { rejectWithValue }) => {
-    return getFeedData(params)
+  async ({ params, type }, { rejectWithValue }) => {
+    return getFeedData(params, type)
       .then((resp) => {
         return resp.data
       })
