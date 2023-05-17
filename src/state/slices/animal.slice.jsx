@@ -100,8 +100,8 @@ export const getAllAnimalsGroup = createAsyncThunk(
 )
 export const getAllAnimalsSickbay = createAsyncThunk(
   'getAllanimalsSickbay',
-  async ({ param }, { rejectWithValue }) => {
-    return getAnimalsSickbayData(param)
+  async ({ param, type }, { rejectWithValue }) => {
+    return getAnimalsSickbayData(param, type)
       .then((resp) => {
         return resp.data
       })

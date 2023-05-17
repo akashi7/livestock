@@ -11,8 +11,8 @@ export const createGroupAnimal = (data) => {
 export const createSickBay = (resName, id, data) => {
   return http.POST(`sickbay/${resName}/${id}/create`, data)
 }
-export const getAnimalsSickbayData = (id) => {
-  return http.GET(`sickbay/animal/${id}/check/all`)
+export const getAnimalsSickbayData = (id,type) => {
+  return http.GET(`sickbay/${type}/${id}/check/all`)
 }
 export const getAnimalsGroupData = () => {
   return http.GET('livestock_groups/check/all')
@@ -28,7 +28,6 @@ export const getPurposeData = () => {
 }
 
 export const createFeedData = (ResName, id, data) => {
-  console.log({ ResName, id, data })
   return http.POST(`feeding/${ResName}/${id}/create`, data)
 }
 export const getFeedData = (id, type) => {

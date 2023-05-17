@@ -24,7 +24,7 @@ function ListAnimalsSickBay() {
   const id = localStorage.getItem('id')
 
   useEffect(() => {
-    dispatch(getAllAnimalsSickbay({ param: id }))
+    dispatch(getAllAnimalsSickbay({ param: id, type: 'animal' }))
     dispatch(SeeOneAnimal({ params: id }))
     dispatch(getAnimalCatgories())
     dispatch(GetMedecinesData())
@@ -39,7 +39,7 @@ function ListAnimalsSickBay() {
     setToogle(!toogle)
   }
 
-  console.log({ animalsSickBayData })
+  console.log({ animalCatgories })
 
   return (
     <Layout className='layout-container'>

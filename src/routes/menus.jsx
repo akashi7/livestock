@@ -158,12 +158,12 @@ export const getGroupAnchors = (id) => {
     },
     {
       label: 'SickBay',
-      key: `/${mainRoute}/groupanimalt`,
+      key: `/${mainRoute}/group/sickbay/${id}`,
     },
-    {
-      label: 'Task',
-      key: `/${mainRoute}/groupanimalk`,
-    },
+    // {
+    //   label: 'Task',
+    //   key: `/${mainRoute}/groupanimalk`,
+    // },
   ]
 }
 
