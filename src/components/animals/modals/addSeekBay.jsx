@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik'
 import { InputSelect, InputText } from '../../common/input'
 import { addAnimalSickSchema } from '../validations'
 import { useState } from 'react'
+import { MeasurementsData } from '../data/data'
 
 export default function AddSeekBayModal({
   Toogle,
@@ -21,7 +22,9 @@ export default function AddSeekBayModal({
     intervention: '',
     observation: '',
     quantity: '',
-    medicineId: '',
+    medicine_name: '',
+    price: '',
+    measurement: '',
   }
 
   function navigates() {
@@ -36,7 +39,8 @@ export default function AddSeekBayModal({
   }
 
   const handleSubmit = (values) => {
-    values.per_head = state.value
+    // values.per_head = state.value
+    values.record_transaction = true
     dispatch(
       createSickBy({ resName: 'animal', id, data: values, success: navigates })
     )
@@ -106,6 +110,22 @@ export default function AddSeekBayModal({
               </Col>
               <Col className='gutter-row mt-10' span={12}>
                 <InputText
+                  name='price'
+                  type='text'
+                  placeholder='price'
+                  label='price'
+                />
+              </Col>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='medecine_name'
+                  type='text'
+                  placeholder='medecine'
+                  label='medecine'
+                />
+              </Col>
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
                   name='quantity'
                   type='text'
                   placeholder='Quantity'
@@ -120,7 +140,7 @@ export default function AddSeekBayModal({
                   label='OnsetDate'
                 />
               </Col>
-              <div className='mt-10 ml-2'>
+              {/* <div className='mt-10 ml-2'>
                 <div className='kkpoer'>
                   <span className='span'>distribution</span>
                   <div className='flex  flex-row  w-[100%]'>
@@ -146,15 +166,15 @@ export default function AddSeekBayModal({
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
-                  name='medicineId'
-                  options={medecines?.data.map((item) => ({
-                    label: item.name,
-                    value: item.id,
+                  name='measurement'
+                  options={MeasurementsData.map((item) => ({
+                    label: item,
+                    value: item,
                   }))}
-                  label='Select Medecine'
+                  label='Select Measurement'
                 />
               </Col>
             </Row>

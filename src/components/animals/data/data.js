@@ -151,3 +151,10 @@ export const incomeTypes=[
   "Custom hire (machine work) income",
   "Other income"
 ]
+
+export const MeasurementsData =[
+  "Kilograms",
+  "Grams" ,
+  "Bales",
+  "Quanity" 
+]

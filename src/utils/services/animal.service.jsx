@@ -28,10 +28,11 @@ export const getPurposeData = () => {
 }
 
 export const createFeedData = (ResName, id, data) => {
+  console.log({ ResName, id, data })
   return http.POST(`feeding/${ResName}/${id}/create`, data)
 }
-export const getFeedData = (id) => {
-  return http.GET(`feeding/animal/${id}/check/all`)
+export const getFeedData = (id, type) => {
+  return http.GET(`feeding/${type}/${id}/check/all`)
 }
 
 export const getFeedIdsData = () => {
