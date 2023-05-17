@@ -15,6 +15,7 @@ export default function AddSeekBayModal({
   id,
   medecines,
   getAllAnimalsSickbay,
+  isGroup,
 }) {
   const initialValues = {
     onsetDate: '',
@@ -28,7 +29,12 @@ export default function AddSeekBayModal({
   }
 
   function navigates() {
-    dispatch(getAllAnimalsSickbay({ param: id }))
+    dispatch(
+      getAllAnimalsSickbay({
+        param: id,
+        type: isGroup ? 'livestock_group' : 'animal',
+      })
+    )
     notification.success({
       placement: 'topRight',
       message: 'Added Successfully',
@@ -39,10 +45,15 @@ export default function AddSeekBayModal({
   }
 
   const handleSubmit = (values) => {
-    // values.per_head = state.value
+    values.per_head = state.value
     values.record_transaction = true
     dispatch(
-      createSickBy({ resName: 'animal', id, data: values, success: navigates })
+      createSickBy({
+        resName: isGroup ? 'livestock_group' : 'animal',
+        id,
+        data: values,
+        success: navigates,
+      })
     )
   }
 
@@ -140,33 +151,6 @@ export default function AddSeekBayModal({
                   label='OnsetDate'
                 />
               </Col>
-              {/* <div className='mt-10 ml-2'>
-                <div className='kkpoer'>
-                  <span className='span'>distribution</span>
-                  <div className='flex  flex-row  w-[100%]'>
-                    <div className=' flex flex-row justify-start m-[5px] items-center'>
-                      <input
-                        type={'radio'}
-                        className='w-[70%]'
-                        value={'true'}
-                        onChange={ChangeType}
-                        checked={state.value === 'true'}
-                      />
-                      <label className='w-[170px] '>Per Head</label>
-                    </div>
-                    <div className=' flex flex-row justify-start m-[5px] items-center  '>
-                      <input
-                        type={'radio'}
-                        className='w-[70%]'
-                        value={'false'}
-                        checked={state.value === 'false'}
-                        onChange={ChangeType}
-                      />
-                      <label className='w-[170px] '>Total for group</label>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
               <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='measurement'
@@ -177,6 +161,35 @@ export default function AddSeekBayModal({
                   label='Select Measurement'
                 />
               </Col>
+              {isGroup && (
+                <div className='mt-10 ml-2'>
+                  <div className='kkpoer'>
+                    <span className='span'>distribution</span>
+                    <div className='flex  flex-row  w-[100%]'>
+                      <div className=' flex flex-row justify-start m-[5px] items-center'>
+                        <input
+                          type={'radio'}
+                          className='w-[70%]'
+                          value={'true'}
+                          onChange={ChangeType}
+                          checked={state.value === 'true'}
+                        />
+                        <label className='w-[170px] '>Per Head</label>
+                      </div>
+                      <div className=' flex flex-row justify-start m-[5px] items-center  '>
+                        <input
+                          type={'radio'}
+                          className='w-[70%]'
+                          value={'false'}
+                          checked={state.value === 'false'}
+                          onChange={ChangeType}
+                        />
+                        <label className='w-[170px] '>Total for group</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </Row>
             {/* <div className="flex items-center h-5 justify-center">
                             <Spinner />

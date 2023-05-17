@@ -48,6 +48,7 @@ import PLStatement from '../components/farms/farms/plstatement'
 import Genealogy from '../components/animals/animals/genealogy'
 import Offspring from '../components/animals/animals/offspring'
 import GroupFeeding from '../components/animals/animals/group-feed'
+import GroupSickBay from '../components/animals/animals/group-sickbay'
 function DashRoutes() {
   return (
     <Layout className='h-[100vh]'>
@@ -111,6 +112,7 @@ function DashRoutes() {
             <Route path='/farm/:id/transaction' element={<FarmTransaction />} />
             <Route path='/farm/:id/pl' element={<PLStatement />} />
             <Route path='/group/feed/:id' element={<GroupFeeding />} />
+            <Route path='/group/sickbay/:id' element={<GroupSickBay />} />
           </Routes>
         </ContentWrapper>
       </Layout>
