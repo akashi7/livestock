@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { farm } from '../../../state/slices/farm.slice'
-import { getfarmers } from '../../../state/slices/farmer.slice'
 
 import {
   allProvinces,
@@ -20,7 +19,6 @@ function CreateFarms() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { loading } = useSelector((state) => state.farm)
-  const { get } = useSelector((state) => state.farmer)
 
   const [provinces, setProvinces] = useState([])
   const [districts, setDistricts] = useState([])

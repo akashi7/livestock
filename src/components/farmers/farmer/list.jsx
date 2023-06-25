@@ -1,10 +1,7 @@
 import { Layout, Table } from 'antd'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAnimals } from '../../../state/slices/animal.slice'
-import { getAllFarms } from '../../../state/slices/farm.slice'
 import { getfarmers } from '../../../state/slices/farmer.slice'
-import DashCard from '../../common/card'
 import Search from '../../common/search'
 import { columns } from './helper'
 

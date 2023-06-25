@@ -1,7 +1,6 @@
 import { Layout, Table } from 'antd'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import {
   FarmAddUsersLists,
   FarmGetUsersLists,
@@ -11,7 +10,6 @@ import { UsersListsColumns } from './helper'
 
 const UsersLists = ({ farmId }) => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { users, user } = useSelector((state) => state.farm)
 
   const [toogle, setToggle] = useState(false)
