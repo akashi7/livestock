@@ -15,7 +15,7 @@ import '../animal.css'
 import { AddSeekBayModal } from '../modals'
 import { AnimalsSickbaycolumns } from './helper'
 
-function ListAnimalsSickBay() {
+function ListAnimalsSickBay({ farmId }) {
   const dispatch = useDispatch()
   const { animalsSickBayData, animal, medecines } = useSelector(
     (state) => state.animal
@@ -24,9 +24,9 @@ function ListAnimalsSickBay() {
   const id = localStorage.getItem('id')
 
   useEffect(() => {
-    dispatch(getAllAnimalsSickbay({ param: id, type: 'animal' }))
-    dispatch(SeeOneAnimal({ params: id }))
-    dispatch(getAnimalCatgories())
+    dispatch(getAllAnimalsSickbay({ fId: farmId, param: id, type: 'animal' }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
+    dispatch(getAnimalCatgories({ fId: farmId }))
     dispatch(GetMedecinesData())
     /* eslint-disable-next-line */
   }, [])
@@ -39,7 +39,7 @@ function ListAnimalsSickBay() {
     setToogle(!toogle)
   }
 
-  console.log({ animalCatgories })
+  console.log({ animalsSickBayData })
 
   return (
     <Layout className='layout-container'>
@@ -70,6 +70,7 @@ function ListAnimalsSickBay() {
                 id={id}
                 medecines={medecines}
                 getAllAnimalsSickbay={getAllAnimalsSickbay}
+                fId={farmId}
               />
             )}
           </div>

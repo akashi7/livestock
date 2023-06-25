@@ -8,25 +8,18 @@ import DashCard from '../../common/card'
 import Search from '../../common/search'
 import { columns } from './helper'
 
-function ListFarmers() {
+function ListFarmers({ farmId }) {
   const { get } = useSelector((state) => state.farmer)
-  const { get: farm } = useSelector((state) => state.farm)
-  const { get: animal } = useSelector((state) => state.animal)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getfarmers())
-    dispatch(getAllFarms())
-    dispatch(getAnimals())
+    dispatch(getfarmers({ fId: farmId }))
     /* eslint-disable-next-line */
   }, [])
+
+  console.log({ get }, { farmId })
+
   return (
     <Layout className='h-[100%] w-full '>
-      <div className='flex items-center justify-around'>
-        <DashCard title='Total Farmers' number={get.data.length} />
-        <DashCard title='Total Farms' number={farm.data.length} />
-        <DashCard title='Total Animals' number={animal.data.length} />
-        <DashCard title='Schedules In This Week' number='6' />
-      </div>
       <div className='mt-10 flex justify-end '>
         <div className='w-[400px]'>
           <Search />

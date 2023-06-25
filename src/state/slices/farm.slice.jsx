@@ -7,6 +7,8 @@ import {
   getFarmReport,
   getFarms,
   viewOneFarm,
+  FarmGetUsers,
+  FarmAddUsers,
 } from '../../utils/services/farm.service'
 
 export const farm = createAsyncThunk(
@@ -14,6 +16,8 @@ export const farm = createAsyncThunk(
   async ({ data, success }, { rejectWithValue }) => {
     return createFarm(data)
       .then((resp) => {
+        localStorage.setItem('fId', resp.data.data.id)
+        localStorage.setItem('fName', resp.data.data.name)
         success()
       })
       .catch((error) => {
@@ -106,6 +110,33 @@ export const FarmPL = createAsyncThunk(
       })
   }
 )
+export const FarmGetUsersLists = createAsyncThunk(
+  'getUsers',
+  async ({ farmId }, { rejectWithValue }) => {
+    return FarmGetUsers(farmId)
+      .then((resp) => {
+        return resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const FarmAddUsersLists = createAsyncThunk(
+  'AddfUsers',
+  async ({ farmId, data, success }, { rejectWithValue }) => {
+    return FarmAddUsers(farmId, data)
+      .then((resp) => {
+        success()
+      })
+      .catch((error) => {
+        console.log(error)
+        rejectWithValue(error)
+      })
+  }
+)
 
 const initialState = {
   loading: false,
@@ -133,6 +164,13 @@ const initialState = {
   pl: {
     loading: false,
     data: {},
+  },
+  users: {
+    loading: false,
+    data: [],
+  },
+  user: {
+    loading: false,
   },
 }
 
@@ -214,6 +252,25 @@ const farmSlice = createSlice({
       })
       .addCase(FarmPL.rejected, (state) => {
         state.pl.loading = false
+      })
+      .addCase(FarmGetUsersLists.pending, (state) => {
+        state.users.loading = true
+      })
+      .addCase(FarmGetUsersLists.fulfilled, (state, { payload }) => {
+        state.users.loading = false
+        state.users.data = payload.data
+      })
+      .addCase(FarmGetUsersLists.rejected, (state) => {
+        state.users.loading = false
+      })
+      .addCase(FarmAddUsersLists.pending, (state) => {
+        state.user.loading = true
+      })
+      .addCase(FarmAddUsersLists.fulfilled, (state) => {
+        state.user.loading = false
+      })
+      .addCase(FarmAddUsersLists.rejected, (state) => {
+        state.user.loading = false
       })
   },
 })

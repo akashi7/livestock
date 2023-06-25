@@ -15,7 +15,7 @@ import {
 import { InputSelect, InputText } from '../../common/input'
 import { addFarmerSchema } from '../validations'
 
-function CreateFarmer() {
+function CreateFarmer({ farmId }) {
   const { loading } = useSelector((state) => state.farmer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -27,7 +27,7 @@ function CreateFarmer() {
       key: 'success',
     })
     setTimeout(() => {
-      navigate('/vt/')
+      navigate('/vt/farmers-list')
     }, 3000)
   }
 
@@ -96,7 +96,7 @@ function CreateFarmer() {
     values.district = activeDistrict
     values.sector = activeSector
     values.cell = activeCell
-    dispatch(farmer({ data: values, success: successFull }))
+    dispatch(farmer({ fId: farmId, data: values, success: successFull }))
   }
   return (
     <Layout className='h-[100%]  items-center flex overflow-auto ' id='scroll'>

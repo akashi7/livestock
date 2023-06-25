@@ -12,6 +12,7 @@ export default function AddNotesModal({
   allNotes,
   dispatch,
   CreateAnimalNotes,
+  fId,
 }) {
   const initialValues = {
     date: '',
@@ -21,7 +22,7 @@ export default function AddNotesModal({
   }
 
   function navigates() {
-    dispatch(allNotes({ param: id }))
+    dispatch(allNotes({ fId, param: id }))
     notification.success({
       placement: 'topRight',
       message: 'Note Added Successfully',
@@ -34,6 +35,7 @@ export default function AddNotesModal({
   function handleSubmit(values) {
     dispatch(
       CreateAnimalNotes({
+        fId,
         resName: 'animal',
         id,
         data: values,
@@ -59,7 +61,6 @@ export default function AddNotesModal({
         >
           <Form className='space-y-12' action='#'>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-             
               <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='category'
@@ -91,8 +92,8 @@ export default function AddNotesModal({
                 <InputText
                   name='keywords'
                   type='text'
-                  placeholder='keywords'
-                  label='Keywords'
+                  placeholder='keywords (title)'
+                  label='Keywords (title)'
                 />
               </Col>
             </Row>

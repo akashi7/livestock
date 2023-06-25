@@ -172,12 +172,15 @@ export default function AnimalDetails({ props, activities }) {
                       {' '}
                       {moment(props.date).format('MM/DD/YYYY')}{' '}
                     </p>
-                    <p style={{ width: '70px' }}> {act.type} </p>
-                    {act.type === 'expense' ? (
+                    <p style={{ width: '70px', color: 'green' }}>
+                      {' '}
+                      {act.category}{' '}
+                    </p>
+                    {/* {act.type === 'expense' ? (
                       <p style={{ color: 'red' }}>{act.amount}</p>
                     ) : (
                       <p style={{ color: 'green' }}>{act.amount}</p>
-                    )}
+                    )} */}
                   </div>
                 </div>
               )

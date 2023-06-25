@@ -4,29 +4,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
   AddToGroup,
-  GetAllFeeds,
+  CreateTreatmentData,
+  TreatmentData,
   ViewGroupAnimal,
-  createSickBy,
-  getAllAnimalsSickbay,
   getAnimalCatgories,
   handleState,
   searchAnimalAction,
 } from '../../../state/slices/animal.slice'
 import GroupMenuBar from '../../common/menubar/g-menubar'
 import '../animal.css'
-import { AddSeekBayModal } from '../modals'
+import AddTreatmentModal from '../modals/addTreatment'
 import GroupAnimalDetails from './groupanimalDet'
-import { AnimalsSickbaycolumns } from './helper'
+import { TreatmentsColumn } from './helper'
 
-export default function GroupSickBay({ farmId }) {
+export default function GroupTreatment() {
   const dispatch = useDispatch()
   const { id } = useParams()
-  const { onegroupAnimal, searchedAnimal, animalsSickBayData } = useSelector(
-    (state) => state.animal
-  )
+  const { onegroupAnimal, searchedAnimal, treatments, createTreatment } =
+    useSelector((state) => state.animal)
 
-  const { loading } = useSelector((state) => state.animal.createSickBy)
-  const animalCatgories = useSelector((state) => state.animal.categories)
   const [toogle, setToogle] = useState(false)
 
   function Toogle() {
@@ -34,12 +30,9 @@ export default function GroupSickBay({ farmId }) {
   }
 
   useEffect(() => {
-    dispatch(ViewGroupAnimal({ fId: farmId, groupId: id }))
-    dispatch(GetAllFeeds({ fId: farmId, params: id, type: 'livestock_group' }))
+    dispatch(ViewGroupAnimal({ groupId: id }))
     dispatch(getAnimalCatgories())
-    dispatch(
-      getAllAnimalsSickbay({ fId: farmId, param: id, type: 'livestock_group' })
-    )
+    dispatch(TreatmentData({ param: id, type: 'livestock_group' }))
     /* eslint-disable-next-line */
   }, [id])
 
@@ -57,7 +50,6 @@ export default function GroupSickBay({ farmId }) {
             dispatch={dispatch}
             ViewGroupAnimal={ViewGroupAnimal}
             handleState={handleState}
-            fId={farmId}
           />
           <br />
           <button
@@ -65,27 +57,25 @@ export default function GroupSickBay({ farmId }) {
             className='w-40 bg-blue text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
             onClick={Toogle}
           >
-            New data
+            New Treatment
           </button>
           {toogle && (
-            <AddSeekBayModal
-              Toogle={Toogle}
+            <AddTreatmentModal
               toogle={toogle}
-              categories={animalCatgories}
-              dispatch={dispatch}
-              createSickBy={createSickBy}
-              loading={loading}
+              Toogle={Toogle}
               id={id}
-              getAllAnimalsSickbay={getAllAnimalsSickbay}
+              CreateTreatmentData={CreateTreatmentData}
+              TreatmentData={TreatmentData}
+              dispatch={dispatch}
+              createTreatment={createTreatment}
               isGroup={true}
-              fId={farmId}
             />
           )}
           <div className='mt-[30px]'>
             <Table
-              columns={AnimalsSickbaycolumns}
-              dataSource={animalsSickBayData.data}
-              loading={animalsSickBayData.loading}
+              columns={TreatmentsColumn}
+              dataSource={treatments.data}
+              loading={treatments.loading}
               rowKey={(animals) => animals.id}
               pagination={{
                 defaultPageSize: 5,

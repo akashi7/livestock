@@ -8,6 +8,7 @@ export default function NewAnimalModal({
   id,
   animalCat,
 }) {
+  const farmId = localStorage.getItem('fId')
   return (
     <Modal
       title='Animal'
@@ -19,7 +20,12 @@ export default function NewAnimalModal({
       footer={null}
     >
       <div className='p-1 w-[100%] h-auto bg-white sm:p-6 lg:p-8'>
-        <CreateAnimal newgender={gender} id={id} animalCat={animalCat} />
+        <CreateAnimal
+          newgender={gender}
+          id={id}
+          animalCat={animalCat}
+          farmId={farmId}
+        />
       </div>
     </Modal>
   )

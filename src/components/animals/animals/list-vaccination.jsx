@@ -15,16 +15,16 @@ import AddVaccinateModal from '../modals/addvaccinate'
 import { AnimalVaccinationColmns } from './helper'
 import Search from '../../common/search'
 
-function ListVaccinations() {
+function ListVaccinations({ farmId }) {
   const dispatch = useDispatch()
   const { allVaccination, animal, animalsGroupData, vacciData, vatinate } =
     useSelector((state) => state.animal)
   const id = localStorage.getItem('id')
   useEffect(() => {
-    dispatch(ListVaccinationsData({ param: id }))
-    dispatch(SeeOneAnimal({ params: id }))
-    dispatch(getAnimalCatgories())
-    dispatch(VaccinationData())
+    dispatch(ListVaccinationsData({ fId: farmId, param: id }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
+    dispatch(getAnimalCatgories({ fId: farmId }))
+    dispatch(VaccinationData({ fId: farmId }))
     /* eslint-disable-next-line */
   }, [])
 
@@ -63,6 +63,7 @@ function ListVaccinations() {
                 dispatch={dispatch}
                 ListVaccinationsData={ListVaccinationsData}
                 vatinate={vatinate}
+                fId={farmId}
               />
             )}
           </div>

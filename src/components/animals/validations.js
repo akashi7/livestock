@@ -2,7 +2,6 @@ import * as Yup from "yup";
 export const addFarmerSchema = Yup.object().shape({
   animalCategory_id: Yup.string().required("animalCategory_id is Required"),
   earring_num: Yup.string().required("earring_num is Required"),
-  farm_id: Yup.string().required("farm_id is Required"),
   purpose_id: Yup.string().required("purpose_id is Required"),
   birth_date: Yup.string().required("birth_date is Required"),
   birth_weight: Yup.string().required("birth_weight is Required"),
@@ -105,7 +104,7 @@ export const AddNotesSchema = Yup.object().shape({
 export const AddGroupSchema = Yup.object().shape({
   name: Yup.string().required("name is Required"),
   description: Yup.string().required("description is Required"),
-  farm_id: Yup.string().required("farm id is Required"),
+  // farm_id: Yup.string().required("farm id is Required"),
 });
 
 
@@ -148,14 +147,17 @@ export const vaccinationSchema = Yup.object().shape({
   nextAppointment: Yup.string().required("nextAppointment is Required"),
 });
 
-// {
-//     "farmId": "1",
-//     "earring_num": "99993344935",
-//     "sex": "F",
-//     "animal_cat": "pig",
-//     "birthdate": "2021-03-03",
-//     "birthkgs": "45",
-//     "parent": "34542fg",
-//     "expected_exit": "2021-04-04",
-//     "expected_exit_kgs": "67"
-// }
+
+
+
+export const userSignUpSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("E-mail is Required")
+    .email("email is not valid"),
+  password: Yup.string().required("Password is Required"),
+  firstname: Yup.string().required("firstname is Required"),
+  lastname: Yup.string().required("lastname is Required"),
+  occupation: Yup.number().required("occupation is Required"),
+  role:Yup.string().required('Role is required'),
+  username:Yup.string().required('username is required')
+});

@@ -17,8 +17,11 @@ export default function SearchAnimalModal({
   defaultState,
   ViewGroupAnimal,
   handleState,
+  fId,
 }) {
   function navigates() {
+    ViewGroupAnimal &&
+      dispatch(ViewGroupAnimal({ fId, groupId: groupAnimalId }))
     notification.success({
       placement: 'topRight',
       message: 'Animal  Added to group Successfully',
@@ -31,6 +34,7 @@ export default function SearchAnimalModal({
   const Dispatch = (animal) => {
     dispatch(
       AddToGroup({
+        fId,
         groupId: groupAnimalId,
         animalId: animal.id,
         success: navigates,
@@ -38,7 +42,8 @@ export default function SearchAnimalModal({
     )
     handleState && dispatch(handleState())
     ViewGroupAnimal && Toogle()
-    ViewGroupAnimal && dispatch(ViewGroupAnimal({ groupId: groupAnimalId }))
+    ViewGroupAnimal &&
+      dispatch(ViewGroupAnimal({ fId, groupId: groupAnimalId }))
   }
 
   useEffect(() => {
@@ -69,6 +74,7 @@ export default function SearchAnimalModal({
           action={searchAnimalAction}
           state={searchedAnimal}
           typeName={'name'}
+          fId={fId}
         />
       </div>
       <div>

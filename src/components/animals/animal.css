@@ -50,7 +50,7 @@
 }
 .leftContainer {
   width: 100%;
-  margin-left: 150px;
+  /* margin-left: 150px; */
   padding: 20px;
   background-color: white;
   height: 100%;

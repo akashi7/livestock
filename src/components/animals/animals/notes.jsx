@@ -16,7 +16,7 @@ import Search from '../../common/search'
 import '../animal.css'
 import { AddNotesModal, OneNoteModal } from '../modals'
 
-function ListNotes() {
+function ListNotes({ farmId }) {
   const dispatch = useDispatch()
 
   const { allNotes, animal, createNote, oneNote } = useSelector(
@@ -25,8 +25,8 @@ function ListNotes() {
   const id = localStorage.getItem('id')
 
   useEffect(() => {
-    dispatch(retrieveAllanimalNotes({ param: id }))
-    dispatch(SeeOneAnimal({ params: id }))
+    dispatch(retrieveAllanimalNotes({ fId: farmId, param: id }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
     /* eslint-disable-next-line */
   }, [])
 
@@ -70,6 +70,7 @@ function ListNotes() {
                 createNote={createNote}
                 id={id}
                 allNotes={retrieveAllanimalNotes}
+                fId={farmId}
               />
             )}
             {modal && (

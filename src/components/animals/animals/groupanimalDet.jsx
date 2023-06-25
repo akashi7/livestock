@@ -13,6 +13,7 @@ export default function GroupAnimalDetails({
   dispatch,
   ViewGroupAnimal,
   handleState,
+  fId,
 }) {
   const [toogle, setToogle] = useState(false)
 
@@ -50,6 +51,7 @@ export default function GroupAnimalDetails({
           groupAnimalId={props?.id}
           ViewGroupAnimal={ViewGroupAnimal}
           handleState={handleState}
+          fId={fId}
         />
       )}
     </div>

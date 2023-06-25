@@ -4,7 +4,6 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
-import { MenuProvider } from "./context/menuContext";
 import reportWebVitals from "./reportWebVitals";
 import Store from "./state";
 import "./styles.css";
@@ -12,11 +11,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={Store}>
-      <MenuProvider>
         <Router>
           <App />
         </Router>
-      </MenuProvider>
+     
     </Provider>
   </React.StrictMode>
 );

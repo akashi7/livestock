@@ -17,7 +17,7 @@ import { AddFeedModal } from '../modals'
 import GroupAnimalDetails from './groupanimalDet'
 import { AnimalFeedColmns } from './helper'
 
-export default function GroupFeeding() {
+export default function GroupFeeding({ farmId }) {
   const dispatch = useDispatch()
   const { id } = useParams()
   const {
@@ -35,8 +35,8 @@ export default function GroupFeeding() {
   }
 
   useEffect(() => {
-    dispatch(ViewGroupAnimal({ groupId: id }))
-    dispatch(GetAllFeeds({ params: id, type: 'livestock_group' }))
+    dispatch(ViewGroupAnimal({ fId: farmId, groupId: id }))
+    dispatch(GetAllFeeds({ fId: farmId, params: id, type: 'livestock_group' }))
     dispatch(getAnimalCatgories())
     /* eslint-disable-next-line */
   }, [id])
@@ -54,6 +54,7 @@ export default function GroupFeeding() {
             dispatch={dispatch}
             ViewGroupAnimal={ViewGroupAnimal}
             handleState={handleState}
+            fId={farmId}
           />
           <br />
           <button
@@ -74,13 +75,14 @@ export default function GroupFeeding() {
               id={id}
               getAllFeeds={GetAllFeeds}
               isGroup={true}
+              farmId={farmId}
             />
           )}
           <div className='mt-[30px]'>
             <Table
               columns={AnimalFeedColmns}
               dataSource={allFeeds.data}
-              loading={onegroupAnimal.loading}
+              loading={allFeeds.loading}
               rowKey={(animals) => animals.id}
               pagination={{
                 defaultPageSize: 5,

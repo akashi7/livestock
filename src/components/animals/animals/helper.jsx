@@ -418,6 +418,11 @@ export const accountColumns = [
     key: 'category',
   },
   {
+    title: 'Payment system',
+    dataIndex: 'payment_system',
+    key: 'payment_system',
+  },
+  {
     title: 'type',
     dataIndex: 'type',
     key: 'type',

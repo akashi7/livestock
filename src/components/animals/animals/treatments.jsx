@@ -13,7 +13,7 @@ import AddTreatmentModal from '../modals/addTreatment'
 import { TreatmentsColumn } from './helper'
 import '../animal.css'
 
-export default function TreatmentsList() {
+export default function TreatmentsList({ farmId }) {
   const dispatch = useDispatch()
 
   const { treatments, animal, createTreatment } = useSelector(
@@ -22,8 +22,8 @@ export default function TreatmentsList() {
   const id = localStorage.getItem('id')
 
   useEffect(() => {
-    dispatch(TreatmentData({ param: id }))
-    dispatch(SeeOneAnimal({ params: id }))
+    dispatch(TreatmentData({ fId: farmId, param: id, type: 'animal' }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
     //eslint-disable-next-line
   }, [])
 
@@ -60,6 +60,7 @@ export default function TreatmentsList() {
                 TreatmentData={TreatmentData}
                 dispatch={dispatch}
                 createTreatment={createTreatment}
+                fId={farmId}
               />
             )}
           </div>

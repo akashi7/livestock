@@ -3,6 +3,7 @@ import {
   InfoCircleOutlined,
   StarOutlined,
   UsergroupAddOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 
 const mainRoute = `vt`
@@ -23,7 +24,7 @@ const menus = [
       },
       {
         label: `Farmers List`,
-        key: `/${mainRoute}/`,
+        key: `/${mainRoute}/farmers-list`,
       },
     ],
   },
@@ -37,7 +38,7 @@ const menus = [
       },
       {
         label: `farms List`,
-        key: `/${mainRoute}/list-farms`,
+        key: `/${mainRoute}/`,
       },
     ],
   },
@@ -84,6 +85,11 @@ const menus = [
       },
     ],
   },
+  {
+    label: 'Users',
+    icon: <UserOutlined />,
+    key: `/${mainRoute}/users/lists`,
+  },
 ]
 export const getMenus = () => {
   return menus
@@ -112,17 +118,10 @@ export const getAnchors = (id) => {
       key: `/${mainRoute}/event-list`,
     },
     {
-      label: 'Vaccinating',
-      key: `/${mainRoute}/list-vaccination`,
-    },
-    {
       label: 'Treatement',
       key: `/${mainRoute}/animal-treatments`,
     },
-    {
-      label: 'Account',
-      key: `/${mainRoute}/animal-accounts`,
-    },
+
     {
       label: 'Genealogy',
       key: `/${mainRoute}/genealogy`,
@@ -130,6 +129,10 @@ export const getAnchors = (id) => {
     {
       label: 'Offspring',
       key: `/${mainRoute}/offSpring`,
+    },
+    {
+      label: 'Accounting',
+      key: `/${mainRoute}/animal-accounts`,
     },
     // {
     //   label: 'Measurement',
@@ -160,10 +163,14 @@ export const getGroupAnchors = (id) => {
       label: 'SickBay',
       key: `/${mainRoute}/group/sickbay/${id}`,
     },
-    // {
-    //   label: 'Task',
-    //   key: `/${mainRoute}/groupanimalk`,
-    // },
+    {
+      label: 'Account',
+      key: `/${mainRoute}/group/account/${id}`,
+    },
+    {
+      label: 'treatment',
+      key: `/${mainRoute}/group/treatment/${id}`,
+    },
   ]
 }
 

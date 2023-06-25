@@ -1,174 +1,177 @@
 import * as http from './api'
-export const createAnimal = (data) => {
-  return http.POST('animal/create', data)
+export const createAnimal = (fId, data) => {
+  return http.POST(`animal/${fId}/create`, data)
 }
-export const editAnimal = (id, data) => {
+export const editAnimal = (fId, id, data) => {
   return http.PUT(`animal/${id} `, data)
 }
-export const createGroupAnimal = (data) => {
-  return http.POST('livestock_groups/create', data)
+export const createGroupAnimal = (fId, data) => {
+  return http.POST(`livestock_groups/${fId}/create`, data)
 }
-export const createSickBay = (resName, id, data) => {
-  return http.POST(`sickbay/${resName}/${id}/create`, data)
+export const createSickBay = (fId, resName, id, data) => {
+  return http.POST(`sickbay/${fId}/${resName}/${id}/create`, data)
 }
-export const getAnimalsSickbayData = (id,type) => {
-  return http.GET(`sickbay/${type}/${id}/check/all`)
+export const getAnimalsSickbayData = (fId, id, type) => {
+  return http.GET(`sickbay/${fId}/${type}/${id}/check/all`)
 }
-export const getAnimalsGroupData = () => {
-  return http.GET('livestock_groups/check/all')
+export const getAnimalsGroupData = (fId) => {
+  return http.GET(`livestock_groups/${fId}/check/all`)
 }
-export const getAnimalsData = () => {
-  return http.GET('animal/check/all')
+export const getAnimalsData = (fId, id) => {
+  return http.GET(`animal/${fId}/check/all`)
 }
-export const getAnimalsCatData = () => {
+export const getAnimalsCatData = (fId) => {
   return http.GET('animalcategory/check/all')
 }
-export const getPurposeData = () => {
+export const getPurposeData = (fId) => {
   return http.GET('purposelist/check/all')
 }
 
-export const createFeedData = (ResName, id, data) => {
-  return http.POST(`feeding/${ResName}/${id}/create`, data)
+export const createFeedData = (fId, ResName, id, data) => {
+  return http.POST(`feeding/${fId}/${ResName}/${id}/create`, data)
 }
-export const getFeedData = (id, type) => {
-  return http.GET(`feeding/${type}/${id}/check/all`)
-}
-
-export const getFeedIdsData = () => {
-  return http.GET('feed/check/all')
-}
-export const createCategoryData = (data) => {
-  return http.GET('animalcategory/create', data)
+export const getFeedData = (fId, id, type) => {
+  return http.GET(`feeding/${fId}/${type}/${id}/check/all`)
 }
 
-export const vaccinationData = () => {
+export const getFeedIdsData = (fId) => {
+  return http.GET(`feed/${fId}/check/all`)
+}
+export const createCategoryData = (fId, data) => {
+  return http.GET(`animalcategory/${fId}/create`, data)
+}
+
+export const vaccinationData = (fId) => {
   return http.GET('vaccination/check/all')
 }
 
-export const Vaccinate = (resName, id, data) => {
-  return http.POST(`vaccinating/${resName}/${id}/create `, data)
+export const Vaccinate = (fId, resName, id, data) => {
+  return http.POST(`vaccinating/${fId}/${resName}/${id}/create `, data)
 }
 
-export const listVaccination = (id) => {
-  return http.GET(`vaccinating/animal/${id}/check/all`)
+export const listVaccination = (fId, id) => {
+  return http.GET(`vaccinating/animal/${fId}/${id}/check/all`)
 }
 
-export const animalReport = () => {
-  return http.GET('reports/animal-farm-farmer')
+export const animalReport = (fId) => {
+  return http.GET(`reports/${fId}/animal-farm-farmer`)
 }
 
-export const viewOneAnimal = (params) => {
-  return http.GET(`animal/${params}`)
+export const viewOneAnimal = (fId, params) => {
+  return http.GET(`animal/${fId}/${params}`)
 }
 
-export const getMedecines = () => {
+export const getMedecines = (fId) => {
   return http.GET(`medicine/check/all`)
 }
 
-export const listTreatment = (id) => {
-  return http.GET(`treatment/animal/${id}/check/all`)
+export const listTreatment = (fId, id, type) => {
+  return http.GET(`treatment/${fId}/${type}/${id}/check/all`)
 }
 
-export const createTreatment = (resName, id, data) => {
-  return http.POST(`treatment/${resName}/${id}/create`, data)
+export const createTreatment = (fId, resName, id, data) => {
+  return http.POST(`treatment/${fId}/${resName}/${id}/create`, data)
 }
 
-export const createAccounting = (id, data) => {
-  return http.POST(`accounting/animal/${id}/create`, data)
+export const createAccounting = (fId, id, data, type) => {
+  return http.POST(`accounting/${fId}/${type}/${id}/create`, data)
 }
 
-export const listAccounting = (id) => {
-  return http.GET(`accounting/animal/${id}/check/all`)
+export const listAccounting = (fId, id, type) => {
+  return http.GET(`accounting/${fId}/${type}/${id}/check/all`)
 }
 
-export const createMeasurement = (id, data) => {
-  return http.POST(`measurement/${id}/create`, data)
+export const createMeasurement = (fId, id, data) => {
+  return http.POST(`measurement/${fId}/${id}/create`, data)
 }
-export const getMeasurements = (id) => {
-  return http.GET(`measurement/${id}/check/all`)
-}
-
-export const allAnimalActivities = (id) => {
-  return http.GET(`activities/animal/${id}/check/all`)
+export const getMeasurements = (fId, id) => {
+  return http.GET(`measurement/${fId}/${id}/check/all`)
 }
 
-export const createAnimalNote = (resName, id, data) => {
-  return http.POST(`notes/${resName}/${id}/create`, data)
+export const allAnimalActivities = (fId, id, type) => {
+  return http.GET(`activities/${fId}/${type}/${id}/check/all`)
 }
 
-export const retrieveAnimalNotes = (id) => {
-  return http.GET(`notes/animal/${id}/check/all`)
+export const createAnimalNote = (fId, resName, id, data) => {
+  return http.POST(`notes/${fId}/${resName}/${id}/create`, data)
 }
 
-export const getOneAnimalNote = (resName, resId, id) => {
-  return http.GET(`notes/${resName}/${resId}/${id} `)
+export const retrieveAnimalNotes = (fId, id) => {
+  return http.GET(`notes/animal/${fId}/${id}/check/all`)
 }
 
-export const createAnimalYield = (id, data) => {
+export const getOneAnimalNote = (fId, resName, resId, id) => {
+  return http.GET(`notes/${fId}/${resName}/${resId}/${id} `)
+}
+
+export const createAnimalYield = (fId, id, data) => {
   return http.POST(`yield/animal/${id}/create`, data)
 }
 
-export const ListAnimalYield = (id) => {
+export const ListAnimalYield = (fId, id) => {
   return http.GET(`yield/animal/${id}/check/all`)
 }
 
-export const createAnimalBreed = (id, data) => {
+export const createAnimalBreed = (fId, id, data) => {
   return http.POST(`breeding/animal/${id}/create`, data)
 }
 
-export const ListAnimalBreed = (id) => {
+export const ListAnimalBreed = (fId, id) => {
   return http.GET(`breeding/animal/${id}/check/all`)
 }
 
-export const SearchAnimalGroup = (param) => {
-  return http.GET(`animal?name=${param.name}`)
+export const SearchAnimalGroup = (fId, param) => {
+  return http.GET(`animal/${fId}/?name=${param.name}`)
 }
 
-export const AddAnimalToGroup = (groupId, animalId) => {
-  return http.PUT(`animal/${animalId}/${groupId}`)
+export const AddAnimalToGroup = (fId, groupId, animalId) => {
+  return http.PUT(`animal/${fId}/${animalId}/${groupId}`)
 }
 
-export const viewGroupAnimal = (groupId) => {
-  return http.GET(`livestock_groups/${groupId}`)
+export const viewGroupAnimal = (fId, groupId) => {
+  return http.GET(`livestock_groups/${fId}/${groupId}`)
 }
-export const GetTreatmentReport = () => {
+export const GetTreatmentReport = (fId) => {
   return http.GET(
-    `reports/livestock/treatments?startDate=2022-04-04&endDate=2023-04-04`
+    `reports/${fId}/livestock/treatments?startDate=2022-04-04&endDate=2023-04-04`
   )
 }
 
-export const upComingTreatmentReport = () => {
+export const upComingTreatmentReport = (fId) => {
   return http.GET(
-    `reports/livestock/upcoming_treatments?startDate=2022-04-04&endDate=2023-04-04`
+    `reports/${fId}/livestock/upcoming_treatments?startDate=2022-04-04&endDate=2023-04-04`
   )
 }
-export const GetreportTypes = () => {
-  return http.GET(`reports/types`)
+export const GetreportTypes = (fId) => {
+  return http.GET(`reports/${fId}/types`)
 }
 
-export const GetContactApi = () => {
-  return http.GET(`contact/check/all`)
+export const GetContactApi = (fId) => {
+  return http.GET(`contact/${fId}/check/all`)
 }
 
-export const AddAncestors = (gender, parent, data) => {
-  return http.POST(`animal/new?gender=${gender}&parent_of=${parent}`, data)
+export const AddAncestors = (fId, gender, parent, data) => {
+  return http.POST(
+    `animal/${fId}/new?gender=${gender}&parent_of=${parent}`,
+    data
+  )
 }
 
-export const AnimalOffSpring = (id) => {
-  return http.GET(`animal/${id}/offstring`)
+export const AnimalOffSpring = (fId, id) => {
+  return http.GET(`animal/${fId}/${id}/offstring`)
 }
-export const GetAllMales = (id) => {
-  return http.GET(`animal/males/all`)
+export const GetAllMales = (fId, id) => {
+  return http.GET(`animal/${fId}/males/all`)
 }
-export const GetAllFemales = (id) => {
-  return http.GET(`animal/females/all`)
+export const GetAllFemales = (fId, id) => {
+  return http.GET(`animal/${fId}/females/all`)
 }
-export const GetAllAncestors = (id) => {
-  return http.GET(`animal/${id}/ancestory`)
+export const GetAllAncestors = (fId, id) => {
+  return http.GET(`animal/${fId}/${id}/ancestory`)
 }
 
-export const searchAnimal = (name) => {
-  return http.PUT(`animal/search/animals/?name=${name.name}`)
+export const searchAnimal = (fId, name) => {
+  return http.GET(`animal/${fId}/?name=${name.name}`)
 }
 
 //animal/c9149370-8420-492c-948e-18b353a7b75a/offstring

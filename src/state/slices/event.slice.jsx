@@ -1,10 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { createEvent, listEvent } from '../../utils/services/event.service'
+import {
+  createEvent,
+  editEvent,
+  listEvent,
+} from '../../utils/services/event.service'
 
 export const CreateEventApi = createAsyncThunk(
   'create-event',
-  async ({ resName, id, data, success }, { rejectWithValue }) => {
-    return createEvent(resName, id, data)
+  async ({ fId, resName, id, data, success }, { rejectWithValue }) => {
+    return createEvent(fId, resName, id, data)
       .then(() => {
         success()
       })
@@ -16,10 +20,24 @@ export const CreateEventApi = createAsyncThunk(
 )
 export const ListEventApi = createAsyncThunk(
   'list-event',
-  async ({ param }, { rejectWithValue }) => {
-    return listEvent(param)
+  async ({ fId, param }, { rejectWithValue }) => {
+    return listEvent(fId, param)
       .then((resp) => {
         return resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+        rejectWithValue(error)
+      })
+  }
+)
+
+export const EditEventApi = createAsyncThunk(
+  'edit-event',
+  async ({ fId, resName, id, data, success }, { rejectWithValue }) => {
+    return editEvent(fId, resName, id, data)
+      .then((resp) => {
+        return success()
       })
       .catch((error) => {
         console.log(error)
@@ -39,9 +57,7 @@ const eventSlice = createSlice({
   name: 'create-event',
   initialState,
   reducers: {
-    next: (state) => {
-      console.log(state)
-    },
+    next: (state) => {},
   },
   extraReducers: (builder) => {
     builder
@@ -67,6 +83,15 @@ const eventSlice = createSlice({
         state.events.data = payload.data
       })
       .addCase(ListEventApi.rejected, (state) => {
+        state.events.loading = false
+      })
+      .addCase(EditEventApi.pending, (state) => {
+        state.events.loading = true
+      })
+      .addCase(EditEventApi.fulfilled, (state) => {
+        state.events.loading = false
+      })
+      .addCase(EditEventApi.rejected, (state) => {
         state.events.loading = false
       })
   },

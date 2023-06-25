@@ -13,11 +13,11 @@ function EditAnimal() {
   const location = useLocation()
   const Datas = location.state
 
+  const farmId = localStorage.getItem('fId')
+
   const dispatch = useDispatch()
   const { editAnimalS } = useSelector((state) => state.animal)
   const navigate = useNavigate()
-
-  console.log({ Datas })
 
   let initialValues = {
     name: Datas.name,
@@ -34,6 +34,11 @@ function EditAnimal() {
     estimated_value: Datas.estimated_value,
     is_group: Datas.is_group,
     condition: Datas.condition,
+    sale_date: Datas.sale_date,
+    sale_price: Datas.sale_price,
+    sold_to: Datas.sold_to,
+    death_date: Datas.death_date,
+    deceased_reason: Datas.deceased_reason,
   }
   function navigates() {
     notification.success({
@@ -47,8 +52,14 @@ function EditAnimal() {
     }, 3000)
   }
   function handleSubmit(values) {
-    console.log({ values })
-    dispatch(EditAnimals({ id: Datas.id, data: values, success: navigates }))
+    dispatch(
+      EditAnimals({
+        fId: farmId,
+        id: Datas.id,
+        data: values,
+        success: navigates,
+      })
+    )
   }
 
   return (
@@ -270,7 +281,77 @@ function EditAnimal() {
                       </div>
                     </div>
                   </div>
-
+                  <div className='animal-create-h'>
+                    <p>Sale information</p>
+                  </div>
+                  <div className='cont'>
+                    <div className='kkpoer'>
+                      <span className='span'>sale date</span>
+                      <div className='w-[80%]'>
+                        <InputText
+                          name='sale_date'
+                          type='date'
+                          placeholder='sale date'
+                          height={'35px'}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className='cont'>
+                    <div className='kkpoer'>
+                      <span className='span'>sale_price</span>
+                      <div className='w-[80%]'>
+                        <InputText
+                          name='sale_price'
+                          type='text'
+                          placeholder='sale price'
+                          height={'35px'}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className='cont'>
+                    <div className='kkpoer'>
+                      <span className='span'>sold to</span>
+                      <div className='w-[80%]'>
+                        <InputText
+                          name='sold_to'
+                          type='text'
+                          placeholder='sold to'
+                          height={'35px'}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className='animal-create-h'>
+                    <p>Death information</p>
+                  </div>
+                  <div className='cont'>
+                    <div className='kkpoer'>
+                      <span className='span'>death date</span>
+                      <div className='w-[80%]'>
+                        <InputText
+                          name='death_date'
+                          type='date'
+                          placeholder='death date'
+                          height={'35px'}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className='cont'>
+                    <div className='kkpoer'>
+                      <span className='span'>deceased reason</span>
+                      <div className='w-[80%]'>
+                        <InputText
+                          name='deceased_reason'
+                          type='text'
+                          placeholder='deceased reason'
+                          height={'35px'}
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div className='flex items-center justify-center'>
                     <button
                       type='submit'

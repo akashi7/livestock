@@ -14,7 +14,7 @@ import { AddGroupModal, SearchAnimalModal } from '../modals'
 import { AnimalsGroupcolumns } from './helper'
 import { useNavigate } from 'react-router-dom'
 
-function ListAnimalsGroup() {
+function ListAnimalsGroup({ farmId }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {
@@ -25,7 +25,7 @@ function ListAnimalsGroup() {
   } = useSelector((state) => state.animal)
   const { get } = useSelector((state) => state.farm)
   useEffect(() => {
-    dispatch(getAllAnimalsGroup())
+    dispatch(getAllAnimalsGroup({ fId: farmId }))
     dispatch(getAllFarms())
     /* eslint-disable-next-line */
   }, [])
@@ -70,6 +70,7 @@ function ListAnimalsGroup() {
             defaultState={handleState}
             setData={setData}
             setTrigger={setTrigger}
+            fId={farmId}
           />
         )}
         {trigger && (
@@ -84,6 +85,7 @@ function ListAnimalsGroup() {
             AddToGroup={AddToGroup}
             groupAnimalId={Data?.id}
             defaultState={handleState}
+            fId={farmId}
           />
         )}
       </div>

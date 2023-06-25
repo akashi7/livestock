@@ -21,7 +21,7 @@ import {
 } from '../data/data'
 import { addFarmerSchema } from '../validations'
 
-function CreateAnimal({ newgender, id, animalCat }) {
+function CreateAnimal({ newgender, id, animalCat, farmId }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { loading, ancestor } = useSelector((state) => state.animal)
@@ -62,8 +62,8 @@ function CreateAnimal({ newgender, id, animalCat }) {
   }, [get.data])
   useEffect(() => {
     dispatch(getAllFarms())
-    dispatch(getAllPurposeData())
-    dispatch(getAnimalCatgories())
+    dispatch(getAllPurposeData({ fId: farmId }))
+    dispatch(getAnimalCatgories({ fId: farmId }))
     /* eslint-disable-next-line */
   }, [])
   function setFarmers() {
@@ -97,6 +97,7 @@ function CreateAnimal({ newgender, id, animalCat }) {
   const [purchaseState, setPurchase] = useState(false)
 
   const handleSubmit = (values) => {
+    values.farm_id = farmId
     values.is_group = false
     values.is_neutered = false
     values.breeding_stock = false
@@ -113,13 +114,14 @@ function CreateAnimal({ newgender, id, animalCat }) {
     newgender
       ? dispatch(
           addAncestorsApi({
+            fId: farmId,
             gender: gender,
             id,
             data: values,
             success: navigates,
           })
         )
-      : dispatch(animal({ data: values, success: navigates }))
+      : dispatch(animal({ fId: farmId, data: values, success: navigates }))
   }
   return (
     <Layout className='h-[100%] items-center flex overflow-auto' id='scroll'>
@@ -141,7 +143,7 @@ function CreateAnimal({ newgender, id, animalCat }) {
               <p>Basic information</p>
             </div>
 
-            {!newgender && (
+            {/* {!newgender && (
               <div className='cont'>
                 <div className='kkpoer'>
                   <span className='span'>Select Farm</span>
@@ -155,7 +157,7 @@ function CreateAnimal({ newgender, id, animalCat }) {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
 
             <div className='cont'>
               <div className='kkpoer'>

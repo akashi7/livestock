@@ -21,3 +21,10 @@ export const FarmReportCashflow = (param) => {
 export const FarmReportPLstatement = (param) => {
   return http.GET(`reports/farm/${param}/pl`)
 }
+export const FarmGetUsers = (id) => {
+  return http.GET(`people/${id}/check/all`)
+}
+export const FarmAddUsers = (id, data) => {
+  console.log({ id }, { data })
+  return http.POST(`people/${id}/create`, data)
+}

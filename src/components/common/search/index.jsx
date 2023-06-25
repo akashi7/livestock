@@ -10,12 +10,13 @@ export default function Search({
   params,
   state,
   typeName,
+  fId,
 }) {
   const { Content } = Layout
 
   const initialValues = { name }
   const handleSubmit = (value) => {
-    dispatch(action({ param: value }))
+    dispatch(action({ fId, param: value }))
   }
 
   return (

@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AnimalReport } from '../../../state/slices/animal.slice'
 import { AnimalReportcolumnsReports } from './helper'
 
-function ListAnimalReports() {
+function ListAnimalReports({ farmId }) {
   const dispatch = useDispatch()
   const { animalReportsData } = useSelector((state) => state.animal)
   useEffect(() => {
-    dispatch(AnimalReport())
+    dispatch(AnimalReport({ fId: farmId }))
     /* eslint-disable-next-line */
   }, [])
 

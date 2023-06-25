@@ -2,20 +2,18 @@ import { Layout, Table } from 'antd'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  ContactsApi,
   CreateAccountingData,
   GetAccountingData,
   SeeOneAnimal,
-  ContactsApi,
 } from '../../../state/slices/animal.slice'
 import AnimalCard from '../../common/Cards'
 import MenuBar from '../../common/menubar/menubar'
 import Search from '../../common/search'
 import { AddAccountModal } from '../modals'
 import { accountColumns } from './helper'
-import { MenuContext } from '../../../context/menuContext'
-import { useContext } from 'react'
 
-export default function ListAccounts() {
+export default function ListAccounts({ farmId }) {
   const dispatch = useDispatch()
 
   const { animal, accountings, createAcct, contacts } = useSelector(
@@ -23,11 +21,9 @@ export default function ListAccounts() {
   )
   const id = localStorage.getItem('id')
 
-  const { modal } = useContext(MenuContext)
-
   useEffect(() => {
-    dispatch(GetAccountingData({ param: id }))
-    dispatch(SeeOneAnimal({ params: id }))
+    dispatch(GetAccountingData({ fId: farmId, param: id, type: 'animal' }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
     dispatch(ContactsApi())
     //eslint-disable-next-line
   }, [])
@@ -66,9 +62,9 @@ export default function ListAccounts() {
                 dispatch={dispatch}
                 createAcc={CreateAccountingData}
                 contact={contacts}
+                fId={farmId}
               />
             )}
-            {modal && <p>Akashi</p>}
           </div>
           <div className='mt-[20px] mb-[25px]'>
             <div className=' flex justify-start w-[100%] m-[10px]'>
