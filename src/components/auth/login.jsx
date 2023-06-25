@@ -52,12 +52,12 @@ const Login = () => {
               >
                 Forgot Password ?
               </Link>
-              <Link
+              {/* <Link
                 to='/signup'
                 className='pl-[20px] text-md text-blue hover:underline dark:text-blue-500'
               >
                 Sign up
-              </Link>
+              </Link> */}
             </div>
             {loading && (
               <div className='flex items-center h-5 justify-center'>

@@ -25,7 +25,6 @@ function CreateAnimal({ newgender, id, animalCat, farmId }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { loading, ancestor } = useSelector((state) => state.animal)
-  const { get } = useSelector((state) => state.farm)
   const animalCatgories = useSelector((state) => state.animal.categories)
   const puporseData = useSelector((state) => state.animal.purposeData)
 
@@ -53,30 +52,14 @@ function CreateAnimal({ newgender, id, animalCat, farmId }) {
         status: '',
         type: '',
       }
-  const [farmers, setfarmers] = useState([])
   const [gender, setGender] = useState('')
 
-  useEffect(() => {
-    setFarmers()
-    /* eslint-disable-next-line */
-  }, [get.data])
   useEffect(() => {
     dispatch(getAllFarms())
     dispatch(getAllPurposeData({ fId: farmId }))
     dispatch(getAnimalCatgories({ fId: farmId }))
     /* eslint-disable-next-line */
   }, [])
-  function setFarmers() {
-    let array = []
-    get.data.map((item) => {
-      array.push({
-        value: item.id,
-        label: item.name,
-      })
-      return true
-    })
-    setfarmers(array)
-  }
 
   useEffect(() => {
     newgender && newgender && setGender(newgender)

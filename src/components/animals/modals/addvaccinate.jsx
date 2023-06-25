@@ -1,9 +1,8 @@
 import { Col, Modal, notification, Row } from 'antd'
 import { Form, Formik } from 'formik'
 import { InputSelect, InputText, InputTextArea } from '../../common/input'
-import { vaccinationSchema } from '../validations'
-import { useState } from 'react'
 import { MeasurementsData } from '../data/data'
+import { vaccinationSchema } from '../validations'
 
 export default function AddVaccinateModal({
   Toogle,
@@ -52,13 +51,13 @@ export default function AddVaccinateModal({
     )
   }
 
-  const [state, setState] = useState({
-    value: 'false',
-  })
+  // const [state, setState] = useState({
+  //   value: 'false',
+  // })
 
-  function ChangeType(e) {
-    setState({ ...state, value: e.target.value })
-  }
+  // function ChangeType(e) {
+  //   setState({ ...state, value: e.target.value })
+  // }
 
   return (
     <Modal

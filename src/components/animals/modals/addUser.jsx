@@ -1,7 +1,6 @@
 import { Col, Modal, Row, notification } from 'antd'
 import { Form, Formik } from 'formik'
 import { InputSelect, InputText } from '../../common/input'
-import { userSignUpSchema } from '../validations'
 
 export default function AddUserModal({
   Toogle,

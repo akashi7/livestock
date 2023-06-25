@@ -36,13 +36,6 @@ export default function AddGroupModal({
     })
   }
 
-  useEffect(() => {
-    setFarmers()
-    /* eslint-disable-next-line */
-  }, [Farms.data])
-
-  const [farmers, setfarmers] = useState([])
-
   function navigates() {
     dispatch(getAnimals({ fId }))
     notification.success({
@@ -72,18 +65,6 @@ export default function AddGroupModal({
     values.farm_id = fId
     values.type = state.type
     dispatch(addAnimal({ fId, data: values, success: navigates }))
-  }
-
-  function setFarmers() {
-    let array = []
-    Farms.data.map((item) => {
-      array.push({
-        value: item.id,
-        label: item.name,
-      })
-      return true
-    })
-    setfarmers(array)
   }
 
   return (
