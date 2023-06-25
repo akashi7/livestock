@@ -2,7 +2,7 @@ import { Col, Modal, Row, notification } from 'antd'
 import { Form, Formik } from 'formik'
 import { useState } from 'react'
 import { InputSelect, InputText, InputTextArea } from '../../common/input'
-import { Types, expenseTypes, incomeTypes } from '../data/data'
+import { Types, expenseTypes, incomeTypes, PaymentType } from '../data/data'
 import { AddAccountSchema } from '../validations'
 
 export default function AddAccountModal({
@@ -14,6 +14,8 @@ export default function AddAccountModal({
   dispatch,
   createAcc,
   contact,
+  isGroup,
+  fId,
 }) {
   const initialValues = {
     type: '',
@@ -24,10 +26,18 @@ export default function AddAccountModal({
     check_number: '',
     keywords: '',
     description: '',
+    payment_system: '',
+    reporting_year: '',
   }
 
   function navigates() {
-    dispatch(getAllAcc({ param: animalId }))
+    dispatch(
+      getAllAcc({
+        fId,
+        param: animalId,
+        type: isGroup ? 'livestock_group' : 'animal',
+      })
+    )
     notification.success({
       placement: 'topRight',
       message: 'Account Added Successfully',
@@ -50,7 +60,15 @@ export default function AddAccountModal({
   const handleSubmit = (values) => {
     values.type = type
     values.vendor = type === 'expense' ? 'payee' : 'customer'
-    dispatch(createAcc({ id: animalId, data: values, success: navigates }))
+    dispatch(
+      createAcc({
+        fId,
+        id: animalId,
+        type: isGroup ? 'livestock_group' : 'animal',
+        data: values,
+        success: navigates,
+      })
+    )
   }
 
   return (
@@ -99,7 +117,7 @@ export default function AddAccountModal({
                   label='date'
                 />
               </Col>
-              {type && (
+              {/* {type && (
                 <Col className='gutter-row mt-10' span={12}>
                   <InputSelect
                     name='type'
@@ -111,7 +129,7 @@ export default function AddAccountModal({
                     }))}
                   />
                 </Col>
-              )}
+              )} */}
               <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='category'
@@ -140,6 +158,27 @@ export default function AddAccountModal({
                   type='text'
                   placeholder='keywords'
                   label='keywords'
+                />
+              </Col>
+              {type === 'expense' && (
+                <Col className='gutter-row mt-10' span={12}>
+                  <InputSelect
+                    name='payment_system'
+                    options={PaymentType.map((mode) => ({
+                      label: mode,
+                      value: mode,
+                    }))}
+                    label='payment system'
+                  />
+                </Col>
+              )}
+
+              <Col className='gutter-row mt-10' span={12}>
+                <InputText
+                  name='reporting_year'
+                  type='text'
+                  placeholder='reporting year'
+                  label='reporting year'
                 />
               </Col>
               <Col className='gutter-row mt-10' span={12}>

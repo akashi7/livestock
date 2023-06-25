@@ -15,6 +15,7 @@ export default function AddVaccinateModal({
   VaccinateAnimal,
   ListVaccinationsData,
   vatinate,
+  fId,
 }) {
   const initialValues = {
     onsetDate: '',
@@ -28,7 +29,7 @@ export default function AddVaccinateModal({
   }
 
   function navigates() {
-    dispatch(ListVaccinationsData({ param: id }))
+    dispatch(ListVaccinationsData({ fId, param: id }))
     notification.success({
       placement: 'topRight',
       message: 'Animal vaccination Added Successfully',
@@ -42,6 +43,7 @@ export default function AddVaccinateModal({
     // values.per_head = state.value
     dispatch(
       VaccinateAnimal({
+        fId,
         resName: 'animal',
         id,
         data: values,

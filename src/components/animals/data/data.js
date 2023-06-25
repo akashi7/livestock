@@ -158,3 +158,10 @@ export const MeasurementsData =[
   "Bales",
   "Quanity" 
 ]
+
+export const PaymentType=[
+  "Mtn momo",
+  "Airtel money",
+  "Bank",
+  "cash"
+]

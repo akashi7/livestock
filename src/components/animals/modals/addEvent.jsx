@@ -1,6 +1,7 @@
 import { Col, Modal, Row, notification } from 'antd'
 import { Form, Formik } from 'formik'
-import { InputText } from '../../common/input'
+import { InputSelect, InputText } from '../../common/input'
+import { Status } from '../../events/data'
 import { createEventSchema } from '../validations'
 
 export default function AddEventModal({
@@ -11,19 +12,25 @@ export default function AddEventModal({
   loading,
   list,
   dispatch,
+  editValues,
+  EditEventApi,
+  fId,
 }) {
   const initialValues = {
-    start_time: '',
-    end_time: '',
-    title: '',
-    description: '',
+    start_time: editValues ? editValues.start_time : '',
+    end_time: editValues ? editValues.end_time : '',
+    title: editValues ? editValues.title : '',
+    description: editValues ? editValues.description : '',
+    status: editValues ? editValues.status : '',
   }
 
   function navigates() {
-    dispatch(list({ param: id }))
+    dispatch(list({ fId, param: id }))
     notification.success({
       placement: 'topRight',
-      message: 'Event Added Successfully',
+      message: editValues
+        ? 'Event edited Successfully'
+        : 'Event Added Successfully',
       duration: 3,
       key: 'success',
     })
@@ -31,14 +38,25 @@ export default function AddEventModal({
   }
 
   function handleSubmit(values) {
-    console.log({ values })
+    if (!editValues) {
+      values.status = 'Pending'
+    }
     dispatch(
-      CreateEventApi({
-        resName: 'animal',
-        id,
-        data: values,
-        success: navigates,
-      })
+      editValues
+        ? EditEventApi({
+            fId,
+            resName: 'animal',
+            id,
+            data: values,
+            success: navigates,
+          })
+        : CreateEventApi({
+            fId,
+            resName: 'animal',
+            id,
+            data: values,
+            success: navigates,
+          })
     )
   }
 
@@ -92,6 +110,18 @@ export default function AddEventModal({
                   label='end'
                 />
               </Col>
+              {editValues && (
+                <Col className='gutter-row mt-10' span={12}>
+                  <InputSelect
+                    name='status'
+                    options={Status.map((status) => ({
+                      label: status,
+                      value: status,
+                    }))}
+                    label='status'
+                  />
+                </Col>
+              )}
             </Row>
             <div className='flex items-center justify-center'>
               <button

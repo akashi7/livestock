@@ -6,15 +6,17 @@ const Navbar = () => {
   const { Header } = Layout
 
   const user = JSON.parse(localStorage.getItem('user'))
+  const FarmName = localStorage.getItem('fName')
 
   return (
     <Header
       className='h-[10%] w-full flex justify-between shadow-sm'
       style={{ background: 'white' }}
     >
-      <div className='w-1/6 flex items-center justify-center'>
+      <div className='lg:w-1/6 md:w-full  w-full xl:w-1/6 flex items-center justify-center'>
         <h2>Dashboard </h2>
-        <RightOutlined className='ml-[10px] mt-[-5px]' />
+        <RightOutlined className='ml-[10px] mr-2' />
+        <p>{FarmName} farm</p>
       </div>
       <div className='w-2/6 flex items-center justify-center'></div>
       <div className='w-3/6  justify-end items-center flex mr-[-40px] p-2'>

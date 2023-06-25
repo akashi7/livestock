@@ -14,7 +14,7 @@ import AncestorsModal from '../modals/addancestors'
 import NewAnimalModal from '../modals/renderAnimal'
 import { getAnimalColums } from './helper'
 
-export default function Genealogy() {
+export default function Genealogy({ farmId }) {
   const dispatch = useDispatch()
 
   const { animal, allMales, allFemales, ancestors } = useSelector(
@@ -23,10 +23,10 @@ export default function Genealogy() {
   const id = localStorage.getItem('id')
 
   useEffect(() => {
-    dispatch(SeeOneAnimal({ params: id }))
-    dispatch(GetAllFemalesAnimalsApi())
-    dispatch(GetAllMalesAnimalsApi())
-    dispatch(AllAncestors({ id }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
+    dispatch(GetAllFemalesAnimalsApi({ fId: farmId }))
+    dispatch(GetAllMalesAnimalsApi({ fId: farmId }))
+    dispatch(AllAncestors({ fId: farmId, id }))
     //eslint-disable-next-line
   }, [])
 
@@ -37,8 +37,6 @@ export default function Genealogy() {
   function Toogle() {
     setToogle(!toogle)
   }
-
-  console.log('s', animal && animal.data)
 
   return (
     <Layout className='layout-container'>
@@ -67,6 +65,7 @@ export default function Genealogy() {
                 addAncestorsApi={addAncestorsApi}
                 dispatch={dispatch}
                 animals={animal && animal.data}
+                farmId={farmId}
               />
             )}
             {change && (
@@ -76,6 +75,7 @@ export default function Genealogy() {
                 gender={gender}
                 id={id}
                 animalCat={animal && animal.data}
+                farmId={farmId}
               />
             )}
           </div>

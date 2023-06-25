@@ -11,14 +11,14 @@ import MenuBar from '../../common/menubar/menubar'
 import '../animal.css'
 import AnimalDetails from './animal-details'
 
-export default function OneAnimal() {
+export default function OneAnimal({ farmId }) {
   const { animal, activities } = useSelector((state) => state.animal)
   const { id } = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(SeeOneAnimal({ params: id }))
-    dispatch(GetAllanimalActivities({ param: id }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
+    dispatch(GetAllanimalActivities({ fId: farmId, param: id, type: 'animal' }))
     //eslint-disable-next-line
   }, [id])
 

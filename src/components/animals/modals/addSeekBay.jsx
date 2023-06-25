@@ -16,6 +16,7 @@ export default function AddSeekBayModal({
   medecines,
   getAllAnimalsSickbay,
   isGroup,
+  fId,
 }) {
   const initialValues = {
     onsetDate: '',
@@ -31,6 +32,7 @@ export default function AddSeekBayModal({
   function navigates() {
     dispatch(
       getAllAnimalsSickbay({
+        fId,
         param: id,
         type: isGroup ? 'livestock_group' : 'animal',
       })
@@ -49,6 +51,7 @@ export default function AddSeekBayModal({
     values.record_transaction = true
     dispatch(
       createSickBy({
+        fId,
         resName: isGroup ? 'livestock_group' : 'animal',
         id,
         data: values,

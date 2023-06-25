@@ -13,7 +13,7 @@ import '../animal.css'
 import { AddBreedModal } from '../modals'
 import { BreedsColumn } from './helper'
 
-function ListAnimalBreeding() {
+function ListAnimalBreeding({ farmId }) {
   const dispatch = useDispatch()
   const { animal, listBreeds, createBreed } = useSelector(
     (state) => state.animal
@@ -21,8 +21,8 @@ function ListAnimalBreeding() {
   const id = localStorage.getItem('id')
 
   useEffect(() => {
-    dispatch(AllanimalBreeds({ param: id }))
-    dispatch(SeeOneAnimal({ params: id }))
+    dispatch(AllanimalBreeds({ fId: farmId, param: id }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
     /* eslint-disable-next-line */
   }, [])
 

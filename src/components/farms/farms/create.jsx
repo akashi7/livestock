@@ -77,7 +77,7 @@ function CreateFarms() {
       key: 'success',
     })
     setTimeout(() => {
-      navigate('/vt/list-farms')
+      navigate('/vt/')
     }, 3000)
   }
 
@@ -98,30 +98,6 @@ function CreateFarms() {
     values.cell = activeCell
     dispatch(farm({ data: values, success: successFull }))
   }
-
-  const [farmers, setfarmers] = useState([])
-
-  useEffect(() => {
-    setFarmers()
-    /* eslint-disable-next-line */
-  }, [get.data])
-
-  function setFarmers() {
-    let array = []
-    get.data.map((item) => {
-      array.push({
-        value: item.id,
-        label: item.firstname + ' ' + item.lastname,
-      })
-      return true
-    })
-    setfarmers(array)
-  }
-
-  useEffect(() => {
-    dispatch(getfarmers())
-    /* eslint-disable-next-line */
-  }, [])
 
   return (
     <Layout className='h-[100%]  items-center flex'>
@@ -144,13 +120,7 @@ function CreateFarms() {
                   label='Name'
                 />
               </Col>
-              <Col className='gutter-row mt-10' span={12}>
-                <InputSelect
-                  name='farmerId'
-                  options={farmers}
-                  label='Select Farmer'
-                />
-              </Col>
+
               <Col className='gutter-row mt-10' span={12}>
                 <InputSelect
                   name='province'

@@ -2,7 +2,7 @@ import { Modal, notification } from 'antd'
 import { Form, Formik } from 'formik'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { InputSelect, InputText, InputTextArea } from '../../common/input'
+import { InputText, InputTextArea } from '../../common/input'
 import { AddGroupSchema } from '../validations'
 
 export default function AddGroupModal({
@@ -16,6 +16,7 @@ export default function AddGroupModal({
   defaultState,
   setTrigger,
   setData,
+  fId,
 }) {
   const initialValues = {
     name: '',
@@ -43,7 +44,7 @@ export default function AddGroupModal({
   const [farmers, setfarmers] = useState([])
 
   function navigates() {
-    dispatch(getAnimals())
+    dispatch(getAnimals({ fId }))
     notification.success({
       placement: 'topRight',
       message: 'Animal group Added Successfully',
@@ -68,8 +69,9 @@ export default function AddGroupModal({
   }, [createAnimalGroup])
 
   function handleSubmit(values) {
+    values.farm_id = fId
     values.type = state.type
-    dispatch(addAnimal({ data: values, success: navigates }))
+    dispatch(addAnimal({ fId, data: values, success: navigates }))
   }
 
   function setFarmers() {
@@ -115,7 +117,7 @@ export default function AddGroupModal({
                   />
                 </div>
               </div>
-
+              {/* 
               <div className='kkpoer'>
                 <span className='span'>Farmers</span>
                 <div className='w-[80%]'>
@@ -126,7 +128,7 @@ export default function AddGroupModal({
                     // label="Select Farm"
                   />
                 </div>
-              </div>
+              </div> */}
 
               <div className='kkpoer'>
                 <span className='span'>Description</span>

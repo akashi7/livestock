@@ -50,8 +50,8 @@ import {
 
 export const animal = createAsyncThunk(
   'animal',
-  async ({ data, success }, { rejectWithValue }) => {
-    return createAnimal(data)
+  async ({ fId, data, success }, { rejectWithValue }) => {
+    return createAnimal(fId, data)
       .then((resp) => {
         success()
       })
@@ -64,8 +64,8 @@ export const animal = createAsyncThunk(
 
 export const createSickBy = createAsyncThunk(
   'create sickBy',
-  async ({ resName, id, data, success }, { rejectWithValue }) => {
-    return createSickBay(resName, id, data)
+  async ({ fId, resName, id, data, success }, { rejectWithValue }) => {
+    return createSickBay(fId, resName, id, data)
       .then((resp) => {
         success()
       })
@@ -76,8 +76,8 @@ export const createSickBy = createAsyncThunk(
 )
 export const getAnimals = createAsyncThunk(
   'getanimals',
-  async (props, { rejectWithValue }) => {
-    return getAnimalsData()
+  async ({ farmId }, { rejectWithValue }) => {
+    return getAnimalsData(farmId)
       .then((resp) => {
         return resp.data
       })
@@ -88,8 +88,8 @@ export const getAnimals = createAsyncThunk(
 )
 export const getAllAnimalsGroup = createAsyncThunk(
   'getAllAnimalsGroup',
-  async (props, { rejectWithValue }) => {
-    return getAnimalsGroupData()
+  async ({ fId }, { rejectWithValue }) => {
+    return getAnimalsGroupData(fId)
       .then((resp) => {
         return resp.data
       })
@@ -100,8 +100,8 @@ export const getAllAnimalsGroup = createAsyncThunk(
 )
 export const getAllAnimalsSickbay = createAsyncThunk(
   'getAllanimalsSickbay',
-  async ({ param, type }, { rejectWithValue }) => {
-    return getAnimalsSickbayData(param, type)
+  async ({ fId, param, type }, { rejectWithValue }) => {
+    return getAnimalsSickbayData(fId, param, type)
       .then((resp) => {
         return resp.data
       })
@@ -112,8 +112,8 @@ export const getAllAnimalsSickbay = createAsyncThunk(
 )
 export const getAnimalCatgories = createAsyncThunk(
   'getanimalCatgories',
-  async (props, { rejectWithValue }) => {
-    return getAnimalsCatData()
+  async ({ fId }, { rejectWithValue }) => {
+    return getAnimalsCatData(fId)
       .then((resp) => {
         return resp.data
       })
@@ -124,8 +124,8 @@ export const getAnimalCatgories = createAsyncThunk(
 )
 export const getAllPurposeData = createAsyncThunk(
   'getpurposeData',
-  async (props, { rejectWithValue }) => {
-    return getPurposeData()
+  async ({ fId }, { rejectWithValue }) => {
+    return getPurposeData(fId)
       .then((resp) => {
         return resp.data
       })
@@ -136,8 +136,8 @@ export const getAllPurposeData = createAsyncThunk(
 )
 export const CreateFeed = createAsyncThunk(
   'createFeedData',
-  async ({ resName, id, data, success }, { rejectWithValue }) => {
-    return createFeedData(resName, id, data)
+  async ({ fId, resName, id, data, success }, { rejectWithValue }) => {
+    return createFeedData(fId, resName, id, data)
       .then((resp) => {
         success()
       })
@@ -148,8 +148,8 @@ export const CreateFeed = createAsyncThunk(
 )
 export const GetAllFeeds = createAsyncThunk(
   'getFeedData',
-  async ({ params, type }, { rejectWithValue }) => {
-    return getFeedData(params, type)
+  async ({ fId, params, type }, { rejectWithValue }) => {
+    return getFeedData(fId, params, type)
       .then((resp) => {
         return resp.data
       })
@@ -160,8 +160,8 @@ export const GetAllFeeds = createAsyncThunk(
 )
 export const FeedItems = createAsyncThunk(
   'FeedList',
-  async (props, { rejectWithValue }) => {
-    return getFeedIdsData()
+  async ({ fId }, { rejectWithValue }) => {
+    return getFeedIdsData(fId)
       .then((resp) => {
         return resp.data
       })
@@ -172,8 +172,8 @@ export const FeedItems = createAsyncThunk(
 )
 export const CreateCategoryTY = createAsyncThunk(
   'create-category',
-  async ({ data, success }, { rejectWithValue }) => {
-    return createCategoryData(data)
+  async ({ fId, data, success }, { rejectWithValue }) => {
+    return createCategoryData(fId, data)
       .then((resp) => {
         success()
       })
@@ -185,8 +185,8 @@ export const CreateCategoryTY = createAsyncThunk(
 
 export const VaccinationData = createAsyncThunk(
   'vac-data',
-  async (props, { rejectWithValue }) => {
-    return vaccinationData()
+  async ({ fId }, { rejectWithValue }) => {
+    return vaccinationData(fId)
       .then((resp) => {
         return resp.data
       })
@@ -198,8 +198,8 @@ export const VaccinationData = createAsyncThunk(
 
 export const ListVaccinationsData = createAsyncThunk(
   'list-vac-data',
-  async ({ param }, { rejectWithValue }) => {
-    return listVaccination(param)
+  async ({ fId, param }, { rejectWithValue }) => {
+    return listVaccination(fId, param)
       .then((resp) => {
         return resp.data
       })
@@ -211,8 +211,8 @@ export const ListVaccinationsData = createAsyncThunk(
 
 export const VaccinateAnimal = createAsyncThunk(
   'vacy-data',
-  async ({ resName, id, data, success }, { rejectWithValue }) => {
-    return Vaccinate(resName, id, data)
+  async ({ fId, resName, id, data, success }, { rejectWithValue }) => {
+    return Vaccinate(fId, resName, id, data)
       .then((resp) => {
         success()
       })
@@ -224,8 +224,8 @@ export const VaccinateAnimal = createAsyncThunk(
 
 export const AnimalReport = createAsyncThunk(
   'animal-rep-data',
-  async (props, { rejectWithValue }) => {
-    return animalReport()
+  async ({ fId }, { rejectWithValue }) => {
+    return animalReport(fId)
       .then((resp) => {
         return resp.data
       })
@@ -237,8 +237,8 @@ export const AnimalReport = createAsyncThunk(
 
 export const SeeOneAnimal = createAsyncThunk(
   'animal-one',
-  async ({ params }, { rejectWithValue }) => {
-    return viewOneAnimal(params)
+  async ({ fId, params }, { rejectWithValue }) => {
+    return viewOneAnimal(fId, params)
       .then((resp) => {
         return resp.data
       })
@@ -250,8 +250,8 @@ export const SeeOneAnimal = createAsyncThunk(
 
 export const addAnimalGroup = createAsyncThunk(
   'create animal group',
-  async ({ data, success }, { rejectWithValue }) => {
-    return createGroupAnimal(data)
+  async ({ fId, data, success }, { rejectWithValue }) => {
+    return createGroupAnimal(fId, data)
       .then((resp) => {
         success()
         return resp.data
@@ -278,8 +278,8 @@ export const GetMedecinesData = createAsyncThunk(
 
 export const TreatmentData = createAsyncThunk(
   'TreatmentData',
-  async ({ param }, { rejectWithValue }) => {
-    return listTreatment(param)
+  async ({ fId, param, type }, { rejectWithValue }) => {
+    return listTreatment(fId, param, type)
       .then((resp) => {
         return resp.data
       })
@@ -291,8 +291,8 @@ export const TreatmentData = createAsyncThunk(
 
 export const CreateTreatmentData = createAsyncThunk(
   'CreateTreatment',
-  async ({ resName, id, data, success }, { rejectWithValue }) => {
-    return createTreatment(resName, id, data)
+  async ({ fId, resName, id, data, success }, { rejectWithValue }) => {
+    return createTreatment(fId, resName, id, data)
       .then((resp) => {
         success()
       })
@@ -304,8 +304,8 @@ export const CreateTreatmentData = createAsyncThunk(
 
 export const CreateAccountingData = createAsyncThunk(
   'creatacc',
-  async ({ id, data, success }, { rejectWithValue }) => {
-    return createAccounting(id, data)
+  async ({ fId, id, data, success, type }, { rejectWithValue }) => {
+    return createAccounting(fId, id, data, type)
       .then((resp) => {
         success()
       })
@@ -317,8 +317,8 @@ export const CreateAccountingData = createAsyncThunk(
 
 export const GetAccountingData = createAsyncThunk(
   'listacc',
-  async ({ param }, { rejectWithValue }) => {
-    return listAccounting(param)
+  async ({ fId, param, type }, { rejectWithValue }) => {
+    return listAccounting(fId, param, type)
       .then((resp) => {
         return resp.data
       })
@@ -329,8 +329,8 @@ export const GetAccountingData = createAsyncThunk(
 )
 export const CreateMesurementData = createAsyncThunk(
   'mes',
-  async ({ id, data, success }, { rejectWithValue }) => {
-    return createMeasurement(id, data)
+  async ({ fId, id, data, success }, { rejectWithValue }) => {
+    return createMeasurement(fId, id, data)
       .then((resp) => {
         success()
       })
@@ -342,8 +342,8 @@ export const CreateMesurementData = createAsyncThunk(
 
 export const GetALLMesurementsData = createAsyncThunk(
   'all-mes',
-  async ({ param }, { rejectWithValue }) => {
-    return getMeasurements(param)
+  async ({ fId, param }, { rejectWithValue }) => {
+    return getMeasurements(fId, param)
       .then((resp) => {
         return resp.data
       })
@@ -355,8 +355,8 @@ export const GetALLMesurementsData = createAsyncThunk(
 
 export const GetAllanimalActivities = createAsyncThunk(
   'all-actt',
-  async ({ param }, { rejectWithValue }) => {
-    return allAnimalActivities(param)
+  async ({ fId, param, type }, { rejectWithValue }) => {
+    return allAnimalActivities(fId, param, type)
       .then((resp) => {
         return resp.data
       })
@@ -368,8 +368,8 @@ export const GetAllanimalActivities = createAsyncThunk(
 
 export const CreateAnimalNotes = createAsyncThunk(
   'Create-animal-notes',
-  async ({ resName, id, data, success }, { rejectWithValue }) => {
-    return createAnimalNote(resName, id, data)
+  async ({ fId, resName, id, data, success }, { rejectWithValue }) => {
+    return createAnimalNote(fId, resName, id, data)
       .then((resp) => {
         success()
       })
@@ -381,8 +381,8 @@ export const CreateAnimalNotes = createAsyncThunk(
 
 export const retrieveAllanimalNotes = createAsyncThunk(
   'all-notes',
-  async ({ param }, { rejectWithValue }) => {
-    return retrieveAnimalNotes(param)
+  async ({ fId, param }, { rejectWithValue }) => {
+    return retrieveAnimalNotes(fId, param)
       .then((resp) => {
         return resp.data
       })
@@ -394,8 +394,8 @@ export const retrieveAllanimalNotes = createAsyncThunk(
 
 export const CreateAnimalYield = createAsyncThunk(
   'Create-animal-yiled',
-  async ({ id, data, success }, { rejectWithValue }) => {
-    return createAnimalYield(id, data)
+  async ({ fId, id, data, success }, { rejectWithValue }) => {
+    return createAnimalYield(fId, id, data)
       .then((resp) => {
         success()
       })
@@ -406,8 +406,8 @@ export const CreateAnimalYield = createAsyncThunk(
 )
 export const retrieveAllanimalYields = createAsyncThunk(
   'all-yields',
-  async ({ param }, { rejectWithValue }) => {
-    return ListAnimalYield(param)
+  async ({ fId, param }, { rejectWithValue }) => {
+    return ListAnimalYield(fId, param)
       .then((resp) => {
         return resp.data
       })
@@ -419,8 +419,8 @@ export const retrieveAllanimalYields = createAsyncThunk(
 
 export const GetOneAnimalNote = createAsyncThunk(
   'one-note',
-  async ({ resName, resId, id }, { rejectWithValue }) => {
-    return getOneAnimalNote(resName, resId, id)
+  async ({ fId, resName, resId, id }, { rejectWithValue }) => {
+    return getOneAnimalNote(fId, resName, resId, id)
       .then((resp) => {
         return resp.data
       })
@@ -432,8 +432,8 @@ export const GetOneAnimalNote = createAsyncThunk(
 
 export const CreateAnimalBreed = createAsyncThunk(
   'Create-animal-breed',
-  async ({ id, data, success }, { rejectWithValue }) => {
-    return createAnimalBreed(id, data)
+  async ({ fId, id, data, success }, { rejectWithValue }) => {
+    return createAnimalBreed(fId, id, data)
       .then((resp) => {
         success()
       })
@@ -444,8 +444,8 @@ export const CreateAnimalBreed = createAsyncThunk(
 )
 export const EditAnimals = createAsyncThunk(
   'edit-animal',
-  async ({ id, data, success }, { rejectWithValue }) => {
-    return editAnimal(id, data)
+  async ({ fId, id, data, success }, { rejectWithValue }) => {
+    return editAnimal(fId, id, data)
       .then((resp) => {
         success()
       })
@@ -456,8 +456,8 @@ export const EditAnimals = createAsyncThunk(
 )
 export const AllanimalBreeds = createAsyncThunk(
   'all-breeds',
-  async ({ param }, { rejectWithValue }) => {
-    return ListAnimalBreed(param)
+  async ({ fId, param }, { rejectWithValue }) => {
+    return ListAnimalBreed(fId, param)
       .then((resp) => {
         return resp.data
       })
@@ -469,8 +469,8 @@ export const AllanimalBreeds = createAsyncThunk(
 
 export const searchAnimalAction = createAsyncThunk(
   'search-animal',
-  async ({ param }, { rejectWithValue }) => {
-    return SearchAnimalGroup(param)
+  async ({ fId, param }, { rejectWithValue }) => {
+    return SearchAnimalGroup(fId, param)
       .then((resp) => {
         return resp.data
       })
@@ -482,8 +482,8 @@ export const searchAnimalAction = createAsyncThunk(
 
 export const AddToGroup = createAsyncThunk(
   'add-animal-to-group',
-  async ({ groupId, animalId, success }, { rejectWithValue }) => {
-    return AddAnimalToGroup(groupId, animalId)
+  async ({ fId, groupId, animalId, success }, { rejectWithValue }) => {
+    return AddAnimalToGroup(fId, groupId, animalId)
       .then((resp) => {
         success()
       })
@@ -495,8 +495,8 @@ export const AddToGroup = createAsyncThunk(
 
 export const ViewGroupAnimal = createAsyncThunk(
   'view-one-group-animal',
-  async ({ groupId }, { rejectWithValue }) => {
-    return viewGroupAnimal(groupId)
+  async ({ fId, groupId }, { rejectWithValue }) => {
+    return viewGroupAnimal(fId, groupId)
       .then((resp) => {
         return resp.data
       })
@@ -508,8 +508,8 @@ export const ViewGroupAnimal = createAsyncThunk(
 
 export const ViewTreatmentReport = createAsyncThunk(
   't-rep',
-  async (props, { rejectWithValue }) => {
-    return GetTreatmentReport()
+  async ({ fId }, { rejectWithValue }) => {
+    return GetTreatmentReport(fId)
       .then((resp) => {
         return resp.data
       })
@@ -521,8 +521,8 @@ export const ViewTreatmentReport = createAsyncThunk(
 
 export const ViewTypesReport = createAsyncThunk(
   't-rep-za',
-  async (props, { rejectWithValue }) => {
-    return GetreportTypes()
+  async ({ fId }, { rejectWithValue }) => {
+    return GetreportTypes(fId)
       .then((resp) => {
         return resp.data
       })
@@ -534,8 +534,8 @@ export const ViewTypesReport = createAsyncThunk(
 
 export const UpcomingT = createAsyncThunk(
   'up-t-rep-za',
-  async (props, { rejectWithValue }) => {
-    return upComingTreatmentReport()
+  async ({ fId }, { rejectWithValue }) => {
+    return upComingTreatmentReport({ fId })
       .then((resp) => {
         return resp.data
       })
@@ -547,8 +547,8 @@ export const UpcomingT = createAsyncThunk(
 
 export const ContactsApi = createAsyncThunk(
   'up-t-rep-za-co',
-  async (props, { rejectWithValue }) => {
-    return GetContactApi()
+  async ({ fId }, { rejectWithValue }) => {
+    return GetContactApi(fId)
       .then((resp) => {
         return resp.data
       })
@@ -560,8 +560,8 @@ export const ContactsApi = createAsyncThunk(
 
 export const addAncestorsApi = createAsyncThunk(
   'up-t-rep-za-co-za',
-  async ({ gender, id, data, success }, { rejectWithValue }) => {
-    return AddAncestors(gender, id, data)
+  async ({ fId, gender, id, data, success }, { rejectWithValue }) => {
+    return AddAncestors(fId, gender, id, data)
       .then((resp) => {
         success()
       })
@@ -573,8 +573,8 @@ export const addAncestorsApi = createAsyncThunk(
 
 export const AnimalOffSpringApi = createAsyncThunk(
   'up-t-rep-za-co-zaaa',
-  async ({ id }, { rejectWithValue }) => {
-    return AnimalOffSpring(id)
+  async ({ fId, id }, { rejectWithValue }) => {
+    return AnimalOffSpring(fId, id)
       .then((resp) => {
         return resp.data
       })
@@ -586,8 +586,8 @@ export const AnimalOffSpringApi = createAsyncThunk(
 
 export const GetAllMalesAnimalsApi = createAsyncThunk(
   'up-ui',
-  async (props, { rejectWithValue }) => {
-    return GetAllMales()
+  async ({ fId }, { rejectWithValue }) => {
+    return GetAllMales(fId)
       .then((resp) => {
         return resp.data
       })
@@ -599,8 +599,8 @@ export const GetAllMalesAnimalsApi = createAsyncThunk(
 
 export const GetAllFemalesAnimalsApi = createAsyncThunk(
   'up-ui=zx',
-  async (props, { rejectWithValue }) => {
-    return GetAllFemales()
+  async ({ fId }, { rejectWithValue }) => {
+    return GetAllFemales(fId)
       .then((resp) => {
         return resp.data
       })
@@ -612,8 +612,8 @@ export const GetAllFemalesAnimalsApi = createAsyncThunk(
 
 export const AllAncestors = createAsyncThunk(
   'up-ui=zx./',
-  async ({ id }, { rejectWithValue }) => {
-    return GetAllAncestors(id)
+  async ({ fId, id }, { rejectWithValue }) => {
+    return GetAllAncestors(fId, id)
       .then((resp) => {
         return resp.data
       })
@@ -625,8 +625,8 @@ export const AllAncestors = createAsyncThunk(
 
 export const SearchAnimal = createAsyncThunk(
   'up-ui=zx./ccc',
-  async ({ param }, { rejectWithValue }) => {
-    return searchAnimal(param)
+  async ({ fId, param }, { rejectWithValue }) => {
+    return searchAnimal(fId, param)
       .then((resp) => {
         return resp.data
       })

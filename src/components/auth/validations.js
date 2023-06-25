@@ -13,5 +13,6 @@ export const signUpSchema = Yup.object().shape({
   firstname: Yup.string().required("firstname is Required"),
   lastname: Yup.string().required("lastname is Required"),
   occupation: Yup.number().required("occupation is Required"),
+  role:Yup.string().required('Role is required')
  
 });

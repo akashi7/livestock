@@ -16,6 +16,7 @@ export default function AddFeedModal({
   id,
   getAllFeeds,
   isGroup,
+  farmId,
 }) {
   const initialValues = {
     onsetDate: '',
@@ -28,7 +29,11 @@ export default function AddFeedModal({
 
   function navigates() {
     dispatch(
-      getAllFeeds({ params: id, type: isGroup ? 'livestock_group' : 'animal' })
+      getAllFeeds({
+        fId: farmId,
+        params: id,
+        type: isGroup ? 'livestock_group' : 'animal',
+      })
     )
     notification.success({
       placement: 'topRight',
@@ -43,6 +48,7 @@ export default function AddFeedModal({
     values.per_head = state.value
     dispatch(
       CreateFeed({
+        fId: farmId,
         resName: isGroup ? 'livestock_group' : 'animal',
         id,
         data: values,

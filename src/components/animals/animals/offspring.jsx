@@ -9,15 +9,15 @@ import AnimalCard from '../../common/Cards'
 import MenuBar from '../../common/menubar/menubar'
 import { getAnimalColums } from './helper'
 
-export default function Offspring() {
+export default function Offspring({ farmId }) {
   const dispatch = useDispatch()
 
   const { animal, offSpring } = useSelector((state) => state.animal)
   const id = localStorage.getItem('id')
 
   useEffect(() => {
-    dispatch(SeeOneAnimal({ params: id }))
-    dispatch(AnimalOffSpringApi({ id }))
+    dispatch(SeeOneAnimal({ fId: farmId, params: id }))
+    dispatch(AnimalOffSpringApi({ fId: farmId, id }))
     //eslint-disable-next-line
   }, [])
 

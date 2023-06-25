@@ -1,11 +1,14 @@
 .menuBar {
-  width: 10%;
+  /* width: 10%;
   background-color: whitesmoke;
   height: 88%;
   margin-left: -7px;
   position: absolute;
   top: 3;
-  padding: 5px;
+  padding: 5px; */
+  /* flex: 2; */
+  width: 15%;
+  background-color: red;
 }
 .open {
   width: 10%;
@@ -19,3 +22,19 @@
   height: 100%;
   color: white;
 }
+
+@media only screen and (max-width: 720px) {
+  .menuBar {
+    width: 25%;
+  }
+}
+/* @media only screen and (min-width: 720px) {
+  .menuBar {
+    width: 15%;
+  }
+}
+@media only screen and (width: 1200px) {
+  .menuBar {
+    width: 10%;
+  }
+} */

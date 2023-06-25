@@ -13,7 +13,7 @@ import '../animal.css'
 import GroupAnimalDetails from './groupanimalDet'
 import { AnimalViewGroup } from './helper'
 
-export default function ViewOneGroup() {
+export default function ViewOneGroup({ farmId }) {
   const dispatch = useDispatch()
   const { id } = useParams()
   const { onegroupAnimal, searchedAnimal } = useSelector(
@@ -21,7 +21,7 @@ export default function ViewOneGroup() {
   )
 
   useEffect(() => {
-    dispatch(ViewGroupAnimal({ groupId: id }))
+    dispatch(ViewGroupAnimal({ fId: farmId, groupId: id }))
     /* eslint-disable-next-line */
   }, [id])
   return (
@@ -37,6 +37,7 @@ export default function ViewOneGroup() {
             dispatch={dispatch}
             ViewGroupAnimal={ViewGroupAnimal}
             handleState={handleState}
+            fId={farmId}
           />
           <div className='mt-[30px]'>
             <Table

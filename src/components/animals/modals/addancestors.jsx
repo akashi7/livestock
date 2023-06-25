@@ -13,6 +13,7 @@ export default function AncestorsModal({
   addAncestorsApi,
   dispatch,
   animals,
+  farmId,
 }) {
   function Toogling(gender) {
     Toogle(false)
@@ -56,12 +57,11 @@ export default function AncestorsModal({
     }, 3000)
   }
 
-  console.log({ animals })
-
   function AddNew() {
     if (animals) {
       dispatch(
         addAncestorsApi({
+          fId: farmId,
           gender: males ? 'male' : 'female',
           id: animals.id,
           data: animals,

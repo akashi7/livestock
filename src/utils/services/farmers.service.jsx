@@ -1,7 +1,7 @@
-import * as http from './api';
-export const createFarmer=(data)=>{
-  return http.POST('farmer/create',data);
-};
-export const getFarmers=()=>{
-  return http.GET('farmer/check/all');
+import * as http from './api'
+export const createFarmer = (fId, data) => {
+  return http.POST(`farmer/${fId}/create`, data)
+}
+export const getFarmers = (fId, id) => {
+  return http.GET(`farmer/${fId}/check/all`)
 }

@@ -14,6 +14,8 @@ export default function AddTreatmentModal({
   TreatmentData,
   dispatch,
   createTreatment,
+  isGroup,
+  fId,
 }) {
   const initialValues = {
     amount: '',
@@ -32,7 +34,13 @@ export default function AddTreatmentModal({
   }
 
   function navigates() {
-    dispatch(TreatmentData({ param: id }))
+    dispatch(
+      TreatmentData({
+        fId,
+        param: id,
+        type: isGroup ? 'livestock_group' : 'animal',
+      })
+    )
     notification.success({
       placement: 'topRight',
       message: 'Treatment Added Successfully',
@@ -51,14 +59,15 @@ export default function AddTreatmentModal({
   }
 
   function handleSubmit(values) {
-    // values.per_head = state.value
+    values.per_head = state.value
     values.record_transaction = true
     const date = new Date(values.date)
     date.setDate(date.getDate() + values.days)
     values.withdrawal_date = moment(new Date(date)).format('YYYY-MM-DD')
     dispatch(
       CreateTreatmentData({
-        resName: 'animal',
+        fId,
+        resName: isGroup ? 'livestock_group' : 'animal',
         id,
         data: values,
         success: navigates,
@@ -203,33 +212,35 @@ export default function AddTreatmentModal({
                 />
               </Col> */}
 
-              {/* <div className='mt-10 ml-2'>
-                <div className='kkpoer'>
-                  <span className='span'>distribution</span>
-                  <div className='flex  flex-row  w-[100%]'>
-                    <div className=' flex flex-row justify-start m-[5px] items-center'>
-                      <input
-                        type={'radio'}
-                        className='w-[70%]'
-                        value={'true'}
-                        onChange={ChangeType}
-                        checked={state.value === 'true'}
-                      />
-                      <label className='w-[170px] '>Per Head</label>
-                    </div>
-                    <div className=' flex flex-row justify-start m-[5px] items-center  '>
-                      <input
-                        type={'radio'}
-                        className='w-[70%]'
-                        value={'false'}
-                        checked={state.value === 'false'}
-                        onChange={ChangeType}
-                      />
-                      <label className='w-[170px] '>Total for group</label>
+              {isGroup && (
+                <div className='mt-10 ml-2'>
+                  <div className='kkpoer'>
+                    <span className='span'>distribution</span>
+                    <div className='flex  flex-row  w-[100%]'>
+                      <div className=' flex flex-row justify-start m-[5px] items-center'>
+                        <input
+                          type={'radio'}
+                          className='w-[70%]'
+                          value={'true'}
+                          onChange={ChangeType}
+                          checked={state.value === 'true'}
+                        />
+                        <label className='w-[170px] '>Per Head</label>
+                      </div>
+                      <div className=' flex flex-row justify-start m-[5px] items-center  '>
+                        <input
+                          type={'radio'}
+                          className='w-[70%]'
+                          value={'false'}
+                          checked={state.value === 'false'}
+                          onChange={ChangeType}
+                        />
+                        <label className='w-[170px] '>Total for group</label>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div> */}
+              )}
 
               <Col className='gutter-row mt-10' span={12}>
                 <InputTextArea name='description' label='description' />

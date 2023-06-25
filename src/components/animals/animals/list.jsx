@@ -7,13 +7,13 @@ import Search from '../../common/search'
 import '../animal.css'
 import { getAnimalColums } from './helper'
 
-function ListAnimals() {
+function ListAnimals({ farmId }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const { get } = useSelector((state) => state.animal)
   useEffect(() => {
-    dispatch(getAnimals())
+    dispatch(getAnimals({ farmId }))
     /* eslint-disable-next-line */
   }, [])
 
@@ -34,6 +34,7 @@ function ListAnimals() {
             action={SearchAnimal}
             state={get}
             typeName={'name'}
+            fId={farmId}
           />
         </div>
       </div>

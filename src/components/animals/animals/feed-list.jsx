@@ -15,7 +15,7 @@ import { AddFeedModal } from '../modals'
 import { AnimalFeedColmns } from './helper'
 import Search from '../../common/search'
 
-function ListAnimalFeeds() {
+function ListAnimalFeeds({ farmId }) {
   const dispatch = useDispatch()
   const { allFeeds, feedData, createFeed, animal } = useSelector(
     (state) => state.animal
@@ -66,6 +66,7 @@ function ListAnimalFeeds() {
                 categories={animalCatgories}
                 id={id}
                 getAllFeeds={GetAllFeeds}
+                farmId={farmId}
               />
             )}
           </div>
