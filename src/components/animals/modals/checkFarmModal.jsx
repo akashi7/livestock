@@ -1,17 +1,10 @@
 import { Modal } from 'antd'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getAllFarms } from '../../../state/slices/farm.slice'
 
 export default function CheckFarmModal({ Toogle, toogle }) {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { get } = useSelector((state) => state.farm)
-  useEffect(() => {
-    dispatch(getAllFarms())
-    /* eslint-disable-next-line */
-  }, [])
 
   function navigates() {
     navigate('/vt/add-farm')

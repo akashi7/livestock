@@ -4,7 +4,7 @@ let mainAPI
 
 process.env.NODE_ENV === 'development'
   ? (mainAPI = 'http://localhost:5000/api/v1/')
-  : (mainAPI = 'http://167.86.73.160:5000/api/v1/')
+  : (mainAPI = 'https://fimboo-api.mycodepay.com/api/v1/')
 
 const instance = axios.create({
   baseURL: mainAPI,

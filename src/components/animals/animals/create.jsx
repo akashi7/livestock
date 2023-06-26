@@ -9,7 +9,6 @@ import {
   getAllPurposeData,
   getAnimalCatgories,
 } from '../../../state/slices/animal.slice'
-import { getAllFarms } from '../../../state/slices/farm.slice'
 import { InputSelect, InputText, InputTextArea } from '../../common/input'
 import '../animal.css'
 import {
@@ -55,7 +54,6 @@ function CreateAnimal({ newgender, id, animalCat, farmId }) {
   const [gender, setGender] = useState('')
 
   useEffect(() => {
-    dispatch(getAllFarms())
     dispatch(getAllPurposeData({ fId: farmId }))
     dispatch(getAnimalCatgories({ fId: farmId }))
     /* eslint-disable-next-line */
