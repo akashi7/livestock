@@ -1,7 +1,6 @@
 import {
   AccountBookOutlined,
   InfoCircleOutlined,
-  StarOutlined,
   UsergroupAddOutlined,
   UserOutlined,
 } from '@ant-design/icons'
@@ -9,25 +8,12 @@ import {
 const mainRoute = `vt`
 
 const menus = [
-  {
-    label: `Dashboard`,
-    key: `/${mainRoute}/`,
-    icon: <StarOutlined />,
-  },
-  {
-    label: `farmers`,
-    icon: <UsergroupAddOutlined />,
-    children: [
-      {
-        label: `Create`,
-        key: `/${mainRoute}/add-farmer`,
-      },
-      {
-        label: `Farmers List`,
-        key: `/${mainRoute}/farmers-list`,
-      },
-    ],
-  },
+  // {
+  //   label: `Dashboard`,
+  //   key: `/${mainRoute}/`,
+  //   icon: <StarOutlined />,
+  // },
+
   {
     label: `Farms`,
     icon: <InfoCircleOutlined />,
@@ -39,6 +25,21 @@ const menus = [
       {
         label: `farms List`,
         key: `/${mainRoute}/`,
+      },
+    ],
+  },
+
+  {
+    label: `farmers`,
+    icon: <UsergroupAddOutlined />,
+    children: [
+      {
+        label: `Create`,
+        key: `/${mainRoute}/add-farmer`,
+      },
+      {
+        label: `Farmers List`,
+        key: `/${mainRoute}/farmers-list`,
       },
     ],
   },
