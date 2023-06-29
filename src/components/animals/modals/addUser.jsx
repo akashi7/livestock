@@ -1,6 +1,7 @@
 import { Col, Modal, Row, notification } from 'antd'
 import { Form, Formik } from 'formik'
 import { InputSelect, InputText } from '../../common/input'
+import { signUpSchema } from '../../auth/validations'
 
 export default function AddUserModal({
   Toogle,
@@ -32,9 +33,18 @@ export default function AddUserModal({
     Toogle(false)
   }
 
+  const onError = (error) => {
+    notification.error({
+      placement: 'topRight',
+      message: error.response.data.error,
+      duration: 4,
+      key: 'error',
+    })
+  }
+
   const handleSubmit = (values) => {
     console.log({ values })
-    dispatch(action({ farmId, data: values, success: Success }))
+    dispatch(action({ farmId, data: values, success: Success, onError }))
   }
 
   const roles = ['admin', 'user']
@@ -52,7 +62,7 @@ export default function AddUserModal({
       <div className='p-4 w-[100%] h-auto bg-white sm:p-6 lg:p-8'>
         <Formik
           initialValues={initialValues}
-          // validationSchema={userSignUpSchema}
+          validationSchema={signUpSchema}
           onSubmit={handleSubmit}
         >
           <Form className='space-y-12' action='#'>

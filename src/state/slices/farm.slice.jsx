@@ -126,13 +126,13 @@ export const FarmGetUsersLists = createAsyncThunk(
 
 export const FarmAddUsersLists = createAsyncThunk(
   'AddfUsers',
-  async ({ farmId, data, success }, { rejectWithValue }) => {
+  async ({ farmId, data, success, onError }, { rejectWithValue }) => {
     return FarmAddUsers(farmId, data)
       .then((resp) => {
         success()
       })
       .catch((error) => {
-        console.log(error)
+        onError(error)
         rejectWithValue(error)
       })
   }

@@ -25,6 +25,5 @@ export const FarmGetUsers = (id) => {
   return http.GET(`people/${id}/check/all`)
 }
 export const FarmAddUsers = (id, data) => {
-  console.log({ id }, { data })
   return http.POST(`people/${id}/create`, data)
 }
