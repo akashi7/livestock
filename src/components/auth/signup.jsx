@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { authSignUp } from '../../state/slices/auth.slice'
 import { InputText } from '../common/input'
 import { Spinner } from '../common/spinner'
-import { signUpSchema } from './validations'
+import { newSignUpSchema } from './validations'
 import { Col, Row } from 'antd'
 const SignUp = () => {
   const { loader } = useSelector((state) => state.auth)
@@ -33,7 +33,7 @@ const SignUp = () => {
       <div className='p-4 w-[37%] h-[650px] bg-white  border border-gray-200 shadow-md sm:p-6 lg:p-8'>
         <Formik
           initialValues={initialValues}
-          validationSchema={signUpSchema}
+          validationSchema={newSignUpSchema}
           onSubmit={handleSubmit}
         >
           <Form className='space-y-12' action='#'>
